@@ -1,0 +1,133 @@
+## Phase 4: Report Generation
+
+Generate submission-ready vulnerability reports for Google VRP (bughunters.google.com).
+
+### For Each Validated Finding (Status: SUBMIT)
+
+Create a complete report that can be directly pasted into the submission form.
+
+### Report Template
+
+```
+============================================
+VULNERABILITY REPORT
+============================================
+
+TITLE: [Clear, specific title - max 100 chars]
+
+SEVERITY: Critical / High / Medium / Low
+
+CVSS SCORE: X.X (CVSS:3.1/AV:X/AC:X/PR:X/UI:X/S:X/C:X/I:X/A:X)
+
+AFFECTED COMPONENT:
+[Service name, endpoint, or component]
+
+DESCRIPTION:
+[2-3 paragraphs explaining:
+- What the vulnerability is
+- Why it exists (root cause)
+- What impact it has]
+
+STEPS TO REPRODUCE:
+
+1. [Precondition - authentication state, setup needed]
+
+2. [First action - be specific]
+   Example: Navigate to https://service.google.com/api/endpoint
+
+3. [Second action]
+   Example: Send the following request:
+   ```
+   POST /api/fetch HTTP/1.1
+   Host: service.google.com
+   Content-Type: application/json
+
+   {"url":"http://169.254.169.254/latest/meta-data/"}
+   ```
+
+4. [Continue with numbered steps...]
+
+5. [Final step showing the vulnerability]
+   Example: Observe that the response contains AWS metadata
+
+PROOF OF CONCEPT:
+
+[Include actual working exploit code or commands]
+
+```bash
+curl -X POST "https://service.google.com/api/fetch" \
+  -H "Content-Type: application/json" \
+  -d '{"url":"http://169.254.169.254/latest/meta-data/iam/security-credentials/"}'
+```
+
+EXPECTED vs ACTUAL BEHAVIOR:
+
+Expected: Server should validate and reject internal URLs
+Actual: Server fetches any URL including internal metadata services
+
+IMPACT:
+
+[Specific impact statement]
+- An attacker can access AWS IAM credentials without authentication
+- This allows full compromise of the cloud environment
+- Estimated affected users: All users of the service
+- Data at risk: [specify]
+
+SUGGESTED REMEDIATION:
+
+1. Implement URL validation with allowlist of permitted domains
+2. Block requests to internal IP ranges (169.254.x.x, 10.x.x.x, etc.)
+3. Use a dedicated egress proxy for server-side requests
+
+ADDITIONAL NOTES:
+
+- Tested on: [date]
+- Browser/Tool: [if applicable]
+- This vulnerability chains with: [if applicable]
+
+============================================
+```
+
+### Quality Checklist
+
+Before finalizing each report:
+
+- [ ] Title is clear and specific (not "XSS vulnerability")
+- [ ] CVSS score matches the actual impact
+- [ ] Steps are numbered and reproducible
+- [ ] Proof of concept actually works
+- [ ] Impact is specific, not generic
+- [ ] No personal data or session tokens included
+- [ ] Professional tone throughout
+- [ ] Within Google VRP scope
+
+### Final Output
+
+Generate:
+1. Individual report for each SUBMIT finding
+2. Summary table with all findings
+3. Recommended submission order (highest impact first)
+
+```
+============================================
+SUBMISSION SUMMARY
+============================================
+
+Total Findings: X
+Ready for Submission: Y
+Estimated Total Bounty: $X,XXX - $XX,XXX
+
+Submission Order:
+1. [P1] SSRF to AWS Metadata - CRITICAL
+2. [P2] Authentication Bypass - HIGH
+3. [P3] Stored XSS in Comments - MEDIUM
+
+Submit at: https://bughunters.google.com/report
+============================================
+```
+
+### Rules
+- Each report must be complete and standalone
+- Copy-paste ready for submission form
+- No placeholders - all values filled in
+- Professional quality suitable for Google security team

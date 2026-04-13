@@ -1,0 +1,8 @@
+syntax = "proto2";
+
+package poc;
+
+message Node {
+  optional Node child = 1;
+  optional string value = 2;
+}

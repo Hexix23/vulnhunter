@@ -1,0 +1,25 @@
+# OS
+.DS_Store
+
+# Logs and temp files
+logs/
+*.log
+.pids/
+.checkpoints/
+
+# Compiled binaries (keep source, ignore large binaries)
+*.bin
+*.o
+*.dSYM/
+
+# But keep the debug binary for PoC
+!bugs/*/poc/poc_vulnerable_debug
+
+# Findings (generated)
+findings/
+
+# Reports (generated)
+reports/
+
+# Targets (cloned repos - too large)
+targets/
