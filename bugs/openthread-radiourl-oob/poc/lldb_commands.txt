@@ -1,0 +1,10 @@
+target create ./radiourl_oob_debug
+breakpoint set -f radio_url.cpp -l 153
+run 511
+thread backtrace
+frame variable this aUrl
+print sizeof(this->mUrl)
+print strnlen(aUrl, 600)
+memory read -s1 -c20 -f x ((char*)this + 0) + 500
+continue
+quit

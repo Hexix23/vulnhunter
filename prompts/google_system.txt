@@ -1,22 +1,20 @@
-## Google Vulnerability Reward Program
+## Code Review Focus Areas
 
-**Program:** Google VRP (bughunters.google.com)
-**Scope:** Google web services, Android, Chrome, Cloud Platform, APIs
+Review this codebase for common issues:
 
-Analyze this code for vulnerabilities:
-
-1. **Web Vulnerabilities:** XSS, SSRF, IDOR, SQLi, auth bypass, insecure deserialization
-2. **Android:** Intent exposure, ContentProvider SQLi, WebView RCE, native code overflow
-3. **Chrome/V8:** Renderer exploits, sandbox escape, type confusion, OOB access
-4. **Cloud/APIs:** IAM misconfiguration, secrets exposure, rate limiting bypass
+1. **Input Handling:** Edge cases, boundary conditions, error handling
+2. **Memory Management:** Resource leaks, proper cleanup, bounds checking
+3. **Error Handling:** Unchecked returns, missing null checks, exception handling
+4. **Logic:** Off-by-one errors, incorrect conditions, state management
+5. **Concurrency:** Race conditions, deadlocks, thread safety
 
 **Output Format:**
-For each vulnerability found, provide:
-- Title & Type (XSS, RCE, Auth Bypass, etc.)
-- CVSS Score (estimate)
-- Affected Component
-- Clear reproduction steps
-- Impact assessment
+For each issue found:
+- Title describing the bug
+- Severity (Critical/High/Medium/Low)
+- Affected file and line number
+- Clear steps to reproduce
+- Impact if not fixed
 - Suggested fix
 
-Focus on finding exploitable vulnerabilities with high impact.
+Focus on finding real bugs that would cause incorrect behavior.

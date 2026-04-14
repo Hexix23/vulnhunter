@@ -1,0 +1,145 @@
+## Phase: PoC Generation
+
+For each CONFIRMED finding, create a working Proof-of-Concept that demonstrates the vulnerability.
+
+### PoC Requirements
+
+1. **Standalone** - Must work without manual intervention
+2. **Documented** - Clear comments explaining each step
+3. **Reproducible** - Anyone can run and see the result
+4. **Safe** - Does not cause permanent damage
+
+### PoC Structure
+
+```
+bugs/<vuln-name>/
+├── poc/
+│   ├── exploit.cpp (or .py, .sh)  # Main PoC
+│   ├── build.sh                   # Build script with ASan
+│   ├── run.sh                     # Execute and show output
+│   └── README.md                  # How to reproduce
+├── debugging/
+│   ├── lldb_commands.txt          # LLDB batch commands
+│   └── LLDB_DEBUG_REPORT.md       # Debugger evidence
+└── report/
+    ├── GOOGLE_VRP_REPORT.md       # Full technical report
+    └── GOOGLE_VRP_QUICK_SUBMIT.md # Copy-paste submission
+```
+
+### Build Script Template (C/C++)
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+REPO="/path/to/target/repo"
+OUT="./exploit"
+
+c++ -fsanitize=address -g -O1 -std=c++17 \
+    -I"$REPO" \
+    exploit.cpp \
+    "$REPO/vulnerable_file.cpp" \
+    -o "$OUT"
+
+echo "Built $OUT - run with: ./$OUT"
+```
+
+### PoC Code Template (Memory Corruption)
+
+```cpp
+#include <cstdio>
+#include <cstring>
+#include <string>
+
+// Include vulnerable code headers
+#include "target/vulnerable.hpp"
+
+int main(int argc, char** argv) {
+    // 1. Setup - explain what we're testing
+    fprintf(stderr, "PoC: [Vulnerability Name]\n");
+    fprintf(stderr, "Target: [function/class]\n\n");
+
+    // 2. Craft malicious input
+    std::string payload = /* trigger condition */;
+    fprintf(stderr, "Payload length: %zu\n", payload.size());
+
+    // 3. Trigger the vulnerability
+    fprintf(stderr, "Triggering vulnerable function...\n");
+    VulnerableClass obj(payload.c_str());
+
+    // 4. If we get here without crash, check state
+    fprintf(stderr, "Result: %s\n", obj.getResult());
+
+    return 0;
+}
+```
+
+### PoC Code Template (Python/Network)
+
+```python
+#!/usr/bin/env python3
+"""
+PoC: [Vulnerability Name]
+Target: [endpoint/function]
+Impact: [what happens]
+"""
+
+import requests
+import sys
+
+TARGET = sys.argv[1] if len(sys.argv) > 1 else "http://localhost:8080"
+
+def exploit():
+    # 1. Craft payload
+    payload = {
+        "param": "malicious_value"
+    }
+
+    # 2. Send request
+    print(f"[*] Sending payload to {TARGET}")
+    resp = requests.post(f"{TARGET}/vulnerable/endpoint", json=payload)
+
+    # 3. Check result
+    if "expected_leak" in resp.text:
+        print("[+] VULNERABLE - leak detected!")
+        print(resp.text[:500])
+        return True
+
+    print("[-] Not vulnerable or patched")
+    return False
+
+if __name__ == "__main__":
+    exploit()
+```
+
+### Evidence Collection
+
+For each PoC, collect:
+
+1. **ASan Output** - Full sanitizer report
+2. **Backtrace** - Call stack to vulnerable function
+3. **Memory State** - Relevant buffer/pointer values
+4. **Root Cause** - Exactly which line causes the issue
+
+### Output Format
+
+```
+[POC_GENERATED] vuln_name
+Location: bugs/vuln-name/poc/
+Files:
+  - exploit.cpp (47 lines)
+  - build.sh
+  - README.md
+Status: WORKING
+ASan: heap-buffer-overflow confirmed
+Evidence: LLDB shows buffer[511] = 0x41 (not null)
+```
+
+### Success Criteria
+
+A PoC is complete when:
+- [ ] Compiles without errors
+- [ ] Runs without manual setup
+- [ ] Triggers the bug (crash/leak/etc)
+- [ ] ASan confirms the issue type
+- [ ] README explains reproduction steps

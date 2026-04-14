@@ -1,0 +1,3 @@
+breakpoint set -n "ot::Posix::RadioUrl::Init"
+breakpoint set -n "ot::Url::Url::Init"
+run 511

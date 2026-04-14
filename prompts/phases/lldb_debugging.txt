@@ -1,0 +1,216 @@
+## Phase: LLDB Debugging
+
+Use LLDB to collect step-by-step evidence for memory corruption vulnerabilities.
+
+### When to Use
+
+- Buffer overflows (heap/stack)
+- Use-after-free
+- Null pointer dereference
+- Integer overflow leading to memory issues
+- Any bug where memory state proves the issue
+
+### LLDB Batch Mode
+
+Create `lldb_commands.txt` for reproducible debugging:
+
+```
+target create ./exploit_debug
+breakpoint set -f vulnerable_file.cpp -l LINE_AFTER_BUG
+run ARGS
+frame variable this
+print sizeof(this->buffer)
+print (size_t)strlen(input)
+expr this->buffer[LAST_INDEX]
+memory read -s1 -c16 &this->buffer[BOUNDARY]
+thread backtrace
+continue
+quit
+```
+
+Run with:
+```bash
+lldb -b -s lldb_commands.txt ./exploit_debug 2>&1 | tee lldb_output.txt
+```
+
+### Key Commands by Bug Type
+
+#### Buffer Overflow / OOB Read
+```
+# Check buffer size
+print sizeof(this->buffer)
+
+# Check input length
+print (size_t)strlen(input)
+
+# Examine boundary bytes
+expr (void)printf("buf[N]=%c (0x%02x)\n", this->buf[N], (unsigned char)this->buf[N])
+
+# Memory dump at boundary
+memory read -s1 -c16 &this->buffer[SIZE-4]
+
+# Check null termination
+expr this->buffer[SIZE-1]  # Should be '\0'
+```
+
+#### Use-After-Free
+```
+# Set breakpoints at alloc, free, use
+breakpoint set -n malloc
+breakpoint set -n free
+breakpoint set -f file.cpp -l USE_LINE
+
+# Track pointer
+watchpoint set variable ptr
+
+# Check if freed
+memory read ptr  # Should show freed pattern
+```
+
+#### Null Pointer Dereference
+```
+# Break before dereference
+breakpoint set -f file.cpp -l DEREF_LINE
+
+# Check pointer value
+print ptr
+expr ptr == nullptr
+```
+
+#### Integer Overflow
+```
+# Check values before overflow
+print (unsigned)size
+print (unsigned)count
+print (unsigned)(size * count)  # Overflowed result
+
+# Compare to expected
+expr (uint64_t)size * (uint64_t)count  # Correct result
+```
+
+### Debug Report Template
+
+Create `debugging/LLDB_DEBUG_REPORT.md`:
+
+```markdown
+# LLDB Debug Report: [Vulnerability Name]
+
+**Date:** YYYY-MM-DD
+**Binary:** `exploit_debug`
+**Architecture:** x86_64/arm64
+
+---
+
+## 1. Bug Summary
+
+[One sentence describing the bug]
+
+---
+
+## 2. Breakpoint Setup
+
+[Show breakpoint location and why]
+
+---
+
+## 3. State Before Bug
+
+[Variable values, buffer contents]
+
+---
+
+## 4. The Critical Evidence
+
+[Memory dump showing the issue]
+
+---
+
+## 5. Backtrace
+
+[Call stack at vulnerable point]
+
+---
+
+## 6. Root Cause
+
+[Code snippet with annotation]
+
+---
+
+## 7. Fix
+
+[Suggested fix with code]
+```
+
+### Build for Debugging
+
+Compile WITHOUT ASan but WITH debug symbols:
+
+```bash
+c++ -g -O0 -std=c++17 \
+    exploit.cpp \
+    target/vulnerable.cpp \
+    -o exploit_debug
+```
+
+Note: ASan interferes with LLDB memory inspection. Build two versions:
+- `exploit` - with ASan for crash confirmation
+- `exploit_debug` - without ASan for LLDB inspection
+
+### Evidence Checklist
+
+For a complete debug report:
+
+- [ ] Breakpoint at correct line (after the bug occurs)
+- [ ] Buffer/struct size shown
+- [ ] Input length/value shown
+- [ ] Memory dump at boundary
+- [ ] Backtrace captured
+- [ ] Root cause line identified
+- [ ] Fix suggested
+
+### Output Format
+
+```
+[LLDB_DEBUG] vuln_name
+Location: bugs/vuln-name/debugging/
+Files:
+  - lldb_commands.txt (batch commands)
+  - lldb_output.txt (session transcript)
+  - LLDB_DEBUG_REPORT.md (formatted report)
+Key Evidence:
+  - buffer[511] = 0x41 (NOT NULL)
+  - Expected: buffer[511] = 0x00
+  - strncpy did not null-terminate
+```
+
+### Common Patterns
+
+#### strncpy without null-termination
+```
+(lldb) print sizeof(this->buf)
+512
+(lldb) print strlen(input)
+511
+(lldb) expr this->buf[511]
+'A' (0x41)  <-- Should be '\0'!
+```
+
+#### Off-by-one in loop
+```
+(lldb) print i
+512  <-- Should be max 511
+(lldb) print sizeof(array)
+512
+(lldb) # i=512 means array[512] is OOB
+```
+
+#### Integer overflow
+```
+(lldb) print width
+65536
+(lldb) print height
+65536
+(lldb) print width * height
+0  <-- Overflow! Should be 4294967296
+```

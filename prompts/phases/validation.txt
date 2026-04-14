@@ -2,7 +2,31 @@
 
 Validate all findings from Phase 2. Confirm exploitability and assess for Google VRP submission.
 
+**CRITICAL: All memory corruption bugs MUST be validated against the REAL compiled library, not isolated source files.**
+
 ### For Each Finding
+
+#### 0. MANDATORY: Real Library Validation (Memory Bugs)
+
+For any memory corruption (buffer overflow, OOB, use-after-free, etc.):
+
+1. **Build the target project** with its real build system (CMake, Bazel, Meson, etc.)
+2. **Enable sanitizers** in the build: `-fsanitize=address -g`
+3. **Link PoC against the compiled library** (.a or .so), NOT source files
+4. **Run and capture ASan output** proving the bug exists in the real library
+
+Example for CMake projects:
+```bash
+git submodule update --init --recursive
+mkdir build_asan && cd build_asan
+cmake -DCMAKE_CXX_FLAGS="-fsanitize=address -g" ..
+make -j$(nproc)
+# Then link PoC against build_asan/lib*.a
+```
+
+**DO NOT** compile vulnerable .cpp files directly into a harness - this proves nothing about the real product.
+
+**DO** link against the actual library artifacts that users compile and use.
 
 #### 1. Scope Verification
 Check against Google VRP rules (bughunters.google.com):

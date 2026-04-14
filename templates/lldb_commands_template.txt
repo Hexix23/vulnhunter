@@ -1,0 +1,68 @@
+# LLDB Batch Commands Template
+# Usage: lldb -b -s lldb_commands.txt ./exploit_debug
+
+# Load the binary
+target create ./exploit_debug
+
+# Set breakpoint AFTER the bug occurs (to inspect state)
+# Option 1: By file and line
+breakpoint set -f vulnerable_file.cpp -l LINE_NUMBER
+
+# Option 2: By function name
+# breakpoint set -n "Namespace::Class::Function"
+
+# Run with arguments
+run ARG1 ARG2
+
+# === AT BREAKPOINT ===
+
+# Show current location
+frame info
+
+# Show local variables
+frame variable
+
+# Show specific variable
+frame variable this
+frame variable input
+
+# === BUFFER ANALYSIS ===
+
+# Buffer size
+print sizeof(this->buffer)
+
+# Input length
+print (size_t)strlen(input)
+
+# Check specific byte (with hex)
+expr (void)printf("buf[N]=%c (0x%02x)\n", this->buffer[N], (unsigned char)this->buffer[N])
+
+# Memory dump at boundary (8 bytes starting at index)
+memory read -s1 -c8 &this->buffer[INDEX]
+
+# Full buffer dump (adjust count)
+memory read -s1 -c64 &this->buffer[0]
+
+# === POINTER ANALYSIS ===
+
+# Check pointer value
+print ptr
+expr ptr == nullptr
+
+# Dereference (careful!)
+print *ptr
+
+# === BACKTRACE ===
+
+thread backtrace
+
+# Show all threads
+thread list
+
+# === CONTINUE/FINISH ===
+
+# Continue execution
+continue
+
+# Exit LLDB
+quit

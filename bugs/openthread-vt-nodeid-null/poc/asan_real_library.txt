@@ -1,0 +1,35 @@
+calling platformSpinelManagerInit with url=spinel+hdlc+forkpty:///bin/echo
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==65861==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x7ff8047883e0 bp 0x00030d50a6a0 sp 0x00030d50a670 T0)
+==65861==The signal is caused by a READ memory access.
+==65861==Hint: address points to the zero page.
+==65861==WARNING: Can't read from symbolizer at fd 4
+==65861==WARNING: atos failed to symbolize address "0x7ff8047883e0"
+==65861==WARNING: Can't write to symbolizer at fd 4
+==65861==WARNING: Can't read from symbolizer at fd 5
+==65861==WARNING: atos failed to symbolize address "0x10dae3330"
+==65861==WARNING: Can't write to symbolizer at fd 5
+==65861==WARNING: Can't read from symbolizer at fd 6
+==65861==WARNING: atos failed to symbolize address "0x1047dff88"
+==65861==WARNING: Can't write to symbolizer at fd 6
+==65861==WARNING: Can't read from symbolizer at fd 7
+==65861==WARNING: atos failed to symbolize address "0x1047dfb19"
+==65861==WARNING: Can't write to symbolizer at fd 7
+==65861==WARNING: Failed to use and restart external symbolizer!
+    #0 0x7ff8047883e0 in strtol_l+0x54 (/usr/lib/system/libsystem_c.dylib:x86_64+0x73e0)
+    #1 0x00010dae3330 in atoi+0x50 (/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/lib/darwin/libclang_rt.asan_osx_dynamic.dylib:x86_64+0x3c330)
+    #2 0x0001047dff88 in ot::Posix::SpinelManager::VirtualTimeInit()+0x58 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/openthread-vt-nodeid-null/poc/poc_real:x86_64+0x100013f88)
+    #3 0x0001047dfb19 in ot::Posix::SpinelManager::Init(char const*)+0x1c9 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/openthread-vt-nodeid-null/poc/poc_real:x86_64+0x100013b19)
+    #4 0x0001047e01ab in platformSpinelManagerInit+0x1b (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/openthread-vt-nodeid-null/poc/poc_real:x86_64+0x1000141ab)
+    #5 0x0001047cc969 in main+0x69 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/openthread-vt-nodeid-null/poc/poc_real:x86_64+0x100000969)
+    #6 0x000204c33bb7  (/usr/lib/dyld:x86_64+0x12bb7)
+
+==65861==Register values:
+rax = 0x00007ff84518cbf0  rbx = 0x000000030d50aed0  rcx = 0x00007ff84518c5f0  rdx = 0x000000000000000a  
+rdi = 0x0000000000000000  rsi = 0x00007ff8453bffd4  rbp = 0x000000030d50a6a0  rsp = 0x000000030d50a670  
+ r8 = 0x00007ff84518cbf0   r9 = 0x0000000000000004  r10 = 0x0000100020932b01  r11 = 0x0000000000000001  
+r12 = 0x0000000000000000  r13 = 0xaaaaaaaaaaaaaaaa  r14 = 0x0000000000000000  r15 = 0x000000030d50b610  
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV (/usr/lib/system/libsystem_c.dylib:x86_64+0x73e0) in strtol_l+0x54
+==65861==ABORTING

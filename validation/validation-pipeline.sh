@@ -249,22 +249,112 @@ gate_5_real_library_test() {
     log "CRITICAL: Findings MUST be validated against the real compiled library"
     log ""
 
-    # Check for PoC binaries
-    local poc_dir="$SCRIPT_DIR/bugs/*/poc"
+    # STEP 1: Build the target library with ASan if not already built
+    log "Step 1: Building target library with AddressSanitizer..."
+
+    local build_dir="$target/build_asan"
+    local lib_built=false
+
+    if [ -d "$target" ]; then
+        # Check if already built
+        if [ -d "$build_dir" ] && find "$build_dir" -name "*.a" 2>/dev/null | head -1 | grep -q .; then
+            log "ASan build already exists: $build_dir"
+            lib_built=true
+        else
+            # Try to build with CMake
+            if [ -f "$target/CMakeLists.txt" ]; then
+                log "Detected CMake project, building with ASan..."
+
+                # Initialize submodules if needed
+                if [ -f "$target/.gitmodules" ]; then
+                    log "Initializing git submodules..."
+                    (cd "$target" && git submodule update --init --recursive 2>&1 | tail -5) || true
+                fi
+
+                mkdir -p "$build_dir"
+                if (cd "$build_dir" && cmake -GNinja \
+                    -DCMAKE_BUILD_TYPE=Debug \
+                    -DCMAKE_CXX_FLAGS="-fsanitize=address -g -fno-omit-frame-pointer" \
+                    -DCMAKE_C_FLAGS="-fsanitize=address -g -fno-omit-frame-pointer" \
+                    -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address" \
+                    .. 2>&1 | tail -10) && \
+                   (cd "$build_dir" && ninja 2>&1 | tail -20); then
+                    log "CMake/Ninja build completed"
+                    lib_built=true
+                else
+                    warn "CMake build had errors (some targets may have failed)"
+                    # Check if any .a files were created despite errors
+                    if find "$build_dir" -name "*.a" 2>/dev/null | head -1 | grep -q .; then
+                        log "Some libraries were built despite errors"
+                        lib_built=true
+                    fi
+                fi
+
+            # Try Bazel
+            elif [ -f "$target/WORKSPACE" ] || [ -f "$target/WORKSPACE.bazel" ]; then
+                log "Detected Bazel project, building with ASan..."
+                if (cd "$target" && bazel build --copt="-fsanitize=address" --linkopt="-fsanitize=address" //... 2>&1 | tail -10); then
+                    log "Bazel build completed"
+                    lib_built=true
+                fi
+
+            # Try Meson
+            elif [ -f "$target/meson.build" ]; then
+                log "Detected Meson project, building with ASan..."
+                if (cd "$target" && meson setup "$build_dir" -Db_sanitize=address && ninja -C "$build_dir" 2>&1 | tail -10); then
+                    log "Meson build completed"
+                    lib_built=true
+                fi
+
+            # Try Make
+            elif [ -f "$target/Makefile" ]; then
+                log "Detected Makefile project, building with ASan..."
+                if (cd "$target" && make CFLAGS="-fsanitize=address -g" CXXFLAGS="-fsanitize=address -g" LDFLAGS="-fsanitize=address" 2>&1 | tail -10); then
+                    log "Make build completed"
+                    lib_built=true
+                fi
+            fi
+        fi
+    fi
+
+    if [ "$lib_built" = false ]; then
+        warn "Could not auto-build library - checking for pre-built PoC..."
+    else
+        log "Library built with ASan: $build_dir"
+    fi
+
+    # STEP 2: Check for PoC binaries that link against real library
+    log ""
+    log "Step 2: Looking for PoC binaries linked against real library..."
+
     local poc_binary=""
     local poc_found=false
+    local poc_real_found=false
 
-    # Search for compiled PoC in bug directories
+    # Search for compiled PoC in bug directories - prefer *_real binaries
     for bug_dir in "$SCRIPT_DIR/bugs"/*/; do
         if [ -d "${bug_dir}poc" ]; then
-            for binary in "${bug_dir}poc"/*; do
+            # First look for *_real binaries (linked against real library)
+            for binary in "${bug_dir}poc"/*_real; do
                 if [ -x "$binary" ] && file "$binary" 2>/dev/null | grep -q "executable"; then
                     poc_binary="$binary"
                     poc_found=true
-                    log "Found PoC binary: $poc_binary"
+                    poc_real_found=true
+                    log "Found REAL library PoC: $poc_binary"
                     break 2
                 fi
             done
+            # Fallback to any executable
+            if [ "$poc_found" = false ]; then
+                for binary in "${bug_dir}poc"/*; do
+                    if [ -x "$binary" ] && file "$binary" 2>/dev/null | grep -q "executable"; then
+                        poc_binary="$binary"
+                        poc_found=true
+                        log "Found PoC binary: $poc_binary"
+                        break 2
+                    fi
+                done
+            fi
         fi
     done
 
@@ -288,8 +378,31 @@ gate_5_real_library_test() {
     local poc_output
     local poc_exit_code
 
-    # Run with timeout to prevent infinite loops
-    poc_output=$(timeout 30 "$poc_binary" 2>&1) || poc_exit_code=$?
+    # Run with timeout to prevent infinite loops (macOS compatible)
+    # Use gtimeout if available, otherwise fallback to direct execution
+    if command -v gtimeout &> /dev/null; then
+        poc_output=$(gtimeout 30 "$poc_binary" 2>&1) || poc_exit_code=$?
+    elif command -v timeout &> /dev/null; then
+        poc_output=$(timeout 30 "$poc_binary" 2>&1) || poc_exit_code=$?
+    else
+        # Fallback: run directly with manual timeout via background process
+        "$poc_binary" > /tmp/poc_output.txt 2>&1 &
+        local poc_pid=$!
+        local waited=0
+        while kill -0 $poc_pid 2>/dev/null && [ $waited -lt 30 ]; do
+            sleep 1
+            waited=$((waited + 1))
+        done
+        if kill -0 $poc_pid 2>/dev/null; then
+            kill -9 $poc_pid 2>/dev/null
+            poc_exit_code=124  # timeout exit code
+        else
+            wait $poc_pid
+            poc_exit_code=$?
+        fi
+        poc_output=$(cat /tmp/poc_output.txt 2>/dev/null || echo "")
+        rm -f /tmp/poc_output.txt
+    fi
 
     # Check for crash signals (SIGSEGV=139, SIGABRT=134, etc.)
     if [ "${poc_exit_code:-0}" -eq 139 ] || [ "${poc_exit_code:-0}" -eq 134 ] || \
@@ -327,40 +440,42 @@ calculate_confidence_score() {
     local findings=$1
     local score=0
 
-    log "=== CONFIDENCE SCORE CALCULATION ==="
+    # Use stderr for logging so stdout only contains the score
+    echo -e "${GREEN}[VALIDATION]${NC} === CONFIDENCE SCORE CALCULATION ===" | tee -a "$VALIDATION_LOG" >&2
 
     # Base score
     local finding_count=$(echo "$findings" | grep -c "FINDING" || echo "0")
     score=$((finding_count * 10))
 
     # Has PoC? +25
-    if grep -q "PoC\|Proof.*Concept" "$findings"; then
+    if echo "$findings" | grep -q "PoC\|Proof.*Concept\|poc_real\|reproduced"; then
         score=$((score + 25))
-        log "Has PoC: +25 points"
+        echo -e "${GREEN}[VALIDATION]${NC} Has PoC: +25 points" | tee -a "$VALIDATION_LOG" >&2
     fi
 
     # Has CVSS? +10
-    if grep -q "CVSS" "$findings"; then
+    if echo "$findings" | grep -q "CVSS"; then
         score=$((score + 10))
-        log "Has CVSS scores: +10 points"
+        echo -e "${GREEN}[VALIDATION]${NC} Has CVSS scores: +10 points" | tee -a "$VALIDATION_LOG" >&2
     fi
 
     # Cites official documentation? +15
-    if grep -q "docs/\|design/\|specification" "$findings"; then
+    if echo "$findings" | grep -q "docs/\|design/\|specification"; then
         score=$((score + 15))
-        log "Cites official documentation: +15 points"
+        echo -e "${GREEN}[VALIDATION]${NC} Cites official documentation: +15 points" | tee -a "$VALIDATION_LOG" >&2
     fi
 
     # Shows multiple implementations failing? +20
-    if grep -q "upb\|C++\|implementation.*difference" "$findings"; then
+    if echo "$findings" | grep -q "upb\|C++\|implementation.*difference"; then
         score=$((score + 20))
-        log "Multi-implementation validation: +20 points"
+        echo -e "${GREEN}[VALIDATION]${NC} Multi-implementation validation: +20 points" | tee -a "$VALIDATION_LOG" >&2
     fi
 
     # Passes all gates? +30
     score=$((score + 30))
-    log "Passes all validation gates: +30 points"
+    echo -e "${GREEN}[VALIDATION]${NC} Passes all validation gates: +30 points" | tee -a "$VALIDATION_LOG" >&2
 
+    # Only output the score to stdout (for capture)
     echo "$score"
 }
 

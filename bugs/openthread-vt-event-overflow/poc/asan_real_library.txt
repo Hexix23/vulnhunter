@@ -1,0 +1,62 @@
+calling virtualTimeSendRadioSpinelWriteEvent with 1025 bytes
+=================================================================
+==65863==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x00030daace2b at pc 0x00010dd32062 bp 0x00030daac9f0 sp 0x00030daac1a0
+WRITE of size 1025 at 0x00030daace2b thread T0
+==65863==WARNING: Can't read from symbolizer at fd 4
+==65863==WARNING: atos failed to symbolize address "0x10dd32061"
+==65863==WARNING: Can't write to symbolizer at fd 4
+==65863==WARNING: Can't read from symbolizer at fd 5
+==65863==WARNING: atos failed to symbolize address "0x104a26cb5"
+==65863==WARNING: Can't write to symbolizer at fd 5
+==65863==WARNING: Can't read from symbolizer at fd 6
+==65863==WARNING: atos failed to symbolize address "0x104a0dae6"
+==65863==WARNING: Can't write to symbolizer at fd 6
+==65863==WARNING: Can't read from symbolizer at fd 7
+==65863==WARNING: atos failed to symbolize address "0x204f94bb7"
+    #0 0x00010dd32061 in __asan_memcpy+0x341 (/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/lib/darwin/libclang_rt.asan_osx_dynamic.dylib:x86_64+0x3f061)
+    #1 0x000104a26cb5 in virtualTimeSendRadioSpinelWriteEvent+0x145 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/openthread-vt-event-overflow/poc/poc_real:x86_64+0x100019cb5)
+    #2 0x000104a0dae6 in main+0x196 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/openthread-vt-event-overflow/poc/poc_real:x86_64+0x100000ae6)
+    #3 0x000204f94bb7  (/usr/lib/dyld:x86_64+0x12bb7)
+
+Address 0x00030daace2b is located in stack of thread T0 at offset 1067 in frame
+==65863==WARNING: Can't write to symbolizer at fd 7
+==65863==WARNING: Failed to use and restart external symbolizer!
+    #0 0x000104a26b7f in virtualTimeSendRadioSpinelWriteEvent+0xf (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/openthread-vt-event-overflow/poc/poc_real:x86_64+0x100019b7f)
+
+  This frame has 1 object(s):
+    [32, 1067) 'event' (line 213) <== Memory access at offset 1067 overflows this variable
+HINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork
+      (longjmp and C++ exceptions *are* supported)
+SUMMARY: AddressSanitizer: stack-buffer-overflow (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/openthread-vt-event-overflow/poc/poc_real:x86_64+0x100019cb5) in virtualTimeSendRadioSpinelWriteEvent+0x145
+Shadow bytes around the buggy address:
+  0x00030daacb80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x00030daacc00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x00030daacc80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x00030daacd00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x00030daacd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x00030daace00: 00 00 00 00 00[03]f3 f3 f3 f3 f3 f3 f3 f3 f3 f3
+  0x00030daace80: f3 f3 f3 f3 f3 f3 f3 f3 00 00 00 00 00 00 00 00
+  0x00030daacf00: 00 00 00 00 00 00 00 00 00 00 00 00 f1 f1 f1 f1
+  0x00030daacf80: 00 00 00 f2 f2 f2 f2 f2 f8 f3 f3 f3 00 00 00 00
+  0x00030daad000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x00030daad080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==65863==ABORTING

@@ -1,0 +1,14 @@
+target create ./radiourl_oob_debug
+breakpoint set -f radio_url.cpp -l 153
+run 511
+frame variable this
+print sizeof(this->mUrl)
+print (size_t)strlen(aUrl)
+expr (void)printf("mUrl[509]=%c (0x%02x)\n", this->mUrl[509], (unsigned char)this->mUrl[509])
+expr (void)printf("mUrl[510]=%c (0x%02x)\n", this->mUrl[510], (unsigned char)this->mUrl[510])
+expr (void)printf("mUrl[511]=%c (0x%02x)\n", this->mUrl[511], (unsigned char)this->mUrl[511])
+expr &this->mUrl[0]
+expr &this->mUrl[511]
+memory read -s1 -c8 &this->mUrl[508]
+continue
+quit
