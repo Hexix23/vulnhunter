@@ -1,0 +1,10 @@
+(lldb) target create --arch=arm64 "/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-001/debugging/poc_debug"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-001/debugging/poc_debug' (arm64).
+(lldb) command source -s 0 '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-001/debugging/lldb_commands.txt'
+Executing commands in '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-001/debugging/lldb_commands.txt'.
+(lldb) breakpoint set --file poc_debug.cpp --line 31
+Breakpoint 1: where = poc_debug`CaptureAllocationState() + 68 at poc_debug.cpp:31:16, address = 0x0000000100000cd8
+(lldb) breakpoint set --file poc_debug.cpp --line 41
+Breakpoint 2: where = poc_debug`CaptureCastState() + 12 at poc_debug.cpp:41:16, address = 0x0000000100000d94
+(lldb) run
+error: could not find 'debugserver'. Please ensure it is properly installed and available in your PATH

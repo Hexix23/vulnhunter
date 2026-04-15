@@ -1,0 +1,21 @@
+settings set target.disable-aslr false
+breakpoint set --file poc_debug.cpp --line 33
+breakpoint set --file string.h --line 87
+breakpoint set --file string.h --line 92
+run
+frame variable storage s payload append_size wrapped_sum reserve_branch wrapped_new_cap copy_dest_addr copy_dest_delta
+memory read --size 1 --format x --count 16 storage
+continue
+frame variable s size data
+expr -- (unsigned long long)(s->size_)
+expr -- (unsigned long long)size
+expr -- (unsigned long long)(s->size_ + size)
+expr -- (bool)(s->capacity_ <= s->size_ + size)
+continue
+frame variable s size data
+expr -- (void*)s->data_
+expr -- (void*)(s->data_ + s->size_)
+memory read --size 1 --format x --count 16 s->data_
+continue
+bt
+quit

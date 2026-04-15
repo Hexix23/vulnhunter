@@ -1,0 +1,49 @@
+{
+  "finding_id": "protobuf-input-003",
+  "title": "Packed fixed-field preallocation can overflow signed element count",
+  "assessment_status": "CVSS_SCORED",
+  "validation_status": "CONFIRMED",
+  "direct_impact": {
+    "type": "signed integer overflow leading to parser abort",
+    "operation": "packed fixed-width field growth overflows old_entries + new_entries and passes an invalid size into repeated-field growth",
+    "bytes": "trigger demonstrated when extending a repeated fixed32 field from INT_MAX by one additional packed element",
+    "data_exposed": "none demonstrated"
+  },
+  "exploitability": {
+    "trigger_difficulty": "hard",
+    "reliability": "high once the destination message is already near INT_MAX elements",
+    "remote": true,
+    "requires_auth": false
+  },
+  "chain_potential": {
+    "standalone": "denial of service in services that call MessageLite::MergeFrom* on attacker-controlled protobuf bytes while retaining extremely large repeated fixed fields",
+    "with_other_bugs": "limited chaining value because the confirmed consequence is a checked abort, but the state corruption could become more useful if a non-checking build exposes a weaker container-growth path",
+    "difficulty": "high"
+  },
+  "cvss": {
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+    "score": 5.9,
+    "severity": "MEDIUM",
+    "justification": {
+      "AV": "N - The validated entry points include public MergeFromString and MergeFromCodedStream APIs that can process network-delivered protobuf bytes.",
+      "AC": "H - Exploitation requires the target message object to already contain a repeated fixed-size field near INT_MAX elements before the malicious merge occurs.",
+      "PR": "N - No privileges are required to send the triggering serialized field once the service holds the prerequisite state.",
+      "UI": "N - The failure occurs during routine merge processing.",
+      "S": "U - Impact is confined to the vulnerable service process.",
+      "C": "N - No confidentiality impact was demonstrated.",
+      "I": "N - The confirmed build aborts on corrupted size handling before any attacker-controlled data modification beyond the crashing operation was shown.",
+      "A": "H - The reproduced effect is a deterministic service-killing abort through the public library API."
+    }
+  },
+  "priority": "P2",
+  "fix_urgency": "high",
+  "cwe": {
+    "id": "CWE-190",
+    "name": "Integer Overflow or Wraparound"
+  },
+  "notes": [
+    "Validation evidence: bugs/protobuf/protobuf-input-003/validation/impact_result.json and bugs/protobuf/protobuf-input-003/validation/asan_result.json",
+    "This is the only one of the three findings validated against the shipped libprotobuf.a public API surface in this workspace.",
+    "Severity remains MEDIUM because the precondition is extreme and the demonstrated impact is denial of service rather than memory disclosure or code execution."
+  ]
+}

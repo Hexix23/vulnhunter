@@ -1,0 +1,24 @@
+settings set target.disable-aslr false
+breakpoint set --file zero_copy_stream_impl_lite.cc --line 49
+breakpoint set --file zero_copy_stream_impl_lite.cc --line 57
+breakpoint set --file poc_real.cpp --line 37
+run
+frame variable data
+frame variable size
+expr -- (long long)size
+expr -- (int)size
+expr -- block_size
+continue
+frame variable this->size_
+frame variable this->block_size_
+frame variable this->position_
+expr -- this->position_ < this->size_
+expr -- this->size_ - this->position_
+memory read --size 1 --count 16 data_
+continue
+frame variable ok
+frame variable size
+frame variable data
+expr -- stream.ByteCount()
+memory read --size 1 --count 16 region
+quit

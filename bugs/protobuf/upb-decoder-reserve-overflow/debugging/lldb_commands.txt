@@ -1,0 +1,24 @@
+settings set stop-disassembly-display never
+settings set target.process.thread.step-avoid-regexp ^std::
+breakpoint set --file decode.c --line 289
+breakpoint set --file decode.c --line 291
+breakpoint set --file array.c --line 162
+breakpoint set --file decode.c --line 294
+run 2097152
+frame variable val->size lg2 arr->size arr->capacity
+expr -- (size_t)(val->size >> lg2)
+memory read --size 8 --count 4 arr
+continue
+frame variable elem arr->size arr->capacity
+expr -- (size_t)(arr->capacity - arr->size)
+expr -- (size_t)(arr->size + elem)
+memory read --size 8 --count 4 arr
+continue
+frame variable min_capacity new_capacity lg2 old_bytes
+expr -- (size_t)(new_capacity << lg2)
+continue
+frame variable arr->size arr->capacity count
+memory read --size 8 --count 4 arr
+continue
+bt
+quit

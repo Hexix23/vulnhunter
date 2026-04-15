@@ -1,0 +1,5 @@
+extension.c.o
+debug_string.c.o
+extension_registry.c.o
+extension_range.c.o
+debug_string.c.o

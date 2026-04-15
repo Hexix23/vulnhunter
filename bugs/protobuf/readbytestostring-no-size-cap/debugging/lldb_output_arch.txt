@@ -1,0 +1,25 @@
+(lldb) target create --arch=arm64 "./poc_debug"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/readbytestostring-no-size-cap/debugging/poc_debug' (arm64).
+(lldb) command source -s 0 'lldb_commands.txt'
+Executing commands in '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/readbytestostring-no-size-cap/debugging/lldb_commands.txt'.
+(lldb) settings set target.disable-aslr false
+(lldb) breakpoint set --file poc_real.cpp --line 47
+Breakpoint 1: no locations (pending).
+WARNING:  Unable to resolve breakpoint to any actual locations.
+(lldb) breakpoint modify --condition 'declared_length == 0x80000000u' 1
+(lldb) breakpoint command add 1
+(lldb) breakpoint set --file wire_format_lite.cc --line 548
+Breakpoint 2: where = poc_debug`google::protobuf::internal::WireFormatLite::ReadBytes(google::protobuf::io::CodedInputStream*, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>*) + 156 [inlined] google::protobuf::internal::ReadBytesToString(google::protobuf::io::CodedInputStream*, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>*) + 144 at wire_format_lite.cc:548:49, address = 0x00000001000fd1f8
+(lldb) breakpoint modify --ignore-count 2 2
+(lldb) breakpoint command add 2
+(lldb) breakpoint set --file coded_stream.cc --line 262
+Breakpoint 3: where = poc_debug`google::protobuf::io::CodedInputStream::ReadString(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>*, int) + 28 at coded_stream.cc:262:12, address = 0x00000001000b84a4
+(lldb) breakpoint modify --ignore-count 2 3
+(lldb) breakpoint command add 3
+(lldb) breakpoint set --file poc_real.cpp --line 49
+Breakpoint 4: no locations (pending).
+WARNING:  Unable to resolve breakpoint to any actual locations.
+(lldb) breakpoint modify --condition 'declared_length == 0x80000000u' 4
+(lldb) breakpoint command add 4
+(lldb) run
+error: could not find 'debugserver'. Please ensure it is properly installed and available in your PATH

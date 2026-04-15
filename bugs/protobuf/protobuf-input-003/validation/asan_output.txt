@@ -1,0 +1,29 @@
+api=google::protobuf::MessageLite::MergeFromString
+initial_size=2147483647
+initial_capacity=6
+payload_bytes=6
+new_entries=1
+=================================================================
+==58064==ERROR: AddressSanitizer: bad parameters to __sanitizer_annotate_contiguous_container:
+      beg     : 0x603000006198
+      end     : 0x6030000061b0
+      old_mid : 0x603200006194
+      new_mid : 0x602e00006198
+==58064==WARNING: external symbolizer didn't start up correctly!
+==58064==WARNING: Can't write to symbolizer at fd 4
+==58064==WARNING: external symbolizer didn't start up correctly!
+==58064==WARNING: Can't write to symbolizer at fd 5
+==58064==WARNING: external symbolizer didn't start up correctly!
+==58064==WARNING: Can't write to symbolizer at fd 6
+==58064==WARNING: external symbolizer didn't start up correctly!
+==58064==WARNING: Can't write to symbolizer at fd 7
+==58064==WARNING: external symbolizer didn't start up correctly!
+==58064==WARNING: Failed to use and restart external symbolizer!
+    #0 0x000102020710 in __sanitizer_annotate_contiguous_container+0x6c (/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/lib/darwin/libclang_rt.asan_osx_dynamic.dylib:arm64e+0x44710)
+    #1 0x000100f41fa8 in char const* google::protobuf::internal::EpsCopyInputStream::ReadPackedFixed<unsigned int>(char const*, google::protobuf::Arena*, int, google::protobuf::RepeatedField<unsigned int>*)+0x3d8 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-003/poc/poc_real:arm64+0x10008dfa8)
+    #2 0x000100f8d974 in bool google::protobuf::internal::MergeFromImpl<false>(std::__1::basic_string_view<char, std::__1::char_traits<char>>, google::protobuf::MessageLite*, google::protobuf::internal::TcParseTableBase const*, google::protobuf::MessageLite::ParseFlags)+0x258 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-003/poc/poc_real:arm64+0x1000d9974)
+    #3 0x000100eb72a4 in main+0x2ec (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-003/poc/poc_real:arm64+0x1000032a4)
+    #4 0x00018d643da0 in start+0x1b4c (/usr/lib/dyld:arm64e+0x1fda0)
+
+SUMMARY: AddressSanitizer: bad-__sanitizer_annotate_contiguous_container (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-003/poc/poc_real:arm64+0x10008dfa8) in char const* google::protobuf::internal::EpsCopyInputStream::ReadPackedFixed<unsigned int>(char const*, google::protobuf::Arena*, int, google::protobuf::RepeatedField<unsigned int>*)+0x3d8
+==58064==ABORTING

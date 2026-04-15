@@ -1,0 +1,49 @@
+{
+  "finding_id": "protobuf-input-001",
+  "title": "Unchecked 32-bit frame length drives allocation and truncated output framing",
+  "assessment_status": "CVSS_SCORED",
+  "validation_status": "CONFIRMED",
+  "direct_impact": {
+    "type": "allocation-size abuse and framing truncation",
+    "operation": "attacker-controlled 32-bit frame length drives arena allocation/read attempt; oversized output length is narrowed back to uint32_t",
+    "bytes": "up to 4294967295 requested input bytes; output framing truncates any serialized response above 4 GiB",
+    "data_exposed": "none demonstrated"
+  },
+  "exploitability": {
+    "trigger_difficulty": "easy",
+    "reliability": "high for local conformance-run disruption",
+    "remote": false,
+    "requires_auth": false
+  },
+  "chain_potential": {
+    "standalone": "denial of service against local conformance automation and protocol desynchronization if a response ever exceeds 4 GiB",
+    "with_other_bugs": "limited chaining value because the confirmed behavior is allocation pressure / incorrect framing rather than memory corruption",
+    "difficulty": "low"
+  },
+  "cvss": {
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+    "score": 3.3,
+    "severity": "LOW",
+    "justification": {
+      "AV": "L - The validated sink is the test-only conformance_upb executable reading attacker-controlled framed stdin, not a network-exposed production library API.",
+      "AC": "L - The attacker only needs to supply an oversized 32-bit length prefix; no race, heap grooming, or special environment is required.",
+      "PR": "N - No privileges are required to feed input to the worker process.",
+      "UI": "N - The vulnerable path executes during normal request processing.",
+      "S": "U - Impact stays within the conformance worker / automation process.",
+      "C": "N - No memory disclosure or data exposure was demonstrated.",
+      "I": "N - The framing truncation effect was demonstrated as a logic flaw, but no real integrity compromise against protected data was validated.",
+      "A": "L - The confirmed consequence is aborting or desynchronizing a local conformance run, not compromising the broader system."
+    }
+  },
+  "priority": "P3",
+  "fix_urgency": "moderate",
+  "cwe": {
+    "id": "CWE-190",
+    "name": "Integer Overflow or Wraparound"
+  },
+  "notes": [
+    "Validation evidence: bugs/protobuf/protobuf-input-001/validation/impact_result.json",
+    "Reachability is limited to local/test tooling because DoTestIo() is in conformance_upb, not the shipped libprotobuf.a/libupb.a APIs.",
+    "Scoring stays availability-only because no memory corruption or information disclosure was reproduced."
+  ]
+}

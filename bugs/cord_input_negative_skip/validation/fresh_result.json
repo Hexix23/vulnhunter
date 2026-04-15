@@ -1,0 +1,6 @@
+{
+  "skip_validates_count": false,
+  "issue_description": "CordInputStream::Skip(int count) does not validate that count is non-negative. It immediately casts count to size_t in its comparisons, so a negative value such as -1 becomes a very large unsigned value. That makes both bounds checks fail for ordinary inputs, and the function falls through to NextChunk(bytes_remaining_), effectively advancing to EOF and returning false instead of rejecting the invalid argument explicitly. This is a logic bug caused by signed-to-unsigned conversion, but the provided ASan reproducer did not trigger a memory-safety failure.",
+  "relevant_code_snippet": "bool CordInputStream::Skip(int count) {\\n  if (static_cast<size_t>(count) <= available_) {\\n    available_ -= count;\\n    bytes_remaining_ -= count;\\n    return true;\\n  }\\n\\n  if (static_cast<size_t>(count) <= bytes_remaining_) {\\n    NextChunk(count);\\n    return true;\\n  }\\n  NextChunk(bytes_remaining_);\\n  return false;\\n}\\n\\nbool CordInputStream::NextChunk(size_t skip) {\\n  const size_t distance = size_ - available_ + skip;\\n  absl::Cord::Advance(&it_, distance);\\n  bytes_remaining_ -= skip;\\n  return LoadChunkData();\\n}",
+  "verdict": "VULNERABLE"
+}

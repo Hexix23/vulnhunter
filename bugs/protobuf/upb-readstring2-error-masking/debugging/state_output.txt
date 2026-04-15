@@ -1,0 +1,8 @@
+[low-level] initial ptr_offset=0 limit=0 error=0
+[low-level] input bytes: 0a 05 41
+[low-level] tag=0xa field=1 wire_type=2 declared_size=5 payload_offset=2
+[low-level] read_ret=0x0 required_end_offset=7 available_payload=1
+[low-level] stream.error=1 view.size=0
+[decoder] before _upb_Decoder_ReadString: err.code=0 size=5 ptr_offset=2 limit=0
+[decoder] longjmp err.code=2 (Wire format was corrupt)
+[public] upb_Decode status=2 (Wire format was corrupt)

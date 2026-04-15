@@ -1,0 +1,13 @@
+(lldb) target create --arch=arm64 "./poc_debug"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-002/debugging/poc_debug' (arm64).
+(lldb) command source -s 0 'lldb_commands.txt'
+Executing commands in '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-002/debugging/lldb_commands.txt'.
+(lldb) settings set target.disable-aslr false
+(lldb) breakpoint set --file poc_debug.cpp --line 29
+Breakpoint 1: where = poc_debug`main + 456 at poc_debug.cpp:33:36, address = 0x0000000100000e20
+(lldb) breakpoint set --file string.h --line 87
+Breakpoint 2: where = poc_debug`::upb_String_Append(upb_String *, const char *, size_t) + 36 at string.h:87:10, address = 0x00000001000016dc
+(lldb) breakpoint set --file string.h --line 92
+Breakpoint 3: where = poc_debug`::upb_String_Append(upb_String *, const char *, size_t) + 176 at string.h:92:13, address = 0x0000000100001768
+(lldb) run
+error: could not find 'debugserver'. Please ensure it is properly installed and available in your PATH

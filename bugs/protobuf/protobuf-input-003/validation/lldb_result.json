@@ -1,0 +1,5 @@
+{
+  "validator": "lldb",
+  "status": "STATE_BUG",
+  "evidence": "LLDB symbol resolution succeeded for google::protobuf::internal::EpsCopyInputStream::ReadPackedFixed<unsigned int>, but runtime launch was blocked by missing macOS debugserver. Fallback state capture with the same prebuilt ASan protobuf library showed raw_size_field=2147483647, new_entries=1, requested_size_64=2147483648, wrapped_size_signed=-2147483648, followed by AddressSanitizer bad parameters to __sanitizer_annotate_contiguous_container in RepeatedField<unsigned int>::AnnotateSize() from parse_context.h:1547 / repeated_field.h:649 during MessageLite::MergeFromString()."
+}

@@ -1,0 +1,12 @@
+first_size=20
+first_ptr=0x6030000059b0
+byte_count_before=20
+backup_count=52
+byte_count_after_backup=72
+second_size=52
+second_ptr=0x603000005990
+pointer_delta=32
+byte_count_after_second_next=20
+size_bug=1
+pointer_bug=1
+count_bug=1

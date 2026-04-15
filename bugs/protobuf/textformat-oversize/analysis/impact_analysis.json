@@ -1,0 +1,49 @@
+{
+  "finding_id": "protobuf-textformat-oversize",
+  "title": "TextFormat::Parser null-dereferences default error collector on oversize input",
+  "assessment_status": "CVSS_SCORED",
+  "validation_status": "CONFIRMED",
+  "direct_impact": {
+    "type": "null-pointer-dereference",
+    "operation": "read/write through null error collector pointer during oversized-input error handling",
+    "bytes": "not applicable",
+    "data_exposed": "none"
+  },
+  "exploitability": {
+    "trigger_difficulty": "moderate",
+    "reliability": "high",
+    "remote": true,
+    "requires_auth": false
+  },
+  "chain_potential": {
+    "standalone": "process crash and denial of service in services that parse attacker-controlled textproto larger than INT_MAX",
+    "with_other_bugs": "limited; primarily useful as a crash primitive or reliability amplifier in larger resource-exhaustion attacks",
+    "difficulty": "high"
+  },
+  "cvss": {
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+    "score": 5.9,
+    "severity": "MEDIUM",
+    "justification": {
+      "AV": "N - Reachable through network-facing services that accept untrusted textproto input.",
+      "AC": "H - Requires a payload larger than 2147483647 bytes, which is an atypically large precondition.",
+      "PR": "N - No privileges are required to send the malicious input.",
+      "UI": "N - The vulnerable parser crashes during automatic processing.",
+      "S": "U - Impact is limited to the vulnerable process or service.",
+      "C": "N - No confidentiality impact was demonstrated.",
+      "I": "N - No integrity impact was demonstrated.",
+      "A": "H - The confirmed result is a deterministic process crash."
+    }
+  },
+  "priority": "P2",
+  "fix_urgency": "high",
+  "cwe": {
+    "id": "CWE-476",
+    "name": "NULL Pointer Dereference"
+  },
+  "notes": [
+    "Validation evidence: bugs/protobuf/textformat-oversize/README.md",
+    "LLDB evidence confirms x19 == 0x0 and error_collector_ == nullptr at the crash site.",
+    "Scope is availability-only because no memory corruption or data disclosure was observed."
+  ]
+}

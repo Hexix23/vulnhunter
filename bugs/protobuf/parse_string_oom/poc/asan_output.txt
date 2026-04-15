@@ -1,0 +1,48 @@
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==55475==ERROR: AddressSanitizer: SEGV on unknown address 0xffffd84fd7d9d8f9 (pc 0x0001029b7f68 bp 0x00016d4ed4b0 sp 0x00016d4ed320 T0)
+==55475==The signal is caused by a READ memory access.
+==55475==WARNING: external symbolizer didn't start up correctly!
+==55475==WARNING: Can't write to symbolizer at fd 4
+==55475==WARNING: external symbolizer didn't start up correctly!
+==55475==WARNING: Can't write to symbolizer at fd 5
+==55475==WARNING: external symbolizer didn't start up correctly!
+==55475==WARNING: Can't write to symbolizer at fd 6
+==55475==WARNING: external symbolizer didn't start up correctly!
+==55475==WARNING: Can't write to symbolizer at fd 7
+==55475==WARNING: external symbolizer didn't start up correctly!
+==55475==WARNING: Failed to use and restart external symbolizer!
+    #0 0x0001029b7f68 in std::__1::pair<absl::lts_20260107::container_internal::raw_hash_set<absl::lts_20260107::container_internal::FlatHashMapPolicy<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>, google::protobuf::Descriptor::WellKnownType>>::iterator, bool> absl::lts_20260107::container_internal::raw_hash_set<absl::lts_20260107::container_internal::FlatHashMapPolicy<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>, google::protobuf::Descriptor::WellKnownType>>::find_or_prepare_insert_large<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>>(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> const&)+0x194 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/parse_string_oom/poc/poc_real:arm64+0x1000abf68)
+    #1 0x00010291c3ec in google::protobuf::DescriptorPool::Tables::Tables()+0x7cc (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/parse_string_oom/poc/poc_real:arm64+0x1000103ec)
+    #2 0x000102927c54 in google::protobuf::DescriptorPool::DescriptorPool(google::protobuf::DescriptorDatabase*, google::protobuf::DescriptorPool::ErrorCollector*)+0x110 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/parse_string_oom/poc/poc_real:arm64+0x10001bc54)
+    #3 0x0001029299e4 in google::protobuf::(anonymous namespace)::NewGeneratedPool()+0x34 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/parse_string_oom/poc/poc_real:arm64+0x10001d9e4)
+    #4 0x000102929cdc in google::protobuf::DescriptorPool::InternalAddGeneratedFile(void const*, int)+0x1dc (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/parse_string_oom/poc/poc_real:arm64+0x10001dcdc)
+    #5 0x000102b6b9ac in google::protobuf::internal::AddDescriptors(google::protobuf::internal::DescriptorTable const*)+0x130 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/parse_string_oom/poc/poc_real:arm64+0x10025f9ac)
+    #6 0x000102910cf0 in _GLOBAL__I_000102+0x1c (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/parse_string_oom/poc/poc_real:arm64+0x100004cf0)
+    #7 0x00018d66b730 in invocation function for block in dyld4::Loader::findAndRunAllInitializers(dyld4::RuntimeState&) const+0x1b8 (/usr/lib/dyld:arm64e+0x47730)
+    #8 0x00018d67be8c in invocation function for block in dyld3::MachOAnalyzer::forEachInitializer(Diagnostics&, dyld3::MachOAnalyzer::VMAddrConverter const&, void (unsigned int) block_pointer, void const*) const+0x13c (/usr/lib/dyld:arm64e+0x57e8c)
+    #9 0x00018d6b255c in invocation function for block in mach_o::UnsafeHeader::forEachSection(void (mach_o::UnsafeHeader::SectionInfo const&, bool&) block_pointer) const+0x134 (/usr/lib/dyld:arm64e+0x8e55c)
+    #10 0x00018d6af090 in mach_o::UnsafeHeader::forEachLoadCommand(void (load_command const*, bool&) block_pointer) const+0xcc (/usr/lib/dyld:arm64e+0x8b090)
+    #11 0x00018d6b0938 in mach_o::UnsafeHeader::forEachSection(void (mach_o::UnsafeHeader::SectionInfo const&, bool&) block_pointer) const+0x78 (/usr/lib/dyld:arm64e+0x8c938)
+    #12 0x00018d67b980 in dyld3::MachOAnalyzer::forEachInitializer(Diagnostics&, dyld3::MachOAnalyzer::VMAddrConverter const&, void (unsigned int) block_pointer, void const*) const+0x200 (/usr/lib/dyld:arm64e+0x57980)
+    #13 0x00018d66b4e8 in dyld4::Loader::findAndRunAllInitializers(dyld4::RuntimeState&) const+0xa8 (/usr/lib/dyld:arm64e+0x474e8)
+    #14 0x00018d664338 in dyld4::JustInTimeLoader::runInitializers(dyld4::RuntimeState&) const+0x20 (/usr/lib/dyld:arm64e+0x40338)
+    #15 0x00018d66bd88 in dyld4::Loader::runInitializersBottomUp(dyld4::RuntimeState&, lsl::Vector<AuthenticatedValue<dyld4::Loader const*>>&, lsl::Vector<AuthenticatedValue<dyld4::Loader const*>>&) const+0x234 (/usr/lib/dyld:arm64e+0x47d88)
+    #16 0x00018d670c40 in dyld4::Loader::runInitializersBottomUpPlusUpwardLinks(dyld4::RuntimeState&) const::$_0::operator()() const+0x70 (/usr/lib/dyld:arm64e+0x4cc40)
+    #17 0x00018d66c070 in dyld4::Loader::runInitializersBottomUpPlusUpwardLinks(dyld4::RuntimeState&) const+0x2c8 (/usr/lib/dyld:arm64e+0x48070)
+    #18 0x00018d645330 in dyld4::prepare(dyld4::APIs&, mach_o::UnsafeHeader const*)+0xf24 (/usr/lib/dyld:arm64e+0x21330)
+    #19 0x00018d6443ec in dyld4::start(dyld4::KernelArgs*, void*, void*, unsigned long long)::$_1::operator()() const+0x13c (/usr/lib/dyld:arm64e+0x203ec)
+    #20 0x00018d643d48 in start+0x1af4 (/usr/lib/dyld:arm64e+0x1fd48)
+
+==55475==Register values:
+ x[0] = 0xbebebefebebec7ce   x[1] = 0x0000603000004000   x[2] = 0x000000000000001a   x[3] = 0x0000603000004260  
+ x[4] = 0x0000000000000002   x[5] = 0x0000000000000000   x[6] = 0x000000016ccf8000   x[7] = 0x0000000000000001  
+ x[8] = 0x17d7d7dfd7d7d8f9   x[9] = 0x00000c2c000000ee  x[10] = 0x2945a7d7524d215e  x[11] = 0x16800d5ac9858932  
+x[12] = 0x0000604000000d98  x[13] = 0xbebebebebebebebe  x[14] = 0x000000016d4ed517  x[15] = 0x000000016d4ed508  
+x[16] = 0xbebebebebebebebe  x[17] = 0x000000002da9daa2  x[18] = 0x0000000000000000  x[19] = 0x000000016d4ed360  
+x[20] = 0x000000016d4ed7d0  x[21] = 0x0000007000020000  x[22] = 0x0000616000000740  x[23] = 0x0000000000000000  
+x[24] = 0x0000004000000910  x[25] = 0x000000016d4ed500  x[26] = 0x000000702dabda64  x[27] = 0x000000016d4ed320  
+x[28] = 0x00000c2c000000ed     fp = 0x000000016d4ed4b0     lr = 0x00000001029b7ef0     sp = 0x000000016d4ed320  
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/parse_string_oom/poc/poc_real:arm64+0x1000abf68) in std::__1::pair<absl::lts_20260107::container_internal::raw_hash_set<absl::lts_20260107::container_internal::FlatHashMapPolicy<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>, google::protobuf::Descriptor::WellKnownType>>::iterator, bool> absl::lts_20260107::container_internal::raw_hash_set<absl::lts_20260107::container_internal::FlatHashMapPolicy<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>, google::protobuf::Descriptor::WellKnownType>>::find_or_prepare_insert_large<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>>(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> const&)+0x194
+==55475==ABORTING

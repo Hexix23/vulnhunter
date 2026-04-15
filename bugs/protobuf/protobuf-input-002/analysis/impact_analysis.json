@@ -1,0 +1,49 @@
+{
+  "finding_id": "protobuf-input-002",
+  "title": "String growth arithmetic can wrap before reserve",
+  "assessment_status": "CVSS_SCORED",
+  "validation_status": "CONFIRMED",
+  "direct_impact": {
+    "type": "integer-overflow-driven buffer underwrite",
+    "operation": "size_t addition wraps before reserve and memcpy() writes before the destination buffer",
+    "bytes": "validated write of 8 bytes before the target buffer after wraparound",
+    "data_exposed": "none demonstrated"
+  },
+  "exploitability": {
+    "trigger_difficulty": "hard",
+    "reliability": "high once the wrapped-size state is reached",
+    "remote": false,
+    "requires_auth": false
+  },
+  "chain_potential": {
+    "standalone": "memory corruption followed by deterministic process abort in consumers that compile the vulnerable upb tokenizer/text helpers from source",
+    "with_other_bugs": "could strengthen a larger exploit chain as a write-primitive precursor, but the required near-SIZE_MAX state makes practical exploitation difficult",
+    "difficulty": "high"
+  },
+  "cvss": {
+    "vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:H",
+    "score": 5.9,
+    "severity": "MEDIUM",
+    "justification": {
+      "AV": "L - The validated path is not present in the shipped libupb.a archive; exploitation requires a local/downstream build that embeds the vulnerable upb tokenizer sources.",
+      "AC": "H - Triggering the corruption requires driving string state near SIZE_MAX before a final append, which is an exceptional precondition.",
+      "PR": "N - No privileges are required beyond supplying the hostile input/state to the vulnerable parser helper.",
+      "UI": "N - The write occurs during ordinary parser/helper execution.",
+      "S": "U - Impact remains within the vulnerable process.",
+      "C": "N - No information disclosure was demonstrated.",
+      "I": "L - The memcpy() destination underflows the buffer boundary and corrupts adjacent memory, but controlled post-corruption effects were not shown.",
+      "A": "H - The confirmed result is a reliable ASan/UBSan-detected abort once the wrapped state is hit."
+    }
+  },
+  "priority": "P2",
+  "fix_urgency": "moderate",
+  "cwe": {
+    "id": "CWE-190",
+    "name": "Integer Overflow or Wraparound"
+  },
+  "notes": [
+    "Validation evidence: bugs/protobuf/protobuf-input-002/validation/impact_result.json",
+    "Reachability is materially limited because the provided libupb.a does not contain tokenizer/string objects; the issue affects downstream source consumers rather than the shipped archive in this workspace.",
+    "Severity is capped at MEDIUM because the validated effect is crash-oriented corruption under an extreme size precondition, not a demonstrated control-flow hijack."
+  ]
+}

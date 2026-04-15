@@ -1,0 +1,23 @@
+cord_size=16
+skip_count=-1
+skip_count_as_size_t=18446744073709551615
+within_available_before=0
+within_remaining_before=0
+[before_skip]
+  size_=16
+  available_=16
+  bytes_remaining_=16
+  byte_count=0
+  data_ptr=0x102364040
+  first_bytes=0x66 0x69 0x72 0x73 0x74 0x73 0x65 0x63
+[after_skip]
+  size_=0
+  available_=0
+  bytes_remaining_=0
+  byte_count=16
+  data_ptr=0x102364040
+  first_bytes=<none>
+skip_return=0
+next_after_skip=0
+next_size=-1
+next_data=0

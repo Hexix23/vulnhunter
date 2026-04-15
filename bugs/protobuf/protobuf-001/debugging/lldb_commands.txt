@@ -1,0 +1,13 @@
+breakpoint set --name 'google::protobuf::json_internal::ParseAny'
+breakpoint set --file parser.cc --line 1039
+breakpoint set --name 'google::protobuf::DescriptorPool::Tables::Tables'
+breakpoint set --name 'google::protobuf::DescriptorPool::InternalAddGeneratedFile'
+breakpoint set --name main
+run
+bt
+register read
+frame variable
+continue
+bt
+register read
+quit

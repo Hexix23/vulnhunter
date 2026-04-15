@@ -1,0 +1,15 @@
+(lldb) target create "bugs/protobuf/upb-readstring2-error-masking/debugging/poc_debug"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/upb-readstring2-error-masking/debugging/poc_debug' (arm64).
+(lldb) command source -s 0 'bugs/protobuf/upb-readstring2-error-masking/debugging/lldb_commands.txt'
+Executing commands in '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/upb-readstring2-error-masking/debugging/lldb_commands.txt'.
+(lldb) breakpoint set --file decoder.h --line 201
+Breakpoint 1: where = poc_debug`_upb_Decoder_ReadString2 + 140 [inlined] _upb_Decoder_ReadString + 56 at decoder.h:201:12, address = 0x0000000100014a90
+(lldb) breakpoint set --file decode.c --line 185
+Breakpoint 2: where = poc_debug`_upb_Decoder_ReadString2 + 396 at decode.c:185:5, address = 0x0000000100014b90
+(lldb) breakpoint set --file poc_real.cpp --line 30
+Breakpoint 3: where = poc_debug`(anonymous namespace)::DecodeAndReport(char const*, char const*, unsigned long) + 128 at poc_real.cpp:30:63, address = 0x0000000100000f64
+(lldb) breakpoint modify -i 1 1
+(lldb) breakpoint modify -i 1 2
+(lldb) breakpoint modify -i 1 3
+(lldb) run
+error: could not find 'debugserver'. Please ensure it is properly installed and available in your PATH

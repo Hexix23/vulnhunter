@@ -1,0 +1,32 @@
+{
+  "finding_id": "protobuf-input-002",
+  "validators": {
+    "asan": {
+      "status": "NO_CRASH",
+      "score": -0.3,
+      "evidence_summary": "Real-library reproduction did not reach runtime because the shipped libupb.a archive lacks tokenizer objects and the ASan build also reported a version mismatch during link."
+    },
+    "lldb": {
+      "status": "STATE_BUG",
+      "score": 0.9,
+      "evidence_summary": "Harness execution showed size_t wrap from SIZE_MAX-3 plus 8 to 4, reserve bypass, memcpy destination 4 bytes before storage, and UBSan pointer overflow at string.h:92."
+    },
+    "fresh": {
+      "status": "FOUND",
+      "score": 1.0,
+      "evidence_summary": "Independent review identified unchecked size_t arithmetic in the capacity check and growth formula leading to under-allocation before memcpy."
+    },
+    "impact": {
+      "status": "LIMITED_IMPACT",
+      "score": 0.4,
+      "evidence_summary": "Practical effect was demonstrated as a stack-buffer-underflow and abort, but the vulnerable upb tokenizer path is only source-level in this snapshot and is not reachable from the shipped archive."
+    }
+  },
+  "total_score": 2.0,
+  "confidence_level": "CONFIRMED",
+  "recommendation": "REPORT",
+  "dissenting_validators": [
+    "asan"
+  ],
+  "notes": "Consensus supports the bug as a real integer-overflow-driven buffer write in upb_String_Append(), with reduced confidence only because the provided build artifacts do not expose a direct real-library reproduction path."
+}

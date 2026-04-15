@@ -1,0 +1,14 @@
+parsed_length=1073741824
+current_position_before_read=5
+bytes_until_limit_before_read=-1
+bytes_until_total_limit_before_read=-1
+read_ok=false
+current_position_after_read=8
+bytes_until_limit_after_read=-1
+bytes_until_total_limit_after_read=-1
+output_size=3
+output_capacity=22
+output_hex=414243
+overflow_limit_old=2147483647
+overflow_current_position=5
+overflow_limit_after_push=-1

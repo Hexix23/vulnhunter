@@ -1,0 +1,15 @@
+breakpoint set --file zero_copy_stream_impl_lite.cc --line 531
+run
+frame variable count this->available_ this->bytes_remaining_ this->size_ this->data_
+expr (unsigned long long)count
+expr (bool)((size_t)count <= this->available_)
+expr (bool)((size_t)count <= this->bytes_remaining_)
+memory read --size 1 --count 8 this->data_
+next
+frame variable count this->available_ this->bytes_remaining_ this->size_
+next
+frame variable count this->available_ this->bytes_remaining_ this->size_
+next
+frame variable this->available_ this->bytes_remaining_ this->size_ this->data_
+continue
+quit

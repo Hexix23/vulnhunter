@@ -1,0 +1,5 @@
+{
+  "validator": "asan",
+  "status": "NO_CRASH",
+  "evidence": "Validated against builds/protobuf-asan-arm64/lib/libprotobuf.a using bugs/protobuf/readbytestostring-no-size-cap/poc/poc_real.cpp. Oversized length-delimited inputs with declared lengths 2147483647, 2147483648, and 4294967295 did not trigger ASan. Runtime results in poc/asan_output.txt show WireFormatLite::ReadBytes returned false for all oversized cases. Source inspection matches runtime behavior: wire_format_lite.cc:547-548 passes a uint32_t length to CodedInputStream::ReadString, and coded_stream.cc:261-262 rejects negative int sizes before copying."
+}

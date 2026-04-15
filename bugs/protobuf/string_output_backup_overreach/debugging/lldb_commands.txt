@@ -1,0 +1,25 @@
+breakpoint set --file poc_real.cpp --line 40
+breakpoint set --file zero_copy_stream_impl_lite.cc --line 158
+breakpoint set --file zero_copy_stream_impl_lite.cc --line 162
+breakpoint modify 2 --condition "count > 32"
+breakpoint modify 3 --condition "count > 32"
+run
+frame variable first_size second_size size_before_overreach first_live_bytes overreach target
+expr output.ByteCount()
+expr target.size()
+expr target.capacity()
+expr target.substr(0, target.size())
+memory read --size 1 --count 48 target.data()
+continue
+frame variable count
+expr target_->size()
+expr target_->capacity()
+expr target_->substr(0, target_->size())
+memory read --size 1 --count 48 target_->data()
+next
+expr target_->size()
+expr target_->capacity()
+expr target_->substr(0, target_->size())
+memory read --size 1 --count 48 target_->data()
+continue
+quit

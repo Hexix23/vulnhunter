@@ -1,0 +1,6 @@
+logical_size=2147483648
+int_truncated_size=-2147483648
+next_result=0
+returned_size=-1
+byte_count=0
+LOGIC_BUG: oversized input is treated as empty after int truncation

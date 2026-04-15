@@ -1,0 +1,16 @@
+breakpoint set --file wire_format.h --line 161
+breakpoint set --file coded_stream.cc --line 1013
+breakpoint set --file coded_stream.h --line 694
+run
+frame variable target
+expr (size_t)google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(unknown_fields)
+expr (int)google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(unknown_fields)
+frame variable stream
+memory read --size 8 --count 8 &stream
+continue
+frame variable num s ptr
+expr (uint32_t)s.size()
+expr (int)s.size()
+continue
+bt
+quit

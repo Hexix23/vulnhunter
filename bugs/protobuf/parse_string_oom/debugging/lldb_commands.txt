@@ -1,0 +1,36 @@
+breakpoint set --file poc_debug.cpp --line 54
+breakpoint set --file coded_stream.cc --line 285
+breakpoint set --file coded_stream.cc --line 304
+breakpoint set --file coded_stream.cc --line 125
+breakpoint set --file poc_debug.cpp --line 69
+run
+frame variable snapshot.parsed_length
+frame variable out
+expr input.CurrentPosition()
+expr input.BytesUntilLimit()
+expr input.BytesUntilTotalBytesLimit()
+memory read --size 1 --count 8 payload.data()
+continue
+frame variable size
+expr current_limit_
+expr total_bytes_limit_
+expr CurrentPosition()
+expr bytes_to_limit
+expr buffer->size()
+expr buffer->capacity()
+continue
+frame variable current_buffer_size
+frame variable size
+expr CurrentPosition()
+expr buffer->size()
+expr buffer->capacity()
+continue
+frame variable byte_limit
+frame variable current_position
+frame variable current_limit_
+continue
+frame variable snapshot.overflow_limit_old
+frame variable snapshot.overflow_limit_after_push
+expr overflow_stream.CurrentPosition()
+expr overflow_stream.BytesUntilLimit()
+quit

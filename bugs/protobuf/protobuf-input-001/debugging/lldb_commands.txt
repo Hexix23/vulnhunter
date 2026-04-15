@@ -1,0 +1,16 @@
+breakpoint set --file poc_debug.cpp --line 31
+breakpoint set --file poc_debug.cpp --line 41
+run
+frame variable snapshot arena
+expr -- snapshot.input_size
+expr -- snapshot.ptr
+memory read --size 4 --count 1 &snapshot.input_size
+memory read --size 8 --count 1 &snapshot.ptr
+continue
+frame variable snapshot
+expr -- (unsigned long long)snapshot.output_size
+expr -- snapshot.network_out
+memory read --size 8 --count 1 &snapshot.output_size
+memory read --size 4 --count 1 &snapshot.network_out
+continue
+quit

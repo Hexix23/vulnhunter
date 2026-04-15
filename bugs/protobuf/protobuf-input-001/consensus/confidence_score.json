@@ -1,0 +1,32 @@
+{
+  "finding_id": "protobuf-input-001",
+  "validators": {
+    "asan": {
+      "status": "NO_CRASH",
+      "score": -0.3,
+      "evidence_summary": "ASan harness produced no sanitizer crash and could not confirm the issue against the supplied shipped artifacts."
+    },
+    "lldb": {
+      "status": "STATE_BUG",
+      "score": 0.9,
+      "evidence_summary": "Runtime tracing showed unchecked large frame lengths and a lossy size_t to uint32_t output framing cast."
+    },
+    "fresh": {
+      "status": "FOUND",
+      "score": 1.0,
+      "evidence_summary": "Fresh review independently identified the 32-bit output length truncation risk in DoTestIo()."
+    },
+    "impact": {
+      "status": "LIMITED_IMPACT",
+      "score": 0.4,
+      "evidence_summary": "A rebuilt demo showed local resource exhaustion potential and framing desynchronization, but only in the test-only conformance binary."
+    }
+  },
+  "total_score": 2.0,
+  "confidence_level": "CONFIRMED",
+  "recommendation": "REPORT",
+  "dissenting_validators": [
+    "asan"
+  ],
+  "notes": "Consensus supports a real logic flaw in DoTestIo(), but confidence is tempered because ASan did not reproduce memory corruption and the impact is limited to the conformance executable rather than shipped library APIs."
+}

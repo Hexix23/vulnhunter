@@ -1,0 +1,31 @@
+api=google::protobuf::MessageLite::MergeFromString
+raw_size_field=2147483647
+initial_size=2147483647
+initial_capacity=6
+nums_data_ptr=0x603000006198
+payload_bytes=6
+packed_length_field=4
+element_width=4
+new_entries=1
+requested_size_64=2147483648
+wrapped_size_signed=-2147483648
+wrapped_size_hex=0x80000000
+=================================================================
+==76010==ERROR: AddressSanitizer: bad parameters to __sanitizer_annotate_contiguous_container:
+      beg     : 0x603000006198
+      end     : 0x6030000061b0
+      old_mid : 0x603200006194
+      new_mid : 0x602e00006198
+    #0 0x000102144710 in __sanitizer_annotate_contiguous_container (/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/lib/darwin/libclang_rt.asan_osx_dynamic.dylib:arm64e+0x44710)
+    #1 0x000101066340 in google::protobuf::RepeatedField<unsigned int>::AnnotateSize(int, int) const /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/targets/protobuf/src/google/protobuf/repeated_field.h:649:7
+    #2 0x000101066340 in google::protobuf::RepeatedField<unsigned int>::ExchangeCurrentSize(int) /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/targets/protobuf/src/google/protobuf/repeated_field.h:668:5
+    #3 0x000101066340 in google::protobuf::RepeatedField<unsigned int>::AddNAlreadyReserved(int) /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/targets/protobuf/src/google/protobuf/repeated_field.h:917:42
+    #4 0x000101066340 in char const* google::protobuf::internal::EpsCopyInputStream::ReadPackedFixed<unsigned int>(char const*, google::protobuf::Arena*, int, google::protobuf::RepeatedField<unsigned int>*) /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/targets/protobuf/src/google/protobuf/parse_context.h:1547:19
+    #5 0x0001010b1d0c in google::protobuf::internal::TcParser::TagDispatch(google::protobuf::MessageLite*, char const*, google::protobuf::internal::ParseContext*, google::protobuf::internal::TcFieldData, google::protobuf::internal::TcParseTableBase const*, unsigned long long) /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/targets/protobuf/src/google/protobuf/generated_message_tctable_impl.h:1163:28
+    #6 0x0001010b1d0c in google::protobuf::internal::TcParser::ParseLoop(google::protobuf::MessageLite*, char const*, google::protobuf::internal::ParseContext*, google::protobuf::internal::TcParseTableBase const*) /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/targets/protobuf/src/google/protobuf/generated_message_tctable_impl.h:1205:11
+    #7 0x0001010b1d0c in bool google::protobuf::internal::MergeFromImpl<false>(std::__1::basic_string_view<char, std::__1::char_traits<char>>, google::protobuf::MessageLite*, google::protobuf::internal::TcParseTableBase const*, google::protobuf::MessageLite::ParseFlags) /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/targets/protobuf/src/google/protobuf/message_lite.cc:227:9
+    #8 0x000100fdb4f8 in main /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-003/debugging/poc_debug.cpp:52:27
+    #9 0x00018d643da0 in start (/usr/lib/dyld:arm64e+0x1fda0)
+
+SUMMARY: AddressSanitizer: bad-__sanitizer_annotate_contiguous_container /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/targets/protobuf/src/google/protobuf/repeated_field.h:649:7 in google::protobuf::RepeatedField<unsigned int>::AnnotateSize(int, int) const
+==76010==ABORTING

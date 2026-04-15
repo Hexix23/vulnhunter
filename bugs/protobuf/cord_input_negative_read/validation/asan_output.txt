@@ -1,0 +1,8 @@
+direct_negative_read.ok=0
+direct_negative_read.output_size=0
+direct_negative_read.output_hex=
+direct_negative_read.bytes_until_limit=-1
+wireformat_readbytes.ok=0
+wireformat_readbytes.output_size=9
+wireformat_readbytes.output_hex=70726566696c6c6564
+wireformat_readbytes.current_position=0

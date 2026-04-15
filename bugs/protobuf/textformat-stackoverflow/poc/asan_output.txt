@@ -1,0 +1,35 @@
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==85519==ERROR: AddressSanitizer: SEGV on unknown address 0xffffd84fd7d9d8d9 (pc 0x000104c82dc0 bp 0x00016b229830 sp 0x00016b2296a0 T0)
+==85519==The signal is caused by a READ memory access.
+==85519==WARNING: Can't read from symbolizer at fd 4
+==85519==WARNING: atos failed to symbolize address "0x104c82dc0"
+==85519==WARNING: Can't write to symbolizer at fd 4
+==85519==WARNING: Can't read from symbolizer at fd 5
+==85519==WARNING: atos failed to symbolize address "0x104be7244"
+==85519==WARNING: Can't write to symbolizer at fd 5
+==85519==WARNING: Can't read from symbolizer at fd 6
+==85519==WARNING: atos failed to symbolize address "0x104bf2754"
+==85519==WARNING: Can't write to symbolizer at fd 6
+==85519==WARNING: Can't read from symbolizer at fd 7
+==85519==WARNING: atos failed to symbolize address "0x104bd72dc"
+==85519==WARNING: Can't write to symbolizer at fd 7
+==85519==WARNING: Failed to use and restart external symbolizer!
+    #0 0x000104c82dc0 in std::__1::pair<absl::lts_20260107::container_internal::raw_hash_set<absl::lts_20260107::container_internal::FlatHashMapPolicy<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>, google::protobuf::Descriptor::WellKnownType>>::iterator, bool> absl::lts_20260107::container_internal::raw_hash_set<absl::lts_20260107::container_internal::FlatHashMapPolicy<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>, google::protobuf::Descriptor::WellKnownType>>::find_or_prepare_insert_large<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>>(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> const&)+0x194 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/textformat-stackoverflow/poc/poc_real:arm64+0x1000aedc0)
+    #1 0x000104be7244 in google::protobuf::DescriptorPool::Tables::Tables()+0x7cc (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/textformat-stackoverflow/poc/poc_real:arm64+0x100013244)
+    #2 0x000104bf2754 in google::protobuf::DescriptorPool::DescriptorPool()+0xb0 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/textformat-stackoverflow/poc/poc_real:arm64+0x10001e754)
+    #3 0x000104bd72dc in main+0x3ec (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/textformat-stackoverflow/poc/poc_real:arm64+0x1000032dc)
+    #4 0x00018d643da0 in start+0x1b4c (/usr/lib/dyld:arm64e+0x1fda0)
+
+==85519==Register values:
+ x[0] = 0xbebebefebebec6ce   x[1] = 0x00006030000062b0   x[2] = 0x000000000000001a   x[3] = 0x0000603000006510  
+ x[4] = 0x0000000000000002   x[5] = 0x0000000000000000   x[6] = 0x000000016aa30000   x[7] = 0x0000000000000001  
+ x[8] = 0x17d7d7dfd7d7d8d9   x[9] = 0x00000c2c000001ae  x[10] = 0x2945a7d7524d215e  x[11] = 0x16800d5ac9858932  
+x[12] = 0x0000604000002c18  x[13] = 0xbebebebebebebebe  x[14] = 0x000000016b229897  x[15] = 0x000000016b229888  
+x[16] = 0xbebebebebebebebe  x[17] = 0x000000002d645312  x[18] = 0x0000000000000000  x[19] = 0x000000016b2296e0  
+x[20] = 0x000000016b229b50  x[21] = 0x0000007000020000  x[22] = 0x0000616000000d40  x[23] = 0x0000000000000000  
+x[24] = 0x0000004000000810  x[25] = 0x000000016b229880  x[26] = 0x000000702d6652d4  x[27] = 0x000000016b2296a0  
+x[28] = 0x00000c2c000001ad     fp = 0x000000016b229830     lr = 0x0000000104c82d48     sp = 0x000000016b2296a0  
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/textformat-stackoverflow/poc/poc_real:arm64+0x1000aedc0) in std::__1::pair<absl::lts_20260107::container_internal::raw_hash_set<absl::lts_20260107::container_internal::FlatHashMapPolicy<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>, google::protobuf::Descriptor::WellKnownType>>::iterator, bool> absl::lts_20260107::container_internal::raw_hash_set<absl::lts_20260107::container_internal::FlatHashMapPolicy<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>, google::protobuf::Descriptor::WellKnownType>>::find_or_prepare_insert_large<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>>(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> const&)+0x194
+==85519==ABORTING

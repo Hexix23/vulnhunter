@@ -1,0 +1,13 @@
+(lldb) target create --arch=arm64 "/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/cord_output_backup_overreach/debugging/poc_debug"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/cord_output_backup_overreach/debugging/poc_debug' (arm64).
+(lldb) command source -s 0 '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/cord_output_backup_overreach/debugging/lldb_commands.txt'
+Executing commands in '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/cord_output_backup_overreach/debugging/lldb_commands.txt'.
+(lldb) settings set target.env-vars ASAN_OPTIONS=detect_leaks=0:abort_on_error=0
+(lldb) breakpoint set --file poc_debug.cpp --line 106
+Breakpoint 1: where = poc_debug`main + 1260 at poc_debug.cpp:106:10, address = 0x00000001000012dc
+(lldb) breakpoint set --file zero_copy_stream_impl_lite.cc --line 665
+Breakpoint 2: where = poc_debug`google::protobuf::io::CordOutputStream::BackUp(int) + 40 at zero_copy_stream_impl_lite.cc:665:46, address = 0x000000010000ea38
+(lldb) breakpoint set --file zero_copy_stream_impl_lite.cc --line 688
+Breakpoint 3: where = poc_debug`google::protobuf::io::CordOutputStream::Consume() + 32 at zero_copy_stream_impl_lite.cc:688, address = 0x000000010000eec4
+(lldb) run
+error: could not find 'debugserver'. Please ensure it is properly installed and available in your PATH

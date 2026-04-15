@@ -1,0 +1,5 @@
+{
+  "validator": "asan",
+  "status": "NO_CRASH",
+  "evidence": "Compiled fresh poc_real.cpp against builds/protobuf-asan-arm64 using xcrun clang++ and the real libupb.a archive. Runtime output: valid: status=0 (Ok); truncated: status=2 (Wire format was corrupt); no reproduction: library reports Malformed. No AddressSanitizer error was emitted."
+}

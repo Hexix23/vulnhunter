@@ -1,0 +1,32 @@
+breakpoint set --file poc_real.cpp --line 79
+breakpoint set --file tokenizer.cc --line 271
+breakpoint set --file tokenizer.cc --line 633
+breakpoint set --file parser.cc --line 637
+breakpoint set --file parser.cc --line 669
+run
+frame variable tokenizer_stream parser_stream tokenizer_collector parser_collector
+print tokenizer_stream.failed()
+print tokenizer_stream.calls()
+print tokenizer_collector.errors().size()
+continue
+print this->read_error_
+print this->buffer_size_
+print this->current_char_
+print data
+print this->error_collector_ == nullptr
+continue
+print this->read_error_
+print this->current_.type
+print this->previous_.type
+print this->current_char_
+continue
+print input_->current().type
+print had_errors_
+print syntax_identifier_
+continue
+print input_->current().type
+print had_errors_
+print file->message_type_size()
+print file->syntax()
+continue
+quit

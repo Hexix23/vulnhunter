@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package asanvalidator.protobufinput003;
+
+option optimize_for = LITE_RUNTIME;
+
+message PackedFixed32Message {
+  repeated fixed32 nums = 1 [packed = true];
+}

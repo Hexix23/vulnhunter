@@ -1,0 +1,5 @@
+{
+  "validator": "lldb",
+  "status": "STATE_OK",
+  "evidence": "Compiled a fresh debug PoC against /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/builds/protobuf-asan-arm64 and attempted LLDB with breakpoints on text_format.cc:1946 and main(). LLDB could not launch because debugserver is missing, explicit-arch retry failed the same way, and gdb is not installed. Direct execution of the debug PoC aborts before main() in google::protobuf::DescriptorPool::Tables::Tables() during _GLOBAL__I_000102 static initialization, so the target ParseFromString -> CheckParseInputSize runtime state was not observed in this supplied build."
+}

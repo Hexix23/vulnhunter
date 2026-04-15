@@ -1,0 +1,28 @@
+breakpoint set --name 'google::protobuf::internal::WireFormatLite::SkipField'
+breakpoint set --name 'google::protobuf::io::CodedInputStream::Skip'
+run
+frame variable tag
+next
+frame variable length
+expr -- (int)length
+expr -- input->CurrentPosition()
+expr -- input->BytesUntilLimit()
+expr -- input->current_limit_
+expr -- input->buffer_size_after_limit_
+expr -- input->total_bytes_limit_
+expr -- input->BufferSize()
+memory read --size 1 --count 8 input->buffer_
+continue
+frame variable count
+expr -- this->CurrentPosition()
+expr -- this->BytesUntilLimit()
+expr -- this->current_limit_
+expr -- this->buffer_size_after_limit_
+expr -- this->total_bytes_limit_
+expr -- this->BufferSize()
+next
+expr -- original_buffer_size
+finish
+bt
+continue
+quit

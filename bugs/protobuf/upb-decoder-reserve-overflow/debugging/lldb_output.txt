@@ -1,0 +1,31 @@
+(lldb) target create "bugs/protobuf/upb-decoder-reserve-overflow/debugging/poc_debug"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/upb-decoder-reserve-overflow/debugging/poc_debug' (arm64).
+(lldb) command source -s 0 'bugs/protobuf/upb-decoder-reserve-overflow/debugging/lldb_commands.txt'
+Executing commands in '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/upb-decoder-reserve-overflow/debugging/lldb_commands.txt'.
+(lldb) settings set stop-disassembly-display never
+(lldb) settings set target.process.thread.step-avoid-regexp ^std::
+(lldb) breakpoint set --file decode.c --line 289
+Breakpoint 1: 2 locations.
+(lldb) breakpoint set --file decode.c --line 291
+Breakpoint 2: 4 locations.
+(lldb) breakpoint set --file array.c --line 162
+Breakpoint 3: where = poc_debug`_upb_Array_Realloc_dont_copy_me__upb_internal_use_only + 32 at array.c:162:25, address = 0x000000010000c6b8
+(lldb) breakpoint set --file decode.c --line 294
+Breakpoint 4: 3 locations.
+(lldb) run 2097152
+error: could not find 'debugserver'. Please ensure it is properly installed and available in your PATH
+
+Retry 2:
+(lldb) run 2097152
+error: process exited with status -1 (no such process)
+
+Retry 3:
+(lldb) target create --arch=arm64 "bugs/protobuf/upb-decoder-reserve-overflow/debugging/poc_debug"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/upb-decoder-reserve-overflow/debugging/poc_debug' (arm64).
+(lldb) run 2097152
+error: could not find 'debugserver'. Please ensure it is properly installed and available in your PATH
+
+Environment note:
+- LLDB framework contains debugserver at:
+  /Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/Resources/debugserver
+- Even with that directory added to PATH, LLDB still failed to launch the process in this environment.

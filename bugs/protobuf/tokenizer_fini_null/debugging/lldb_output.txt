@@ -1,0 +1,19 @@
+Attempt 1: lldb -b
+(lldb) target create "bugs/protobuf/tokenizer_fini_null/debugging/poc_debug"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/tokenizer_fini_null/debugging/poc_debug' (arm64).
+(lldb) breakpoint set --file tokenizer.cc --line 203
+Breakpoint 1: where = poc_debug`<+608> [inlined] google::protobuf::io::Tokenizer::Refresh() at tokenizer.cc:203:3, address = 0x00000001000030b0
+(lldb) breakpoint set --file tokenizer.cc --line 275
+Breakpoint 2: 3 locations.
+(lldb) run
+error: could not find 'debugserver'. Please ensure it is properly installed and available in your PATH
+
+Attempt 2: lldb --arch arm64 -b
+(lldb) target create --arch=arm64 "bugs/protobuf/tokenizer_fini_null/debugging/poc_debug"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/tokenizer_fini_null/debugging/poc_debug' (arm64).
+(lldb) breakpoint set --file tokenizer.cc --line 203
+Breakpoint 1: where = poc_debug`<+608> [inlined] google::protobuf::io::Tokenizer::Refresh() at tokenizer.cc:203:3, address = 0x00000001000030b0
+(lldb) breakpoint set --file tokenizer.cc --line 275
+Breakpoint 2: 3 locations.
+(lldb) run
+error: could not find 'debugserver'. Please ensure it is properly installed and available in your PATH

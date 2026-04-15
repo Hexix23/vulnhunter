@@ -1,0 +1,49 @@
+{
+  "finding_id": "protobuf-textformat-stackoverflow",
+  "title": "TextFormat::Parser allows unbounded recursion and stack exhaustion",
+  "assessment_status": "CVSS_SCORED",
+  "validation_status": "CONFIRMED",
+  "direct_impact": {
+    "type": "stack-overflow",
+    "operation": "recursive descent parsing exhausts thread stack",
+    "bytes": "approximately 10000 nested messages in the confirmed reproduction",
+    "data_exposed": "none"
+  },
+  "exploitability": {
+    "trigger_difficulty": "easy",
+    "reliability": "high",
+    "remote": true,
+    "requires_auth": false
+  },
+  "chain_potential": {
+    "standalone": "reliable denial of service against services that parse attacker-controlled textproto",
+    "with_other_bugs": "limited direct chaining value because the confirmed outcome is stack exhaustion rather than controlled memory corruption",
+    "difficulty": "low"
+  },
+  "cvss": {
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+    "score": 7.5,
+    "severity": "HIGH",
+    "justification": {
+      "AV": "N - Exploitable through network-delivered textproto input when exposed by a service.",
+      "AC": "L - The attack only requires sending deeply nested but otherwise valid input; no race or special environment is needed.",
+      "PR": "N - No privileges are required.",
+      "UI": "N - The parser crashes during normal processing without user assistance.",
+      "S": "U - The impact is contained within the vulnerable service.",
+      "C": "N - No confidentiality impact was demonstrated.",
+      "I": "N - No integrity impact was demonstrated.",
+      "A": "H - The confirmed result is a reproducible SIGSEGV from stack exhaustion."
+    }
+  },
+  "priority": "P1",
+  "fix_urgency": "immediate",
+  "cwe": {
+    "id": "CWE-674",
+    "name": "Uncontrolled Recursion"
+  },
+  "notes": [
+    "Validation evidence: bugs/protobuf/textformat-stackoverflow/report/VERIFICATION_REPORT.md",
+    "Execution evidence shows valid inputs parse successfully until stack exhaustion at high nesting depth.",
+    "Scoring stays availability-only because the confirmed effect is crash, not code execution."
+  ]
+}

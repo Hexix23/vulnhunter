@@ -1,0 +1,5 @@
+{
+  "validator": "asan",
+  "status": "LOGIC_BUG",
+  "evidence": "Validated against builds/protobuf-asan-arm64/lib/libprotobuf.a with a fresh PoC. Running poc_real produced: cord_size=16, byte_count_before=0, skip_return=0, byte_count_after=16, next_after_skip=0, next_size=-1. No AddressSanitizer memory corruption was reported during the successful run; instead, CordInputStream::Skip(-1) consumed the remaining Cord and moved the stream to EOF while returning false."
+}

@@ -1,0 +1,11 @@
+(lldb) target create "bugs/protobuf/parseany-no-size-check/debugging/poc_debug"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/parseany-no-size-check/debugging/poc_debug' (arm64).
+(lldb) command source -s 0 'bugs/protobuf/parseany-no-size-check/debugging/lldb_commands.txt'
+Executing commands in '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/parseany-no-size-check/debugging/lldb_commands.txt'.
+(lldb) settings set target.process.stop-on-sharedlibrary-events false
+(lldb) breakpoint set --file parseany_state_capture.cpp --line 119
+Breakpoint 1: where = poc_debug`main + 2364 at parseany_state_capture.cpp:121:39, address = 0x0000000100003664
+(lldb) breakpoint set --file parser.cc --line 1066
+Breakpoint 2: 2 locations.
+(lldb) run 16
+error: could not find 'debugserver'. Please ensure it is properly installed and available in your PATH

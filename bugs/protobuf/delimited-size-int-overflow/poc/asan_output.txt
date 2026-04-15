@@ -1,0 +1,11 @@
+input_hex=80 80 80 80 08 de ad be ef 41 42 43 44
+size_u32=2147483648
+size_hex=0x80000000
+narrowed_size_i32=-2147483648
+int_max=2147483647
+position_after_size=5
+bytes_remaining=8
+bytes_until_limit_after_push=-1
+skip_remaining_succeeded=true
+final_position=13
+evidence=overflowed size disables PushLimit enforcement in the real library

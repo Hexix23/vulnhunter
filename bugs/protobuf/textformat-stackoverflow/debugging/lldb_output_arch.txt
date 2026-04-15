@@ -1,0 +1,13 @@
+(lldb) target create --arch=arm64 "./bugs/protobuf/textformat-stackoverflow/debugging/poc_debug"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/textformat-stackoverflow/debugging/poc_debug' (arm64).
+(lldb) command source -s 0 'bugs/protobuf/textformat-stackoverflow/debugging/lldb_commands.txt'
+Executing commands in '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/textformat-stackoverflow/debugging/lldb_commands.txt'.
+(lldb) settings set target.run-args 12
+(lldb) breakpoint set --file text_format.cc --line 3159 --condition 'recursion_budget <= 1'
+Breakpoint 1: where = poc_debug`google::protobuf::TextFormat::Printer::PrintUnknownFields(google::protobuf::UnknownFieldSet const&, google::protobuf::TextFormat::BaseTextGenerator*, int) const + 2648 at text_format.cc:3159:9, address = 0x0000000100387b04
+(lldb) breakpoint command add 1 -o "frame variable recursion_budget i" -o "expr (int)field.type()" -o "expr field.number()" -o "expr unknown_fields.field_count()" -o "expr &unknown_fields" -o "bt 6" -o "continue"
+(lldb) breakpoint set --file text_format.cc --line 3018 --condition 'recursion_budget <= 0'
+Breakpoint 2: where = poc_debug`google::protobuf::TextFormat::Printer::PrintUnknownFields(google::protobuf::UnknownFieldSet const&, google::protobuf::TextFormat::BaseTextGenerator*, int) const + 280 at text_format.cc:3018:3, address = 0x00000001003871c4
+(lldb) breakpoint command add 2 -o "frame variable recursion_budget i" -o "expr unknown_fields.field_count()" -o "expr &unknown_fields" -o "bt 8" -o "continue"
+(lldb) run
+error: could not find 'debugserver'. Please ensure it is properly installed and available in your PATH

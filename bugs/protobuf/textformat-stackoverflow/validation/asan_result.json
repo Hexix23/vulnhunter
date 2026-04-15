@@ -1,0 +1,1 @@
+{"validator":"asan","status":"CONFIRMED_MEMORY","evidence":"/opt/homebrew/Cellar/jenv/0.6.0/libexec/libexec/jenv-refresh-plugins: line 43: /Users/carlosgomez/.jenv/jenv.version: Operation not permitted\nCaught signal: SIGSEGV"}

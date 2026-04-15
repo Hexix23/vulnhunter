@@ -1,0 +1,24 @@
+settings set target.disable-aslr false
+breakpoint set --file wire_format_lite.cc --line 548
+breakpoint modify --ignore-count 2 1
+breakpoint command add 1
+print length
+print (int32_t)length
+print input->BytesUntilLimit()
+print input->CurrentPosition()
+print value->size()
+bt
+continue
+DONE
+breakpoint set --file coded_stream.cc --line 262
+breakpoint modify --ignore-count 2 2
+breakpoint command add 2
+print size
+print this->BytesUntilLimit()
+print this->CurrentPosition()
+print buffer->size()
+bt
+continue
+DONE
+run
+quit

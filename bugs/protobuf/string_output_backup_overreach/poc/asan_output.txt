@@ -1,0 +1,9 @@
+first_size=71
+second_size=32
+size_before_overreach=71
+byte_count_before_overreach=71
+overreach_request=40
+size_after_overreach=31
+byte_count_after_overreach=31
+prefix_after_overreach="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+LOGIC_BUG: BackUp(40) retracted 8 bytes beyond the last 32-byte buffer without any ASan finding.

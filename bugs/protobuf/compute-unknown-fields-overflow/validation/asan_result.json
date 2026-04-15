@@ -1,0 +1,1 @@
+{"validator":"asan","status":"CONFIRMED_MEMORY","evidence":"ASan stack-buffer-overflow in google::protobuf::io::EpsCopyOutputStream::WriteStringOutline during WireFormat::SerializeUnknownFieldsToArray with a single UnknownFieldSet length-delimited field of size INT_MAX+256. See bugs/protobuf/compute-unknown-fields-overflow/poc/asan_output.txt. Exit code: 1."}

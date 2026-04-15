@@ -1,0 +1,55 @@
+[Attempt 1] plain lldb
+(lldb) target create "/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/gzip_backup_underflow/debugging/poc_debug"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/gzip_backup_underflow/debugging/poc_debug' (arm64).
+(lldb) command source -s 0 '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/gzip_backup_underflow/debugging/lldb_commands.txt'
+Executing commands in '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/gzip_backup_underflow/debugging/lldb_commands.txt'.
+(lldb) breakpoint set --file gzip_stream.cc --line 164
+Breakpoint 1: where = poc_debug`google::protobuf::io::GzipInputStream::BackUp(int) + 8 at gzip_stream.cc:166:35, address = 0x0000000100005744
+(lldb) breakpoint set --file gzip_stream.cc --line 181
+Breakpoint 2: where = poc_debug`google::protobuf::io::GzipInputStream::ByteCount() const + 8 at gzip_stream.cc:182:17, address = 0x0000000100005844
+(lldb) breakpoint set --file poc_state_capture.cpp --line 108
+Breakpoint 3: where = poc_debug`main + 1212 at poc_state_capture.cpp:108:18, address = 0x00000001000012e4
+(lldb) breakpoint set --file poc_state_capture.cpp --line 117
+Breakpoint 4: where = poc_debug`main + 920 at poc_state_capture.cpp:117:27, address = 0x00000001000011c0
+(lldb) run
+error: could not find 'debugserver'. Please ensure it is properly installed and available in your PATH
+
+[Attempt 2] codesign + lldb
+(lldb) target create "/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/gzip_backup_underflow/debugging/poc_debug"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/gzip_backup_underflow/debugging/poc_debug' (arm64).
+(lldb) command source -s 0 '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/gzip_backup_underflow/debugging/lldb_commands.txt'
+Executing commands in '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/gzip_backup_underflow/debugging/lldb_commands.txt'.
+(lldb) breakpoint set --file gzip_stream.cc --line 164
+Breakpoint 1: where = poc_debug`google::protobuf::io::GzipInputStream::BackUp(int) + 8 at gzip_stream.cc:166:35, address = 0x0000000100005744
+(lldb) breakpoint set --file gzip_stream.cc --line 181
+Breakpoint 2: where = poc_debug`google::protobuf::io::GzipInputStream::ByteCount() const + 8 at gzip_stream.cc:182:17, address = 0x0000000100005844
+(lldb) breakpoint set --file poc_state_capture.cpp --line 108
+Breakpoint 3: where = poc_debug`main + 1212 at poc_state_capture.cpp:108:18, address = 0x00000001000012e4
+(lldb) breakpoint set --file poc_state_capture.cpp --line 117
+Breakpoint 4: where = poc_debug`main + 920 at poc_state_capture.cpp:117:27, address = 0x00000001000011c0
+(lldb) run
+error: could not find 'debugserver'. Please ensure it is properly installed and available in your PATH
+
+[Attempt 3] explicit arch
+(lldb) target create --arch=arm64 "/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/gzip_backup_underflow/debugging/poc_debug"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/gzip_backup_underflow/debugging/poc_debug' (arm64).
+(lldb) command source -s 0 '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/gzip_backup_underflow/debugging/lldb_commands.txt'
+Executing commands in '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/gzip_backup_underflow/debugging/lldb_commands.txt'.
+(lldb) breakpoint set --file gzip_stream.cc --line 164
+Breakpoint 1: where = poc_debug`google::protobuf::io::GzipInputStream::BackUp(int) + 8 at gzip_stream.cc:166:35, address = 0x0000000100005744
+(lldb) breakpoint set --file gzip_stream.cc --line 181
+Breakpoint 2: where = poc_debug`google::protobuf::io::GzipInputStream::ByteCount() const + 8 at gzip_stream.cc:182:17, address = 0x0000000100005844
+(lldb) breakpoint set --file poc_state_capture.cpp --line 108
+Breakpoint 3: where = poc_debug`main + 1212 at poc_state_capture.cpp:108:18, address = 0x00000001000012e4
+(lldb) breakpoint set --file poc_state_capture.cpp --line 117
+Breakpoint 4: where = poc_debug`main + 920 at poc_state_capture.cpp:117:27, address = 0x00000001000011c0
+(lldb) run
+error: could not find 'debugserver'. Please ensure it is properly installed and available in your PATH
+
+[Attempt 4] gdb if present
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/gzip_backup_underflow/debugging/lldb_commands.txt:1: Error in sourced command file:
+Undefined command: "breakpoint".  Try "help".
+DW_FORM_GNU_str_index or DW_FORM_strx used without .debug_str section in CU at offset 0x0 [in module /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/gzip_backup_underflow/debugging/poc_debug.dSYM/Contents/Resources/DWARF/poc_debug]
+DW_FORM_GNU_str_index or DW_FORM_strx used without .debug_str section in CU at offset 0x13366 [in module /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/gzip_backup_underflow/debugging/poc_debug.dSYM/Contents/Resources/DWARF/poc_debug]
+DW_FORM_GNU_str_index or DW_FORM_strx used without .debug_str section in CU at offset 0x20752 [in module /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/gzip_backup_underflow/debugging/poc_debug.dSYM/Contents/Resources/DWARF/poc_debug]
+DW_FORM_GNU_str_index or DW_FORM_strx used without .debug_str section in CU at offset 0x2f631 [in module /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/gzip_backup_underflow/debugging/poc_debug.dSYM/Contents/Resources/DWARF/poc_debug]

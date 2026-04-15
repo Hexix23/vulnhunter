@@ -1,0 +1,32 @@
+breakpoint set --file poc_real.cpp --line 48
+breakpoint set --file coded_stream.cc --line 125
+breakpoint set --file coded_stream.cc --line 132
+breakpoint set --file poc_real.cpp --line 51
+breakpoint set --file poc_real.cpp --line 54
+run
+print size
+expr -- (int)size
+expr -- coded_input.CurrentPosition()
+memory read --size 1 --format x --count 13 bytes.data()
+continue
+print byte_limit
+print current_position
+print old_limit
+expr -- byte_limit >= 0
+expr -- byte_limit <= INT_MAX - current_position
+expr -- byte_limit < current_limit_ - current_position
+print this->current_limit_
+continue
+print byte_limit
+print current_position
+print old_limit
+print this->current_limit_
+expr -- this->BytesUntilLimit()
+continue
+print bytes_until_limit
+expr -- coded_input.BytesUntilLimit()
+continue
+print bytes_remaining
+print skipped_remaining
+print final_position
+quit

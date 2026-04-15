@@ -1,0 +1,11 @@
+configured_unknown_field_recursion_limit=10
+constructed_group_depth=10
+expected_budget_after_last_group=0
+print_ok=1
+output_size=66
+output_open_braces=10
+output_close_braces=10
+output_group_occurrences=10
+terminal_value_present=1
+output=1 { 1 { 1 { 1 { 1 { 1 { 1 { 1 { 1 { 1 { 2: 66 } } } } } } } } } } 
+state_bug=0

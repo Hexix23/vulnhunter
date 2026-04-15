@@ -1,0 +1,23 @@
+breakpoint set --file poc_real.cpp --line 32
+breakpoint set --file coded_stream.cc --line 313
+breakpoint set --file coded_stream.h --line 1384
+run
+print output.size()
+print coded_input.BytesUntilLimit()
+continue
+print size
+print output->size()
+print this->BytesUntilLimit()
+next
+print output->size()
+finish
+continue
+print this->CurrentPosition()
+memory read --size 1 --count 9 buffer_
+next
+print *value
+print this->CurrentPosition()
+print *value >= 0
+finish
+continue
+quit

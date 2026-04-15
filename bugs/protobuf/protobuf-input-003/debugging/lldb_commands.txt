@@ -1,0 +1,22 @@
+breakpoint set --file poc_debug.cpp --line 52
+breakpoint set --file parse_context.h --line 1519
+breakpoint set --file parse_context.h --line 1547
+breakpoint set --file repeated_field.h --line 649
+breakpoint set --file repeated_field.h --line 668
+run
+bt
+frame variable message nums old_entries packed_num requested_size_64 wrapped_size wrapped_bits
+continue
+bt
+frame variable size num old_entries out ptr
+expr out->size()
+expr out->Capacity()
+expr old_entries + num
+memory read --format x --size 4 --count 4 out->mutable_data()
+continue
+bt
+frame variable old_size new_size
+expr this->size()
+expr this->Capacity()
+continue
+quit

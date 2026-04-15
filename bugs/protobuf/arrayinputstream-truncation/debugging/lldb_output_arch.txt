@@ -1,0 +1,13 @@
+(lldb) target create --arch=arm64 "bugs/protobuf/arrayinputstream-truncation/debugging/poc_debug"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/arrayinputstream-truncation/debugging/poc_debug' (arm64).
+(lldb) command source -s 0 'bugs/protobuf/arrayinputstream-truncation/debugging/lldb_commands.txt'
+Executing commands in '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/arrayinputstream-truncation/debugging/lldb_commands.txt'.
+(lldb) settings set target.disable-aslr false
+(lldb) breakpoint set --file zero_copy_stream_impl_lite.cc --line 49
+Breakpoint 1: 2 locations.
+(lldb) breakpoint set --file zero_copy_stream_impl_lite.cc --line 57
+Breakpoint 2: where = poc_debug`google::protobuf::io::ArrayInputStream::Next(void const**, int*) + 12 at zero_copy_stream_impl_lite.cc:57:7, address = 0x00000001000047ac
+(lldb) breakpoint set --file poc_real.cpp --line 37
+Breakpoint 3: where = poc_debug`main + 416 at poc_real.cpp:38:32, address = 0x0000000100001088
+(lldb) run
+error: could not find 'debugserver'. Please ensure it is properly installed and available in your PATH

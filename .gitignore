@@ -10,10 +10,30 @@ logs/
 # Compiled binaries (keep source, ignore large binaries)
 *.bin
 *.o
+*.a
+*.tmp
 *.dSYM/
+build/
+build-*/
+build_*/
+builds/
+CMakeFiles/
+bugs/**/poc/poc_*
+bugs/**/poc/radiourl_oob*
 
 # But keep the debug binary for PoC
 !bugs/*/poc/poc_vulnerable_debug
+!bugs/**/poc/*.c
+!bugs/**/poc/*.cc
+!bugs/**/poc/*.cpp
+!bugs/**/poc/*.cxx
+!bugs/**/poc/*.h
+!bugs/**/poc/*.hpp
+!bugs/**/poc/*.md
+!bugs/**/poc/*.proto
+!bugs/**/poc/*.py
+!bugs/**/poc/*.sh
+!bugs/**/poc/*.txt
 
 # Findings (generated)
 findings/
@@ -23,3 +43,7 @@ reports/
 
 # Targets (cloned repos - too large)
 targets/
+
+# Local review scratch space
+tmp_review/
+tmp_tools/

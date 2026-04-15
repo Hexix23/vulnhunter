@@ -1,0 +1,35 @@
+settings set target.env-vars ASAN_OPTIONS=detect_leaks=0:abort_on_error=0
+breakpoint set --file poc_debug.cpp --line 106
+breakpoint set --file zero_copy_stream_impl_lite.cc --line 665
+breakpoint set --file zero_copy_stream_impl_lite.cc --line 688
+run
+frame variable output first_size second_size overreach first second
+expr -- output.ByteCount()
+expr -- (int)output.buffer_.length()
+expr -- (unsigned long)output.cord_.size()
+expr -- (int)output.state_
+memory read --size 1 --count 15 output.buffer_.data()
+memory read --size 1 --count 8 $first
+memory read --size 1 --count 7 $second
+continue
+frame variable this count buffer_length
+expr -- this->ByteCount()
+expr -- (int)this->buffer_.length()
+expr -- (unsigned long)this->cord_.size()
+expr -- (int)this->state_
+next
+frame variable this count buffer_length
+expr -- this->ByteCount()
+expr -- (int)this->buffer_.length()
+expr -- (unsigned long)this->cord_.size()
+expr -- (int)this->state_
+memory read --size 1 --count 8 this->buffer_.data()
+continue
+frame variable this
+expr -- this->ByteCount()
+expr -- (int)this->buffer_.length()
+expr -- (unsigned long)this->cord_.size()
+expr -- (int)this->state_
+continue
+bt
+quit

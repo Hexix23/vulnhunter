@@ -1,0 +1,41 @@
+[STATE] after construction
+  ByteCount()=0
+  cord_.size()=0
+  buffer_.length()=0
+  buffer_.capacity()=15
+  buffer_.slack()=15
+  state_=0 (kEmpty)
+[STATE] after first Next()
+  ByteCount()=8
+  cord_.size()=0
+  buffer_.length()=8
+  buffer_.capacity()=15
+  buffer_.slack()=7
+  state_=2 (kPartial)
+[BYTES] first chunk @ 0x16d0add99 = 41 41 41 41 41 41 41 41
+[STATE] after second Next()
+  ByteCount()=15
+  cord_.size()=0
+  buffer_.length()=15
+  buffer_.capacity()=15
+  buffer_.slack()=0
+  state_=1 (kFull)
+[BYTES] second chunk @ 0x16d0adda1 = 42 42 42 42 42 42 42
+[CHECK] second_size=7
+[CHECK] second_offset_in_buffer=8
+[CHECK] last_next_end_offset=15
+[CHECK] overreach=11
+[CHECK] overreach > second_size = 1
+[CHECK] overreach > buffer_.length() = 0
+[CHECK] overreach <= ByteCount() = 1
+[CHECK] bytes removed before second chunk = 4
+[BYTES] buffer before BackUp @ 0x16d0add99 = 41 41 41 41 41 41 41 41 42 42 42 42 42 42 42
+[STATE] after BackUp(overreach)
+  ByteCount()=4
+  cord_.size()=0
+  buffer_.length()=4
+  buffer_.capacity()=15
+  buffer_.slack()=11
+  state_=2 (kPartial)
+[BYTES] buffer after BackUp @ 0x16d0add99 = 41 41 41 41
+[INFO] stopping before Consume(); rerun with --consume to trigger the original crash path.

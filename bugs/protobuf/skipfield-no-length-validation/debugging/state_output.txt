@@ -1,0 +1,52 @@
+=== STATE CAPTURE: skipfield-no-length-validation ===
+payload_size=10
+payload_bytes: da 07 f0 ff ff ff 07 41 42 43
+[DECODE] tag=0x3da
+[DECODE] read_length_ok=1
+[DECODE] decoded_length=2147483632 (0x7ffffff0)
+[DECODE] decoded_length_as_int=2147483632
+[STATE] after manual tag+length decode
+  CurrentPosition()=7
+  BytesUntilLimit()=-1
+  BufferSize()=3
+  current_limit_=2147483647
+  buffer_size_after_limit_=0
+  total_bytes_limit_=2147483647
+  total_bytes_read_=10
+  buffer_ptr=0x16f55ddc7
+  buffer_end=0x16f55ddca
+  next_bytes: 41 42 43
+[STATE] before ReadTag
+  CurrentPosition()=0
+  BytesUntilLimit()=-1
+  BufferSize()=10
+  current_limit_=2147483647
+  buffer_size_after_limit_=0
+  total_bytes_limit_=2147483647
+  total_bytes_read_=10
+  buffer_ptr=0x16f55ddc0
+  buffer_end=0x16f55ddca
+  next_bytes: da 07 f0 ff ff ff 07 41
+[SKIPFIELD] tag=0x3da
+[STATE] after ReadTag before SkipField
+  CurrentPosition()=2
+  BytesUntilLimit()=-1
+  BufferSize()=8
+  current_limit_=2147483647
+  buffer_size_after_limit_=0
+  total_bytes_limit_=2147483647
+  total_bytes_read_=10
+  buffer_ptr=0x16f55ddc2
+  buffer_end=0x16f55ddca
+  next_bytes: f0 ff ff ff 07 41 42 43
+[SKIPFIELD] skip_ok=0
+[STATE] after SkipField
+  CurrentPosition()=10
+  BytesUntilLimit()=-1
+  BufferSize()=0
+  current_limit_=2147483647
+  buffer_size_after_limit_=0
+  total_bytes_limit_=2147483647
+  total_bytes_read_=10
+  buffer_ptr=0x0
+  buffer_end=0x0

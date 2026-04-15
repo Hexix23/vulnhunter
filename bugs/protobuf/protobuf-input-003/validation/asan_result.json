@@ -1,0 +1,5 @@
+{
+  "validator": "asan",
+  "status": "CONFIRMED_MEMORY",
+  "evidence": "Public MessageLite::MergeFromString() on a lite-runtime message with nums size forced to INT_MAX triggers AddressSanitizer bad-__sanitizer_annotate_contiguous_container in google::protobuf::internal::EpsCopyInputStream::ReadPackedFixed<unsigned int>() from the real arm64 ASan libprotobuf build. See bugs/protobuf/protobuf-input-003/validation/asan_output.txt."
+}

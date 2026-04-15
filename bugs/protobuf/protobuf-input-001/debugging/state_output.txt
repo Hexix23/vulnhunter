@@ -1,0 +1,3 @@
+[allocation] input_size=4294967295 ptr=0x300004810
+[cast] output_size=4294967586 network_out=290
+[summary] ptr=0x300004810 input_size=4294967295 output_size=4294967586 network_out=290

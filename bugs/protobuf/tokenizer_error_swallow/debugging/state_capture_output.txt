@@ -1,0 +1,11 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+W0000 00:00:1776242456.566615 12746800 parser.cc:659] No edition or syntax specified for the proto file: failing.proto. Please use 'edition = "YYYY";'  to specify a valid edition version. (Defaulted to "syntax = "proto2";".)
+[TOKENIZER_CTOR] stream_failed=1 calls=1 read_error=1 buffer_size=0 current_type=0 current_char=0x00 collector_errors=0
+[TOKENIZER_NEXT] next=0 stream_failed=1 calls=1 read_error=1 current_type=1 previous_type=0 current_char=0x00 collector_errors=0
+tokenizer_errors=0
+tokenizer_warnings=0
+[PARSER_BEFORE] stream_failed=1 calls=1 tokenizer_read_error=1 tokenizer_current_type=0 parser_had_errors=0 syntax='' parser_errors=0
+[PARSER_AFTER] ok=1 stream_failed=1 calls=1 tokenizer_read_error=1 tokenizer_current_type=1 parser_had_errors=0 syntax='proto2' message_types=0 parser_errors=0
+[FILE_STATE] file_name='failing.proto' file_syntax=''
+parser_errors=0
+parser_warnings=0

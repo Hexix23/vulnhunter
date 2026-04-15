@@ -1,0 +1,3 @@
+valid: status=0 (Ok)
+truncated: status=2 (Wire format was corrupt)
+no reproduction: library reports Malformed

@@ -1,0 +1,16 @@
+(lldb) target create "/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/parse_string_oom/debugging/poc_debug"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/parse_string_oom/debugging/poc_debug' (arm64).
+(lldb) command source -s 0 '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/parse_string_oom/debugging/lldb_commands.txt'
+Executing commands in '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/parse_string_oom/debugging/lldb_commands.txt'.
+(lldb) breakpoint set --file poc_debug.cpp --line 54
+Breakpoint 1: where = poc_debug`main + 664 [inlined] (anonymous namespace)::RunScenario() + 380 at poc_debug.cpp:54:50, address = 0x0000000100001a80
+(lldb) breakpoint set --file coded_stream.cc --line 285
+Breakpoint 2: where = poc_debug`google::protobuf::io::CodedInputStream::ReadStringFallback(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>*, int) + 228 at coded_stream.cc:285:48, address = 0x0000000100004f24
+(lldb) breakpoint set --file coded_stream.cc --line 304
+Breakpoint 3: where = poc_debug`google::protobuf::io::CodedInputStream::ReadStringFallback(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>*, int) + 564 at coded_stream.cc:304:10, address = 0x0000000100005074
+(lldb) breakpoint set --file coded_stream.cc --line 125
+Breakpoint 4: 3 locations.
+(lldb) breakpoint set --file poc_debug.cpp --line 69
+Breakpoint 5: where = poc_debug`main + 1124 [inlined] (anonymous namespace)::RunScenario() + 840 at poc_debug.cpp:69:56, address = 0x0000000100001c4c
+(lldb) run
+error: could not find 'debugserver'. Please ensure it is properly installed and available in your PATH

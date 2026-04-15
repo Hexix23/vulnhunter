@@ -1,0 +1,60 @@
+=================================================================
+==30122==ERROR: AddressSanitizer: use-after-poison on address 0x00016f89de39 at pc 0x000100ebed04 bp 0x00016f89dd10 sp 0x00016f89d4b0
+WRITE of size 4 at 0x00016f89de39 thread T0
+    #0 0x000100ebed00 in memcpy (/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/lib/darwin/libclang_rt.asan_osx_dynamic.dylib:arm64e+0x8ed00)
+    #1 0x00010056d58c in google::protobuf::io::CordOutputStream::Consume() /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/targets/protobuf/src/google/protobuf/io/zero_copy_stream_impl_lite.cc:689:9
+    #2 0x000100561068 in main /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/cord_output_backup_overreach/poc/poc_real.cpp:38:30
+    #3 0x00018d643da0 in start (/usr/lib/dyld:arm64e+0x1fda0)
+
+Address 0x00016f89de39 is located in stack of thread T0 at offset 57 in frame
+    #0 0x000100560dfc in main /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/cord_output_backup_overreach/poc/poc_real.cpp:8
+
+  This frame has 9 object(s):
+    [32, 33) 'ref.tmp'
+    [48, 104) 'output' (line 11) <== Memory access at offset 57 is inside this variable
+    [144, 152) 'first' (line 13)
+    [176, 180) 'first_size' (line 14)
+    [192, 200) 'second' (line 21)
+    [224, 228) 'second_size' (line 22)
+    [240, 256) 'result' (line 38)
+    [272, 296) 'flattened' (line 39)
+    [336, 360) 'ref.tmp' (line 41)
+HINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork
+      (longjmp and C++ exceptions *are* supported)
+SUMMARY: AddressSanitizer: use-after-poison /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/targets/protobuf/src/google/protobuf/io/zero_copy_stream_impl_lite.cc:689:9 in google::protobuf::io::CordOutputStream::Consume()
+Shadow bytes around the buggy address:
+  0x00016f89db80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x00016f89dc00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x00016f89dc80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x00016f89dd00: 00 00 00 00 f1 f1 f1 f1 f8 f8 f2 f2 00 00 f3 f3
+  0x00016f89dd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x00016f89de00: f1 f1 f1 f1 f8 f2 00[f7]f7 00 00 00 00 f2 f2 f2
+  0x00016f89de80: f2 f2 00 f2 f2 f2 04 f2 00 f2 f2 f2 04 f2 00 00
+  0x00016f89df00: f2 f2 f8 f8 f8 f2 f2 f2 f2 f2 f8 f8 f8 f3 f3 f3
+  0x00016f89df80: f3 f3 f3 f3 00 00 00 00 00 00 00 00 00 00 00 00
+  0x00016f89e000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x00016f89e080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+
+NOTE: the stack trace above identifies the code that *accessed* the poisoned memory.
+To identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.
+==30122==ABORTING
+EXIT_CODE=1

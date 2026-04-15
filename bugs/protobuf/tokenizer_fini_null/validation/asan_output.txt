@@ -1,0 +1,32 @@
+Constructing Tokenizer with null ZeroCopyInputStream...
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==37476==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x00010063f1b0 bp 0x00016f7c1ed0 sp 0x00016f7c1dc0 T0)
+==37476==The signal is caused by a READ memory access.
+==37476==Hint: address points to the zero page.
+==37476==WARNING: external symbolizer didn't start up correctly!
+==37476==WARNING: Can't write to symbolizer at fd 4
+==37476==WARNING: external symbolizer didn't start up correctly!
+==37476==WARNING: Can't write to symbolizer at fd 5
+==37476==WARNING: external symbolizer didn't start up correctly!
+==37476==WARNING: Can't write to symbolizer at fd 6
+==37476==WARNING: external symbolizer didn't start up correctly!
+==37476==WARNING: Can't write to symbolizer at fd 7
+==37476==WARNING: external symbolizer didn't start up correctly!
+==37476==WARNING: Failed to use and restart external symbolizer!
+    #0 0x00010063f1b0 in google::protobuf::io::Tokenizer::Tokenizer(google::protobuf::io::ZeroCopyInputStream*, google::protobuf::io::ErrorCollector*)+0x360 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/tokenizer_fini_null/poc/poc_real:arm64+0x1000031b0)
+    #1 0x00010063ce58 in main+0x148 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/tokenizer_fini_null/poc/poc_real:arm64+0x100000e58)
+    #2 0x00018d643da0 in start+0x1b4c (/usr/lib/dyld:arm64e+0x1fda0)
+
+==37476==Register values:
+ x[0] = 0x0000000000000000   x[1] = 0x000000016f7c1f2c   x[2] = 0x0000000000000000   x[3] = 0x000000016f7c1f5c  
+ x[4] = 0x000000016f7c1e38   x[5] = 0x0000000000000020   x[6] = 0x0000000000000000   x[7] = 0x0000000000000000  
+ x[8] = 0x0000000000000000   x[9] = 0x000000016f7c1f5b  x[10] = 0x000000702df183ea  x[11] = 0x000000002def83ea  
+x[12] = 0x000000002def83eb  x[13] = 0x0000000000000000  x[14] = 0x0000000000000000  x[15] = 0x0000000000000000  
+x[16] = 0x000000018da093c0  x[17] = 0x00000001010d4548  x[18] = 0x0000000000000000  x[19] = 0x000000016f7c1e00  
+x[20] = 0x000000016f7c1f00  x[21] = 0x000000016f7c1dc0  x[22] = 0x000000016f7c1f80  x[23] = 0x0000007000020000  
+x[24] = 0x000000016f7c1f60  x[25] = 0x000000002def83f0  x[26] = 0x000000002def83ec  x[27] = 0x000000002def83f1  
+x[28] = 0x000000016f7c1f88     fp = 0x000000016f7c1ed0     lr = 0x000000010063f0a8     sp = 0x000000016f7c1dc0  
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/tokenizer_fini_null/poc/poc_real:arm64+0x1000031b0) in google::protobuf::io::Tokenizer::Tokenizer(google::protobuf::io::ZeroCopyInputStream*, google::protobuf::io::ErrorCollector*)+0x360
+==37476==ABORTING

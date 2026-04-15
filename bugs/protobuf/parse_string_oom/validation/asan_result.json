@@ -1,0 +1,5 @@
+{
+  "validator": "asan",
+  "status": "NO_CRASH",
+  "evidence": "Source review found hardening in parse_context.cc (kSafeStringSize cap) and existing upstream tests for impossibly large strings. Fresh PoC linked against the provided libprotobuf.a using Apple clang and extra Abseil dylibs because link_flags.txt was incomplete. Runtime did not validate parse_string_oom: the process crashed before main() during protobuf descriptor initialization (DescriptorPool::Tables::Tables -> InternalAddGeneratedFile), so the payload was never parsed and no stack frame reached ReadString/parse_context. This is an artifact/build issue, not confirmation of the reported finding."
+}

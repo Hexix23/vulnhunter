@@ -1,0 +1,70 @@
+=================================================================
+==77613==ERROR: AddressSanitizer: use-after-poison on address 0x00016fce5d59 at pc 0x000100ae6d04 bp 0x00016fce5bf0 sp 0x00016fce5390
+WRITE of size 4 at 0x00016fce5d59 thread T0
+==77613==WARNING: external symbolizer didn't start up correctly!
+==77613==WARNING: Can't write to symbolizer at fd 4
+==77613==WARNING: external symbolizer didn't start up correctly!
+==77613==WARNING: Can't write to symbolizer at fd 5
+==77613==WARNING: external symbolizer didn't start up correctly!
+==77613==WARNING: Can't write to symbolizer at fd 6
+==77613==WARNING: external symbolizer didn't start up correctly!
+==77613==WARNING: Can't write to symbolizer at fd 7
+==77613==WARNING: external symbolizer didn't start up correctly!
+==77613==WARNING: Failed to use and restart external symbolizer!
+    #0 0x000100ae6d00 in memcpy+0x260 (/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/lib/darwin/libclang_rt.asan_osx_dynamic.dylib:arm64e+0x8ed00)
+    #1 0x000100126f98 in google::protobuf::io::CordOutputStream::Consume()+0xf4 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/cord_output_backup_overreach/debugging/poc_debug:arm64+0x10000ef98)
+    #2 0x000100119350 in main+0x560 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/cord_output_backup_overreach/debugging/poc_debug:arm64+0x100001350)
+    #3 0x00018d643da0 in start+0x1b4c (/usr/lib/dyld:arm64e+0x1fda0)
+
+Address 0x00016fce5d59 is located in stack of thread T0 at offset 121 in frame
+    #0 0x000100118dfc in main+0xc (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/cord_output_backup_overreach/debugging/poc_debug:arm64+0x100000dfc)
+
+  This frame has 10 object(s):
+    [32, 33) 'ref.tmp'
+    [48, 72) 'ref.tmp' (line 61)
+    [112, 168) 'output' (line 63) <== Memory access at offset 121 is inside this variable
+    [208, 216) 'first' (line 66)
+    [240, 244) 'first_size' (line 67)
+    [256, 264) 'second' (line 76)
+    [288, 292) 'second_size' (line 77)
+    [304, 320) 'result' (line 118)
+    [336, 360) 'flattened' (line 119)
+    [400, 424) 'ref.tmp' (line 121)
+HINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork
+      (longjmp and C++ exceptions *are* supported)
+SUMMARY: AddressSanitizer: use-after-poison (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/cord_output_backup_overreach/debugging/poc_debug:arm64+0x10000ef98) in google::protobuf::io::CordOutputStream::Consume()+0xf4
+Shadow bytes around the buggy address:
+  0x00016fce5a80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x00016fce5b00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x00016fce5b80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x00016fce5c00: f1 f1 f1 f1 f8 f8 f2 f2 00 00 f3 f3 00 00 00 00
+  0x00016fce5c80: 00 00 00 00 00 00 00 00 00 00 00 00 f1 f1 f1 f1
+=>0x00016fce5d00: f8 f2 f8 f8 f8 f2 f2 f2 f2 f2 00[f7]f7 00 00 00
+  0x00016fce5d80: 00 f2 f2 f2 f2 f2 00 f2 f2 f2 04 f2 00 f2 f2 f2
+  0x00016fce5e00: 04 f2 00 00 f2 f2 f8 f8 f8 f2 f2 f2 f2 f2 f8 f8
+  0x00016fce5e80: f8 f3 f3 f3 f3 f3 f3 f3 00 00 00 00 00 00 00 00
+  0x00016fce5f00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x00016fce5f80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+
+NOTE: the stack trace above identifies the code that *accessed* the poisoned memory.
+To identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.
+==77613==ABORTING

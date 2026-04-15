@@ -1,0 +1,4 @@
+token.type=5
+token.text="line1\nline2\u0041\123"
+parsed.size=13
+parsed.bytes=108 105 110 101 49 10 108 105 110 101 50 65 83 

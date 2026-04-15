@@ -1,0 +1,60 @@
+=================================================================
+==37173==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x00016fd79ea0 at pc 0x00010164abb4 bp 0x00016fd79d70 sp 0x00016fd79520
+WRITE of size 2147483903 at 0x00016fd79ea0 thread T0
+==37173==WARNING: external symbolizer didn't start up correctly!
+==37173==WARNING: Can't write to symbolizer at fd 4
+==37173==WARNING: external symbolizer didn't start up correctly!
+==37173==WARNING: Can't write to symbolizer at fd 5
+==37173==WARNING: external symbolizer didn't start up correctly!
+==37173==WARNING: Can't write to symbolizer at fd 6
+==37173==WARNING: external symbolizer didn't start up correctly!
+==37173==WARNING: Can't write to symbolizer at fd 7
+==37173==WARNING: external symbolizer didn't start up correctly!
+==37173==WARNING: Failed to use and restart external symbolizer!
+    #0 0x00010164abb0 in __asan_memcpy+0x330 (/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/lib/darwin/libclang_rt.asan_osx_dynamic.dylib:arm64e+0x3ebb0)
+    #1 0x00010038cf8c in google::protobuf::io::EpsCopyOutputStream::WriteStringOutline(unsigned int, std::__1::basic_string_view<char, std::__1::char_traits<char>>, unsigned char*)+0xc8 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/compute-unknown-fields-overflow/poc/poc_real:arm64+0x100308f8c)
+    #2 0x00010043a210 in google::protobuf::internal::WireFormat::InternalSerializeUnknownFieldsToArray(google::protobuf::UnknownFieldSet const&, unsigned char*, google::protobuf::io::EpsCopyOutputStream*)+0x540 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/compute-unknown-fields-overflow/poc/poc_real:arm64+0x1003b6210)
+    #3 0x000100087578 in google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(google::protobuf::UnknownFieldSet const&, unsigned char*)+0x15c (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/compute-unknown-fields-overflow/poc/poc_real:arm64+0x100003578)
+    #4 0x0001000870e8 in main+0x1f8 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/compute-unknown-fields-overflow/poc/poc_real:arm64+0x1000030e8)
+    #5 0x00018d643da0 in start+0x1b4c (/usr/lib/dyld:arm64e+0x1fda0)
+
+Address 0x00016fd79ea0 is located in stack of thread T0 at offset 96 in frame
+    #0 0x000100087428 in google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(google::protobuf::UnknownFieldSet const&, unsigned char*)+0xc (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/compute-unknown-fields-overflow/poc/poc_real:arm64+0x100003428)
+
+  This frame has 1 object(s):
+    [32, 96) 'stream' (line 161) <== Memory access at offset 96 overflows this variable
+HINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork
+      (longjmp and C++ exceptions *are* supported)
+SUMMARY: AddressSanitizer: stack-buffer-overflow (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/compute-unknown-fields-overflow/poc/poc_real:arm64+0x100308f8c) in google::protobuf::io::EpsCopyOutputStream::WriteStringOutline(unsigned int, std::__1::basic_string_view<char, std::__1::char_traits<char>>, unsigned char*)+0xc8
+Shadow bytes around the buggy address:
+  0x00016fd79c00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x00016fd79c80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x00016fd79d00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x00016fd79d80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x00016fd79e00: 00 00 00 00 00 00 00 00 f1 f1 f1 f1 00 00 00 00
+=>0x00016fd79e80: 00 00 00 00[f3]f3 f3 f3 00 00 00 00 00 00 00 00
+  0x00016fd79f00: 00 00 00 00 00 00 00 00 f1 f1 f1 f1 00 00 00 f2
+  0x00016fd79f80: f2 f2 f2 f2 00 00 00 f3 f3 f3 f3 f3 00 00 00 00
+  0x00016fd7a000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x00016fd7a080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x00016fd7a100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==37173==ABORTING

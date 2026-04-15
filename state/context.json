@@ -1,0 +1,301 @@
+{
+  "meta": {
+    "session_id": "vulnhunt-20260414-223032",
+    "created_at": "2026-04-14T20:30:32Z",
+    "updated_at": "2026-04-15T13:50:00Z",
+    "vulnhunter_version": "3.0"
+  },
+  "target": {
+    "path": "/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/targets/protobuf",
+    "name": "protobuf",
+    "type": "library",
+    "language": "C++",
+    "build_system": "cmake"
+  },
+  "progress": {
+    "phase": "validation",
+    "percent_complete": 0,
+    "last_action": "Pre-release audit verified findings against bugs/protobuf directories and cleaned repo hygiene",
+    "next_action": "Resume validation with the current findings set"
+  },
+  "config": {
+    "orchestrator": "codex",
+    "model": "claude-haiku-4-5-20251001",
+    "depth": "deep",
+    "focus": "input",
+    "max_retries": 100
+  },
+  "bugs_dir": "bugs/protobuf/",
+  "findings": [
+    {
+      "id": "arrayinputstream-truncation",
+      "title": "arrayinputstream-truncation",
+      "severity": "MEDIUM",
+      "location": {
+        "file": "bugs/protobuf/arrayinputstream-truncation/poc/",
+        "line": 0,
+        "function": "arrayinputstream-truncation"
+      },
+      "status": "pending_validation",
+      "revalidate": true
+    },
+    {
+      "id": "compute-unknown-fields-overflow",
+      "title": "compute-unknown-fields-overflow",
+      "severity": "MEDIUM",
+      "location": {
+        "file": "bugs/protobuf/compute-unknown-fields-overflow/poc/",
+        "line": 0,
+        "function": "compute-unknown-fields-overflow"
+      },
+      "status": "pending_validation",
+      "revalidate": true
+    },
+    {
+      "id": "cord_input_negative_read",
+      "title": "cord_input_negative_read",
+      "severity": "MEDIUM",
+      "location": {
+        "file": "bugs/protobuf/cord_input_negative_read/poc/",
+        "line": 0,
+        "function": "cord_input_negative_read"
+      },
+      "status": "pending_validation",
+      "revalidate": true
+    },
+    {
+      "id": "cord_input_negative_skip",
+      "title": "cord_input_negative_skip",
+      "severity": "MEDIUM",
+      "location": {
+        "file": "bugs/protobuf/cord_input_negative_skip/poc/",
+        "line": 0,
+        "function": "cord_input_negative_skip"
+      },
+      "status": "pending_validation",
+      "revalidate": true
+    },
+    {
+      "id": "cord_output_backup_overreach",
+      "title": "cord_output_backup_overreach",
+      "severity": "MEDIUM",
+      "location": {
+        "file": "bugs/protobuf/cord_output_backup_overreach/poc/",
+        "line": 0,
+        "function": "cord_output_backup_overreach"
+      },
+      "status": "pending_validation",
+      "revalidate": true
+    },
+    {
+      "id": "delimited-size-int-overflow",
+      "title": "delimited-size-int-overflow",
+      "severity": "MEDIUM",
+      "location": {
+        "file": "bugs/protobuf/delimited-size-int-overflow/poc/",
+        "line": 0,
+        "function": "delimited-size-int-overflow"
+      },
+      "status": "pending_validation",
+      "revalidate": true
+    },
+    {
+      "id": "gzip_backup_underflow",
+      "title": "gzip_backup_underflow",
+      "severity": "MEDIUM",
+      "location": {
+        "file": "bugs/protobuf/gzip_backup_underflow/poc/",
+        "line": 0,
+        "function": "gzip_backup_underflow"
+      },
+      "status": "pending_validation",
+      "revalidate": true
+    },
+    {
+      "id": "parse_string_oom",
+      "title": "parse_string_oom",
+      "severity": "MEDIUM",
+      "location": {
+        "file": "bugs/protobuf/parse_string_oom/poc/",
+        "line": 0,
+        "function": "parse_string_oom"
+      },
+      "status": "pending_validation",
+      "revalidate": true
+    },
+    {
+      "id": "parseany-no-size-check",
+      "title": "parseany-no-size-check",
+      "severity": "MEDIUM",
+      "location": {
+        "file": "bugs/protobuf/parseany-no-size-check/poc/",
+        "line": 0,
+        "function": "parseany-no-size-check"
+      },
+      "status": "pending_validation",
+      "revalidate": true
+    },
+    {
+      "id": "protobuf-001",
+      "title": "protobuf-001",
+      "severity": "MEDIUM",
+      "location": {
+        "file": "bugs/protobuf/protobuf-001/poc/",
+        "line": 0,
+        "function": "protobuf-001"
+      },
+      "status": "pending_validation",
+      "revalidate": true
+    },
+    {
+      "id": "protobuf-input-001",
+      "title": "protobuf-input-001",
+      "severity": "MEDIUM",
+      "location": {
+        "file": "bugs/protobuf/protobuf-input-001/poc/",
+        "line": 0,
+        "function": "protobuf-input-001"
+      },
+      "status": "pending_validation",
+      "revalidate": true
+    },
+    {
+      "id": "protobuf-input-002",
+      "title": "protobuf-input-002",
+      "severity": "MEDIUM",
+      "location": {
+        "file": "bugs/protobuf/protobuf-input-002/poc/",
+        "line": 0,
+        "function": "protobuf-input-002"
+      },
+      "status": "pending_validation",
+      "revalidate": true
+    },
+    {
+      "id": "protobuf-input-003",
+      "title": "protobuf-input-003",
+      "severity": "MEDIUM",
+      "location": {
+        "file": "bugs/protobuf/protobuf-input-003/poc/",
+        "line": 0,
+        "function": "protobuf-input-003"
+      },
+      "status": "pending_validation",
+      "revalidate": true
+    },
+    {
+      "id": "readbytestostring-no-size-cap",
+      "title": "readbytestostring-no-size-cap",
+      "severity": "MEDIUM",
+      "location": {
+        "file": "bugs/protobuf/readbytestostring-no-size-cap/poc/",
+        "line": 0,
+        "function": "readbytestostring-no-size-cap"
+      },
+      "status": "pending_validation",
+      "revalidate": true
+    },
+    {
+      "id": "skipfield-no-length-validation",
+      "title": "skipfield-no-length-validation",
+      "severity": "MEDIUM",
+      "location": {
+        "file": "bugs/protobuf/skipfield-no-length-validation/poc/",
+        "line": 0,
+        "function": "skipfield-no-length-validation"
+      },
+      "status": "pending_validation",
+      "revalidate": true
+    },
+    {
+      "id": "string_output_backup_overreach",
+      "title": "string_output_backup_overreach",
+      "severity": "MEDIUM",
+      "location": {
+        "file": "bugs/protobuf/string_output_backup_overreach/poc/",
+        "line": 0,
+        "function": "string_output_backup_overreach"
+      },
+      "status": "pending_validation",
+      "revalidate": true
+    },
+    {
+      "id": "textformat-oversize",
+      "title": "textformat-oversize",
+      "severity": "MEDIUM",
+      "location": {
+        "file": "bugs/protobuf/textformat-oversize/poc/",
+        "line": 0,
+        "function": "textformat-oversize"
+      },
+      "status": "pending_validation",
+      "revalidate": true
+    },
+    {
+      "id": "textformat-stackoverflow",
+      "title": "textformat-stackoverflow",
+      "severity": "MEDIUM",
+      "location": {
+        "file": "bugs/protobuf/textformat-stackoverflow/poc/",
+        "line": 0,
+        "function": "textformat-stackoverflow"
+      },
+      "status": "pending_validation",
+      "revalidate": true
+    },
+    {
+      "id": "tokenizer_error_swallow",
+      "title": "tokenizer_error_swallow",
+      "severity": "MEDIUM",
+      "location": {
+        "file": "bugs/protobuf/tokenizer_error_swallow/poc/",
+        "line": 0,
+        "function": "tokenizer_error_swallow"
+      },
+      "status": "pending_validation",
+      "revalidate": true
+    },
+    {
+      "id": "tokenizer_fini_null",
+      "title": "tokenizer_fini_null",
+      "severity": "MEDIUM",
+      "location": {
+        "file": "bugs/protobuf/tokenizer_fini_null/poc/",
+        "line": 0,
+        "function": "tokenizer_fini_null"
+      },
+      "status": "pending_validation",
+      "revalidate": true
+    },
+    {
+      "id": "upb-decoder-reserve-overflow",
+      "title": "upb-decoder-reserve-overflow",
+      "severity": "MEDIUM",
+      "location": {
+        "file": "bugs/protobuf/upb-decoder-reserve-overflow/poc/",
+        "line": 0,
+        "function": "upb-decoder-reserve-overflow"
+      },
+      "status": "pending_validation",
+      "revalidate": true
+    },
+    {
+      "id": "upb-readstring2-error-masking",
+      "title": "upb-readstring2-error-masking",
+      "severity": "MEDIUM",
+      "location": {
+        "file": "bugs/protobuf/upb-readstring2-error-masking/poc/",
+        "line": 0,
+        "function": "upb-readstring2-error-masking"
+      },
+      "status": "pending_validation",
+      "revalidate": true
+    }
+  ],
+  "validated": [],
+  "statistics": {
+    "findings_total": 22,
+    "findings_validated": 0,
+    "findings_reported": 0
+  }
+}

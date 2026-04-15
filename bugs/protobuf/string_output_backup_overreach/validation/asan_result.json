@@ -1,0 +1,1 @@
+{"validator":"asan","status":"LOGIC_BUG","evidence":"Real libprotobuf ASan build compiled and executed successfully. StringOutputStream::BackUp() accepted overreach_request=40 after a last Next() span of 32 bytes, shrinking size_before_overreach=71 to size_after_overreach=31 and removing 8 previously committed 'A' bytes. No AddressSanitizer memory error was reported."}

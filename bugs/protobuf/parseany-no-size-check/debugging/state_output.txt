@@ -1,0 +1,15 @@
+Generated Any JSON payload bytes: 16777364
+Captured type_url: type.googleapis.com/google.protobuf.FileDescriptorSet
+Captured type_url bytes: 53
+mark.value.UpToUnread() bytes: 16777364
+mark covers entire input: true
+mark prefix ascii: {"@type":"type.googleapis.com/go
+mark suffix ascii: "audit.pkg","syntax":"proto3"}]}
+mark prefix hex: 7b 22 40 74 79 70 65 22 3a 22 74 79 70 65 2e 67
+mark suffix hex: 74 61 78 22 3a 22 70 72 6f 74 6f 33 22 7d 5d 7d
+replay lexer SkipToToken: OK
+Resident memory before parse: 61325312 (58.48 MiB)
+Resident memory after parse: 110739456 (105.61 MiB)
+Resident memory delta: 49414144 (47.12 MiB)
+JsonStringToMessage status: OK
+Parsed embedded value bytes: 15286215

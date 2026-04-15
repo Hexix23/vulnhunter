@@ -1,0 +1,24 @@
+set pagination off
+break targets/protobuf/src/google/protobuf/io/zero_copy_stream_impl_lite.cc:49
+break targets/protobuf/src/google/protobuf/io/zero_copy_stream_impl_lite.cc:57
+break bugs/protobuf/arrayinputstream-truncation/poc/poc_real.cpp:37
+run
+print data
+print size
+print (long long)size
+print (int)size
+print block_size
+continue
+print this->size_
+print this->block_size_
+print this->position_
+print this->position_ < this->size_
+print this->size_ - this->position_
+x/16bx data_
+continue
+print ok
+print size
+print data
+print stream.ByteCount()
+x/16bx region
+quit

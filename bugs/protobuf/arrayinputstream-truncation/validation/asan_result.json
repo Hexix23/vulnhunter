@@ -1,0 +1,1 @@
+{"validator":"asan","status":"LOGIC_BUG","evidence":"Validated against builds/protobuf-asan-arm64/lib/libprotobuf.a with a fresh PoC. A logical size of 2147483648 narrows to int -2147483648 in ArrayInputStream, causing Next() to return false immediately and ByteCount() to remain 0. No ASan memory error was observed; runtime evidence is in validation/asan_output.txt."}

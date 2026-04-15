@@ -1,0 +1,43 @@
+[after first Next()]
+  output_buffer=0x6030000059b0
+  output_position=0x6030000059c4
+  next_out=0x6030000059c4
+  output_buffer_length=32
+  byte_count_field=0
+  z_total_out=20
+  output_position_minus_buffer=20
+  next_out_minus_output_position=0
+  next_out_minus_buffer=20
+  ByteCount()=20
+  first_ptr=0x6030000059b0
+  first_size=20
+  first_bytes=50 52 4f 54 4f 42 55 46 5f 47 5a 49 50 5f 42 41 43 4b 55 50
+[after oversized BackUp()]
+  output_buffer=0x6030000059b0
+  output_position=0x603000005990
+  next_out=0x6030000059c4
+  output_buffer_length=32
+  byte_count_field=0
+  z_total_out=20
+  output_position_minus_buffer=-32
+  next_out_minus_output_position=52
+  next_out_minus_buffer=20
+  ByteCount()=72
+  backup_count=52
+[after second Next()]
+  output_buffer=0x6030000059b0
+  output_position=0x6030000059c4
+  next_out=0x6030000059c4
+  output_buffer_length=32
+  byte_count_field=0
+  z_total_out=20
+  output_position_minus_buffer=20
+  next_out_minus_output_position=0
+  next_out_minus_buffer=20
+  ByteCount()=20
+  second_ptr=0x603000005990
+  second_size=52
+  pointer_delta=32
+  second_ptr_before_output_buffer=1
+  output_buffer_bytes=50 52 4f 54 4f 42 55 46 5f 47 5a 49 50 5f 42 41 43 4b 55 50
+  second_bytes_dump_skipped=1

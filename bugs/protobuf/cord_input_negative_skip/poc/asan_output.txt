@@ -1,0 +1,6 @@
+cord_size=16
+byte_count_before=0
+skip_return=0
+byte_count_after=16
+next_after_skip=0
+next_size=-1

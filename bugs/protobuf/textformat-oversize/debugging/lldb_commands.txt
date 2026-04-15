@@ -1,0 +1,6 @@
+breakpoint set --file text_format.cc --line 1946
+breakpoint set --name main
+run
+bt
+register read
+quit

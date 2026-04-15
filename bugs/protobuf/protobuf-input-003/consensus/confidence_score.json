@@ -1,0 +1,30 @@
+{
+  "finding_id": "protobuf-input-003",
+  "validators": {
+    "asan": {
+      "status": "LOGIC_BUG",
+      "score": 0.7,
+      "evidence_summary": "UBSan reported signed integer overflow on 2147483647 + 1 at wire_format_lite.h:1148, followed by protobuf aborting on the repeated-field non-negative size check."
+    },
+    "lldb": {
+      "status": "STATE_BUG",
+      "score": 0.9,
+      "evidence_summary": "Runtime evidence from the debug PoC showed initial_size=2147483647 and a resulting new_size of -2147483648 reaching RepeatedField::ResizeImpl()."
+    },
+    "fresh": {
+      "status": "FOUND",
+      "score": 1.0,
+      "evidence_summary": "Independent review found unchecked signed arithmetic in old_entries + new_entries on both resize and reserve paths."
+    },
+    "impact": {
+      "status": "LIMITED_IMPACT",
+      "score": 0.4,
+      "evidence_summary": "Public MergeFrom* APIs can be driven into process termination, but only when the destination repeated field is already near INT_MAX elements."
+    }
+  },
+  "total_score": 3.0,
+  "confidence_level": "CONFIRMED_HIGH",
+  "recommendation": "REPORT",
+  "dissenting_validators": [],
+  "notes": "All validators support the same root cause: unchecked signed addition of existing and incoming packed fixed-field element counts. Impact is limited to denial of service because the trigger requires an already huge destination message."
+}

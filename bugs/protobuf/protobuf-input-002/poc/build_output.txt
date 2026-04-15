@@ -1,0 +1,67 @@
+[*] compiler: clang++ 
+Undefined symbols for architecture arm64:
+  "absl::lts_20260107::log_internal::kCharNull", referenced from:
+      absl::lts_20260107::log_internal::LogMessage& absl::lts_20260107::log_internal::LogMessage::operator<<<char const*>(char const* const&) in libprotobuf.a[69](common.cc.o)
+  "absl::lts_20260107::cord_internal::CordRep::Destroy(absl::lts_20260107::cord_internal::CordRep*)", referenced from:
+      absl::lts_20260107::Cord::Append(absl::lts_20260107::CordBuffer) in libprotobuf.a[45](zero_copy_stream.cc.o)
+  "absl::lts_20260107::cord_internal::CordzInfo::Untrack()", referenced from:
+      absl::lts_20260107::Cord::Append(absl::lts_20260107::CordBuffer) in libprotobuf.a[45](zero_copy_stream.cc.o)
+  "absl::lts_20260107::Cord::RemoveSuffix(unsigned long)", referenced from:
+      google::protobuf::io::CordOutputStream::BackUp(int) in libprotobuf.a[47](zero_copy_stream_impl_lite.cc.o)
+  "absl::lts_20260107::Cord::AppendPrecise(std::__1::basic_string_view<char, std::__1::char_traits<char>>, absl::lts_20260107::cord_internal::CordzUpdateTracker::MethodIdentifier)", referenced from:
+      absl::lts_20260107::Cord::Append(absl::lts_20260107::CordBuffer) in libprotobuf.a[45](zero_copy_stream.cc.o)
+  "absl::lts_20260107::Cord::ChunkIterator::AdvanceAndReadBytes(unsigned long)", referenced from:
+      google::protobuf::io::CordInputStream::ReadCord(absl::lts_20260107::Cord*, int) in libprotobuf.a[47](zero_copy_stream_impl_lite.cc.o)
+  "absl::lts_20260107::Cord::DestroyCordSlow()", referenced from:
+      google::protobuf::io::CordInputStream::ReadCord(absl::lts_20260107::Cord*, int) in libprotobuf.a[47](zero_copy_stream_impl_lite.cc.o)
+      absl::lts_20260107::Cord::~Cord() in libprotobuf.a[47](zero_copy_stream_impl_lite.cc.o)
+      google::protobuf::io::CordOutputStream::~CordOutputStream() in libprotobuf.a[47](zero_copy_stream_impl_lite.cc.o)
+      google::protobuf::io::CordOutputStream::~CordOutputStream() in libprotobuf.a[47](zero_copy_stream_impl_lite.cc.o)
+  "absl::lts_20260107::Cord::GetAppendBufferSlowPath(unsigned long, unsigned long, unsigned long)", referenced from:
+      google::protobuf::io::ZeroCopyInputStream::ReadCord(absl::lts_20260107::Cord*, int) in libprotobuf.a[45](zero_copy_stream.cc.o)
+      google::protobuf::io::CordOutputStream::Next(void**, int*) in libprotobuf.a[47](zero_copy_stream_impl_lite.cc.o)
+  "absl::lts_20260107::Cord::Append(absl::lts_20260107::Cord&&)", referenced from:
+      google::protobuf::io::CordInputStream::ReadCord(absl::lts_20260107::Cord*, int) in libprotobuf.a[47](zero_copy_stream_impl_lite.cc.o)
+  "absl::lts_20260107::Cord::Append(absl::lts_20260107::Cord const&)", referenced from:
+      google::protobuf::io::CordOutputStream::WriteCord(absl::lts_20260107::Cord const&) in libprotobuf.a[47](zero_copy_stream_impl_lite.cc.o)
+  "absl::lts_20260107::Cord::InlineRep::AppendTree(absl::lts_20260107::cord_internal::CordRep*, absl::lts_20260107::cord_internal::CordzUpdateTracker::MethodIdentifier)", referenced from:
+      absl::lts_20260107::Cord::Append(absl::lts_20260107::CordBuffer) in libprotobuf.a[45](zero_copy_stream.cc.o)
+  "___asan_version_mismatch_check_apple_clang_2100", referenced from:
+      _asan.module_ctor in libprotobuf.a[42](strtod.cc.o)
+      _asan.module_ctor in libprotobuf.a[43](tokenizer.cc.o)
+      _asan.module_ctor in libprotobuf.a[45](zero_copy_stream.cc.o)
+      _asan.module_ctor in libprotobuf.a[47](zero_copy_stream_impl_lite.cc.o)
+      _asan.module_ctor in libprotobuf.a[69](common.cc.o)
+ld: symbol(s) not found for architecture arm64
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+[*] compiler: xcrun clang++ -arch arm64
+Undefined symbols for architecture arm64:
+  "absl::lts_20260107::log_internal::kCharNull", referenced from:
+      absl::lts_20260107::log_internal::LogMessage& absl::lts_20260107::log_internal::LogMessage::operator<<<char const*>(char const* const&) in libprotobuf.a[69](common.cc.o)
+  "absl::lts_20260107::cord_internal::CordRep::Destroy(absl::lts_20260107::cord_internal::CordRep*)", referenced from:
+      absl::lts_20260107::Cord::Append(absl::lts_20260107::CordBuffer) in libprotobuf.a[45](zero_copy_stream.cc.o)
+  "absl::lts_20260107::cord_internal::CordzInfo::Untrack()", referenced from:
+      absl::lts_20260107::Cord::Append(absl::lts_20260107::CordBuffer) in libprotobuf.a[45](zero_copy_stream.cc.o)
+  "absl::lts_20260107::Cord::RemoveSuffix(unsigned long)", referenced from:
+      google::protobuf::io::CordOutputStream::BackUp(int) in libprotobuf.a[47](zero_copy_stream_impl_lite.cc.o)
+  "absl::lts_20260107::Cord::AppendPrecise(std::__1::basic_string_view<char, std::__1::char_traits<char>>, absl::lts_20260107::cord_internal::CordzUpdateTracker::MethodIdentifier)", referenced from:
+      absl::lts_20260107::Cord::Append(absl::lts_20260107::CordBuffer) in libprotobuf.a[45](zero_copy_stream.cc.o)
+  "absl::lts_20260107::Cord::ChunkIterator::AdvanceAndReadBytes(unsigned long)", referenced from:
+      google::protobuf::io::CordInputStream::ReadCord(absl::lts_20260107::Cord*, int) in libprotobuf.a[47](zero_copy_stream_impl_lite.cc.o)
+  "absl::lts_20260107::Cord::DestroyCordSlow()", referenced from:
+      google::protobuf::io::CordInputStream::ReadCord(absl::lts_20260107::Cord*, int) in libprotobuf.a[47](zero_copy_stream_impl_lite.cc.o)
+      absl::lts_20260107::Cord::~Cord() in libprotobuf.a[47](zero_copy_stream_impl_lite.cc.o)
+      google::protobuf::io::CordOutputStream::~CordOutputStream() in libprotobuf.a[47](zero_copy_stream_impl_lite.cc.o)
+      google::protobuf::io::CordOutputStream::~CordOutputStream() in libprotobuf.a[47](zero_copy_stream_impl_lite.cc.o)
+  "absl::lts_20260107::Cord::GetAppendBufferSlowPath(unsigned long, unsigned long, unsigned long)", referenced from:
+      google::protobuf::io::ZeroCopyInputStream::ReadCord(absl::lts_20260107::Cord*, int) in libprotobuf.a[45](zero_copy_stream.cc.o)
+      google::protobuf::io::CordOutputStream::Next(void**, int*) in libprotobuf.a[47](zero_copy_stream_impl_lite.cc.o)
+  "absl::lts_20260107::Cord::Append(absl::lts_20260107::Cord&&)", referenced from:
+      google::protobuf::io::CordInputStream::ReadCord(absl::lts_20260107::Cord*, int) in libprotobuf.a[47](zero_copy_stream_impl_lite.cc.o)
+  "absl::lts_20260107::Cord::Append(absl::lts_20260107::Cord const&)", referenced from:
+      google::protobuf::io::CordOutputStream::WriteCord(absl::lts_20260107::Cord const&) in libprotobuf.a[47](zero_copy_stream_impl_lite.cc.o)
+  "absl::lts_20260107::Cord::InlineRep::AppendTree(absl::lts_20260107::cord_internal::CordRep*, absl::lts_20260107::cord_internal::CordzUpdateTracker::MethodIdentifier)", referenced from:
+      absl::lts_20260107::Cord::Append(absl::lts_20260107::CordBuffer) in libprotobuf.a[45](zero_copy_stream.cc.o)
+ld: symbol(s) not found for architecture arm64
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+[*] compiler: xcrun clang++ -arch arm64 -stdlib=libc++ -L/opt/homebrew/lib

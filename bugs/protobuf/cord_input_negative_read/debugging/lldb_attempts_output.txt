@@ -1,0 +1,32 @@
+$ codesign -s - -f bugs/protobuf/cord_input_negative_read/debugging/poc_debug
+bugs/protobuf/cord_input_negative_read/debugging/poc_debug: replacing existing signature
+
+$ lldb -b -s bugs/protobuf/cord_input_negative_read/debugging/lldb_commands.txt bugs/protobuf/cord_input_negative_read/debugging/poc_debug
+(lldb) target create "bugs/protobuf/cord_input_negative_read/debugging/poc_debug"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/cord_input_negative_read/debugging/poc_debug' (arm64).
+(lldb) command source -s 0 'bugs/protobuf/cord_input_negative_read/debugging/lldb_commands.txt'
+Executing commands in '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/cord_input_negative_read/debugging/lldb_commands.txt'.
+(lldb) breakpoint set --file poc_real.cpp --line 32
+Breakpoint 1: where = poc_debug`main + 536 [inlined] (anonymous namespace)::ExerciseDirectNegativeRead() + 240 at poc_real.cpp:32:31, address = 0x0000000100001388
+(lldb) breakpoint set --file coded_stream.cc --line 313
+Breakpoint 2: where = poc_debug`google::protobuf::io::CodedInputStream::ReadCord(absl::lts_20260107::Cord*, int) + 36 at coded_stream.cc:317:12, address = 0x0000000100007690
+(lldb) breakpoint set --file coded_stream.h --line 1384
+Breakpoint 3: where = poc_debug`google::protobuf::io::CodedInputStream::ReadVarintSizeAsInt(int*) + 20 at coded_stream.h:1384, address = 0x0000000100004c30
+(lldb) run
+error: could not find 'debugserver'. Please ensure it is properly installed and available in your PATH
+
+$ lldb --arch arm64 -b -s bugs/protobuf/cord_input_negative_read/debugging/lldb_commands.txt bugs/protobuf/cord_input_negative_read/debugging/poc_debug
+(lldb) target create --arch=arm64 "bugs/protobuf/cord_input_negative_read/debugging/poc_debug"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/cord_input_negative_read/debugging/poc_debug' (arm64).
+(lldb) command source -s 0 'bugs/protobuf/cord_input_negative_read/debugging/lldb_commands.txt'
+Executing commands in '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/cord_input_negative_read/debugging/lldb_commands.txt'.
+(lldb) breakpoint set --file poc_real.cpp --line 32
+Breakpoint 1: where = poc_debug`main + 536 [inlined] (anonymous namespace)::ExerciseDirectNegativeRead() + 240 at poc_real.cpp:32:31, address = 0x0000000100001388
+(lldb) breakpoint set --file coded_stream.cc --line 313
+Breakpoint 2: where = poc_debug`google::protobuf::io::CodedInputStream::ReadCord(absl::lts_20260107::Cord*, int) + 36 at coded_stream.cc:317:12, address = 0x0000000100007690
+(lldb) breakpoint set --file coded_stream.h --line 1384
+Breakpoint 3: where = poc_debug`google::protobuf::io::CodedInputStream::ReadVarintSizeAsInt(int*) + 20 at coded_stream.h:1384, address = 0x0000000100004c30
+(lldb) run
+error: could not find 'debugserver'. Please ensure it is properly installed and available in your PATH
+
+$ command -v gdb

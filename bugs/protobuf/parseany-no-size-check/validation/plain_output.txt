@@ -1,0 +1,7 @@
+Generated Any JSON payload bytes: 50331694
+Resident memory before parse: 61095936 (58.27 MiB)
+Resident memory after parse: 207290368 (197.69 MiB)
+Resident memory delta: 146194432 (139.42 MiB)
+Parse status: OK
+Parsed type_url bytes: 53
+Parsed embedded value bytes: 45866198

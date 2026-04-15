@@ -1,0 +1,1 @@
+{"validator":"asan","status":"NO_CRASH","evidence":"Real ASan-linked libprotobuf rejected the negative Cord read and oversized varint length without crashing. direct_negative_read.ok=0 with cleared output, and WireFormatLite::ReadBytes() returned false with the destination cord unchanged and CurrentPosition() still 0. See validation/asan_output.txt and poc/build_real.log."}

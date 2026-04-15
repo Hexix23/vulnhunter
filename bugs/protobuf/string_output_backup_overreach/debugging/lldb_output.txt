@@ -1,0 +1,14 @@
+(lldb) target create "bugs/protobuf/string_output_backup_overreach/debugging/poc_debug"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/string_output_backup_overreach/debugging/poc_debug' (arm64).
+(lldb) command source -s 0 'bugs/protobuf/string_output_backup_overreach/debugging/lldb_commands.txt'
+Executing commands in '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/string_output_backup_overreach/debugging/lldb_commands.txt'.
+(lldb) breakpoint set --file poc_real.cpp --line 40
+Breakpoint 1: where = poc_debug`main + 464 at poc_real.cpp:40:47, address = 0x0000000100001238
+(lldb) breakpoint set --file zero_copy_stream_impl_lite.cc --line 158
+Breakpoint 2: where = poc_debug`google::protobuf::io::StringOutputStream::BackUp(int) + 32 at zero_copy_stream_impl_lite.cc:158, address = 0x0000000100006a78
+(lldb) breakpoint set --file zero_copy_stream_impl_lite.cc --line 162
+Breakpoint 3: where = poc_debug`google::protobuf::io::StringOutputStream::BackUp(int) + 284 at zero_copy_stream_impl_lite.cc:162:3, address = 0x0000000100006b74
+(lldb) breakpoint modify 2 --condition "count > 32"
+(lldb) breakpoint modify 3 --condition "count > 32"
+(lldb) run
+error: could not find 'debugserver'. Please ensure it is properly installed and available in your PATH

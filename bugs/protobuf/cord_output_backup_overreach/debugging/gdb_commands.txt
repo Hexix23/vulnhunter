@@ -1,0 +1,35 @@
+set pagination off
+set env ASAN_OPTIONS detect_leaks=0:abort_on_error=0
+break /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/cord_output_backup_overreach/debugging/poc_debug.cpp:106
+break /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/targets/protobuf/src/google/protobuf/io/zero_copy_stream_impl_lite.cc:665
+break /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/targets/protobuf/src/google/protobuf/io/zero_copy_stream_impl_lite.cc:688
+run
+print output.ByteCount()
+print (int)output.buffer_.length()
+print (unsigned long)output.cord_.size()
+print (int)output.state_
+x/15bx output.buffer_.data()
+print first_size
+print second_size
+print overreach
+continue
+print this->ByteCount()
+print count
+print buffer_length
+print (int)this->buffer_.length()
+print (unsigned long)this->cord_.size()
+print (int)this->state_
+next
+print this->ByteCount()
+print (int)this->buffer_.length()
+print (unsigned long)this->cord_.size()
+print (int)this->state_
+x/8bx this->buffer_.data()
+continue
+print this->ByteCount()
+print (int)this->buffer_.length()
+print (unsigned long)this->cord_.size()
+print (int)this->state_
+continue
+bt
+quit

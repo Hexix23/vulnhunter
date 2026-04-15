@@ -1,0 +1,18 @@
+settings set target.process.stop-on-sharedlibrary-events false
+breakpoint set --file parser.cc --line 1044
+breakpoint set --file parser.cc --line 1061
+breakpoint set --file parser.cc --line 1072
+breakpoint set --file parseany_state_capture.cpp --line 108
+run 16
+frame variable mark
+frame variable type_url
+expr -- (size_t)mark.value.UpToUnread().size()
+expr -- type_url.has_value()
+continue
+frame variable any_text
+expr -- (size_t)any_text.size()
+memory read --size 1 --count 16 any_text.data()
+continue
+frame variable parse_status
+expr -- (size_t)any.value().size()
+quit

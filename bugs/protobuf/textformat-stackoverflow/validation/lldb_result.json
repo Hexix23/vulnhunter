@@ -1,0 +1,5 @@
+{
+  "validator": "lldb",
+  "status": "NOT_REPRODUCIBLE",
+  "evidence": "LLDB loaded the rebuilt arm64 poc_debug binary but could not launch it because debugserver is unavailable on this host. GDB also failed to run the binary in batch mode. Direct execution of poc_debug aborted in google::protobuf::DescriptorPool::Tables::Tables()/DescriptorPool::DescriptorPool() before TextFormat::Parser::ParseFromString was reached. Source inspection confirms TextFormat::Parser defaults recursion_limit_ to INT_MAX in text_format.cc:1940, but the recursive parser helpers in this checkout check --recursion_limit_ < 0 before descending (for example text_format.cc:888, :924, and :1094), so the claimed parser root cause was not confirmed from this repository state."
+}
