@@ -1,0 +1,9 @@
+$ clang++ -std=c++17 -I/opt/homebrew/include poc_fixed.cpp -L/opt/homebrew/lib -lprotobuf -labsl_log_internal_check_op -labsl_log_internal_message -labsl_log_internal_nullguard -labsl_log_internal_conditions -labsl_base -labsl_raw_logging_internal -labsl_log_severity -o poc_fixed_brew
+
+$ ./poc_fixed_brew 100
+Depth: 100
+Output size: 20400
+[exit status: 0]
+
+$ ./poc_fixed_brew 50000
+[exit status: 139]

@@ -1,0 +1,6 @@
+(lldb) target create "bugs/protobuf/textformat-stackoverflow/poc/poc_real"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/textformat-stackoverflow/poc/poc_real' (arm64).
+(lldb) breakpoint set -n main
+Breakpoint 1: where = poc_real`main + 36 at poc_real.cpp:17, address = 0x0000000100002f14
+(lldb) run
+error: the platform is not currently connected

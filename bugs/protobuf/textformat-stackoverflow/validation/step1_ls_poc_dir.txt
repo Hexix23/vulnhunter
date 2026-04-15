@@ -1,0 +1,15 @@
+VALIDATION_STATUS.md
+asan_output.txt
+asan_test.txt
+build_real.sh
+build_try2.log
+build_try3.log
+build_try4.log
+compile_attempt1.log
+compile_attempt2.log
+poc_real
+poc_real.cpp
+poc_real.dSYM
+poc_test
+poc_test.dSYM
+rerun_stdout.txt

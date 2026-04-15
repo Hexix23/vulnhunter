@@ -1,0 +1,5 @@
+COMMAND: ASAN_OPTIONS=detect_leaks=0:abort_on_error=0 ./poc_test
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1776254900.648027 14998123 text_format.cc:380] Error parsing text-format google.protobuf.FileDescriptorSet: 1:13: Message type "google.protobuf.FileDescriptorProto" has no field named "file".
+Parse failed
+EXIT_CODE:0

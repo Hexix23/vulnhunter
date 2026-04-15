@@ -7,6 +7,8 @@ tools: [Bash, Read, Write, Grep, Glob]
 
 # Build Agent
 
+**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
+
 ## CRITICAL: This Agent is Executed by CODEX
 
 ```
@@ -137,10 +139,25 @@ elif [ -f "meson.build" ]; then
 fi
 ```
 
-### Step 2: Detect Architecture
+### Step 2: Detect Architecture and Environment
 
 ```bash
 ARCH=$(uname -m)  # arm64, x86_64
+
+# Rosetta detection (macOS)
+if [[ "$(uname -s)" == "Darwin" ]]; then
+    ROSETTA=$(sysctl -n sysctl.proc_translated 2>/dev/null || echo "0")
+    if [[ "$ROSETTA" == "1" ]]; then
+        echo "WARNING: Running under Rosetta - builds may need arch -arm64 prefix"
+        # For native ARM64 builds on ARM64 Mac under Rosetta:
+        NATIVE_PREFIX="arch -arm64"
+    fi
+fi
+
+# Compiler detection
+CC=$(xcrun --find clang 2>/dev/null || which clang)
+CXX=$(xcrun --find clang++ 2>/dev/null || which clang++)
+echo "Using: CC=$CC CXX=$CXX"
 ```
 
 ### Step 3: Build with ASan

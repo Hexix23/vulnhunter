@@ -7,6 +7,9 @@ tools: [Bash, Read, Write, Grep, Glob]
 
 # Consensus Analyzer Agent
 
+**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
+
+
 ## Your Role
 
 You are the **final arbitrator** who reviews all validator results and determines
@@ -101,6 +104,9 @@ bugs/<target>/<finding>/consensus/
 ```markdown
 # Consensus Report: [Finding ID]
 
+**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
+
+
 ## Summary
 
 | Metric | Value |
@@ -164,6 +170,9 @@ bugs/<target>/<finding>/consensus/
 
 ```bash
 # Read all validator results
+
+**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
+
 for validator in asan lldb fresh impact; do
     cat bugs/<target>/<finding>/validation/${validator}_result.json
 done

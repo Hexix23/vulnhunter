@@ -1,0 +1,5 @@
+build_info.json
+compile_flags.txt
+include
+lib
+link_flags.txt

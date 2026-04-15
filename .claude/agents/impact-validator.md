@@ -7,6 +7,9 @@ tools: [Bash, Read, Write, Grep, Glob]
 
 # Impact Validator Agent
 
+**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
+
+
 ## Your Role
 
 You are a **software reliability engineer** who demonstrates the practical consequences
@@ -53,9 +56,15 @@ Find how user-controlled input reaches the vulnerable code:
 
 ```bash
 # Find callers of vulnerable function
+
+**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
+
 rg "FunctionName\(" --type cpp -l
 
 # Find public API entry points
+
+**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
+
 rg "public:|EXPORT|API" --type cpp
 ```
 
@@ -274,6 +283,9 @@ COMPILE_FLAGS=$(cat "$BUILD_DIR/compile_flags.txt")
 LINK_FLAGS=$(cat "$BUILD_DIR/link_flags.txt")
 
 # Attempt 1
+
+**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
+
 clang++ $COMPILE_FLAGS impact_demo.cpp $LINK_FLAGS -o impact_demo
 if [ $? -ne 0 ]; then
     # Attempt 2: add common missing deps
@@ -289,6 +301,9 @@ if [ $? -ne 0 ]; then
     g++ $COMPILE_FLAGS impact_demo.cpp $LINK_FLAGS -o impact_demo
 fi
 # ... continue until success or max retries
+
+**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
+
 ```
 
 ### Example Retry Flow (Entry Points)
@@ -304,6 +319,9 @@ If an impact demonstration is incomplete:
 FUNC="VulnerableFunction"
 
 # Attempt 1: Direct calls
+
+**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
+
 callers=$(rg "$FUNC\(" --type cpp -l 2>/dev/null)
 if [ -z "$callers" ]; then
     # Attempt 2: References in any context

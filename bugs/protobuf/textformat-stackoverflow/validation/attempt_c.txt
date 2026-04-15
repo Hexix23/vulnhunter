@@ -1,0 +1,2 @@
+COMMAND: clang++ -std=c++17 -I/opt/homebrew/include -g poc_real.cpp -L/opt/homebrew/lib -lprotobuf -o poc_test
+EXIT_CODE:0

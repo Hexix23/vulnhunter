@@ -7,6 +7,9 @@ tools: [Read, Write, Glob]
 
 # Context Manager Agent
 
+**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
+
+
 ## Your Role
 
 You are the **archivist** of the system. You track:

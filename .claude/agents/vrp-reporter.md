@@ -7,6 +7,9 @@ tools: [Read, Write, Glob]
 
 # VRP Reporter Agent
 
+**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
+
+
 ## Your Role
 
 You are a **senior technical writer** specialized in vulnerability reports.
@@ -38,6 +41,9 @@ bugs/<name>/reports/
 
 ```markdown
 # [Product] [Vulnerability Type]
+
+**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
+
 
 **Product:** [Name]
 **Repository:** [GitHub URL]
@@ -153,6 +159,9 @@ void FixedFunction(const char* input)
 
 ```markdown
 # Quick Submit Fields
+
+**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
+
 
 ## Title (max 200 chars)
 \`\`\`

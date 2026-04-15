@@ -7,6 +7,9 @@ tools: [Bash, Read, Write, Grep, Glob]
 
 # Fresh Validator Agent
 
+**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
+
+
 ## Your Role
 
 You are an **independent code reviewer** performing a fresh analysis.
@@ -54,6 +57,9 @@ You DO NOT receive:
 
 ```bash
 # Read the target function and surrounding context
+
+**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
+
 sed -n '130,180p' path/to/file.cpp
 ```
 
@@ -150,16 +156,31 @@ Report NOT_FOUND with confidence, documenting what was checked
 
 ```bash
 # Don't just read the target line - understand context
+
+**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
+
 # 1. Read the function
+
+**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
+
 sed -n 'START,ENDp' file.cpp
 
 # 2. Find callers
+
+**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
+
 rg "FunctionName\(" --type cpp -l
 
 # 3. Find similar patterns
+
+**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
+
 rg "similar_pattern" --type cpp
 
 # 4. Check type definitions
+
+**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
+
 rg "typedef.*TypeName|struct TypeName|class TypeName" --type cpp
 ```
 

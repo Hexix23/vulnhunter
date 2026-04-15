@@ -1,0 +1,6 @@
+(lldb) target create "bugs/protobuf/textformat-stackoverflow/poc/poc_real"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/textformat-stackoverflow/poc/poc_real' (arm64).
+(lldb) breakpoint set -n main
+Breakpoint 1: 14 locations.
+(lldb) run
+error: could not find 'debugserver'. Please ensure it is properly installed and available in your PATH

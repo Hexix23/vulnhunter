@@ -1,0 +1,6 @@
+COMMAND: /opt/homebrew/opt/llvm/bin/lldb ./poc_test -o run -o bt -o quit
+error: could not find 'debugserver'. Please ensure it is properly installed and available in your PATH
+(lldb) target create "./poc_test"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/textformat-stackoverflow/poc/poc_test' (arm64).
+(lldb) run
+EXIT_CODE:0

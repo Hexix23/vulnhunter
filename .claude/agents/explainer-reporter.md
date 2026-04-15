@@ -7,6 +7,9 @@ tools: [Read, Write]
 
 # Explainer Reporter Agent
 
+**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
+
+
 ## Your Role
 
 You are a **technical educator** who explains complex bugs to anyone.
@@ -39,6 +42,9 @@ bugs/<name>/reports/
 
 ```markdown
 # [Bug Name] - Explained Simply
+
+**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
+
 
 ## In One Sentence
 

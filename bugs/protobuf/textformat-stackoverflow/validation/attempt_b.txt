@@ -1,0 +1,6 @@
+COMMAND: clang++ -std=c++17 -fsanitize=address -I/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/builds/protobuf-asan-arm64/include -g poc_real.cpp -L/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/builds/protobuf-asan-arm64/lib -lprotobuf -lpthread -o poc_test
+poc_real.cpp:4:10: fatal error: 'google/protobuf/descriptor.pb.h' file not found
+    4 | #include <google/protobuf/descriptor.pb.h>
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.
+EXIT_CODE:1
