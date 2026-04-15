@@ -142,6 +142,7 @@ Agent templates are in `.claude/agents/`. To use them:
 | Fresh Validator | `fresh-validator.md` | Independent validation without prior bug context | `codex:codex-rescue` | No |
 | Post-Confirmation Analyzer | `post-confirmation-analyzer.md` | Deep follow-up analysis of confirmed bugs | `codex:codex-rescue` | No |
 | Chain Researcher | `chain-researcher.md` | Map impact chains and escalation paths | `codex:codex-rescue` | No |
+| Impact Validator | `impact-validator.md` | Demonstrate practical consequences of confirmed bugs | `codex:codex-rescue` | No |
 | Impact Analyst | `impact-analyst.md` | Assess severity & CVSS | `general-purpose` | No |
 | Consensus Analyzer | `consensus-analyzer.md` | Combine validator outputs into final confidence | `general-purpose` | No |
 | VRP Reporter | `vrp-reporter.md` | Technical Bug Bounty report | `general-purpose` | No |

@@ -1,7 +1,0 @@
-normal_ok=1
-normal_stored_bytes=18
-normal_tail=1
-overflow_ok=0
-overflow_stored_bytes=20
-overflow_position=9
-overflow_tail=0

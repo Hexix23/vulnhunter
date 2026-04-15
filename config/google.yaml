@@ -1,9 +1,0 @@
-provider: google
-program_url: https://bughunters.google.com
-target_focus: google_web_apis
-scope:
-  - google_web_services
-  - google_apis
-  - public_endpoints
-codex_effort: high
-codex_model: gpt-5.4

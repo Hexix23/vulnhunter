@@ -27,8 +27,11 @@ arguments:
 │  CLAUDE = ORCHESTRATOR (decides what to do, launches agents)    │
 │  CODEX  = EXECUTOR     (does ALL the real work)                 │
 │                                                                  │
-│  ALL agents use: subagent_type: "codex:codex-rescue"            │
-│  NEVER use: "general-purpose", "asan-validator", etc.           │
+│  EXECUTION agents: subagent_type: "codex:codex-rescue"          │
+│  (discovery, validators, poc-builder, chain-researcher)         │
+│                                                                  │
+│  ANALYSIS-ONLY agents: subagent_type: "general-purpose"         │
+│  (impact-analyst, consensus-analyzer, vrp-reporter, explainer)  │
 │                                                                  │
 │  codex:codex-rescue = Codex with --no-sandbox                   │
 │  Allows: bazel, cmake, clang, execution, full filesystem        │
