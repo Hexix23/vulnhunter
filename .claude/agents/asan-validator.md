@@ -149,7 +149,32 @@ SUMMARY: AddressSanitizer: heap-buffer-overflow in function_name
 | **CONFIRMED_MEMORY** | ASan detected memory corruption | Crash, heap-overflow, use-after-free, etc. |
 | **LOGIC_BUG** | No crash but incorrect behavior proven | Negative limit, wrong size, bypass demonstrated |
 | **FALSE_POSITIVE** | Code handles case safely | Downstream validation prevents misuse |
+| **NEEDS_DIFFERENT_BUILD** | Can't reach code path with current build | Bug in executable not in library |
 | **NEEDS_INVESTIGATION** | Ambiguous results | Can't determine, needs manual review |
+
+## CRITICAL: NEEDS_DIFFERENT_BUILD Handling
+
+When you can't reach the vulnerable code path because it's in an executable
+(not a library), DON'T just give up. Output what's needed:
+
+```json
+{
+    "finding_id": "finding-id",
+    "status": "NEEDS_DIFFERENT_BUILD",
+    "reason": "Bug is in executable X, not in linked library",
+    "build_request": {
+        "target_binary": "conformance_upb",
+        "source_file": "upb/conformance/conformance_upb.c",
+        "build_hint": "cmake --build . --target conformance_upb",
+        "why": "DoTestIo() is the entry point, only exists in this binary"
+    }
+}
+```
+
+The hunt loop will:
+1. Send build_request to build-agent
+2. Build-agent compiles the specific executable
+3. Validator re-runs with the new binary
 
 ## Validation Status Template
 
@@ -282,3 +307,43 @@ If `builds/<target>-asan-<arch>/` doesn't exist:
    ```
 
 3. **DO NOT attempt full rebuild yourself** - That's build-agent's job
+
+## CRITICAL: Feedback Output for Learning
+
+**After validation, ALWAYS output feedback in standard format for CodeQL learning.**
+
+**Use exact format from `feedback-protocol.md`:**
+
+```json
+{
+    "run_id": "SESSION_ID",
+    "validator": "asan-validator",
+    "timestamp": "2024-01-15T14:45:00Z",
+    "results": [
+        {
+            "finding_id": "cql-001",
+            "status": "CONFIRMED",
+            "evidence": {
+                "type": "asan_crash",
+                "crash_type": "stack-overflow",
+                "crash_location": "file.cc:123",
+                "asan_output_file": "asan_output.txt"
+            },
+            "notes": "Confirmed stack overflow at depth N"
+        }
+    ]
+}
+```
+
+Save to: `state/current_run/validation_feedback.json`
+
+### Status Guidelines
+
+| Observation | Status | Reason |
+|-------------|--------|--------|
+| ASan crash in library code | `CONFIRMED` | Memory corruption proven |
+| Logic bug (no crash but wrong state) | `CONFIRMED` | Bug exists, just handled gracefully |
+| Code validates before use | `FALSE_POSITIVE` | Bounds check exists |
+| Can't reproduce | `NEEDS_INVESTIGATION` | Might be environment issue |
+
+**This feedback enables CodeQL to learn and improve queries.**

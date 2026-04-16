@@ -1,0 +1,48 @@
+{
+  "validator": "impact",
+  "status": "NO_PRACTICAL_IMPACT",
+  "entry_points": [
+    {
+      "api": "upb_DefPool_AddFile()",
+      "file": "targets/protobuf/upb/reflection/def_pool.h",
+      "reachable_from": "User-supplied FileDescriptorProto bytes parsed from files, network payloads, or embedded descriptor sets and then loaded into a DefPool"
+    },
+    {
+      "api": "upb::DefPool::AddFile()",
+      "file": "targets/protobuf/upb/reflection/def.hpp",
+      "reachable_from": "C++ callers that convert a FileDescriptorProto into UPB form and load it through the public wrapper"
+    }
+  ],
+  "consequences": [
+    {
+      "type": "service_disruption",
+      "description": "A real crash is theoretically possible only if descriptor mini-encoding grows beyond INT_MAX and later writes proceed with the skipped realloc. In practice, the public message path fails much earlier with \"Message size exceeded maximum size of 65535 bytes,\" preventing the buggy state from being reached through message fields.",
+      "evidence": "impact_demo via upb_DefPool_AddFile() succeeded for 1 field, but at 100000 fields the library rejected the descriptor during mini-table construction before any INT_MAX-sized scratch buffer existed.",
+      "severity": "LOW"
+    },
+    {
+      "type": "resource_exhaustion",
+      "description": "The enum path also reaches _upb_DescState_Grow(), but the measured growth rate was about 0.2 mini-descriptor bytes per enum value. Extrapolating from the public-API demo, the scratch buffer would need about 10.7 billion enum values and roughly 187 GiB of serialized input before the truncating pointer delta becomes relevant.",
+      "evidence": "impact_output.txt shows 100000 enum values -> 20001-byte mini descriptor, 1872410-byte serialized input, and projected_items_for_INT_MAX=10737847750 with projected_input_gib=187.25.",
+      "severity": "LOW"
+    }
+  ],
+  "demonstration": {
+    "poc_file": "bugs/protobuf/protobuf-input-004/validation/impact_demo.cpp",
+    "build_command": "bugs/protobuf/protobuf-input-004/validation/build_impact.sh",
+    "output_file": "bugs/protobuf/protobuf-input-004/validation/impact_output.txt"
+  },
+  "reachability": {
+    "requires_auth": false,
+    "network_reachable": true,
+    "local_only": false
+  },
+  "analysis": {
+    "public_api_path": "upb_DefPool_AddFile() -> upb_DefBuilder_AddFileToPool() -> _upb_MessageDef_CreateMiniTable()/create_enumlayout() -> upb_MessageDef_MiniDescriptorEncode()/upb_EnumDef_MiniDescriptorEncode() -> _upb_DescState_Grow()",
+    "practical_limiters": [
+      "Message mini tables are rejected once they exceed 65535 bytes, which occurs far below the INT_MAX scratch-buffer threshold needed for the signed truncation bug.",
+      "Enum descriptors can continue growing, but the measured threshold for reaching INT_MAX-sized scratch space requires descriptor inputs large enough to be operationally unrealistic in normal deployments."
+    ],
+    "bottom_line": "The bug is confirmed in synthetic state and would be a crash primitive if the scratch buffer ever exceeded INT_MAX, but the shipped public entry points impose earlier limits or infeasible input-size requirements. The practical impact is therefore downgraded to NO_PRACTICAL_IMPACT."
+  }
+}

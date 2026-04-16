@@ -1,0 +1,10 @@
+(lldb) target create "/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-002/debugging/poc_debug"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-002/debugging/poc_debug' (arm64).
+(lldb) command source -s 0 '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-002/debugging/lldb_commands.txt'
+Executing commands in '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-002/debugging/lldb_commands.txt'.
+(lldb) breakpoint set --file poc_real.cpp --line 40
+Breakpoint 1: where = poc_debug`main + 200 [inlined] (anonymous namespace)::DoTestIoHarness(unsigned long) + 16 at poc_real.cpp:40:3, address = 0x0000000100002828
+(lldb) breakpoint set --file poc_real.cpp --line 44
+Breakpoint 2: where = poc_debug`main + 488 [inlined] (anonymous namespace)::DoTestIoHarness(unsigned long) + 304 at poc_real.cpp:47:16, address = 0x0000000100002948
+(lldb) run
+error: process exited with status -1 (no such process)

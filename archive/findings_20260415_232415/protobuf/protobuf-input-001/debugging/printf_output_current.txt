@@ -1,0 +1,12 @@
+=== STATE CAPTURE: protobuf-input-001 ===
+[INPUT] bytes_read = 4
+[INPUT] advertised input_size = 4294967295 (0xffffffff)
+[INPUT] requested bytes ~= 4.00 GiB
+[BEFORE] arena = 0x613000000590
+[BEFORE] about_to_call = upb_Arena_Malloc(arena, 4294967295)
+[AFTER] ptr = 0x300004810
+[AFTER] accounted = 4294967712 (0x1000001a0)
+[AFTER] fused_count = 1
+[TOUCH] first byte @ 0x300004810 = 0x41
+[TOUCH] last byte  @ 0x40000480e = 0x5a
+[RESULT] STATE_BUG: untrusted 32-bit length reached upb_Arena_Malloc() unchecked and produced a writable allocation/accounting span of 4294967712 bytes

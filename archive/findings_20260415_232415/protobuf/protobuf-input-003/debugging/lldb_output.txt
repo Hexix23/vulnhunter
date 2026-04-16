@@ -1,0 +1,8 @@
+(lldb) target create "bugs/protobuf/protobuf-input-003/debugging/poc_debug"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-003/debugging/poc_debug' (arm64).
+(lldb) command source -s 0 'bugs/protobuf/protobuf-input-003/debugging/lldb_commands.txt'
+Executing commands in '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-003/debugging/lldb_commands.txt'.
+(lldb) breakpoint set --name SimulateReserveNarrowing
+Breakpoint 1: where = poc_debug`(anonymous namespace)::SimulateReserveNarrowing(unsigned long, unsigned long, unsigned long) + 16 at poc_real.cpp:37:27, address = 0x0000000100004494
+(lldb) run
+error: process exited with status -1 (no such process)

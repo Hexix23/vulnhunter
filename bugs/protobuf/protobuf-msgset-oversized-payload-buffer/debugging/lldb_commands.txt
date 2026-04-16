@@ -1,0 +1,12 @@
+target create "/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-msgset-oversized-payload-buffer/poc/poc_real"
+breakpoint set --file wire_format_lite.h --line 1687
+run
+frame variable length
+expr (uint32_t)(length + google::protobuf::io::CodedOutputStream::VarintSize32(length))
+bt
+quit
+
+# Note:
+# In this environment LLDB resolved the inlined breakpoint but launch failed
+# before state capture because macOS taskport/debugserver access is blocked.
+# Working fallback command is stored in printf_capture.txt.

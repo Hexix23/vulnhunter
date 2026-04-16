@@ -1,0 +1,59 @@
+{
+  "validator": "impact",
+  "status": "LIMITED_IMPACT",
+  "entry_points": [
+    {
+      "api": "upb_util_HasUnsetRequired(msg, msgdef, ext_pool, &fields)",
+      "file": "targets/protobuf/upb/util/required_fields.h",
+      "reachable_from": "Any application that uses the exported upb required-field helper and asks it to return missing-field paths.",
+      "evidence": "The public header exposes the API, and the PoC calls it directly through the staged libupb build."
+    },
+    {
+      "api": "google.protobuf Python Message.FindInitializationErrors()",
+      "file": "targets/protobuf/python/message.c",
+      "reachable_from": "User-controlled protobuf message objects in Python code that request detailed missing required-field paths.",
+      "evidence": "PyUpb_Message_FindInitializationErrors() calls upb_util_HasUnsetRequired(msg, msgdef, ext_pool, &fields_base)."
+    },
+    {
+      "api": "google.protobuf Python Message.IsInitialized(errors)",
+      "file": "targets/protobuf/python/message.c",
+      "reachable_from": "Python callers that pass an errors list to IsInitialized() and therefore request missing-field path collection.",
+      "evidence": "PyUpb_Message_IsInitialized() routes to PyUpb_Message_FindInitializationErrors() when the optional errors object is provided."
+    }
+  ],
+  "consequences": [
+    {
+      "type": "service_disruption",
+      "description": "A process that asks protobuf/upb to enumerate missing required-field paths can abort while validating a large recursive proto2 message graph.",
+      "evidence": "bugs/protobuf/protobuf-input-003/validation/impact_output.txt shows a control run succeeding at depth=2 breadth=8 with path_count=80, while depth=11 breadth=4 aborts under ASan in upb_FieldPathVector_Reserve() with allocation-size-too-big.",
+      "severity": "MEDIUM"
+    },
+    {
+      "type": "incorrect_processing",
+      "description": "Instead of returning the missing-field path list, the validation/reporting path terminates the operation and no error list is produced.",
+      "evidence": "The same harness returns concrete paths such as children[0].children[0].req for the small case, but the crash case never reaches post-call output because the process aborts inside upb_util_HasUnsetRequired().",
+      "severity": "MEDIUM"
+    }
+  ],
+  "demonstration": {
+    "poc_file": "bugs/protobuf/protobuf-input-003/poc/poc_real.cpp",
+    "build_command": "xcrun clang++ -arch arm64 $(cat builds/protobuf-asan-arm64/compile_flags.txt) bugs/protobuf/protobuf-input-003/poc/poc_real.cpp $(cat builds/protobuf-asan-arm64/link_flags.txt) -o bugs/protobuf/protobuf-input-003/poc/poc_real",
+    "output_file": "bugs/protobuf/protobuf-input-003/validation/impact_output.txt"
+  },
+  "reachability": {
+    "requires_auth": false,
+    "network_reachable": true,
+    "local_only": false,
+    "notes": "Network reachability depends on the embedding application accepting attacker-controlled protobuf content and then calling FindInitializationErrors()/IsInitialized(errors) or the equivalent upb API."
+  },
+  "analysis": {
+    "trigger_conditions": [
+      "The caller must request saved field paths; the plain IsInitialized() fast path passes NULL and does not exercise the vulnerable reserve path.",
+      "The message graph must be large enough that the field-path vector capacity crosses the int truncation boundary."
+    ],
+    "mitigations_or_limits": [
+      "The demonstrated manifestation is a denial-of-service style abort, not a proven arbitrary overwrite in this build.",
+      "The trigger requires a very large recursive proto2 structure, so impact is concentrated in services that validate and stringify deeply nested missing-field paths."
+    ]
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "validator": "asan",
+  "status": "CONFIRMED_MEMORY",
+  "evidence": "Real ASan libupb crash at depth=11 breadth=4. upb_FieldPathVector_Reserve() truncates the computed size and calls realloc with 0xffffffff80000000, producing AddressSanitizer allocation-size-too-big in library code; see bugs/protobuf/protobuf-input-003/validation/asan_output.txt."
+}

@@ -1,0 +1,4 @@
+impact_demo: requested=67108864 accounted=67109280 rss_before_kb=16596992
+impact_demo: payload_read=67108864 rss_after_kb=92192768 first=90 last=90
+        0.14 real         0.00 user         0.08 sys
+time: sysctl kern.clockrate: Operation not permitted

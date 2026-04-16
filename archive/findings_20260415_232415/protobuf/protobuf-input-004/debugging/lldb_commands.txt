@@ -1,0 +1,18 @@
+settings set target.env-vars ASAN_OPTIONS=detect_leaks=0:abort_on_error=0
+breakpoint set --file desc_state.c --line 13
+run
+frame variable d->buf d->ptr d->bufsize
+expr -- (long long)(d->ptr - d->buf)
+expr -- (int)(d->ptr - d->buf)
+expr -- (unsigned long long)(d->bufsize - (size_t)(d->ptr - d->buf))
+next
+frame variable oldbufsize
+next
+frame variable used
+expr -- oldbufsize - used
+expr -- (int)(oldbufsize - used < kUpb_MtDataEncoder_MinSize)
+next
+frame variable d->buf d->ptr d->bufsize
+expr -- (long long)(d->ptr - d->buf)
+continue
+quit

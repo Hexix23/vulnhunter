@@ -1,0 +1,18 @@
+{
+  "run_id": "2026-04-15T23:09:42Z",
+  "validator": "asan-validator",
+  "timestamp": "2026-04-15T23:09:42Z",
+  "results": [
+    {
+      "finding_id": "protobuf-msgset-oversized-payload-buffer",
+      "status": "CONFIRMED",
+      "evidence": {
+        "type": "logic_bug",
+        "crash_type": "none",
+        "crash_location": "google/protobuf/wire_format_lite.h:1691",
+        "asan_output_file": "bugs/protobuf/protobuf-msgset-oversized-payload-buffer/validation/asan_output.txt"
+      },
+      "notes": "Entered ParseMessageSetItemImpl with a 7-byte MessageSet item claiming 4294967280 bytes. The reverse-order MessageSet path accepted the oversized length and only returned false later instead of rejecting the length before the temporary-buffer path."
+    }
+  ]
+}

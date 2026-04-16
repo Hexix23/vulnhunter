@@ -1,0 +1,46 @@
+{
+  "validator": "impact",
+  "status": "LIMITED_IMPACT",
+  "entry_points": [
+    {
+      "api": "conformance_upb main() -> DoTestIo()",
+      "file": "targets/protobuf/upb/conformance/conformance_upb.c:253",
+      "reachable_from": "Any process that launches the upb conformance testee and writes a 4-byte little-endian length plus payload bytes to its stdin pipe. `DoTestIo()` reads `input_size` from stdin at line 261 and allocates `upb_Arena_Malloc(c.arena, input_size)` at line 268 before parsing at line 275."
+    },
+    {
+      "api": "google::protobuf::ForkPipeRunner::RunTest()",
+      "file": "targets/protobuf/conformance/fork_pipe_runner.cc:69",
+      "reachable_from": "The official `conformance_test_runner` creates `ForkPipeRunner runner(program, program_args)` in `targets/protobuf/conformance/conformance_test_runner.cc:255`, then writes the 32-bit request length to the child pipe at `fork_pipe_runner.cc:76-80`."
+    }
+  ],
+  "consequences": [
+    {
+      "type": "resource_exhaustion",
+      "description": "A malformed or hostile peer can force the testee to commit hundreds of MiB of resident memory before protobuf parsing starts.",
+      "evidence": "`validation/impact_256m_stdout_current.txt` shows `arena_growth=268435504` and `rss_growth=302071808` for a 256 MiB frame. `validation/impact_512m_stdout_current.txt` shows `arena_growth=536870960` and `rss_growth=352616448` for a 512 MiB frame.",
+      "severity": "MEDIUM"
+    },
+    {
+      "type": "service_disruption",
+      "description": "An oversized length prefix can force a multi-GiB arena allocation path immediately and then fail before any request parsing, stalling or terminating the conformance job under memory pressure.",
+      "evidence": "`validation/impact_maxprefix_stderr_current.txt` shows `payload read failed for 4294967295 bytes after allocation: arena_growth=4294967344 rss_growth=98304 fused=1`. Prior validator outputs in `validation/asan_result.json` and `validation/lldb_result.json` also recorded `input_size=4294967295`, non-NULL allocation, and `accounted=4294967712` from the real libupb allocator path used by `DoTestIo()`.",
+      "severity": "MEDIUM"
+    }
+  ],
+  "demonstration": {
+    "poc_file": "validation/impact_demo.cpp",
+    "binary": "validation/impact_demo",
+    "build_command": "validation/build_impact.sh",
+    "output_files": [
+      "validation/impact_256m_stdout_current.txt",
+      "validation/impact_512m_stdout_current.txt",
+      "validation/impact_maxprefix_stderr_current.txt"
+    ]
+  },
+  "reachability": {
+    "requires_auth": false,
+    "network_reachable": false,
+    "local_only": true
+  },
+  "analysis": "The impact is real but scoped. The vulnerable code is in the upb conformance harness, not the general protobuf runtime, so exploitation requires the attacker to control or impersonate the process feeding frames to the testee. Within that scope, the issue is practical: the harness will reserve and touch attacker-chosen buffer sizes before validating the request body, which can disrupt local conformance runs, CI jobs, or other automation that executes the testee."
+}

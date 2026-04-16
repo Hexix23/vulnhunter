@@ -1,0 +1,76 @@
+[Attempt 1: bundle flags as-is]
+[Attempt 1: bundle flags as-is]
+Undefined symbols for architecture arm64:
+  "___asan_version_mismatch_check_apple_clang_2100", referenced from:
+      _asan.module_ctor in libupb.a[10](alloc.c.o)
+      _asan.module_ctor in libupb.a[11](arena.c.o)
+ld: symbol(s) not found for architecture arm64
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+[Attempt 2: bundle flags + Homebrew paths]
+[Attempt 1: bundle flags as-is]
+Undefined symbols for architecture arm64:
+  "___asan_version_mismatch_check_apple_clang_2100", referenced from:
+      _asan.module_ctor in libupb.a[10](alloc.c.o)
+      _asan.module_ctor in libupb.a[11](arena.c.o)
+ld: symbol(s) not found for architecture arm64
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+[Attempt 2: bundle flags + Homebrew paths]
+Undefined symbols for architecture arm64:
+  "___asan_version_mismatch_check_apple_clang_2100", referenced from:
+      _asan.module_ctor in libupb.a[10](alloc.c.o)
+      _asan.module_ctor in libupb.a[11](arena.c.o)
+ld: symbol(s) not found for architecture arm64
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+[Attempt 3: explicit libc++]
+[Attempt 1: bundle flags as-is]
+Undefined symbols for architecture arm64:
+  "___asan_version_mismatch_check_apple_clang_2100", referenced from:
+      _asan.module_ctor in libupb.a[10](alloc.c.o)
+      _asan.module_ctor in libupb.a[11](arena.c.o)
+ld: symbol(s) not found for architecture arm64
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+[Attempt 2: bundle flags + Homebrew paths]
+Undefined symbols for architecture arm64:
+  "___asan_version_mismatch_check_apple_clang_2100", referenced from:
+      _asan.module_ctor in libupb.a[10](alloc.c.o)
+      _asan.module_ctor in libupb.a[11](arena.c.o)
+ld: symbol(s) not found for architecture arm64
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+[Attempt 3: explicit libc++]
+Undefined symbols for architecture arm64:
+  "___asan_version_mismatch_check_apple_clang_2100", referenced from:
+      _asan.module_ctor in libupb.a[10](alloc.c.o)
+      _asan.module_ctor in libupb.a[11](arena.c.o)
+ld: symbol(s) not found for architecture arm64
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+[Attempt 4: narrow to libupb only]
+[Attempt 1: bundle flags as-is]
+Undefined symbols for architecture arm64:
+  "___asan_version_mismatch_check_apple_clang_2100", referenced from:
+      _asan.module_ctor in libupb.a[10](alloc.c.o)
+      _asan.module_ctor in libupb.a[11](arena.c.o)
+ld: symbol(s) not found for architecture arm64
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+[Attempt 2: bundle flags + Homebrew paths]
+Undefined symbols for architecture arm64:
+  "___asan_version_mismatch_check_apple_clang_2100", referenced from:
+      _asan.module_ctor in libupb.a[10](alloc.c.o)
+      _asan.module_ctor in libupb.a[11](arena.c.o)
+ld: symbol(s) not found for architecture arm64
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+[Attempt 3: explicit libc++]
+Undefined symbols for architecture arm64:
+  "___asan_version_mismatch_check_apple_clang_2100", referenced from:
+      _asan.module_ctor in libupb.a[10](alloc.c.o)
+      _asan.module_ctor in libupb.a[11](arena.c.o)
+ld: symbol(s) not found for architecture arm64
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+[Attempt 4: narrow to libupb only]
+Undefined symbols for architecture arm64:
+  "___asan_version_mismatch_check_apple_clang_2100", referenced from:
+      _asan.module_ctor in libupb.a[10](alloc.c.o)
+      _asan.module_ctor in libupb.a[11](arena.c.o)
+ld: symbol(s) not found for architecture arm64
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+[Attempt 5: system clang++ + libupb only]
+SUCCESS: Attempt 5: system clang++ + libupb only

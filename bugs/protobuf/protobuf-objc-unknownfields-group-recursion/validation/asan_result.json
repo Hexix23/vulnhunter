@@ -1,0 +1,31 @@
+{
+  "validator": "asan",
+  "status": "NEEDS_DIFFERENT_BUILD",
+  "finding_id": "protobuf-objc-unknownfields-group-recursion",
+  "validated_against": {
+    "build_dir": "/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/builds/protobuf-asan-arm64",
+    "arch": "arm64",
+    "date_utc": "2026-04-15T22:57:36Z"
+  },
+  "evidence": {
+    "current_build_contents": [
+      "libprotobufd.a",
+      "libprotobuf-lited.a",
+      "libupbd.a"
+    ],
+    "missing_runtime": [
+      "libProtocolBuffers.a",
+      "Objective-C GPB runtime headers in the installed include tree"
+    ],
+    "bug_location": "targets/protobuf/objectivec/GPBUnknownFields.m:161",
+    "reason": "The available ASan build only packages the C++ protobuf runtime, while the finding is in the Objective-C runtime path used by GPBUnknownFields."
+  },
+  "build_request": {
+    "target_library": "libProtocolBuffers.a",
+    "target_name": "ProtocolBuffers",
+    "source_file": "targets/protobuf/objectivec/GPBProtocolBuffers.m",
+    "alternative_target": "//objectivec:objectivec",
+    "build_hint": "Build the Objective-C runtime with ASan and stage it as builds/protobuf-objc-asan-arm64/ with compile_flags.txt, link_flags.txt, headers, and libProtocolBuffers.a",
+    "why": "GPBUnknownFields lives in the Objective-C runtime and cannot be exercised through the existing C++-only ASan archive set."
+  }
+}

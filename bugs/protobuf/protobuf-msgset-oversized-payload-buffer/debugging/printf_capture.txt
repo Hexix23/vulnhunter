@@ -1,0 +1,9 @@
+cd /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-msgset-oversized-payload-buffer/poc
+bash build_real.sh
+env DYLD_LIBRARY_PATH=/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/builds/protobuf-asan-arm64/lib ./poc_real 2>&1 | tee ../debugging/printf_output.txt
+
+# Expected key state:
+# - Claimed message bytes = 2147483632
+# - Computed resize argument = 2147483637
+# - BytesUntilLimit before parse = 6
+# - Largest attempted allocation = 2147483640

@@ -1,0 +1,5 @@
+{
+  "validator": "asan",
+  "status": "NO_CRASH",
+  "evidence": "Compiled against builds/protobuf-asan-arm64 successfully, but the importer-based harness aborted under ASan in google::protobuf::DescriptorPool::Tables::Tables() before reaching the reported framing cast in targets/protobuf/upb/conformance/conformance_upb.c:288. The prebuilt protoc in builds/protobuf-asan-arm64/bin/protoc also aborted internally, so the exact target path could not be exercised without rebuilding target binaries."
+}

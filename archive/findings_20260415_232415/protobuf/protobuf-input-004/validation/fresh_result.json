@@ -1,0 +1,21 @@
+{
+  "validator": "fresh",
+  "status": "FOUND",
+  "findings": [
+    {
+      "location": "targets/protobuf/upb/reflection/desc_state.c:15",
+      "observation": "The helper stores `d->ptr - d->buf` in `const int used`, even though the pointer difference type is `ptrdiff_t` and the buffer length is tracked as `size_t`.",
+      "potential_issue": "If the descriptor buffer grows past `INT_MAX`, this narrowing conversion can truncate or wrap the used-byte count. The corrupted `used` value is then reused in the free-space check at line 24 and in `d->ptr = d->buf + used` at line 28, which can miscompute whether a grow is needed and restore `d->ptr` to the wrong offset after realloc. That creates a plausible out-of-bounds write/corrupted state path for very large, input-driven descriptors.",
+      "confidence": "HIGH",
+      "category": "integer_handling"
+    },
+    {
+      "location": "targets/protobuf/upb/reflection/desc_state.c:25",
+      "observation": "Buffer growth is performed with `d->bufsize *= 2` and there is no overflow guard before passing the new size to `upb_Arena_Realloc()`.",
+      "potential_issue": "If `bufsize` approaches `SIZE_MAX`, doubling can wrap to a much smaller allocation size. Combined with the subsequent pointer restoration logic, that can leave the descriptor state internally inconsistent and make later writes exceed the reallocated buffer.",
+      "confidence": "MEDIUM",
+      "category": "integer_handling"
+    }
+  ],
+  "analysis_notes": "Reviewed the target function, expanded surrounding context, checked all in-repo callers, and inspected the mini-descriptor encoder contract. The reachable concern is arithmetic in the grow helper itself: it mixes `size_t`/pointer-difference values with `int`, and it doubles the allocation size without an explicit overflow check."
+}

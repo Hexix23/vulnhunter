@@ -46,7 +46,6 @@ detect_environment() {
     # Toolchain
     echo "Clang: $(which clang++ 2>/dev/null || echo 'NOT FOUND')"
     echo "LLDB: $(which lldb 2>/dev/null || echo 'NOT FOUND')"
-    echo "GDB: $(which gdb 2>/dev/null || echo 'NOT FOUND')"
 }
 
 detect_environment
@@ -100,7 +99,7 @@ compile_with_retry() {
 }
 ```
 
-## Debugger Retry Strategy
+## Debugger Strategy (LLDB Only)
 
 ```bash
 run_debugger() {
@@ -122,18 +121,12 @@ run_debugger() {
         fi
     fi
     
-    echo "[Attempt 2] GDB (if available)"
-    if command -v gdb &>/dev/null; then
-        if [[ -n "$NATIVE_PREFIX" ]]; then
-            GDB_CMD="$NATIVE_PREFIX 'gdb -batch -ex \"run $args\" -ex \"bt 30\" $binary'"
-        else
-            GDB_CMD="gdb -batch -ex \"run $args\" -ex \"bt 30\" $binary"
-        fi
-        if eval $GDB_CMD 2>&1 | tee gdb_output.txt; then
-            if ! grep -q "Don't know how to run" gdb_output.txt; then
-                echo "SUCCESS: GDB worked"
-                return 0
-            fi
+    echo "[Attempt 2] LLDB with codesign"
+    codesign -s - -f "$binary" 2>/dev/null
+    if eval $LLDB_CMD 2>&1 | tee lldb_output.txt; then
+        if ! grep -q "error:" lldb_output.txt; then
+            echo "SUCCESS: LLDB worked after codesign"
+            return 0
         fi
     fi
     
@@ -149,7 +142,7 @@ run_debugger() {
         fi
     fi
     
-    echo "WARNING: No debugger output available, using direct execution only"
+    echo "WARNING: Using direct execution only"
     return 1
 }
 ```

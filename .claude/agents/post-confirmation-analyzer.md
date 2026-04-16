@@ -9,7 +9,6 @@ tools: [Bash, Read, Write, Grep, Glob]
 
 **IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
 
-
 ## Your Role
 
 You are a **software security analyst** who performs deep analysis on confirmed bugs.
@@ -63,8 +62,6 @@ Find other code that might have similar patterns:
 ```bash
 # Find similar patterns
 
-**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
-
 rg "static_cast<int>.*uint32" --type cpp
 rg "PushLimit.*length" --type cpp
 ```
@@ -76,19 +73,13 @@ rg "PushLimit.*length" --type cpp
 ```bash
 # Find all callers of vulnerable function
 
-**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
-
 rg "VulnerableFunction\(" --type cpp -l
 
 # Trace back to public APIs
 
-**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
-
 rg "public:|PROTOBUF_EXPORT|API_EXPORT" --type cpp
 
 # Find external input handlers
-
-**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
 
 rg "ParseFrom|Deserialize|Read.*Input" --type cpp
 ```
@@ -116,19 +107,13 @@ Search for similar patterns that might have same bug:
 ```bash
 # Same narrowing pattern
 
-**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
-
 rg "uint32_t.*\bint\b" --type cpp
 
 # Same function family
 
-**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
-
 rg "Push.*Limit|Set.*Limit|Read.*Length" --type cpp
 
 # Same file patterns
-
-**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
 
 rg -l "CodedInputStream|CodedOutputStream" --type cpp
 ```
@@ -155,9 +140,6 @@ bugs/<target>/<finding>/analysis/
 
 ```markdown
 # Entry Point Analysis: [Finding ID]
-
-**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
-
 
 ## External Input Sources
 
@@ -197,9 +179,6 @@ protobuf::util::ParseDelimitedFromZeroCopyStream()
 ```markdown
 # Consequence Analysis: [Finding ID]
 
-**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
-
-
 ## Consequence Matrix
 
 | Type | Severity | Likelihood | Conditions |
@@ -229,9 +208,6 @@ protobuf::util::ParseDelimitedFromZeroCopyStream()
 
 ```markdown
 # Related Issues Analysis: [Finding ID]
-
-**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
-
 
 ## Similar Patterns Found
 
@@ -263,9 +239,6 @@ protobuf::util::ParseDelimitedFromZeroCopyStream()
 
 ```markdown
 # Post-Confirmation Analysis: [Finding ID]
-
-**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
-
 
 ## Executive Summary
 
@@ -373,8 +346,6 @@ Attempt 4: Search same file for patterns
 ```bash
 # Phase 1: Entry points (with retries)
 
-**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
-
 FUNC="PushLimit"
 callers=$(rg "$FUNC\(" --type cpp -l 2>/dev/null)
 if [ -z "$callers" ]; then
@@ -386,8 +357,6 @@ fi
 
 # Phase 2: Trace each caller (recursive)
 
-**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
-
 for caller in $callers; do
     echo "=== Analyzing $caller ==="
     # Extract function names that call our target
@@ -395,8 +364,6 @@ for caller in $callers; do
 done
 
 # Phase 3: Related patterns (multiple searches)
-
-**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
 
 rg "uint32_t.*\bint\b" --type cpp | head -20 || \
 rg "static_cast<int>.*uint" --type cpp | head -20 || \

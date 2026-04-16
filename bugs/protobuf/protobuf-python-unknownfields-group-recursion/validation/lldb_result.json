@@ -1,0 +1,6 @@
+{
+  "validator": "lldb",
+  "status": "STATE_BUILD_BLOCKED",
+  "evidence": "The supplied build at builds/protobuf-asan-arm64 does not contain the Python extension path from targets/protobuf/python/unknown_fields.c. No _message module was found, nm on libupbd.a showed no PyUpb_UnknownFieldSet symbols, and a debug-only link probe failed with an undefined reference to _PyUpb_UnknownFieldSet_NewBare. LLDB state capture cannot proceed until a Python-extension build is provided.",
+  "method": "build-verification"
+}

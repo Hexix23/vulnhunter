@@ -1,0 +1,2 @@
+        1.11 real         0.06 user         0.25 sys
+time: sysctl kern.clockrate: Operation not permitted

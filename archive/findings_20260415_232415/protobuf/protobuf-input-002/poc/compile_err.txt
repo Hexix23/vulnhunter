@@ -1,0 +1,148 @@
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-002/poc/poc_real.cpp:7:10: fatal error: 'conformance.pb.h' file not found
+    7 | #include "conformance.pb.h"
+      |          ^~~~~~~~~~~~~~~~~~
+1 error generated.
+In file included from /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-002/poc/generated/conformance/conformance.pb.cc:6:
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-002/poc/generated/conformance/conformance.pb.h:17:2: error: "Protobuf C++ gencode is built with an incompatible version of"
+   17 | #error "Protobuf C++ gencode is built with an incompatible version of"
+      |  ^
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-002/poc/generated/conformance/conformance.pb.h:18:2: error: "Protobuf C++ headers/runtime. See"
+   18 | #error "Protobuf C++ headers/runtime. See"
+      |  ^
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-002/poc/generated/conformance/conformance.pb.h:19:2: error: "https://protobuf.dev/support/cross-version-runtime-guarantee/#cpp"
+   19 | #error "https://protobuf.dev/support/cross-version-runtime-guarantee/#cpp"
+      |  ^
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-002/poc/generated/conformance/conformance.pb.h:1784:3: error: use of undeclared identifier 'ClearHasBitForRepeated'
+ 1784 |   ClearHasBitForRepeated(_impl_._has_bits_[0],
+      |   ^~~~~~~~~~~~~~~~~~~~~~
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-002/poc/generated/conformance/conformance.pb.h:1794:3: error: use of undeclared identifier 'SetHasBitForRepeated'
+ 1794 |   SetHasBitForRepeated(_impl_._has_bits_[0], 0x00000001U);
+      |   ^~~~~~~~~~~~~~~~~~~~
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-002/poc/generated/conformance/conformance.pb.h:1810:3: error: use of undeclared identifier 'SetHasBitForRepeated'
+ 1810 |   SetHasBitForRepeated(_impl_._has_bits_[0], 0x00000001U);
+      |   ^~~~~~~~~~~~~~~~~~~~
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-002/poc/generated/conformance/conformance.pb.cc:307:5: error: cannot initialize a member subobject of type 'const MessageGlobalsBase *const *' with an lvalue of type 'const ::_pb::Message *const[5]'
+  307 |     file_default_instances,
+      |     ^~~~~~~~~~~~~~~~~~~~~~
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-002/poc/generated/conformance/conformance.pb.cc:425:8: error: no member named 'kDescriptorMethods' in 'conformance::TestStatus'; did you mean 'google::protobuf::internal::kDescriptorMethods'?
+  425 |       &TestStatus::kDescriptorMethods,
+      |        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |        google::protobuf::internal::kDescriptorMethods
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/builds/protobuf-asan-arm64/include/google/protobuf/message.h:455:48: note: 'google::protobuf::internal::kDescriptorMethods' declared here
+  455 | extern PROTOBUF_EXPORT const DescriptorMethods kDescriptorMethods;
+      |                                                ^
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-002/poc/generated/conformance/conformance.pb.cc:718:9: error: no matching constructor for initialization of '::google::protobuf::RepeatedPtrField< ::conformance::TestStatus>'
+  718 |         test_ { visibility, arena, from.test_ }
+      |         ^     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/builds/protobuf-asan-arm64/include/google/protobuf/repeated_ptr_field.h:1246:26: note: candidate constructor not viable: no known conversion from '::google::protobuf::Arena *' to 'internal::InternalMetadataOffset' for 2nd argument
+ 1246 |   PROTOBUF_ALWAYS_INLINE RepeatedPtrField(
+      |                          ^
+ 1247 |       internal::InternalVisibility, internal::InternalMetadataOffset offset,
+      |                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/builds/protobuf-asan-arm64/include/google/protobuf/repeated_ptr_field.h:1243:36: note: candidate constructor not viable: requires 2 arguments, but 3 were provided
+ 1243 |   constexpr PROTOBUF_ALWAYS_INLINE RepeatedPtrField(
+      |                                    ^
+ 1244 |       internal::InternalVisibility, internal::InternalMetadataOffset offset)
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/builds/protobuf-asan-arm64/include/google/protobuf/repeated_ptr_field.h:1587:3: note: candidate constructor not viable: requires 2 arguments, but 3 were provided
+ 1587 |   RepeatedPtrField(internal::InternalMetadataOffset offset,
+      |   ^                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1588 |                    const RepeatedPtrField& rhs);
+      |                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/builds/protobuf-asan-arm64/include/google/protobuf/repeated_ptr_field.h:1589:3: note: candidate constructor not viable: requires 2 arguments, but 3 were provided
+ 1589 |   RepeatedPtrField(internal::InternalMetadataOffset offset,
+      |   ^                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1590 |                    RepeatedPtrField&& rhs);
+      |                    ~~~~~~~~~~~~~~~~~~~~~~
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/builds/protobuf-asan-arm64/include/google/protobuf/repeated_ptr_field.h:1254:3: note: candidate constructor template not viable: requires 2 arguments, but 3 were provided
+ 1254 |   RepeatedPtrField(Iter begin, Iter end);
+      |   ^                ~~~~~~~~~~~~~~~~~~~~
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/builds/protobuf-asan-arm64/include/google/protobuf/repeated_ptr_field.h:1256:26: note: candidate constructor not viable: requires single argument 'rhs', but 3 arguments were provided
+ 1256 |   PROTOBUF_ALWAYS_INLINE RepeatedPtrField(const RepeatedPtrField& rhs)
+      |                          ^                ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/builds/protobuf-asan-arm64/include/google/protobuf/repeated_ptr_field.h:1261:26: note: candidate constructor not viable: requires single argument 'rhs', but 3 arguments were provided
+ 1261 |   PROTOBUF_ALWAYS_INLINE RepeatedPtrField(RepeatedPtrField&& rhs) noexcept
+      |                          ^                ~~~~~~~~~~~~~~~~~~~~~~
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/builds/protobuf-asan-arm64/include/google/protobuf/repeated_ptr_field.h:1586:22: note: candidate constructor not viable: requires single argument 'offset', but 3 arguments were provided
+ 1586 |   constexpr explicit RepeatedPtrField(internal::InternalMetadataOffset offset);
+      |                      ^                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/builds/protobuf-asan-arm64/include/google/protobuf/repeated_ptr_field.h:1624:38: note: candidate constructor not viable: requires 0 arguments, but 3 were provided
+ 1624 | constexpr RepeatedPtrField<Element>::RepeatedPtrField()
+      |                                      ^
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-002/poc/generated/conformance/conformance.pb.cc:748:9: error: no matching constructor for initialization of '::google::protobuf::RepeatedPtrField< ::conformance::TestStatus>'
+  748 |         test_ { visibility, arena }
+      |         ^     ~~~~~~~~~~~~~~~~~~~~~
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/builds/protobuf-asan-arm64/include/google/protobuf/repeated_ptr_field.h:1243:36: note: candidate constructor not viable: no known conversion from '::google::protobuf::Arena *' to 'internal::InternalMetadataOffset' for 2nd argument
+ 1243 |   constexpr PROTOBUF_ALWAYS_INLINE RepeatedPtrField(
+      |                                    ^
+ 1244 |       internal::InternalVisibility, internal::InternalMetadataOffset offset)
+      |                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/builds/protobuf-asan-arm64/include/google/protobuf/repeated_ptr_field.h:1587:3: note: candidate constructor not viable: no known conversion from '::google::protobuf::internal::InternalVisibility' to 'internal::InternalMetadataOffset' for 1st argument
+ 1587 |   RepeatedPtrField(internal::InternalMetadataOffset offset,
+      |   ^                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/builds/protobuf-asan-arm64/include/google/protobuf/repeated_ptr_field.h:1589:3: note: candidate constructor not viable: no known conversion from '::google::protobuf::internal::InternalVisibility' to 'internal::InternalMetadataOffset' for 1st argument
+ 1589 |   RepeatedPtrField(internal::InternalMetadataOffset offset,
+      |   ^                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/builds/protobuf-asan-arm64/include/google/protobuf/repeated_ptr_field.h:1254:3: note: candidate template ignored: deduced conflicting types for parameter 'Iter' ('::google::protobuf::internal::InternalVisibility' vs. '::google::protobuf::Arena *')
+ 1254 |   RepeatedPtrField(Iter begin, Iter end);
+      |   ^
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/builds/protobuf-asan-arm64/include/google/protobuf/repeated_ptr_field.h:1256:26: note: candidate constructor not viable: requires single argument 'rhs', but 2 arguments were provided
+ 1256 |   PROTOBUF_ALWAYS_INLINE RepeatedPtrField(const RepeatedPtrField& rhs)
+      |                          ^                ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/builds/protobuf-asan-arm64/include/google/protobuf/repeated_ptr_field.h:1261:26: note: candidate constructor not viable: requires single argument 'rhs', but 2 arguments were provided
+ 1261 |   PROTOBUF_ALWAYS_INLINE RepeatedPtrField(RepeatedPtrField&& rhs) noexcept
+      |                          ^                ~~~~~~~~~~~~~~~~~~~~~~
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/builds/protobuf-asan-arm64/include/google/protobuf/repeated_ptr_field.h:1586:22: note: candidate constructor not viable: requires single argument 'offset', but 2 arguments were provided
+ 1586 |   constexpr explicit RepeatedPtrField(internal::InternalMetadataOffset offset);
+      |                      ^                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/builds/protobuf-asan-arm64/include/google/protobuf/repeated_ptr_field.h:1246:26: note: candidate constructor not viable: requires 3 arguments, but 2 were provided
+ 1246 |   PROTOBUF_ALWAYS_INLINE RepeatedPtrField(
+      |                          ^
+ 1247 |       internal::InternalVisibility, internal::InternalMetadataOffset offset,
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1248 |       const RepeatedPtrField& rhs)
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/builds/protobuf-asan-arm64/include/google/protobuf/repeated_ptr_field.h:1624:38: note: candidate constructor not viable: requires 0 arguments, but 2 were provided
+ 1624 | constexpr RepeatedPtrField<Element>::RepeatedPtrField()
+      |                                      ^
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-002/poc/generated/conformance/conformance.pb.cc:781:61: error: no member named 'EncodePlacementArenaOffsets' in namespace 'google::protobuf::internal'
+  781 |   constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      |                                                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-002/poc/generated/conformance/conformance.pb.cc:784:15: error: no member named 'InternalGetArenaOffset' in 'google::protobuf::RepeatedPtrField<conformance::TestStatus>'
+  784 |               InternalGetArenaOffset(
+      |               ^~~~~~~~~~~~~~~~~~~~~~
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-002/poc/generated/conformance/conformance.pb.cc:813:8: error: no member named 'kDescriptorMethods' in 'conformance::FailureSet'; did you mean 'google::protobuf::internal::kDescriptorMethods'?
+  813 |       &FailureSet::kDescriptorMethods,
+      |        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |        google::protobuf::internal::kDescriptorMethods
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/builds/protobuf-asan-arm64/include/google/protobuf/message.h:455:48: note: 'google::protobuf::internal::kDescriptorMethods' declared here
+  455 | extern PROTOBUF_EXPORT const DescriptorMethods kDescriptorMethods;
+      |                                                ^
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-002/poc/generated/conformance/conformance.pb.cc:873:7: error: use of undeclared identifier 'CheckHasBitForRepeated'
+  873 |   if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+      |       ^~~~~~~~~~~~~~~~~~~~~~
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-002/poc/generated/conformance/conformance.pb.cc:900:7: error: use of undeclared identifier 'CheckHasBitForRepeated'
+  900 |   if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+      |       ^~~~~~~~~~~~~~~~~~~~~~
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-002/poc/generated/conformance/conformance.pb.cc:939:9: error: use of undeclared identifier 'CheckHasBitForRepeated'
+  939 |     if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+      |         ^~~~~~~~~~~~~~~~~~~~~~
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-002/poc/generated/conformance/conformance.pb.cc:965:7: error: use of undeclared identifier 'CheckHasBitForRepeated'
+  965 |   if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+      |       ^~~~~~~~~~~~~~~~~~~~~~
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-002/poc/generated/conformance/conformance.pb.cc:1156:8: error: no member named 'kDescriptorMethods' in 'conformance::ConformanceRequest'; did you mean 'google::protobuf::internal::kDescriptorMethods'?
+ 1156 |       &ConformanceRequest::kDescriptorMethods,
+      |        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |        google::protobuf::internal::kDescriptorMethods
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/builds/protobuf-asan-arm64/include/google/protobuf/message.h:455:48: note: 'google::protobuf::internal::kDescriptorMethods' declared here
+  455 | extern PROTOBUF_EXPORT const DescriptorMethods kDescriptorMethods;
+      |                                                ^
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-002/poc/generated/conformance/conformance.pb.cc:1763:8: error: no member named 'kDescriptorMethods' in 'conformance::ConformanceResponse'; did you mean 'google::protobuf::internal::kDescriptorMethods'?
+ 1763 |       &ConformanceResponse::kDescriptorMethods,
+      |        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |        google::protobuf::internal::kDescriptorMethods
+/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/builds/protobuf-asan-arm64/include/google/protobuf/message.h:455:48: note: 'google::protobuf::internal::kDescriptorMethods' declared here
+  455 | extern PROTOBUF_EXPORT const DescriptorMethods kDescriptorMethods;
+      |                                                ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+20 errors generated.

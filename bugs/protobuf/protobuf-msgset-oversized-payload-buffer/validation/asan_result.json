@@ -1,0 +1,1 @@
+{"validator":"asan","status":"LOGIC_BUG","evidence":"Entered google::protobuf::internal::ParseMessageSetItemImpl with a 7-byte MessageSet item claiming 4294967280 payload bytes; the parser accepted the oversized length path and only returned false later instead of rejecting the length up front. No ASan memory-corruption crash was observed on this host."}

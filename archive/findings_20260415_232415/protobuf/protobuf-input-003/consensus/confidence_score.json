@@ -1,0 +1,30 @@
+{
+  "finding_id": "protobuf-input-003",
+  "validators": {
+    "asan": {
+      "status": "CONFIRMED_MEMORY",
+      "score": 1.0,
+      "evidence_summary": "ASan reproduced a real libupb abort in upb_FieldPathVector_Reserve() after truncated allocation arithmetic requested 0xffffffff80000000 bytes."
+    },
+    "lldb": {
+      "status": "STATE_BUG",
+      "score": 0.9,
+      "evidence_summary": "LLDB launch failed, but the required printf fallback captured oldsize/newsize narrowing from 0x80000000 and 0x100000000 down to negative and zero int values before the same reserve-path abort."
+    },
+    "fresh": {
+      "status": "FOUND",
+      "score": 1.0,
+      "evidence_summary": "Independent review found the same size_t-to-int truncation in required_fields.c and noted unchecked capacity doubling in the reserve helper."
+    },
+    "impact": {
+      "status": "LIMITED_IMPACT",
+      "score": 0.4,
+      "evidence_summary": "The issue is reachable through exported upb and Python protobuf APIs and was demonstrated as a denial-of-service style abort while collecting missing required-field paths."
+    }
+  },
+  "total_score": 3.3,
+  "confidence_level": "CONFIRMED_HIGH",
+  "recommendation": "REPORT",
+  "dissenting_validators": [],
+  "notes": "The two blind runtime validators agree on the same reserve-path integer truncation bug: ASan shows the crash manifestation and LLDB fallback captured the bad arithmetic that produces it. Fresh validation independently identified the same source-level defect. Impact validation narrows the consequence to a demonstrated DoS-style abort rather than a proven arbitrary heap overwrite, but it does not contradict the underlying bug."
+}

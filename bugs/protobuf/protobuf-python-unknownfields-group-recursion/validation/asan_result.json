@@ -1,0 +1,5 @@
+{
+  "validator": "asan",
+  "status": "NO_CRASH",
+  "evidence": "Current ASan build only contains native protobuf/upb libraries and does not include the vulnerable Python extension path from targets/protobuf/python/unknown_fields.c. Minimal real-library link probe for PyUpb_UnknownFieldSet_NewBare failed in four compile attempts with: Undefined symbols for architecture arm64: _PyUpb_UnknownFieldSet_NewBare. See validation/build_output.txt and validation/VALIDATION_STATUS.md."
+}

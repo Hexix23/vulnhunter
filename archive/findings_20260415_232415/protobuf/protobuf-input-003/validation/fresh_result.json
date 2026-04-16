@@ -1,0 +1,21 @@
+{
+  "validator": "fresh",
+  "status": "FOUND",
+  "findings": [
+    {
+      "location": "targets/protobuf/upb/util/required_fields.c:172-177",
+      "observation": "The reserve helper stores byte counts in `int` (`oldsize` and `newsize`) even though `vec->cap` and the allocator API use `size_t`. The growth loop also doubles `vec->cap` without any overflow check before computing `newsize`.",
+      "potential_issue": "For large path vectors, `vec->cap * sizeof(*vec->path)` can exceed `INT_MAX` and truncate before reaching `upb_grealloc()`, causing the allocator to receive incorrect old/new sizes. Separately, repeated doubling can wrap `vec->cap` on `size_t` overflow and make the capacity calculation incorrect or non-terminating.",
+      "confidence": "HIGH",
+      "category": "integer_handling"
+    },
+    {
+      "location": "targets/protobuf/upb/util/required_fields.c:177-179",
+      "observation": "On allocation failure, `upb_FieldPathVector_Reserve()` executes `UPB_LONGJMP(ctx->err, 1)`, but this file does not initialize `ctx.err` with `setjmp()` before calling into the reserve path.",
+      "potential_issue": "If `upb_grealloc()` returns NULL, the code would long-jump through an uninitialized `jmp_buf`, which is undefined behavior and can crash instead of reporting out-of-memory cleanly.",
+      "confidence": "HIGH",
+      "category": "error_handling"
+    }
+  ],
+  "analysis_notes": "Reviewed the target lines, expanded to surrounding callers, checked allocator signatures, and searched the file for `setjmp`/`UPB_SETJMP`. I found two independent issues in the reserve path: narrowing of allocation sizes to `int` with unchecked doubling, and an OOM error path that long-jumps through an apparently uninitialized `jmp_buf`."
+}

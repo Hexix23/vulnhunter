@@ -1,45 +1,64 @@
 {
   "findings": [
     {
-      "id": "protobuf-input-001",
-      "title": "Length-delimited parser bypasses frame boundary when 32-bit size overflows signed int",
-      "severity": "HIGH",
-      "location": {
-        "file": "targets/protobuf/src/google/protobuf/util/delimited_message_util.cc",
-        "line": 60,
-        "function": "google::protobuf::util::ParseDelimitedFromCodedStream"
-      },
-      "description": "The length prefix is read as uint32_t, then cast to int in PushLimit(static_cast<int>(size)) and again in the final position check. If an attacker supplies a delimited size greater than INT_MAX, PushLimit() silently refuses to install the boundary because the argument becomes negative, but MergeFromCodedStream() still runs against the caller's outer stream limit. The function eventually returns false, yet it may already have consumed bytes past the declared frame, which can desynchronize concatenated-message parsers and bypass the intended per-message boundary."
-    },
-    {
-      "id": "protobuf-input-002",
-      "title": "Packed fixed-size repeated field growth lacks checked addition before resize",
-      "severity": "MEDIUM",
+      "id": "protobuf-msgset-oversized-payload-buffer",
+      "title": "MessageSet parsing allocates attacker-chosen payload buffer before validating availability",
+      "severity_estimate": "HIGH",
+      "type": "dos",
       "location": {
         "file": "targets/protobuf/src/google/protobuf/wire_format_lite.h",
-        "line": 1148,
-        "function": "google::protobuf::internal::WireFormatLite::ReadPackedFixedSizePrimitive"
+        "line": 1691,
+        "function": "google::protobuf::internal::ParseMessageSetItemImpl"
       },
-      "description": "After deriving new_entries from attacker-controlled packed-field length, the code resizes/reserves with old_entries + new_entries using signed int arithmetic and no explicit overflow guard. RepeatedField::resize() only DCHECKs that the requested size is non-negative in ResizeImpl(), so release builds rely on the sum not wrapping. A message that repeatedly appends packed data to an already large repeated field can drive signed overflow here, risking undersized allocation bookkeeping before ReadRaw() or AddAlreadyReserved() writes element data."
+      "description": "When a MessageSet item carries field 3 (message bytes) before field 2 (type_id), ParseMessageSetItemImpl reads the payload length with ReadVarint32() and immediately resizes a std::string to `length + VarintSize32(length)`. This path does not use ReadVarintSizeAsInt(), does not compare the length against BytesUntilLimit()/BytesUntilTotalBytesLimit(), and performs the allocation before ReadRaw() verifies the bytes actually exist. A malicious wire payload can therefore request a multi-gigabyte temporary buffer even when the remaining input is much smaller, causing memory exhaustion during parse.",
+      "entry_point": "Any code path that parses MessageSet wire format through WireFormat::ParseAndMergeMessageSetItem() or ExtensionSet MessageSet parsing on untrusted input.",
+      "trigger": "A MessageSet item where the embedded message field appears before type_id and advertises a very large length prefix, e.g. near 0xffffffff.",
+      "confidence": "high",
+      "needs_validation": true
     },
     {
-      "id": "protobuf-input-003",
-      "title": "upb packed-field decoder grows arrays with unchecked size_t addition",
-      "severity": "MEDIUM",
+      "id": "protobuf-python-unknownfields-group-recursion",
+      "title": "Python UnknownFieldSet construction recursively descends groups without a depth limit",
+      "severity_estimate": "MEDIUM",
+      "type": "recursion",
       "location": {
-        "file": "targets/protobuf/upb/wire/decode.c",
-        "line": 109,
-        "function": "_upb_Decoder_Reserve"
+        "file": "targets/protobuf/python/unknown_fields.c",
+        "line": 187,
+        "function": "PyUpb_UnknownFieldSet_BuildValue"
       },
-      "description": "The upb decoder computes the requested capacity as arr->size + elem without checking for size_t wraparound before calling _upb_Array_Realloc(). This helper is used on input-derived counts in packed decode paths such as _upb_Decoder_DecodeFixedPacked() (count from val->size >> lg2) and the per-element growth loops in _upb_Decoder_DecodeVarintPacked()/_upb_Decoder_DecodeEnumPacked(). On large or incremental attacker-controlled repeated fields, especially on 32-bit builds, the unchecked addition can wrap to a smaller capacity while subsequent code still increments arr->size and memcpy()s parsed elements, creating a potential out-of-bounds write condition."
+      "description": "The upb-backed Python UnknownFieldSet builder creates a new PyUpb_UnknownFieldSet for every start-group field and immediately recurses into PyUpb_UnknownFieldSet_Build() with no recursion counter or limit. Normal protobuf decoding in upb enforces max depth, but this post-parse unknown-field introspection path does not. An attacker can supply a message containing deeply nested unknown groups and then trigger stack exhaustion or interpreter crash when application code calls `google.protobuf.unknown_fields.UnknownFieldSet(message)` or any helper that prints unknown fields.",
+      "entry_point": "Public Python API `google.protobuf.unknown_fields.UnknownFieldSet(message)`, including text-format printing paths that request unknown fields.",
+      "trigger": "A parsed message whose unknown field blob contains very deeply nested group fields.",
+      "confidence": "high",
+      "needs_validation": true
+    },
+    {
+      "id": "protobuf-objc-unknownfields-group-recursion",
+      "title": "Objective-C GPBUnknownFields parsing walks nested groups recursively without using the coded-stream depth guard",
+      "severity_estimate": "MEDIUM",
+      "type": "recursion",
+      "location": {
+        "file": "targets/protobuf/objectivec/GPBUnknownFields.m",
+        "line": 161,
+        "function": "MergeFromInputStream"
+      },
+      "description": "GPBUnknownFields parses a message's serialized unknown-field data by recursively calling MergeFromInputStream() for every start-group. Unlike normal message/group parsing in GPBCodedInputStream, this helper never calls CheckRecursionLimit() or updates the coded-input recursion accounting before descending. The result is an unbounded recursion path over attacker-controlled unknown groups that can exhaust the Objective-C process stack when code materializes unknown fields from an untrusted message.",
+      "entry_point": "Public Objective-C API `-[GPBUnknownFields initFromMessage:]` on a message that already contains attacker-controlled unknown fields.",
+      "trigger": "Unknown field data containing many nested group start/end tags, followed by application code that constructs GPBUnknownFields from the message.",
+      "confidence": "high",
+      "needs_validation": true
     }
   ],
-  "files_analyzed": 1217,
-  "patterns_checked": [
-    "signed/unsigned conversions",
-    "integer overflow in size arithmetic",
-    "packed-field length handling",
-    "buffer growth before memcpy/ReadRaw",
-    "unchecked size casts into int-based parsing APIs"
-  ]
+  "analysis_summary": {
+    "directories_analyzed": [
+      "targets/protobuf/src/google/protobuf",
+      "targets/protobuf/upb",
+      "targets/protobuf/python",
+      "targets/protobuf/objectivec",
+      "targets/protobuf/conformance",
+      "targets/protobuf/php/ext"
+    ],
+    "entry_points_found": 17,
+    "code_paths_traced": 11
+  }
 }

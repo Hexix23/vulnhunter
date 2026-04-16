@@ -1,0 +1,15 @@
+Applied memory limit=0
+Using inline ParseMessageSetItemImpl from staged protobuf headers
+Wire size=7 bytes
+Claimed message bytes=2147483632
+Varint size=5
+Computed resize argument=2147483637
+Wire hex=0b 1a f0 ff ff ff 07 
+Initial tag=11
+CurrentPosition after start tag=1
+BytesUntilLimit before parse=6
+BytesUntilTotalBytesLimit before parse=-1
+[marker] before ParseMessageSetItemImpl
+Caught std::bad_alloc while parsing: std::bad_alloc
+Largest attempted allocation=2147483640
+Confirmed oversized allocation attempt before input availability validation

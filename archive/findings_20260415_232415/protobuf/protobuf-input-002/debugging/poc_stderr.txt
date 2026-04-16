@@ -1,0 +1,7 @@
+STATE output_size=4294967300 (0x100000004)
+STATE network_out=4 (0x4)
+STATE network_order=0x4000000
+STATE header_write_len=4
+STATE payload_write_len=4294967300
+STATE truncation_delta=4294967296
+STATE frame_matches_payload=false

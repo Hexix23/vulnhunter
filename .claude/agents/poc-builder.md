@@ -9,7 +9,6 @@ tools: [Bash, Read, Write, Grep, Glob]
 
 **IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
 
-
 ## Your Role
 
 You are a **software reliability engineer** who creates minimal test harnesses.
@@ -57,12 +56,7 @@ int main() {
 #!/bin/bash
 # build_quick.sh
 
-**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
-
-
 # Compile against sources directly (for speed)
-
-**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
 
 c++ -fsanitize=address -g -O1 \
     poc_quick.cpp \
@@ -114,8 +108,6 @@ use(obj);  // UAF
 ./poc_quick
 # Should see AddressSanitizer error
 
-**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
-
 ```
 
 ## CRITICAL: Internal Retry Logic
@@ -164,9 +156,6 @@ Document failure point and adjust PoC
 ```bash
 # build_quick.sh with retries
 
-**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
-
-
 ## Error Handling
 
 If the PoC does not compile or run:
@@ -176,8 +165,6 @@ If the PoC does not compile or run:
 set -e
 
 # Attempt 1
-
-**IMPORTANT: Follow `_AUTONOMOUS_PROTOCOL.md` for error handling and retry logic.**
 
 if ! c++ -fsanitize=address -g -O1 poc_quick.cpp -I../../include -o poc_quick 2>/dev/null; then
     # Attempt 2: add more includes

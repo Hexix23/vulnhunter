@@ -1,0 +1,10 @@
+{
+    "_description": "Performance trends over time",
+    "overall": {
+        "total_findings": 0,
+        "total_confirmed": 0,
+        "total_false_positives": 0,
+        "precision_history": []
+    },
+    "by_target": {}
+}

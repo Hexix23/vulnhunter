@@ -1,0 +1,51 @@
+{
+  "validator": "impact",
+  "status": "LIMITED_IMPACT",
+  "entry_points": [
+    {
+      "api": "conformance_upb main() -> DoTestIo()",
+      "file": "targets/protobuf/upb/conformance/conformance_upb.c:253",
+      "reachable_from": "local conformance runner writes a 4-byte request length and serialized ConformanceRequest to the testee stdin"
+    },
+    {
+      "api": "google::protobuf::ForkPipeRunner::RunTest()",
+      "file": "targets/protobuf/conformance/fork_pipe_runner.cc:69",
+      "reachable_from": "conformance_test_runner reads the 4-byte response length from the testee stdout and trusts it for the following payload read"
+    }
+  ],
+  "consequences": [
+    {
+      "type": "incorrect_processing",
+      "description": "Once the oversized first response is advertised as 4 bytes instead of 4294967300 bytes, the next 4 leftover payload bytes are reinterpreted as the next frame header. A valid subsequent response is swallowed into a corrupted frame payload and the stream loses synchronization.",
+      "evidence": "impact_output.txt scenario 'incorrect_processing': reader_next_length_from_leftover_payload=16, intended_next_frame_payload=HELLO, observed_second_frame_prefix_hex=0500000048454c4c4f5a5a5a5a5a5a5a",
+      "severity": "MEDIUM"
+    },
+    {
+      "type": "service_disruption",
+      "description": "If the leftover payload bytes decode to a large integer, the parent process trusts that size and waits for that many bytes. In the real runner this becomes a blocking CheckedRead() call that ends in timeout or unexpected EOF handling.",
+      "evidence": "impact_output.txt scenario 'service_disruption': reader_next_length_from_leftover_payload=268435456 with only 9 bytes remaining, missing_bytes_before_second_frame_completes=268435447",
+      "severity": "MEDIUM"
+    },
+    {
+      "type": "resource_exhaustion",
+      "description": "The poisoned next-frame length can coerce the parent into attempting a very large response buffer before reading. ForkPipeRunner::RunTest() resizes the response string to the attacker-influenced length before CheckedRead().",
+      "evidence": "targets/protobuf/conformance/fork_pipe_runner.cc:115-117 performs response.resize(len) after trusting the 32-bit length read from the child stream",
+      "severity": "MEDIUM"
+    }
+  ],
+  "demonstration": {
+    "poc_file": "bugs/protobuf/protobuf-input-002/validation/impact_demo.cpp",
+    "build_command": "bugs/protobuf/protobuf-input-002/validation/build_impact.sh",
+    "output_file": "bugs/protobuf/protobuf-input-002/validation/impact_output.txt",
+    "summary": "The demo replays the real conformance framing contract and shows two practical outcomes immediately after a 4 GiB+ response is truncated to a 32-bit header: stream desynchronization that swallows a valid next frame, and a poisoned next-frame length that would make the parent block or fail while waiting for hundreds of megabytes that were never part of a real frame."
+  },
+  "reachability": {
+    "requires_auth": false,
+    "network_reachable": false,
+    "local_only": true
+  },
+  "notes": [
+    "Impact is constrained to the conformance test harness boundary, not normal protobuf parsing APIs.",
+    "Triggering the original truncation requires producing a serialized ConformanceResponse larger than 4 GiB, so exploitation is impractical for ordinary conformance runs but still causes protocol breakage if reached."
+  ]
+}

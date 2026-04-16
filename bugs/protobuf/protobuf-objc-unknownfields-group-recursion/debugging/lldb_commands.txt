@@ -1,0 +1,7 @@
+# Environment and artifact checks used for this validator pass.
+env -i PATH=/usr/sbin:/usr/bin:/bin:/opt/homebrew/bin bash --noprofile --norc -c 'sysctl -n sysctl.proc_translated 2>/dev/null || true'
+find /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/builds/protobuf-asan-arm64 -maxdepth 2 -type f
+find /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/targets/protobuf/build-asan-arm64 /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/targets/protobuf/build-asan-codex-arm64 /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/targets/protobuf/build-codex-asan-arm64 /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/targets/protobuf/build-asan-manual-arm64 -maxdepth 4 -type f | egrep 'ProtocolBuffers|libProtocol|\.framework/|\.a$|\.dylib$' | sort
+
+# LLDB was not launched because no pre-built Objective-C runtime artifact was present.
+# Required staged artifact: builds/protobuf-objc-asan-arm64/{compile_flags.txt,link_flags.txt,libProtocolBuffers.a,headers}

@@ -1,0 +1,6 @@
+kind=message_fields count=1 status=ok serialized_bytes=48 mini_descriptor_bytes=2 max_rss_kb=29360128
+kind=message_fields count=100000 status=error detail=Error building mini table: Message size exceeded maximum size of 65535 bytes
+projection kind=message_fields avg_mini_desc_growth_per_item=0.000000 projected_items_for_INT_MAX=0 projected_input_bytes=0 projected_input_gib=0.00
+kind=enum_values count=1 status=ok serialized_bytes=43 mini_descriptor_bytes=2 max_rss_kb=122552320
+kind=enum_values count=100000 status=ok serialized_bytes=1872410 mini_descriptor_bytes=20001 max_rss_kb=186761216
+projection kind=enum_values avg_mini_desc_growth_per_item=0.199992 projected_items_for_INT_MAX=10737847750 projected_input_bytes=201056535056 projected_input_gib=187.25

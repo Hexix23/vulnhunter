@@ -1,0 +1,30 @@
+{
+  "finding_id": "protobuf-input-001",
+  "validators": {
+    "asan": {
+      "status": "LOGIC_BUG",
+      "score": 0.7,
+      "evidence_summary": "Allocator accepted attacker-controlled size 4294967295, returned a non-NULL buffer, and ASan observed no crash."
+    },
+    "lldb": {
+      "status": "STATE_BUG",
+      "score": 0.9,
+      "evidence_summary": "Printf fallback captured input_size=4294967295 reaching upb_Arena_Malloc() with a non-NULL allocation and successful boundary writes."
+    },
+    "fresh": {
+      "status": "FOUND",
+      "score": 1.0,
+      "evidence_summary": "Independent review also flagged the unbounded input_size allocation in DoTestIo() as a denial-of-service risk."
+    },
+    "impact": {
+      "status": "UNAVAILABLE",
+      "score": 0.0,
+      "evidence_summary": "validation/impact_result.json was not present at analysis time."
+    }
+  },
+  "total_score": 2.6,
+  "confidence_level": "CONFIRMED",
+  "recommendation": "REPORT",
+  "dissenting_validators": [],
+  "notes": "ASan and LLDB agree on the same runtime behavior: a peer-controlled 32-bit length reaches upb_Arena_Malloc() without bounds checks and can request a 4 GiB-scale allocation. Fresh validation also identified the same unbounded allocation issue. Impact validation was unavailable and was not scored."
+}

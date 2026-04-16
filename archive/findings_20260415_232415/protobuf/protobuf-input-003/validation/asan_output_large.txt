@@ -1,0 +1,9 @@
+sizeof(upb_FieldPathEntry)=16
+entries_to_cross_INT_MAX=134217727
+approx_missing_paths_to_cross_INT_MAX=33554431
+requested_repeated_count=2
+has_missing=1
+path_count=4
+path[0] len=20 required_message.req
+path[1] len=23 repeated_message[0].req
+path[2] len=23 repeated_message[1].req

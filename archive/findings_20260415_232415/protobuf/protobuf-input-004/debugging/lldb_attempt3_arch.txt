@@ -1,0 +1,11 @@
+pyenv: cannot rehash: /Users/carlosgomez/.pyenv/shims isn't writable
+/opt/homebrew/Cellar/jenv/0.6.0/libexec/libexec/jenv-refresh-plugins: line 43: /Users/carlosgomez/.jenv/jenv.version: Operation not permitted
+(lldb) target create "/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-004/debugging/poc_debug"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-004/debugging/poc_debug' (arm64).
+(lldb) command source -s 0 '/tmp/protobuf-input-004-lldb.txt'
+Executing commands in '/tmp/protobuf-input-004-lldb.txt'.
+(lldb) settings set target.env-vars ASAN_OPTIONS=detect_leaks=0:abort_on_error=0
+(lldb) breakpoint set --file desc_state.c --line 13
+Breakpoint 1: where = poc_debug`_upb_DescState_Grow + 40 at desc_state.c:14:32, address = 0x000000010000a828
+(lldb) run
+error: process exited with status -1 (no such process)

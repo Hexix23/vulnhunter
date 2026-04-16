@@ -1,0 +1,5 @@
+{
+  "validator": "asan",
+  "status": "LOGIC_BUG",
+  "evidence": "Real libupb allocator accepted requested=4294967295, returned non-NULL ptr=0x300004810, reported accounted=4294967712 bytes, and allowed boundary writes with no ASan crash. The supplied build bundle does not include the conformance_upb executable, so validation was performed against the real compiled allocator path used by DoTestIo()."
+}

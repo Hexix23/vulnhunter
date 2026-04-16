@@ -1,0 +1,19 @@
+breakpoint set --name SimulateReserveNarrowing
+run
+frame variable initial_cap initial_size elems
+next
+frame variable out.entry_size cap size
+next
+frame variable out.raw_oldsize out.oldsize
+expr -- (size_t)out.raw_oldsize
+expr -- (int)out.raw_oldsize
+next
+frame variable out.need
+next
+frame variable cap
+next
+frame variable out.grown_cap out.raw_newsize out.newsize
+expr -- (size_t)out.raw_newsize
+expr -- (int)out.raw_newsize
+continue
+quit

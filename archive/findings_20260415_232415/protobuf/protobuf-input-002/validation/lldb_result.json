@@ -1,0 +1,1 @@
+{"validator":"lldb","status":"STATE_BUG","evidence":"printf fallback proved framing truncation: output_size=4294967300 (0x100000004), network_out=4 (0x4), header_write_len=4, payload_write_len=4294967300, truncation_delta=4294967296, frame_matches_payload=false.","method":"printf"}

@@ -1,0 +1,9 @@
+input_size=536870912
+arena_before=368
+arena_after=536871328
+arena_growth=536870960
+rss_before=16564224
+rss_after=563412992
+rss_growth=546848768
+buffer_first=0
+buffer_last=0

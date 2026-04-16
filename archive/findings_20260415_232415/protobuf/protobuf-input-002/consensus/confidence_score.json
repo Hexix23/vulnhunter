@@ -1,0 +1,32 @@
+{
+  "finding_id": "protobuf-input-002",
+  "validators": {
+    "asan": {
+      "status": "NO_CRASH",
+      "score": -0.3,
+      "evidence_summary": "ASan could not exercise the exact DoTestIo framing path and observed no memory-corruption crash."
+    },
+    "lldb": {
+      "status": "STATE_BUG",
+      "score": 0.9,
+      "evidence_summary": "Runtime values showed output_size=4294967300 and network_out=4, proving 32-bit framing truncation."
+    },
+    "fresh": {
+      "status": "FOUND",
+      "score": 1.0,
+      "evidence_summary": "Independent review identified the same size_t to uint32_t narrowing in the response frame header."
+    },
+    "impact": {
+      "status": "LIMITED_IMPACT",
+      "score": 0.4,
+      "evidence_summary": "Demonstrated stream desynchronization, parent blocking, and large allocation pressure within the conformance harness."
+    }
+  },
+  "total_score": 2.0,
+  "confidence_level": "CONFIRMED",
+  "recommendation": "REPORT",
+  "dissenting_validators": [
+    "asan"
+  ],
+  "notes": "Blind validation disagreed in the interesting direction: ASan saw no crash while LLDB captured the bad state directly. This is consistent with a framing/logic bug that desynchronizes the protocol without requiring memory corruption. The impact remains constrained to the conformance harness and requires a response larger than 4 GiB."
+}

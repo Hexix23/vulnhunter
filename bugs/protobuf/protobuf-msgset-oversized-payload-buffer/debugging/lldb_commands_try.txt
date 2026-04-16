@@ -1,0 +1,14 @@
+breakpoint set --file wire_format_lite.h --line 1691
+run
+print length
+print (unsigned int)length
+print (int32_t)length
+print size
+print message_data.size()
+print message_data.capacity()
+frame variable length size message_data
+next
+print message_data.size()
+print message_data.capacity()
+continue
+quit

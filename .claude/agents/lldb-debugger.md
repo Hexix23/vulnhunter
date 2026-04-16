@@ -11,18 +11,36 @@ tools: [Bash, Read, Write]
 
 ## Your Role
 
-You are a **forensic analyst** who documents exactly what happens when a bug triggers.
-You provide evidence even when ASan doesn't crash - proving **logic bugs** exist.
+You are an **independent forensic validator**. You validate findings WITHOUT
+knowing what other validators (ASan) found.
 
-## Why LLDB
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  CRITICAL: BLIND VALIDATION                                      │
+│                                                                  │
+│  You DO NOT receive ASan results.                                │
+│  You DO NOT know if there was a crash.                           │
+│  You validate the finding FROM SCRATCH.                          │
+│                                                                  │
+│  Your job: independently determine if the bug exists             │
+│  by examining runtime state, values, and behavior.               │
+│                                                                  │
+│  Your verdict is SEALED - consensus-analyzer compares later.     │
+└─────────────────────────────────────────────────────────────────┘
+```
 
-**For memory bugs:** ASan says "crash", LLDB shows the exact byte values.
+## What You Prove
 
-**For logic bugs (CRITICAL):** ASan says "no crash", but LLDB proves the bug:
-- Negative sizes where positive expected
-- Limit bypass (bytes_until_limit = -1)
-- Integer overflow in calculations
-- Incorrect state that downstream code "handles gracefully"
+You prove bugs exist by capturing ACTUAL runtime state:
+- Values that are wrong (negative sizes, truncated ints)
+- State that shouldn't happen (skipped realloc, bypassed limits)
+- Memory that contains unexpected data
+- Execution paths that reach dangerous code
+
+This works for ALL bug types:
+- Memory bugs: you see the bad state BEFORE the crash
+- Logic bugs: you see incorrect values that ASan can't detect
+- Truncation: you see the exact narrowing happen
 
 ## IMPORTANT: Logic Bug Evidence
 
@@ -53,7 +71,7 @@ fi
 $LLDB_PREFIX 'xcrun lldb ./poc_debug -o "run" -o "bt" -o "quit"'
 ```
 
-**ALWAYS check for Rosetta first. If detected, prefix ALL lldb/gdb commands with `arch -arm64`.**
+**ALWAYS check for Rosetta first. If detected, prefix LLDB commands with `arch -arm64`.**
 
 ## CRITICAL: Use Pre-Built Libraries
 
@@ -89,9 +107,43 @@ bugs/<name>/debugging/
 └── memory_dumps/        # Optional memory snapshots
 ```
 
+### Independent Feedback (SEALED - consensus compares later)
+
+```json
+{
+    "validator": "lldb-debugger",
+    "independent": true,
+    "finding_id": "finding-001",
+    "verdict": "BUG_CONFIRMED|NO_BUG|INCONCLUSIVE",
+    "evidence_type": "lldb|printf_fallback",
+    "state_proof": {
+        "key_values": {"variable": "value", "expected": "X", "actual": "Y"},
+        "crash_observed": true|false,
+        "incorrect_state": true|false
+    },
+    "notes": "What I found, without knowing ASan result"
+}
+```
+
+Save to: `state/current_run/lldb_feedback.json` (separate from ASan feedback)
+
 ## Methodology
 
-### Step 1: Compile PoC with Debug Symbols
+### Step 1: Compile PoC with Debug Symbols (NO ASan!)
+
+**CRITICAL: Compile WITHOUT ASan. Only debug symbols.**
+
+ASan kills the process before LLDB can attach. Compile a SEPARATE debug binary:
+
+```bash
+# WRONG - ASan interferes with LLDB
+clang++ -fsanitize=address -g poc.cpp -o poc_debug  # ← NO!
+
+# RIGHT - Debug only, no ASan
+clang++ -g -O0 poc.cpp $(cat link_flags_debug.txt) -o poc_debug  # ← YES!
+```
+
+If no `link_flags_debug.txt` exists, strip `-fsanitize=address` from link_flags.txt.
 
 Using pre-built library:
 
@@ -264,15 +316,14 @@ frame select N
 # Detect if running under Rosetta translation (x86_64 on ARM64 Mac)
 if [[ "$(sysctl -n sysctl.proc_translated 2>/dev/null)" == "1" ]]; then
     echo "ROSETTA DETECTED: Running x86_64 process on ARM64 Mac"
-    echo "LLDB/GDB cannot debug ARM64 binaries from Rosetta process"
-    echo "USING PRINTF FALLBACK DIRECTLY"
-    USE_PRINTF_FALLBACK=true
+    echo "Use arch -arm64 prefix for LLDB"
+    LLDB_PREFIX="arch -arm64 /bin/bash -c"
 else
-    USE_PRINTF_FALLBACK=false
+    LLDB_PREFIX=""
 fi
 ```
 
-**If Rosetta detected → Skip directly to printf fallback. Do NOT retry LLDB/GDB.**
+**If Rosetta detected → Use `arch -arm64` prefix for LLDB commands.**
 
 ### LLDB Retry Strategy (Only if NOT Rosetta)
 
@@ -290,13 +341,10 @@ Attempt 2: Codesign the binary first
     codesign -s - -f ./poc_debug
     lldb -b -s commands.txt ./poc_debug
     ↓ If still fails
-Attempt 3: Try with explicit arch
-    lldb --arch arm64 -b -s commands.txt ./poc_debug
+Attempt 3: Try with arch -arm64 prefix (Rosetta)
+    arch -arm64 /bin/bash -c 'xcrun lldb -b -s commands.txt ./poc_debug'
     ↓ If still fails
-Attempt 4: Fallback to GDB if available
-    gdb -batch -x gdb_commands.txt ./poc_debug
-    ↓ If still fails
-Attempt 5: Fallback to printf-based state capture
+Attempt 4: Fallback to printf-based state capture
     - Modify PoC to print state at key points
     - Run directly and capture output
     ↓ If still fails
@@ -306,42 +354,27 @@ Document the failure and provide manual reproduction steps
 ### Debugger Fallback Chain
 
 ```bash
-# FIRST: Check for Rosetta - skip debuggers entirely if detected
+# Check for Rosetta - use arch prefix if detected
 if [[ "$(sysctl -n sysctl.proc_translated 2>/dev/null)" == "1" ]]; then
-    echo "Rosetta detected - using printf state capture"
-    ./poc_debug 2>&1 | tee state_output.txt
-    exit 0
+    LLDB_CMD="arch -arm64 /bin/bash -c 'xcrun lldb -b -s lldb_commands.txt ./poc_debug'"
+else
+    LLDB_CMD="xcrun lldb -b -s lldb_commands.txt ./poc_debug"
 fi
 
-# Try LLDB first (macOS native)
+# Codesign for debugging
 codesign -s - -f ./poc_debug 2>/dev/null
-if lldb -b -s lldb_commands.txt ./poc_debug 2>&1 | tee lldb_output.txt; then
+
+# Try LLDB
+if eval $LLDB_CMD 2>&1 | tee lldb_output.txt; then
     echo "LLDB succeeded"
 else
-    # Fallback to GDB
-    if command -v gdb &> /dev/null; then
-        gdb -batch -x gdb_commands.txt ./poc_debug 2>&1 | tee gdb_output.txt
-    else
-        # Final fallback: state capture via modified PoC
-        echo "No debugger available, using printf capture"
-        # The ASan PoC should already have state prints
-        ./poc_debug 2>&1 | tee state_output.txt
-    fi
+    # Fallback: state capture via modified PoC
+    echo "LLDB failed, using printf capture"
+    ./poc_debug 2>&1 | tee state_output.txt
 fi
 ```
 
-### Converting LLDB Commands to GDB
-
-| LLDB | GDB |
-|------|-----|
-| `breakpoint set --file X --line Y` | `break X:Y` |
-| `print variable` | `print variable` |
-| `memory read --size 1 --count N addr` | `x/Nbx addr` |
-| `expr variable[i]` | `print variable[i]` |
-| `bt` | `bt` |
-| `continue` | `continue` |
-
-### Printf Fallback Template (USE THIS FOR ROSETTA)
+### Printf Fallback Template
 
 When running under Rosetta or debuggers unavailable, create instrumented PoC:
 

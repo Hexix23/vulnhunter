@@ -1,0 +1,6 @@
+{
+  "validator": "lldb",
+  "status": "STATE_BUG",
+  "evidence": "LLDB launch was blocked by macOS taskport/debugserver permissions, so validation used a printf fallback on the same MessageSet path. With an attacker-controlled positive length of 0x7ffffff0, the parser had only 6 bytes remaining but computed message_data.resize(2147483637) and attempted a 2147483640-byte allocation before any ReadRaw availability check.",
+  "method": "printf"
+}

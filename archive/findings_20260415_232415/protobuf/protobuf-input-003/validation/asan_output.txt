@@ -1,0 +1,33 @@
+=================================================================
+==30102==ERROR: AddressSanitizer: requested allocation size 0xffffffff80000000 (0xffffffff80001000 after adjustments for alignment, red zones etc.) exceeds maximum supported size of 0x10000000000 (thread T0)
+==30102==WARNING: external symbolizer didn't start up correctly!
+==30102==WARNING: Can't write to symbolizer at fd 4
+==30102==WARNING: external symbolizer didn't start up correctly!
+==30102==WARNING: Can't write to symbolizer at fd 5
+==30102==WARNING: external symbolizer didn't start up correctly!
+==30102==WARNING: Can't write to symbolizer at fd 6
+==30102==WARNING: external symbolizer didn't start up correctly!
+==30102==WARNING: Can't write to symbolizer at fd 7
+==30102==WARNING: external symbolizer didn't start up correctly!
+==30102==WARNING: Failed to use and restart external symbolizer!
+    #0 0x0001066d5350 in realloc+0x80 (/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/lib/darwin/libclang_rt.asan_osx_dynamic.dylib:arm64e+0x41350)
+    #1 0x0001052bb6b8 in upb_FieldPathVector_Reserve+0x230 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-003/poc/poc_real:arm64+0x1006836b8)
+    #2 0x0001052ba6a0 in upb_util_FindUnsetRequiredInternal+0x238 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-003/poc/poc_real:arm64+0x1006826a0)
+    #3 0x0001052bb110 in upb_util_FindUnsetRequiredInternal+0xca8 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-003/poc/poc_real:arm64+0x100683110)
+    #4 0x0001052bb110 in upb_util_FindUnsetRequiredInternal+0xca8 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-003/poc/poc_real:arm64+0x100683110)
+    #5 0x0001052bb110 in upb_util_FindUnsetRequiredInternal+0xca8 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-003/poc/poc_real:arm64+0x100683110)
+    #6 0x0001052bb110 in upb_util_FindUnsetRequiredInternal+0xca8 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-003/poc/poc_real:arm64+0x100683110)
+    #7 0x0001052bb110 in upb_util_FindUnsetRequiredInternal+0xca8 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-003/poc/poc_real:arm64+0x100683110)
+    #8 0x0001052bb110 in upb_util_FindUnsetRequiredInternal+0xca8 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-003/poc/poc_real:arm64+0x100683110)
+    #9 0x0001052bb110 in upb_util_FindUnsetRequiredInternal+0xca8 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-003/poc/poc_real:arm64+0x100683110)
+    #10 0x0001052bb110 in upb_util_FindUnsetRequiredInternal+0xca8 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-003/poc/poc_real:arm64+0x100683110)
+    #11 0x0001052bb110 in upb_util_FindUnsetRequiredInternal+0xca8 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-003/poc/poc_real:arm64+0x100683110)
+    #12 0x0001052bb110 in upb_util_FindUnsetRequiredInternal+0xca8 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-003/poc/poc_real:arm64+0x100683110)
+    #13 0x0001052bb110 in upb_util_FindUnsetRequiredInternal+0xca8 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-003/poc/poc_real:arm64+0x100683110)
+    #14 0x0001052ba0f4 in upb_util_HasUnsetRequired+0x11c (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-003/poc/poc_real:arm64+0x1006820f4)
+    #15 0x000104c3b160 in main+0x820 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-003/poc/poc_real:arm64+0x100003160)
+    #16 0x00018d643da0 in start+0x1b4c (/usr/lib/dyld:arm64e+0x1fda0)
+
+==30102==HINT: if you don't care about these errors you may set allocator_may_return_null=1
+SUMMARY: AddressSanitizer: allocation-size-too-big (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-003/poc/poc_real:arm64+0x1006836b8) in upb_FieldPathVector_Reserve+0x230
+==30102==ABORTING

@@ -281,15 +281,12 @@ Codex puede rechazar prompts por guardrails de seguridad. Sin retry, el análisi
 ### La Solución
 
 ```
-MAX_REFUSALS = 100
-
-while refusal_count < MAX_REFUSALS:
+while True:  # Infinite retry - no limit
     result = Agent(codex:codex-rescue, prompt)
     
     if "cannot assist" in result:
-        refusal_count++
         accumulated_context += extract_findings(result)
-        prompt = reformulate(prompt, refusal_count)
+        prompt = reformulate(prompt)  # Cycle framings
         continue  # RETRY, no fallback
     else:
         break  # Success
@@ -326,7 +323,7 @@ Prepend al siguiente prompt para no perder progreso.
 ```
 
 **Características:**
-- `MAX_REFUSALS=100` (configurable en run.sh:16)
+- Infinite retry (no limit, cycles framings until success)
 - `ACCUMULATED_CONTEXT` preserva análisis entre refusals
 - Reconnection automática si Codex se desconecta
 - Checkpoints cada 5 minutos
@@ -600,8 +597,7 @@ bugs/<bug-name>/
 
 | Variable | Default | Descripción |
 |----------|---------|-------------|
-| `MAX_REFUSALS` | 100 | Refusals antes de parar |
-| `MAX_RETRIES` | 100 | Reintentos de fase |
+| `MAX_RETRIES` | infinite | Sin límite, cicla framings hasta éxito |
 | `CHECKPOINT_INTERVAL` | 300 | Segundos entre checkpoints |
 
 ### Depth Levels

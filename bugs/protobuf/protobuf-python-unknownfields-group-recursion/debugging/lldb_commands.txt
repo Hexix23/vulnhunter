@@ -1,0 +1,14 @@
+sysctl -n sysctl.proc_translated 2>/dev/null || true
+find . -type f \( -name '*_message*.so' -o -name '*_message*.dylib' -o -name '*.so' -o -name '*.dylib' \) | rg 'protobuf|pyext|upb|python'
+nm -gU builds/protobuf-asan-arm64/lib/libupbd.a 2>/dev/null | rg 'PyUpb_UnknownFieldSet|PyUpb_Message_|PyInit|_message' || true
+python3 - <<'PY'
+import importlib.util
+mods = ['google.protobuf', 'google.protobuf.unknown_fields', 'google.protobuf.pyext._message']
+for mod in mods:
+    try:
+        spec = importlib.util.find_spec(mod)
+        print(mod, '->', spec.origin if spec else None)
+    except Exception as exc:
+        print(mod, 'ERROR', exc)
+PY
+clang++ $(cat builds/protobuf-asan-arm64/compile_flags_debug.txt) bugs/protobuf/protobuf-python-unknownfields-group-recursion/poc/poc_real.cpp $(cat builds/protobuf-asan-arm64/link_flags_debug.txt) -o /tmp/protobuf-python-unknownfields-link-probe

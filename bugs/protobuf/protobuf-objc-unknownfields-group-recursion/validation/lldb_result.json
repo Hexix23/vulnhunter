@@ -1,0 +1,6 @@
+{
+  "validator": "lldb",
+  "status": "INCONCLUSIVE",
+  "evidence": "No pre-built Objective-C ProtocolBuffers runtime artifact was available. The supplied builds/protobuf-asan-arm64 tree only contains C++/upb libraries (libprotobufd.a, libprotobuf-lited.a, libupbd.a), so no runtime state capture against GPBUnknownFields could be performed without violating the pre-built-library constraint.",
+  "method": "artifact-check+source-review"
+}

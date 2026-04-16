@@ -1,0 +1,52 @@
+== logic run ==
+logical_used_64=2147483679
+truncated_used_32=-2147483617
+old_bufsize=64
+remaining_with_64bit_math=18446744071562068001
+remaining_with_truncated_math=2147483681
+min_required=16
+grow_returned=true
+buf_changed=false
+ptr_changed=false
+bufsize_after=64
+ptr_distance_after=2147483679
+expected_realloc=true
+skipped_realloc=true
+
+== write attempt run ==
+attempting_follow_on_library_write=true
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==99888==ERROR: AddressSanitizer: BUS on unknown address (pc 0x000102a2ff48 bp 0x00016d3d5fb0 sp 0x00016d3d5f90 T0)
+==99888==The signal is caused by a WRITE memory access.
+==99888==Hint: this fault was caused by a dereference of a high value address (see register values below).  Disassemble the provided pc to learn which register was used.
+==99888==WARNING: Can't read from symbolizer at fd 4
+==99888==WARNING: atos failed to symbolize address "0x102a2ff48"
+==99888==WARNING: Can't write to symbolizer at fd 4
+==99888==WARNING: Can't read from symbolizer at fd 5
+==99888==WARNING: atos failed to symbolize address "0x102a311ec"
+==99888==WARNING: Can't write to symbolizer at fd 5
+==99888==WARNING: Can't read from symbolizer at fd 6
+==99888==WARNING: atos failed to symbolize address "0x102a2acd8"
+==99888==WARNING: Can't write to symbolizer at fd 6
+==99888==WARNING: Can't read from symbolizer at fd 7
+==99888==WARNING: atos failed to symbolize address "0x18d643da0"
+    #0 0x000102a2ff48 in upb_MtDataEncoder_PutRaw+0x64 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-004/validation/poc_real:arm64+0x100007f48)
+    #1 0x000102a311ec in upb_MtDataEncoder_StartMessage+0xcc (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-004/validation/poc_real:arm64+0x1000091ec)
+    #2 0x000102a2acd8 in main+0x528 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-004/validation/poc_real:arm64+0x100002cd8)
+    #3 0x00018d643da0 in start+0x1b4c (/usr/lib/dyld:arm64e+0x1fda0)
+
+==99888==Register values:
+ x[0] = 0x0000613080000610   x[1] = 0x000061308000060f   x[2] = 0x0000000000000024   x[3] = 0x00000001f9811048  
+ x[4] = 0x0000000102a34f00   x[5] = 0x000000016d3d6010   x[6] = 0x000000016cbdc000   x[7] = 0x0000000000000001  
+ x[8] = 0x0000000000000000   x[9] = 0x0000000000000007  x[10] = 0x000000016d3d6058  x[11] = 0x0000000000000000  
+x[12] = 0x0000000000000000  x[13] = 0x0000000000000000  x[14] = 0x0000000000000003  x[15] = 0x0000000000000000  
+x[16] = 0x0000000000000000  x[17] = 0x0000000000000000  x[18] = 0x0000000000000000  x[19] = 0x0000000000000000  
+x[20] = 0x000000016d3d6040  x[21] = 0x0000007000020000  x[22] = 0x000000016d3d6040  x[23] = 0x000061308000060f  
+x[24] = 0x000000016d3d6020  x[25] = 0x000000702da9ac04  x[26] = 0x000000008000002f  x[27] = 0x0000000000000001  
+x[28] = 0x0000000102a34dc0     fp = 0x000000016d3d5fb0     lr = 0x0000000102a311f0     sp = 0x000000016d3d5f90  
+AddressSanitizer can not provide additional info.
+==99888==WARNING: Can't write to symbolizer at fd 7
+==99888==WARNING: Failed to use and restart external symbolizer!
+SUMMARY: AddressSanitizer: BUS (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-004/validation/poc_real:arm64+0x100007f48) in upb_MtDataEncoder_PutRaw+0x64
+==99888==ABORTING

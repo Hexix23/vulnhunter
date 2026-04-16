@@ -1,0 +1,15 @@
+breakpoint set --file poc_real.cpp --line 40
+breakpoint set --file poc_real.cpp --line 44
+run
+print output_size
+expr -- (uint32_t)output_size
+next
+print network_out
+memory read --size 4 --count 1 &network_out
+continue
+print network_out
+print g_header_write.len
+print g_payload_write.len
+print output_size
+expr -- output_size - (uint64_t)network_out
+quit

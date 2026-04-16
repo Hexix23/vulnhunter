@@ -1,0 +1,13 @@
+pyenv: cannot rehash: /Users/carlosgomez/.pyenv/shims isn't writable
+/opt/homebrew/Cellar/jenv/0.6.0/libexec/libexec/jenv-refresh-plugins: line 43: /Users/carlosgomez/.jenv/jenv.version: Operation not permitted
+(lldb) target create "/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-001/debugging/poc_debug_printf"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-001/debugging/poc_debug_printf' (arm64).
+(lldb) command source -s 0 '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-001/debugging/lldb_commands.txt'
+Executing commands in '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-001/debugging/lldb_commands.txt'.
+(lldb) settings set target.env-vars ASAN_OPTIONS=detect_leaks=0:abort_on_error=0
+(lldb) breakpoint set --file poc_printf.cpp --line 28
+Breakpoint 1: where = poc_debug_printf`<+380> [inlined] upb_Arena_New at poc_printf.cpp:28:22, address = 0x00000001000028dc
+(lldb) breakpoint set --file poc_printf.cpp --line 42
+Breakpoint 2: where = poc_debug_printf`main + 520 at poc_printf.cpp:42:16, address = 0x0000000100002968
+(lldb) run < bugs/protobuf/protobuf-input-001/debugging/lldb_input.bin
+error: process exited with status -1 (no such process)

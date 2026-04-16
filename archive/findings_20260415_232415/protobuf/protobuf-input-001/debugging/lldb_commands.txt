@@ -1,0 +1,12 @@
+settings set target.env-vars ASAN_OPTIONS=detect_leaks=0:abort_on_error=0
+breakpoint set --file poc_printf.cpp --line 28
+breakpoint set --file poc_printf.cpp --line 42
+run < /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-001/debugging/lldb_input_current.bin
+frame variable input_size
+frame variable arena
+continue
+frame variable input_size
+frame variable ptr
+frame variable fused_count
+frame variable accounted
+quit

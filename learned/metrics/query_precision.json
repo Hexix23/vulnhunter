@@ -1,0 +1,5 @@
+{
+    "_description": "Precision tracking for all queries",
+    "_formula": "precision = confirmed / (confirmed + false_positives)",
+    "queries": {}
+}

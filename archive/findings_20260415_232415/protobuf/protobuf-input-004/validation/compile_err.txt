@@ -1,0 +1,24 @@
+[*] attempt 1: homebrew clang++ with bundled flags
+Undefined symbols for architecture arm64:
+  "___asan_version_mismatch_check_apple_clang_2100", referenced from:
+      _asan.module_ctor in libupb.a[10](alloc.c.o)
+      _asan.module_ctor in libupb.a[11](arena.c.o)
+      _asan.module_ctor in libupb.a[27](base92.c.o)
+      _asan.module_ctor in libupb.a[28](encode.c.o)
+      _asan.module_ctor in libupb.a[38](desc_state.c.o)
+ld: symbol(s) not found for architecture arm64
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+[!] failed: attempt 1: homebrew clang++ with bundled flags
+[*] attempt 2: homebrew clang++ with explicit libc++
+Undefined symbols for architecture arm64:
+  "___asan_version_mismatch_check_apple_clang_2100", referenced from:
+      _asan.module_ctor in libupb.a[10](alloc.c.o)
+      _asan.module_ctor in libupb.a[11](arena.c.o)
+      _asan.module_ctor in libupb.a[27](base92.c.o)
+      _asan.module_ctor in libupb.a[28](encode.c.o)
+      _asan.module_ctor in libupb.a[38](desc_state.c.o)
+ld: symbol(s) not found for architecture arm64
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+[!] failed: attempt 2: homebrew clang++ with explicit libc++
+[*] attempt 3: xcrun clang++ -arch arm64 with bundled flags
+[+] built /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-004/validation/poc_real

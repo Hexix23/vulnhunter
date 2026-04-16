@@ -1,0 +1,20 @@
+{
+  "validator": "lldb-debugger",
+  "independent": true,
+  "finding_id": "protobuf-msgset-oversized-payload-buffer",
+  "verdict": "BUG_CONFIRMED",
+  "evidence_type": "printf_fallback",
+  "state_proof": {
+    "key_values": {
+      "claimed_length": "2147483632",
+      "bytes_until_limit_before_parse": "6",
+      "computed_resize_argument": "2147483637",
+      "largest_attempted_allocation": "2147483640",
+      "expected": "payload length should be bounded by available bytes before resize",
+      "actual": "multi-gigabyte allocation attempted before ReadRaw() validates availability"
+    },
+    "crash_observed": false,
+    "incorrect_state": true
+  },
+  "notes": "LLDB breakpoint resolution succeeded but launch-time debugger access was blocked by macOS taskport permissions. A printf fallback against the same ParseMessageSetItemImpl path confirmed the oversized allocation attempt. The original example value near 0xffffffff is filtered by the signedness guard, but a positive attacker-controlled value 0x7ffffff0 reaches the vulnerable branch."
+}

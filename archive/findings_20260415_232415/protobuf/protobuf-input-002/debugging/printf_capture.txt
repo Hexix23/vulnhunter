@@ -1,0 +1,4 @@
+sysctl -n sysctl.proc_translated 2>/dev/null
+clang++ $(cat builds/protobuf-asan-arm64/compile_flags.txt) -g bugs/protobuf/protobuf-input-002/poc/poc_real.cpp $(cat builds/protobuf-asan-arm64/link_flags.txt) -o bugs/protobuf/protobuf-input-002/debugging/poc_debug
+codesign -s - -f bugs/protobuf/protobuf-input-002/debugging/poc_debug 2>/dev/null || true
+bugs/protobuf/protobuf-input-002/debugging/poc_debug > /tmp/protobuf-input-002.stdout 2> bugs/protobuf/protobuf-input-002/debugging/poc_stderr.txt

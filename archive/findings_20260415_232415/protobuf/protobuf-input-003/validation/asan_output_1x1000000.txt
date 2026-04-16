@@ -1,0 +1,9 @@
+depth=1 breadth=1000000
+sizeof(upb_FieldPathEntry)=16
+entries_to_cross_INT_MAX=134217727
+node_count=1000001
+has_missing=1
+path_count=1000001
+path[0] len=15 children[0].req
+path[1] len=15 children[1].req
+path[2] len=15 children[2].req

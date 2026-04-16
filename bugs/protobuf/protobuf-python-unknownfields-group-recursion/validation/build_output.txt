@@ -1,0 +1,30 @@
+=== Environment Detection ===
+Darwin ioalocalold.local 25.4.0 Darwin Kernel Version 25.4.0: Thu Mar 19 19:30:44 PDT 2026; root:xnu-12377.101.15~1/RELEASE_ARM64_T6000 arm64
+
+=== Attempt 1: clang++ as-is ===
+Undefined symbols for architecture arm64:
+  "_PyUpb_UnknownFieldSet_NewBare", referenced from:
+      ltmp1 in poc_real-78b172.o
+ld: symbol(s) not found for architecture arm64
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+
+=== Attempt 2: clang++ with Homebrew paths ===
+Undefined symbols for architecture arm64:
+  "_PyUpb_UnknownFieldSet_NewBare", referenced from:
+      ltmp1 in poc_real-ae1228.o
+ld: symbol(s) not found for architecture arm64
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+
+=== Attempt 3: clang++ with explicit libc++ ===
+Undefined symbols for architecture arm64:
+  "_PyUpb_UnknownFieldSet_NewBare", referenced from:
+      ltmp1 in poc_real-e1a37a.o
+ld: symbol(s) not found for architecture arm64
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+
+=== Attempt 4: xcrun clang++ ===
+Undefined symbols for architecture arm64:
+  "_PyUpb_UnknownFieldSet_NewBare", referenced from:
+      _main in poc_real-0a826c.o
+ld: symbol(s) not found for architecture arm64
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)

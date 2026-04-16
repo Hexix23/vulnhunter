@@ -1,0 +1,8 @@
+Using inline ParseMessageSetItemImpl from staged protobuf headers
+Wire size=7 bytes
+Claimed message bytes=4294967280
+Wire hex=0b 1a f0 ff ff ff 0f 
+Initial tag=11
+[marker] before ParseMessageSetItemImpl
+ParseMessageSetItemImpl returned 0
+Unexpectedly completed without allocation failure

@@ -1,0 +1,6 @@
+{
+  "validator": "lldb",
+  "status": "STATE_BUG",
+  "evidence": "Rosetta detection did not return 1, so LLDB was attempted first against bugs/protobuf/protobuf-input-001/debugging/poc_debug. Plain LLDB, the codesigned retry, and the arch -arm64 retry all resolved the arm64 target plus both breakpoints, then failed at run with 'error: process exited with status -1 (no such process)'. The required printf fallback showed bytes_read=4, input_size=4294967295 (0xffffffff), the direct call upb_Arena_Malloc(arena, 4294967295), a non-NULL ptr=0x300004810, accounted=4294967712 (0x1000001a0), and successful writes to both the first and last requested byte.",
+  "method": "printf"
+}

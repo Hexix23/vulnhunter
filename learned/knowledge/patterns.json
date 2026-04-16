@@ -1,0 +1,6 @@
+{
+    "_description": "Learned vulnerability signatures and false positive patterns",
+    "vulnerability_signatures": [],
+    "false_positive_patterns": [],
+    "code_patterns": []
+}

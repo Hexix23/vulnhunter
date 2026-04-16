@@ -1,0 +1,33 @@
+attempting_follow_on_library_write=true
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==32741==ERROR: AddressSanitizer: BUS on unknown address (pc 0x000100087f48 bp 0x00016fd7dd90 sp 0x00016fd7dd70 T0)
+==32741==The signal is caused by a WRITE memory access.
+==32741==Hint: this fault was caused by a dereference of a high value address (see register values below).  Disassemble the provided pc to learn which register was used.
+==32741==WARNING: external symbolizer didn't start up correctly!
+==32741==WARNING: Can't write to symbolizer at fd 4
+==32741==WARNING: external symbolizer didn't start up correctly!
+==32741==WARNING: Can't write to symbolizer at fd 5
+==32741==WARNING: external symbolizer didn't start up correctly!
+==32741==WARNING: Can't write to symbolizer at fd 6
+==32741==WARNING: external symbolizer didn't start up correctly!
+==32741==WARNING: Can't write to symbolizer at fd 7
+==32741==WARNING: external symbolizer didn't start up correctly!
+==32741==WARNING: Failed to use and restart external symbolizer!
+    #0 0x000100087f48 in upb_MtDataEncoder_PutRaw+0x64 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-004/debugging/poc_debug:arm64+0x100007f48)
+    #1 0x0001000891ec in upb_MtDataEncoder_StartMessage+0xcc (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-004/debugging/poc_debug:arm64+0x1000091ec)
+    #2 0x000100082cd8 in main+0x528 (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-004/debugging/poc_debug:arm64+0x100002cd8)
+    #3 0x00018d643da0 in start+0x1b4c (/usr/lib/dyld:arm64e+0x1fda0)
+
+==32741==Register values:
+ x[0] = 0x0000613080000610   x[1] = 0x000061308000060f   x[2] = 0x0000000000000024   x[3] = 0x00000001f9811048  
+ x[4] = 0x000000010008cf00   x[5] = 0x000000016fd7ddf0   x[6] = 0x000000016f584000   x[7] = 0x0000000000000001  
+ x[8] = 0x0000000000000000   x[9] = 0x0000000000000007  x[10] = 0x000000016fd7de38  x[11] = 0x0000000000000000  
+x[12] = 0x0000000000000000  x[13] = 0x0000000000000000  x[14] = 0x0000000000000003  x[15] = 0x0000000000000000  
+x[16] = 0x0000000000000000  x[17] = 0x0000000000000000  x[18] = 0x0000000000000000  x[19] = 0x0000000000000000  
+x[20] = 0x000000016fd7de20  x[21] = 0x0000007000020000  x[22] = 0x000000016fd7de20  x[23] = 0x000061308000060f  
+x[24] = 0x000000016fd7de00  x[25] = 0x000000702dfcfbc0  x[26] = 0x000000008000002f  x[27] = 0x0000000000000001  
+x[28] = 0x000000010008cdc0     fp = 0x000000016fd7dd90     lr = 0x00000001000891f0     sp = 0x000000016fd7dd70  
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: BUS (/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-004/debugging/poc_debug:arm64+0x100007f48) in upb_MtDataEncoder_PutRaw+0x64
+==32741==ABORTING

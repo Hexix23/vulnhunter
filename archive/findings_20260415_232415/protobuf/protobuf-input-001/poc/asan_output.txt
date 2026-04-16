@@ -1,0 +1,2 @@
+linked_libupb requested=4294967295 ptr=0x300004810
+allocator returned non-NULL

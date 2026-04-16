@@ -1,0 +1,32 @@
+{
+  "finding_id": "protobuf-input-004",
+  "validators": {
+    "asan": {
+      "status": "CONFIRMED_MEMORY",
+      "score": 1.0,
+      "evidence_summary": "Signed truncation in _upb_DescState_Grow() skipped a required realloc and a follow-on encoder write produced an ASan fatal write."
+    },
+    "lldb": {
+      "status": "STATE_BUG",
+      "score": 0.9,
+      "evidence_summary": "Runtime state showed logical_used_64 > INT_MAX, truncated_used_32 < 0, and the realloc check was bypassed with bufsize_after still 64."
+    },
+    "fresh": {
+      "status": "FOUND",
+      "score": 1.0,
+      "evidence_summary": "Independent review identified the same pointer-delta narrowing in desc_state.c and the resulting miscomputed grow and pointer restoration logic."
+    },
+    "impact": {
+      "status": "NO_PRACTICAL_IMPACT",
+      "score": -0.2,
+      "evidence_summary": "Public entry points impose earlier size limits or require operationally unrealistic descriptor sizes before the INT_MAX scratch-buffer state is reachable."
+    }
+  },
+  "total_score": 2.7,
+  "confidence_level": "CONFIRMED",
+  "recommendation": "REPORT",
+  "dissenting_validators": [
+    "impact"
+  ],
+  "notes": "ASan, LLDB, and Fresh independently confirm the truncation bug and its crash path in synthetic state. The only dissent is practical reachability through shipped public APIs, which lowers confidence from CONFIRMED_HIGH to CONFIRMED rather than negating the underlying defect."
+}

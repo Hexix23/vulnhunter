@@ -1,0 +1,13 @@
+logical_used_64=2147483679
+truncated_used_32=-2147483617
+old_bufsize=64
+remaining_with_64bit_math=18446744071562068001
+remaining_with_truncated_math=2147483681
+min_required=16
+grow_returned=true
+buf_changed=false
+ptr_changed=false
+bufsize_after=64
+ptr_distance_after=2147483679
+expected_realloc=true
+skipped_realloc=true

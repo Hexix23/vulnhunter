@@ -1,0 +1,8 @@
+(lldb) target create "../poc/poc_real"
+Current executable set to '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-msgset-oversized-payload-buffer/poc/poc_real' (arm64).
+(lldb) command source -s 0 'lldb_commands_try.txt'
+Executing commands in '/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-msgset-oversized-payload-buffer/debugging/lldb_commands_try.txt'.
+(lldb) breakpoint set --file wire_format_lite.h --line 1691
+Breakpoint 1: where = poc_real`<+572> [inlined] std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>::resize[abi:nqe210106](unsigned long) at wire_format_lite.h:1691:24, address = 0x0000000100003cf0
+(lldb) run
+error: the platform is not currently connected

@@ -1,0 +1,2 @@
+[*] attempt 1: xcrun clang++ with bundled flags
+[+] built /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/protobuf/protobuf-input-004/validation/impact_demo

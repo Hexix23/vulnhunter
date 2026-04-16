@@ -30,7 +30,31 @@ You run in BACKGROUND with no timeout limits. Other agents depend on your output
 
 ## DYNAMIC BUILDS
 
-**Each repository is different.** Don't assume anything. Detect dynamically:
+**Each repository is different.** Don't assume anything. Detect dynamically.
+
+## CRITICAL: Build ALL Language Runtimes
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  Many projects have MULTIPLE runtimes in different languages.   │
+│  Build ALL of them, not just the main one.                      │
+│                                                                  │
+│  Example: protobuf has:                                          │
+│  - C++ runtime (CMake)     → libprotobuf.a                     │
+│  - ObjC runtime (Bazel)    → libProtocolBuffers.a              │
+│  - Python C ext (setup.py) → _message.so                       │
+│  - UPB micro (CMake)       → libupb.a                          │
+│                                                                  │
+│  Scan the repo for ALL build targets:                           │
+│  - ls */BUILD.bazel */CMakeLists.txt */Makefile */setup.py      │
+│  - Each becomes a separate build in builds/<target>-<lang>-asan │
+│                                                                  │
+│  Output structure:                                               │
+│  builds/protobuf-asan-arm64/          (C++ main)                │
+│  builds/protobuf-objc-asan-arm64/     (ObjC runtime)            │
+│  builds/protobuf-python-asan-arm64/   (Python C extension)      │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -82,12 +106,58 @@ builds/<target>-asan-<arch>/
 │   ├── libprotobuf.a
 │   ├── libupb.a
 │   └── ... (all static libraries)
+├── bin/                        # Executables (when requested)
+│   └── conformance_upb         # Specific binary targets
 ├── include/
 │   └── ... (all headers, preserving structure)
 ├── compile_flags.txt      # One-liner for PoC compilation
 ├── link_flags.txt         # One-liner for linking
 ├── build_info.json        # Metadata
 └── README.md              # How to use this build
+```
+
+## Debug-Only Flags (for LLDB - no ASan)
+
+Also generate flags WITHOUT ASan for LLDB debugger:
+
+```bash
+# compile_flags_debug.txt (no sanitizer, just debug symbols)
+echo "-g -O0 -I$OUTPUT/include -I/opt/homebrew/opt/abseil/include" > "$OUTPUT/compile_flags_debug.txt"
+
+# link_flags_debug.txt (same libs but no -fsanitize)
+sed 's/-fsanitize=address[,a-z]*//' "$OUTPUT/link_flags.txt" > "$OUTPUT/link_flags_debug.txt"
+```
+
+This allows LLDB to run without ASan killing the process.
+
+## Building Specific Executables
+
+When a validator returns `NEEDS_DIFFERENT_BUILD`, build-agent receives a `build_request`:
+
+```json
+{
+    "target_binary": "conformance_upb",
+    "source_file": "upb/conformance/conformance_upb.c",
+    "build_hint": "cmake --build . --target conformance_upb"
+}
+```
+
+Build the specific executable and place it in `builds/<target>-asan-<arch>/bin/`:
+
+```bash
+# Use existing build directory if possible
+cd build-asan
+
+# Try the hint first
+eval "$BUILD_HINT" 2>&1 || {
+    # Fallback: compile source directly against our ASan libs
+    clang++ $(cat ../compile_flags.txt) "$SOURCE_FILE" \
+        $(cat ../link_flags.txt) -o "../bin/$TARGET_BINARY"
+}
+
+# Copy to output
+cp "$TARGET_BINARY" "$OUTPUT/bin/"
+codesign -s - -f "$OUTPUT/bin/$TARGET_BINARY" 2>/dev/null || true
 ```
 
 ## compile_flags.txt Format

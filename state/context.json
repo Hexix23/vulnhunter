@@ -1,8 +1,8 @@
 {
   "meta": {
-    "session_id": "vulnhunt-20260414-223032",
-    "created_at": "2026-04-14T20:30:32Z",
-    "updated_at": "2026-04-15T13:50:00Z",
+    "session_id": "vulnhunt-20260415-232427",
+    "created_at": "2026-04-15T21:24:27Z",
+    "updated_at": "2026-04-15T22:55:28Z",
     "vulnhunter_version": "3.0"
   },
   "target": {
@@ -15,286 +15,70 @@
   "progress": {
     "phase": "validation",
     "percent_complete": 0,
-    "last_action": "Pre-release audit verified findings against bugs/protobuf directories and cleaned repo hygiene",
-    "next_action": "Resume validation with the current findings set"
+    "last_action": "State initialized",
+    "next_action": "Validate findings with ASan"
   },
   "config": {
     "orchestrator": "codex",
     "model": "claude-haiku-4-5-20251001",
-    "depth": "deep",
-    "focus": "input",
-    "max_retries": 100
+    "depth": "exhaustive",
+    "focus": "all",
+    "max_retries": 999999
   },
   "bugs_dir": "bugs/protobuf/",
   "findings": [
     {
-      "id": "arrayinputstream-truncation",
-      "title": "arrayinputstream-truncation",
-      "severity": "MEDIUM",
+      "id": "protobuf-msgset-oversized-payload-buffer",
+      "title": "MessageSet parsing allocates attacker-chosen payload buffer before validating availability",
+      "severity_estimate": "HIGH",
+      "type": "dos",
       "location": {
-        "file": "bugs/protobuf/arrayinputstream-truncation/poc/",
-        "line": 0,
-        "function": "arrayinputstream-truncation"
+        "file": "targets/protobuf/src/google/protobuf/wire_format_lite.h",
+        "line": 1691,
+        "function": "google::protobuf::internal::ParseMessageSetItemImpl"
       },
-      "status": "pending_validation",
-      "revalidate": true
+      "description": "When a MessageSet item carries field 3 (message bytes) before field 2 (type_id), ParseMessageSetItemImpl reads the payload length with ReadVarint32() and immediately resizes a std::string to `length + VarintSize32(length)`. This path does not use ReadVarintSizeAsInt(), does not compare the length against BytesUntilLimit()/BytesUntilTotalBytesLimit(), and performs the allocation before ReadRaw() verifies the bytes actually exist. A malicious wire payload can therefore request a multi-gigabyte temporary buffer even when the remaining input is much smaller, causing memory exhaustion during parse.",
+      "entry_point": "Any code path that parses MessageSet wire format through WireFormat::ParseAndMergeMessageSetItem() or ExtensionSet MessageSet parsing on untrusted input.",
+      "trigger": "A MessageSet item where the embedded message field appears before type_id and advertises a very large length prefix, e.g. near 0xffffffff.",
+      "confidence": "high",
+      "needs_validation": true
     },
     {
-      "id": "compute-unknown-fields-overflow",
-      "title": "compute-unknown-fields-overflow",
-      "severity": "MEDIUM",
+      "id": "protobuf-python-unknownfields-group-recursion",
+      "title": "Python UnknownFieldSet construction recursively descends groups without a depth limit",
+      "severity_estimate": "MEDIUM",
+      "type": "recursion",
       "location": {
-        "file": "bugs/protobuf/compute-unknown-fields-overflow/poc/",
-        "line": 0,
-        "function": "compute-unknown-fields-overflow"
+        "file": "targets/protobuf/python/unknown_fields.c",
+        "line": 187,
+        "function": "PyUpb_UnknownFieldSet_BuildValue"
       },
-      "status": "pending_validation",
-      "revalidate": true
+      "description": "The upb-backed Python UnknownFieldSet builder creates a new PyUpb_UnknownFieldSet for every start-group field and immediately recurses into PyUpb_UnknownFieldSet_Build() with no recursion counter or limit. Normal protobuf decoding in upb enforces max depth, but this post-parse unknown-field introspection path does not. An attacker can supply a message containing deeply nested unknown groups and then trigger stack exhaustion or interpreter crash when application code calls `google.protobuf.unknown_fields.UnknownFieldSet(message)` or any helper that prints unknown fields.",
+      "entry_point": "Public Python API `google.protobuf.unknown_fields.UnknownFieldSet(message)`, including text-format printing paths that request unknown fields.",
+      "trigger": "A parsed message whose unknown field blob contains very deeply nested group fields.",
+      "confidence": "high",
+      "needs_validation": true
     },
     {
-      "id": "cord_input_negative_read",
-      "title": "cord_input_negative_read",
-      "severity": "MEDIUM",
+      "id": "protobuf-objc-unknownfields-group-recursion",
+      "title": "Objective-C GPBUnknownFields parsing walks nested groups recursively without using the coded-stream depth guard",
+      "severity_estimate": "MEDIUM",
+      "type": "recursion",
       "location": {
-        "file": "bugs/protobuf/cord_input_negative_read/poc/",
-        "line": 0,
-        "function": "cord_input_negative_read"
+        "file": "targets/protobuf/objectivec/GPBUnknownFields.m",
+        "line": 161,
+        "function": "MergeFromInputStream"
       },
-      "status": "pending_validation",
-      "revalidate": true
-    },
-    {
-      "id": "cord_input_negative_skip",
-      "title": "cord_input_negative_skip",
-      "severity": "MEDIUM",
-      "location": {
-        "file": "bugs/protobuf/cord_input_negative_skip/poc/",
-        "line": 0,
-        "function": "cord_input_negative_skip"
-      },
-      "status": "pending_validation",
-      "revalidate": true
-    },
-    {
-      "id": "cord_output_backup_overreach",
-      "title": "cord_output_backup_overreach",
-      "severity": "MEDIUM",
-      "location": {
-        "file": "bugs/protobuf/cord_output_backup_overreach/poc/",
-        "line": 0,
-        "function": "cord_output_backup_overreach"
-      },
-      "status": "pending_validation",
-      "revalidate": true
-    },
-    {
-      "id": "delimited-size-int-overflow",
-      "title": "delimited-size-int-overflow",
-      "severity": "MEDIUM",
-      "location": {
-        "file": "bugs/protobuf/delimited-size-int-overflow/poc/",
-        "line": 0,
-        "function": "delimited-size-int-overflow"
-      },
-      "status": "pending_validation",
-      "revalidate": true
-    },
-    {
-      "id": "gzip_backup_underflow",
-      "title": "gzip_backup_underflow",
-      "severity": "MEDIUM",
-      "location": {
-        "file": "bugs/protobuf/gzip_backup_underflow/poc/",
-        "line": 0,
-        "function": "gzip_backup_underflow"
-      },
-      "status": "pending_validation",
-      "revalidate": true
-    },
-    {
-      "id": "parse_string_oom",
-      "title": "parse_string_oom",
-      "severity": "MEDIUM",
-      "location": {
-        "file": "bugs/protobuf/parse_string_oom/poc/",
-        "line": 0,
-        "function": "parse_string_oom"
-      },
-      "status": "pending_validation",
-      "revalidate": true
-    },
-    {
-      "id": "parseany-no-size-check",
-      "title": "parseany-no-size-check",
-      "severity": "MEDIUM",
-      "location": {
-        "file": "bugs/protobuf/parseany-no-size-check/poc/",
-        "line": 0,
-        "function": "parseany-no-size-check"
-      },
-      "status": "pending_validation",
-      "revalidate": true
-    },
-    {
-      "id": "protobuf-001",
-      "title": "protobuf-001",
-      "severity": "MEDIUM",
-      "location": {
-        "file": "bugs/protobuf/protobuf-001/poc/",
-        "line": 0,
-        "function": "protobuf-001"
-      },
-      "status": "pending_validation",
-      "revalidate": true
-    },
-    {
-      "id": "protobuf-input-001",
-      "title": "protobuf-input-001",
-      "severity": "MEDIUM",
-      "location": {
-        "file": "bugs/protobuf/protobuf-input-001/poc/",
-        "line": 0,
-        "function": "protobuf-input-001"
-      },
-      "status": "pending_validation",
-      "revalidate": true
-    },
-    {
-      "id": "protobuf-input-002",
-      "title": "protobuf-input-002",
-      "severity": "MEDIUM",
-      "location": {
-        "file": "bugs/protobuf/protobuf-input-002/poc/",
-        "line": 0,
-        "function": "protobuf-input-002"
-      },
-      "status": "pending_validation",
-      "revalidate": true
-    },
-    {
-      "id": "protobuf-input-003",
-      "title": "protobuf-input-003",
-      "severity": "MEDIUM",
-      "location": {
-        "file": "bugs/protobuf/protobuf-input-003/poc/",
-        "line": 0,
-        "function": "protobuf-input-003"
-      },
-      "status": "pending_validation",
-      "revalidate": true
-    },
-    {
-      "id": "readbytestostring-no-size-cap",
-      "title": "readbytestostring-no-size-cap",
-      "severity": "MEDIUM",
-      "location": {
-        "file": "bugs/protobuf/readbytestostring-no-size-cap/poc/",
-        "line": 0,
-        "function": "readbytestostring-no-size-cap"
-      },
-      "status": "pending_validation",
-      "revalidate": true
-    },
-    {
-      "id": "skipfield-no-length-validation",
-      "title": "skipfield-no-length-validation",
-      "severity": "MEDIUM",
-      "location": {
-        "file": "bugs/protobuf/skipfield-no-length-validation/poc/",
-        "line": 0,
-        "function": "skipfield-no-length-validation"
-      },
-      "status": "pending_validation",
-      "revalidate": true
-    },
-    {
-      "id": "string_output_backup_overreach",
-      "title": "string_output_backup_overreach",
-      "severity": "MEDIUM",
-      "location": {
-        "file": "bugs/protobuf/string_output_backup_overreach/poc/",
-        "line": 0,
-        "function": "string_output_backup_overreach"
-      },
-      "status": "pending_validation",
-      "revalidate": true
-    },
-    {
-      "id": "textformat-oversize",
-      "title": "textformat-oversize",
-      "severity": "MEDIUM",
-      "location": {
-        "file": "bugs/protobuf/textformat-oversize/poc/",
-        "line": 0,
-        "function": "textformat-oversize"
-      },
-      "status": "pending_validation",
-      "revalidate": true
-    },
-    {
-      "id": "textformat-stackoverflow",
-      "title": "textformat-stackoverflow",
-      "severity": "MEDIUM",
-      "location": {
-        "file": "bugs/protobuf/textformat-stackoverflow/poc/",
-        "line": 0,
-        "function": "textformat-stackoverflow"
-      },
-      "status": "pending_validation",
-      "revalidate": true
-    },
-    {
-      "id": "tokenizer_error_swallow",
-      "title": "tokenizer_error_swallow",
-      "severity": "MEDIUM",
-      "location": {
-        "file": "bugs/protobuf/tokenizer_error_swallow/poc/",
-        "line": 0,
-        "function": "tokenizer_error_swallow"
-      },
-      "status": "pending_validation",
-      "revalidate": true
-    },
-    {
-      "id": "tokenizer_fini_null",
-      "title": "tokenizer_fini_null",
-      "severity": "MEDIUM",
-      "location": {
-        "file": "bugs/protobuf/tokenizer_fini_null/poc/",
-        "line": 0,
-        "function": "tokenizer_fini_null"
-      },
-      "status": "pending_validation",
-      "revalidate": true
-    },
-    {
-      "id": "upb-decoder-reserve-overflow",
-      "title": "upb-decoder-reserve-overflow",
-      "severity": "MEDIUM",
-      "location": {
-        "file": "bugs/protobuf/upb-decoder-reserve-overflow/poc/",
-        "line": 0,
-        "function": "upb-decoder-reserve-overflow"
-      },
-      "status": "pending_validation",
-      "revalidate": true
-    },
-    {
-      "id": "upb-readstring2-error-masking",
-      "title": "upb-readstring2-error-masking",
-      "severity": "MEDIUM",
-      "location": {
-        "file": "bugs/protobuf/upb-readstring2-error-masking/poc/",
-        "line": 0,
-        "function": "upb-readstring2-error-masking"
-      },
-      "status": "pending_validation",
-      "revalidate": true
+      "description": "GPBUnknownFields parses a message's serialized unknown-field data by recursively calling MergeFromInputStream() for every start-group. Unlike normal message/group parsing in GPBCodedInputStream, this helper never calls CheckRecursionLimit() or updates the coded-input recursion accounting before descending. The result is an unbounded recursion path over attacker-controlled unknown groups that can exhaust the Objective-C process stack when code materializes unknown fields from an untrusted message.",
+      "entry_point": "Public Objective-C API `-[GPBUnknownFields initFromMessage:]` on a message that already contains attacker-controlled unknown fields.",
+      "trigger": "Unknown field data containing many nested group start/end tags, followed by application code that constructs GPBUnknownFields from the message.",
+      "confidence": "high",
+      "needs_validation": true
     }
   ],
   "validated": [],
   "statistics": {
-    "findings_total": 22,
+    "findings_total": 3,
     "findings_validated": 0,
     "findings_reported": 0
   }
