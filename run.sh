@@ -13,7 +13,14 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 STATE_FILE="$SCRIPT_DIR/state/context.json"
 AGENTS_DIR="$SCRIPT_DIR/.claude/agents"
 LOGS_DIR=""  # Will be set per-session based on session_id
-BUILDS_DIR="$SCRIPT_DIR/builds"
+# Use external disk if available (698GB), fallback to local
+if [[ -d "/Volumes/Testing" ]]; then
+    BUILDS_DIR="/Volumes/Testing/vulnhunter-builds"
+    CODEQL_STATE_DIR="/Volumes/Testing/vulnhunter-codeql"
+else
+    BUILDS_DIR="$SCRIPT_DIR/builds"
+    CODEQL_STATE_DIR="$SCRIPT_DIR/state"
+fi
 SESSION_LOGS_DIR=""  # Per-session subdirectory
 
 # Defaults
@@ -22,8 +29,33 @@ DEPTH="deep"
 FOCUS="all"
 MAX_RETRIES=999999  # Effectively infinite - keep going until success
 PARALLEL_VALIDATORS=3
-ORCHESTRATOR="codex"  # claude or codex
-MODEL="claude-haiku-4-5-20251001"  # sonnet, opus, haiku (only for --orchestrator claude)
+ORCHESTRATOR="local"  # local, codex, or claude
+MODEL="claude-haiku-4-5-20251001"  # For --orchestrator claude
+# Local models via oMLX (MLX native, Apple Silicon optimized)
+# oMLX provides OpenAI-compatible API at localhost
+# Features: TurboQuant KV-cache, SSD caching, continuous batching
+LOCAL_URL="http://localhost:10240"          # oMLX default port
+LOCAL_MODEL_THINKING="qwen3-30b-a3b"       # Discovery + chain (reasoning, thinking mode)
+LOCAL_MODEL_CODE="qwen3-coder-next"        # Validators + build (code, compile, execute)
+
+# Reporter uses Claude Sonnet (API) - quality matters for reports
+REPORTER_MODEL="claude-sonnet-4-6"
+REPORTER_USE_CLAUDE=true  # true = Claude API for reports, false = local
+
+# Model selection per agent template
+get_local_model() {
+    local template="$1"
+    case "$template" in
+        discovery.md|chain-researcher.md)
+            echo "$LOCAL_MODEL_THINKING" ;;
+        reporter.md)
+            echo "$LOCAL_MODEL_THINKING" ;;  # Fallback if Claude not available
+        asan-validator.md|lldb-debugger.md|build-agent.md|codeql-discovery.md)
+            echo "$LOCAL_MODEL_CODE" ;;
+        *)
+            echo "$LOCAL_MODEL_CODE" ;;
+    esac
+}
 BACKGROUND=false
 DEBUG=false
 PID_FILE=""
@@ -48,7 +80,7 @@ USAGE:
 
 OPTIONS:
   --target <path>        Target repository to analyze (required)
-  --orchestrator <type>  Orchestration engine: claude|codex (default: claude)
+  --orchestrator <type>  Orchestration engine: local|codex|claude (default: local)
   --model <model>        Claude model: haiku|sonnet|opus (default: haiku, only for --orchestrator claude)
   --depth <level>        Analysis depth: quick|deep|exhaustive (default: deep)
   --focus <area>         Focus area: input|memory|all (default: all)
@@ -504,7 +536,85 @@ run_agent_codex() {
     fi
 }
 
-# Universal agent runner - dispatches to claude or codex
+# Run agent via local model (Ollama)
+run_agent_local() {
+    local template="$1"
+    local context="$2"
+    local log_file="$3"
+
+    local template_path="$AGENTS_DIR/$template"
+    if [[ ! -f "$template_path" ]]; then
+        log "ERROR" "Agent template not found: $template"
+        return 1
+    fi
+
+    local prompt
+    prompt="$(cat "$template_path")"$'\n\n'"$context"
+
+    local LOCAL_MODEL
+    LOCAL_MODEL=$(get_local_model "$template")
+    log "INFO" "Running via local model ($LOCAL_MODEL): $template"
+
+    # Check oMLX/Ollama is running (OpenAI-compatible API)
+    if ! curl -s "$LOCAL_URL/v1/models" &>/dev/null; then
+        # Fallback: try Ollama endpoint
+        if curl -s "http://localhost:11434/api/tags" &>/dev/null; then
+            LOCAL_URL="http://localhost:11434"
+            log "INFO" "Using Ollama fallback at $LOCAL_URL"
+        else
+            log "ERROR" "No local model server running. Start oMLX or Ollama first."
+            return 1
+        fi
+    fi
+
+    # Call OpenAI-compatible API (works with oMLX, Ollama, LM Studio)
+    local tmp_output=$(mktemp /tmp/local_output_$$.XXXXXX)
+    local response
+
+    response=$(curl -s "$LOCAL_URL/v1/chat/completions" \
+        -H "Content-Type: application/json" \
+        -d "$(jq -n \
+            --arg model "$LOCAL_MODEL" \
+            --arg content "$prompt" \
+            '{model: $model, messages: [{role: "user", content: $content}], temperature: 0.1, max_tokens: 16384}'
+        )" 2>&1)
+
+    local exit_code=$?
+
+    if [[ $exit_code -eq 0 ]]; then
+        # Extract response text (OpenAI format)
+        local output
+        output=$(echo "$response" | jq -r '.choices[0].message.content // empty' 2>/dev/null)
+
+        if [[ -z "$output" ]]; then
+            log "ERROR" "Empty response from local model"
+            echo "$response" >> "$log_file"
+            rm -f "$tmp_output"
+            return 1
+        fi
+
+        echo "$output" >> "$log_file"
+        echo "$output" > "$tmp_output"
+
+        # Check for refusal (local models rarely refuse but check anyway)
+        if echo "$output" | grep -qiE "(cannot assist|I'm sorry|I can't help)"; then
+            log "WARN" "Local model refused"
+            cat "$tmp_output"
+            rm -f "$tmp_output"
+            return 2
+        fi
+
+        cat "$tmp_output"
+        rm -f "$tmp_output"
+        return 0
+    else
+        log "ERROR" "Ollama API call failed"
+        rm -f "$tmp_output"
+        return 1
+    fi
+}
+
+# Universal agent runner - dispatches to local, claude, or codex
 run_agent() {
     local template="$1"
     local context="$2"
@@ -516,11 +626,23 @@ run_agent() {
         log_file="$SESSION_LOGS_DIR/${agent_name}.log"
     fi
 
-    if [[ "$ORCHESTRATOR" == "codex" ]]; then
-        run_agent_codex "$template" "$context" "$log_file"
-    else
+    # Reporter always uses Claude Sonnet (quality matters for reports)
+    if [[ "$template" == "reporter.md" && "$REPORTER_USE_CLAUDE" == "true" ]]; then
+        log "INFO" "Reporter using Claude Sonnet (API) for quality"
+        local saved_model="$MODEL"
+        MODEL="$REPORTER_MODEL"
         run_agent_claude "$template" "$context" "$log_file"
+        local rc=$?
+        MODEL="$saved_model"
+        return $rc
     fi
+
+    case "$ORCHESTRATOR" in
+        local)  run_agent_local "$template" "$context" "$log_file" ;;
+        codex)  run_agent_codex "$template" "$context" "$log_file" ;;
+        claude) run_agent_claude "$template" "$context" "$log_file" ;;
+        *)      log "ERROR" "Unknown orchestrator: $ORCHESTRATOR"; return 1 ;;
+    esac
 }
 
 # Run agent with retry and reformulation
@@ -664,8 +786,8 @@ phase_codeql() {
         fi
     fi
 
-    local codeql_db="$SCRIPT_DIR/state/codeql_db"
-    local codeql_results="$SCRIPT_DIR/state/codeql_results"
+    local codeql_db="$CODEQL_STATE_DIR/codeql_db"
+    local codeql_results="$CODEQL_STATE_DIR/codeql_results"
     mkdir -p "$codeql_results"
 
     # DISABLED FOR C++ TARGETS: CodeQL C++ extractor generates 80GB+ logs
@@ -1316,7 +1438,7 @@ TASK: Learn from validation results.
             local vrp_ctx="Finding: $finding
 Bug Directory: $bug_dir
 TASK: Generate factual VRP report. No alarmist language. State what was proved."
-            ( run_agent_with_retry "vrp-reporter.md" "$vrp_ctx" "$SESSION_LOGS_DIR/vrp_$fid.log" ) &
+            ( run_agent_with_retry "reporter.md" "$vrp_ctx" "$SESSION_LOGS_DIR/vrp_$fid.log" ) &
 
         done < <(jq -r '.validated[]' "$STATE_FILE" 2>/dev/null)
 
@@ -1416,7 +1538,7 @@ TASK: Generate VRP-quality reports for all validated findings.
 Include: title, summary, reproduction steps, impact, CVSS, proof (ASan output).
 Save to bugs/$TARGET_NAME/<bug-name>/REPORT.md"
 
-    run_agent_with_retry "vrp-reporter.md" "$context" "$SESSION_LOGS_DIR/vrp_report.log"
+    run_agent_with_retry "reporter.md" "$context" "$SESSION_LOGS_DIR/vrp_report.log"
 
     # Generate explainer for HIGH/CRITICAL
     # NOTE: Use process substitution to avoid subshell
@@ -1428,7 +1550,7 @@ Save to bugs/$TARGET_NAME/<bug-name>/REPORT.md"
 TASK: Generate non-technical explanation for this vulnerability.
 Target audience: managers, executives, non-security stakeholders."
 
-        run_agent_with_retry "explainer-reporter.md" "$context" "$SESSION_LOGS_DIR/explainer_$fid.log"
+        run_agent_with_retry "reporter.md" "$context" "$SESSION_LOGS_DIR/explainer_$fid.log"
     done < <(jq -c '.findings[] | select(.severity == "HIGH" or .severity == "CRITICAL")' "$STATE_FILE")
 
     set_phase "done" "Complete"

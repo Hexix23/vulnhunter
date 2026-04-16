@@ -132,24 +132,19 @@ Agent templates are in `.claude/agents/`. To use them:
 3. Use `subagent_type: "codex:codex-rescue"` for ANY task requiring builds/execution
 4. Use `subagent_type: "general-purpose"` ONLY for pure analysis (no compilation)
 
-| Agent Template | File | Role | subagent_type | Background |
-|----------------|------|------|---------------|------------|
-| **Build Agent** | `build-agent.md` | **Compile targets with ASan** | `codex:codex-rescue` | **YES** |
-| **CodeQL Discovery** | `codeql-discovery.md` | **Semantic analysis with learning** | `codex:codex-rescue` | No |
-| Discovery | `discovery.md` | Find potential bugs (grep patterns) | `codex:codex-rescue` | No |
-| PoC Builder | `poc-builder.md` | Create quick test harnesses | `codex:codex-rescue` | No |
-| ASan Validator | `asan-validator.md` | Validate against REAL library | `codex:codex-rescue` | No |
-| LLDB Debugger | `lldb-debugger.md` | Generate step-by-step evidence | `codex:codex-rescue` | No |
-| Fresh Validator | `fresh-validator.md` | Independent validation without prior bug context | `codex:codex-rescue` | No |
-| Post-Confirmation Analyzer | `post-confirmation-analyzer.md` | Deep analysis after consensus confirms bug | `codex:codex-rescue` | No |
-| Chain Researcher | `chain-researcher.md` | Map impact chains and escalation paths | `codex:codex-rescue` | No |
-| Impact Validator | `impact-validator.md` | Demonstrate practical consequences of confirmed bugs | `codex:codex-rescue` | No |
-| Impact Analyst | `impact-analyst.md` | Assess severity & CVSS | `general-purpose` | No |
-| Consensus Analyzer | `consensus-analyzer.md` | Combine validator outputs into final confidence | `general-purpose` | No |
-| VRP Reporter | `vrp-reporter.md` | Technical Bug Bounty report | `general-purpose` | No |
-| Explainer | `explainer-reporter.md` | Non-technical explanation | `general-purpose` | No |
-| Context Manager | `context-manager.md` | Maintain global state | `general-purpose` | No |
-| Feedback Protocol | `feedback-protocol.md` | Inter-agent feedback format for learning | N/A (protocol) | No |
+| Agent | File | Role | Parallel |
+|-------|------|------|----------|
+| **Build** | `build-agent.md` | Compile all runtimes with ASan + debug | Background |
+| **CodeQL** | `codeql-discovery.md` | Semantic analysis + adaptive learning | No (setup) |
+| **Discovery** | `discovery.md` | Reason about code, find issues | No |
+| **ASan Validator** | `asan-validator.md` | Crash detection with ASan | Yes (per finding) |
+| **LLDB Debugger** | `lldb-debugger.md` | Blind state inspection without ASan | Yes (per finding) |
+| **Chain Researcher** | `chain-researcher.md` | Escalation + primitives + CVSS + leads | Yes (per finding) |
+| **Reporter** | `reporter.md` | VRP report + explainer (one agent) | Background |
+
+**Claude does consensus** (compares ASan + LLDB). No agent needed.
+**Claude manages state** (context.json). No agent needed.
+**v3 agents archived** in `.claude/agents/_archive_v3/`
 
 ### Build Agent Workflow
 
@@ -190,77 +185,37 @@ Agent({
 ## Decision Flow
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                    HUNT LOOP (with rollback)                     │
-└─────────────────────────────────────────────────────────────────┘
-
 SETUP (once):
-   0. BUILD → build-agent, WAIT until complete
-   0.5 CODEQL DB → Create database, run standard + learned queries
+  build-agent (background) → compile ALL runtimes
+  codeql-discovery → semantic findings (skip for large C++)
 
-HUNT CYCLE (loops until dry):
-   ┌──────────────────────────────────────────────────────────────┐
-   │                                                              │
-   │  1. DISCOVERY                                                │
-   │     ├─► Grep patterns + CodeQL findings                      │
-   │     ├─► First cycle: full scan                               │
-   │     ├─► Next cycles: focused on leads from chain research    │
-   │     └─► 0 NEW findings → dry_cycles++ → check exit                           │
-   │                                                              │
-   │  2. VALIDATION (parallel, blind)                               │
-   │     ├─► asan-validator ──► sealed asan_feedback.json          │
-   │     ├─► lldb-debugger  ──► sealed lldb_feedback.json          │
-   │     │   (both blind to each other)                           │
-   │     ├─► CONSENSUS: compare sealed results                    │
-   │     │   ├─► Both agree BUG → high confidence                 │
-   │     │   ├─► Disagree → investigate                           │
-   │     │   └─► NEEDS_DIFFERENT_BUILD → build-agent → re-validate│
-   │     ├─► HIGH severity? → fresh-validator (3rd blind opinion)  │
-   │     └─► Logic-only bugs → poc-builder                        │
-   │                                                              │
-   │  2.5 CODEQL LEARNING                                         │
-   │     ├─► CONFIRMED → save pattern, improve queries            │
-   │     └─► FALSE_POS → mutate query, add exclusion              │
-   │                                                              │
-   │  ★ REPORT (BACKGROUND - non-blocking)                        │
-   │     ├─► For each NEW confirmed bug in this cycle:                │
-   │     │   ├─► vrp-reporter (background)                        │
-   │     │   └─► explainer-reporter if integrity/confidentiality   │
-   │     └─► Reports generate while hunt continues                │
-   │                                                              │
-   │  3. CHAIN RESEARCH (escalation + leverage)                    │
-   │     ├─► For each validated bug, launch chain-researcher      │
-   │     ├─► DoS-only? → Try to leverage into integrity/confid.   │
-   │     ├─► Catalog primitives (even non-reportable ones)        │
-   │     ├─► Try combining findings into chains                   │
-   │     └─► Output: new_leads[] + primitives[] for next cycle    │
-   │                                                              │
-   │  ¿new_leads found?                                           │
-   │     YES → Loop back to DISCOVERY with leads as context       │
-   │     NO  → EXIT LOOP                                          │
-   │                                                              │
-   └──────────────────────────────────────────────────────────────┘
-
-EXIT CONDITIONS:
-   dry_cycles >= 6 → EXIT LOOP
-   
-   dry_cycles increments when ANY of:
-   - Discovery finds 0 NEW findings
-   - Validation confirms 0 new bugs
-   - Chain research returns 0 new leads
-   
-   dry_cycles RESETS to 0 when a new bug is confirmed
+HUNT LOOP (cycles until 6 dry):
+  ┌──────────────────────────────────────────────────────────┐
+  │                                                          │
+  │  DISCOVERY                                               │
+  │    Cycle 1: full scan    Cycle 2+: focused on leads     │
+  │    0 new → dry_cycles++                                  │
+  │                                                          │
+  │  VALIDATION (parallel per finding, Claude does consensus)│
+  │    Agent(asan-validator) ──┐ blind to each other         │
+  │    Agent(lldb-debugger)  ──┘ Claude compares after       │
+  │    NEEDS_BUILD? → build-agent → re-validate              │
+  │    0 confirmed → dry_cycles++                            │
+  │                                                          │
+  │  REPORTER (background, non-blocking)                     │
+  │    Only if integrity/confidentiality impact              │
+  │                                                          │
+  │  CHAIN RESEARCH (per confirmed finding)                  │
+  │    Escalation, primitives, CVSS, new_leads[]            │
+  │    0 leads → dry_cycles++                                │
+  │                                                          │
+  │  EXIT: dry_cycles >= 6 OR no new leads + no findings    │
+  │  RESET: dry_cycles = 0 on new confirmation              │
+  └──────────────────────────────────────────────────────────┘
 
 POST-LOOP:
-   4. IMPACT ANALYSIS (on ALL confirmed bugs from all cycles)
-      ├─► impact-analyst calculates CVSS
-      ├─► impact-validator demonstrates practical consequences
-      └─► consensus-analyzer combines ALL validator outputs
-
-   5. FINAL REPORT ASSEMBLY
-      ├─► Wait for any background reports to finish
-      ├─► Merge all individual reports
-      └─► Generate summary with exploit chains
+  Wait for background reporters
+  Final summary: findings, chains, primitives catalog
 ```
 
 ---
