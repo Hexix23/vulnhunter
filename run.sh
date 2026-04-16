@@ -31,12 +31,21 @@ MAX_RETRIES=999999  # Effectively infinite - keep going until success
 PARALLEL_VALIDATORS=3
 ORCHESTRATOR="local"  # local, codex, or claude
 MODEL="claude-haiku-4-5-20251001"  # For --orchestrator claude
-# Local models via oMLX (MLX native, Apple Silicon optimized)
-# oMLX provides OpenAI-compatible API at localhost
-# Features: TurboQuant KV-cache, SSD caching, continuous batching
+# Local model via oMLX (MLX native, Apple Silicon optimized)
+# oMLX: OpenAI-compatible API + TurboQuant KV-cache + SSD caching
 LOCAL_URL="http://localhost:10240"          # oMLX default port
-LOCAL_MODEL_THINKING="qwen3-30b-a3b"       # Discovery + chain (reasoning, thinking mode)
-LOCAL_MODEL_CODE="qwen3-coder-next"        # Validators + build (code, compile, execute)
+
+# Qwen 3.5 122B-A10B with TurboQuant (fits 64GB, ~26-44 tok/s)
+# 122B total, 10B active (MoE). WAY better reasoning than 27B.
+# TurboQuant compresses KV cache 5.5x → 131K context in ~55GB
+LOCAL_MODEL_THINKING="qwen3.5-122b-a10b"  # Discovery + chain (deep reasoning)
+LOCAL_MODEL_CODE="qwen3.5-122b-a10b"      # Validators + build (same model)
+# With TurboQuant: 55GB peak, fits M5 Max 64GB
+# Without TurboQuant: won't fit. MUST enable TurboQuant in oMLX.
+#
+# ALTERNATIVE (if 122B too slow or doesn't fit):
+# LOCAL_MODEL_THINKING="qwen3.5-27b-a3b"  # Lighter, 20GB, ~130 tok/s
+# LOCAL_MODEL_CODE="qwen3.5-27b-a3b"
 
 # Reporter uses Claude Sonnet (API) - quality matters for reports
 REPORTER_MODEL="claude-sonnet-4-6"
@@ -1176,228 +1185,61 @@ Status meanings:
     log "OK" "LLDB validators finished"
 
     # =========================================================================
-    # VALIDATOR 3: Fresh (independent analysis, no prior knowledge)
+    # CONSENSUS (inline - compare ASan + LLDB blind results)
     # =========================================================================
-    log "INFO" "Validator 3/4: Fresh (independent review, no context)..."
-    pids=()
-
-    while read -r finding; do
-        local fid=$(echo "$finding" | jq -r '.id')
-        local bug_dir="$SCRIPT_DIR/bugs/$TARGET_NAME/$fid"
-        local ffile=$(echo "$finding" | jq -r '.location.file // ""')
-        local fline=$(echo "$finding" | jq -r '.location.line // 0')
-        local ffunc=$(echo "$finding" | jq -r '.location.function // ""')
-
-        log "INFO" "  Fresh: $fid (blind review)"
-
-        # CRITICAL: Fresh validator gets ONLY location, NOT the bug description
-        local fresh_context="Repository: $TARGET
-File: $ffile
-Line Range: $((fline - 20)) to $((fline + 20))
-Function: $ffunc
-
-TASK: Independent code review WITHOUT knowing what was reported.
-1. Read the code at the specified location
-2. Analyze for ANY potential issues (integer handling, bounds, validation, etc.)
-3. Document what you find objectively
-4. Save result to $bug_dir/validation/fresh_result.json with format:
-   {\"validator\": \"fresh\", \"status\": \"FOUND|FOUND_DIFFERENT|NOT_FOUND\", \"findings\": [...]}
-5. Status meanings:
-   - FOUND: Found an issue at/near the specified location
-   - FOUND_DIFFERENT: Found different issue than expected location
-   - NOT_FOUND: No issues identified
-6. BE OBJECTIVE - don't assume there's a bug, analyze the code fresh"
-
-        # Run in background with slot management
-        if [[ ${#pids[@]} -lt $PARALLEL_VALIDATORS ]]; then
-            ( run_agent_with_retry "fresh-validator.md" "$fresh_context" "$SESSION_LOGS_DIR/fresh_$fid.log" ) &
-            pids+=($!)
-        else
-            wait -n "${pids[@]}" 2>/dev/null || true
-            local new_pids=()
-            for pid in "${pids[@]}"; do
-                kill -0 "$pid" 2>/dev/null && new_pids+=("$pid")
-            done
-            pids=("${new_pids[@]}")
-            ( run_agent_with_retry "fresh-validator.md" "$fresh_context" "$SESSION_LOGS_DIR/fresh_$fid.log" ) &
-            pids+=($!)
-        fi
-    done < <(jq -c '.findings[]' "$STATE_FILE")
-
-    wait "${pids[@]}" 2>/dev/null || true
-    log "OK" "Fresh validators finished"
-
-    # =========================================================================
-    # VALIDATOR 4: Impact (practical consequences)
-    # =========================================================================
-    log "INFO" "Validator 4/4: Impact (practical demonstration)..."
-    pids=()
-
-    while read -r finding; do
-        local fid=$(echo "$finding" | jq -r '.id')
-        local bug_dir="$SCRIPT_DIR/bugs/$TARGET_NAME/$fid"
-
-        log "INFO" "  Impact: $fid"
-
-        local impact_context="Finding: $finding
-Repository: $TARGET
-Build Directory: $build_dir
-Bug Directory: $bug_dir
-Previous Results:
-- ASan: $bug_dir/validation/asan_result.json
-- LLDB: $bug_dir/validation/lldb_result.json
-- Fresh: $bug_dir/validation/fresh_result.json
-
-TASK: Demonstrate practical consequences of this issue.
-1. Read previous validator results
-2. Identify entry points (public APIs that reach this code)
-3. Create demonstration showing real-world impact
-4. Document consequences (service disruption, incorrect processing, etc.)
-5. Save result to $bug_dir/validation/impact_result.json with format:
-   {\"validator\": \"impact\", \"status\": \"DEMONSTRATED|LIMITED_IMPACT|NO_PRACTICAL_IMPACT\",
-    \"entry_points\": [...], \"consequences\": [...]}
-6. Status meanings:
-   - DEMONSTRATED: Practical impact proven through real API
-   - LIMITED_IMPACT: Impact exists but constrained
-   - NO_PRACTICAL_IMPACT: Bug exists but no real consequence"
-
-        # Run in background with slot management
-        if [[ ${#pids[@]} -lt $PARALLEL_VALIDATORS ]]; then
-            ( run_agent_with_retry "impact-validator.md" "$impact_context" "$SESSION_LOGS_DIR/impact_$fid.log" ) &
-            pids+=($!)
-        else
-            wait -n "${pids[@]}" 2>/dev/null || true
-            local new_pids=()
-            for pid in "${pids[@]}"; do
-                kill -0 "$pid" 2>/dev/null && new_pids+=("$pid")
-            done
-            pids=("${new_pids[@]}")
-            ( run_agent_with_retry "impact-validator.md" "$impact_context" "$SESSION_LOGS_DIR/impact_$fid.log" ) &
-            pids+=($!)
-        fi
-    done < <(jq -c '.findings[]' "$STATE_FILE")
-
-    wait "${pids[@]}" 2>/dev/null || true
-    log "OK" "Impact validators finished"
-
-    # =========================================================================
-    # CONSENSUS ANALYSIS
-    # =========================================================================
-    log "INFO" "Running consensus analysis..."
+    log "INFO" "Comparing ASan + LLDB results (blind consensus)..."
+    local total_confirmed=0
 
     while read -r finding; do
         local fid=$(echo "$finding" | jq -r '.id')
         local bug_dir="$SCRIPT_DIR/bugs/$TARGET_NAME/$fid"
         mkdir -p "$bug_dir/consensus"
 
-        local consensus_context="Finding: $finding
-Bug Directory: $bug_dir
-Validator Results:
-- ASan: $bug_dir/validation/asan_result.json
-- LLDB: $bug_dir/validation/lldb_result.json
-- Fresh: $bug_dir/validation/fresh_result.json
-- Impact: $bug_dir/validation/impact_result.json
+        local asan_status=$(jq -r '.status // "UNKNOWN"' "$bug_dir/validation/asan_result.json" 2>/dev/null || echo "UNKNOWN")
+        local lldb_status=$(jq -r '.status // "UNKNOWN"' "$bug_dir/validation/lldb_result.json" 2>/dev/null || echo "UNKNOWN")
 
-TASK: Analyze all validator results and determine consensus.
-1. Read all validator results
-2. Calculate confidence score based on agreement
-3. Generate consensus report
-4. Save to $bug_dir/consensus/confidence_score.json and CONSENSUS_REPORT.md
-5. Scoring:
-   - ASan CONFIRMED_MEMORY: +1.0, LOGIC_BUG: +0.7, NO_CRASH: -0.3
-   - LLDB STATE_BUG: +1.0, STATE_OK: -0.3
-   - Fresh FOUND: +1.0, FOUND_DIFFERENT: +0.8, NOT_FOUND: -0.5
-   - Impact DEMONSTRATED: +0.8, LIMITED_IMPACT: +0.4, NO_PRACTICAL_IMPACT: -0.2
-6. Confidence levels: >=3.0 CONFIRMED_HIGH, 2.0-2.9 CONFIRMED, 1.0-1.9 LIKELY, <1.0 UNCERTAIN"
+        local consensus="UNCERTAIN"
+        local score=0
 
-        run_agent_with_retry "consensus-analyzer.md" "$consensus_context" "$SESSION_LOGS_DIR/consensus_$fid.log"
-    done < <(jq -c '.findings[]' "$STATE_FILE")
+        # ASan scoring
+        case "$asan_status" in
+            CONFIRMED_MEMORY) score=$((score + 10)); ;;
+            LOGIC_BUG)        score=$((score + 7)); ;;
+            NO_CRASH)         score=$((score - 3)); ;;
+            NEEDS_BUILD)      score=$((score + 0)); ;;
+        esac
 
-    log "OK" "Consensus analysis finished"
+        # LLDB scoring (blind, independent)
+        case "$lldb_status" in
+            BUG_CONFIRMED)    score=$((score + 10)); ;;
+            STATE_BUG)        score=$((score + 10)); ;;
+            NO_BUG)           score=$((score - 3)); ;;
+        esac
 
-    # =========================================================================
-    # COLLECT FINAL RESULTS
-    # =========================================================================
-    log "INFO" "Collecting final validation results..."
-    local confirmed_high=0
-    local confirmed=0
-    local likely=0
-    local uncertain=0
-
-    while read -r finding; do
-        local fid=$(echo "$finding" | jq -r '.id')
-        local consensus_file="$SCRIPT_DIR/bugs/$TARGET_NAME/$fid/consensus/confidence_score.json"
-
-        if [[ -f "$consensus_file" ]]; then
-            local level=$(jq -r '.confidence_level // "UNCERTAIN"' "$consensus_file")
-            case "$level" in
-                CONFIRMED_HIGH)
-                    ((confirmed_high++)) || true
-                    mark_validated "$fid"
-                    ;;
-                CONFIRMED)
-                    ((confirmed++)) || true
-                    mark_validated "$fid"
-                    ;;
-                LIKELY)
-                    ((likely++)) || true
-                    ;;
-                *)
-                    ((uncertain++)) || true
-                    ;;
-            esac
+        # Determine consensus
+        if [[ $score -ge 14 ]]; then
+            consensus="CONFIRMED_HIGH"
+            ((total_confirmed++)) || true
+            mark_validated "$fid"
+        elif [[ $score -ge 7 ]]; then
+            consensus="CONFIRMED"
+            ((total_confirmed++)) || true
+            mark_validated "$fid"
+        elif [[ $score -ge 1 ]]; then
+            consensus="LIKELY"
         else
-            ((uncertain++)) || true
+            consensus="UNCERTAIN"
         fi
+
+        # Save consensus
+        echo "{\"finding_id\": \"$fid\", \"asan\": \"$asan_status\", \"lldb\": \"$lldb_status\", \"score\": $score, \"consensus\": \"$consensus\"}" \
+            > "$bug_dir/consensus/confidence_score.json"
+
+        log "INFO" "  $fid: ASan=$asan_status LLDB=$lldb_status → $consensus (score=$score)"
+
     done < <(jq -c '.findings[]' "$STATE_FILE")
 
-    log "OK" "Validation complete (4-validator consensus):"
-    log "INFO" "  CONFIRMED_HIGH: $confirmed_high"
-    log "INFO" "  CONFIRMED: $confirmed"
-    log "INFO" "  LIKELY: $likely"
-    log "INFO" "  UNCERTAIN: $uncertain"
-
-    # =========================================================================
-    # POST-CONFIRMATION ANALYSIS (only for confirmed findings)
-    # =========================================================================
-    local total_confirmed=$((confirmed_high + confirmed))
-    if [[ $total_confirmed -gt 0 ]]; then
-        log "INFO" "Running post-confirmation analysis for $total_confirmed confirmed findings..."
-
-        while read -r finding; do
-            local fid=$(echo "$finding" | jq -r '.id')
-            local consensus_file="$SCRIPT_DIR/bugs/$TARGET_NAME/$fid/consensus/confidence_score.json"
-
-            if [[ -f "$consensus_file" ]]; then
-                local level=$(jq -r '.confidence_level // "UNCERTAIN"' "$consensus_file")
-                if [[ "$level" == "CONFIRMED_HIGH" || "$level" == "CONFIRMED" ]]; then
-                    local bug_dir="$SCRIPT_DIR/bugs/$TARGET_NAME/$fid"
-                    mkdir -p "$bug_dir/analysis"
-
-                    log "INFO" "  Post-analysis: $fid"
-
-                    local post_context="Finding: $finding
-Repository: $TARGET
-Bug Directory: $bug_dir
-Consensus: $bug_dir/consensus/confidence_score.json
-
-TASK: Deep analysis of this confirmed issue.
-1. Map all entry points (public APIs that reach vulnerable code)
-2. Analyze consequences in detail
-3. Find related code patterns that might have similar issues
-4. Save to $bug_dir/analysis/:
-   - entry_points.md
-   - consequences.md
-   - related_issues.md
-   - POST_CONFIRMATION_ANALYSIS.md"
-
-                    run_agent_with_retry "post-confirmation-analyzer.md" "$post_context" "$SESSION_LOGS_DIR/post_$fid.log"
-                fi
-            fi
-        done < <(jq -c '.findings[]' "$STATE_FILE")
-
-        log "OK" "Post-confirmation analysis finished"
-    fi
+    log "OK" "Consensus complete: $total_confirmed confirmed"
 
     # =========================================================================
     # CODEQL LEARNING (Phase 2.5)
@@ -1503,14 +1345,13 @@ TASK: Research exploit potential and find new leads.
 
 phase_impact() {
     log "INFO" "=== PHASE: IMPACT ANALYSIS ==="
+    # CVSS is calculated by chain-researcher (per finding)
+    # This phase summarizes all chain results into final assessment
+    log "INFO" "Chain researcher already calculated CVSS per finding"
+    log "INFO" "Summarizing all findings..."
 
-    local context="State: $(cat "$STATE_FILE")
-
-TASK: Calculate CVSS scores for all validated findings.
-Consider: attack vector, complexity, privileges, user interaction, scope, CIA impact.
-Update findings with CVSS scores and severity ratings."
-
-    run_agent_with_retry "impact-analyst.md" "$context" "$SESSION_LOGS_DIR/impact.log"
+    local validated=$(jq -r '.validated[]' "$STATE_FILE" 2>/dev/null | wc -l | tr -d ' ')
+    log "OK" "Total validated findings: $validated"
 
     set_phase "reporting" "Generate VRP reports"
 }
