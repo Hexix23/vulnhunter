@@ -134,16 +134,17 @@ Agent templates are in `.claude/agents/`. To use them:
 
 | Agent | File | Role | Parallel |
 |-------|------|------|----------|
+| **Orchestrator** | `orchestrator.md` | LOCAL model decides what to do next | Loop |
 | **Build** | `build-agent.md` | Compile all runtimes with ASan + debug | Background |
 | **CodeQL** | `codeql-discovery.md` | Semantic analysis + adaptive learning | No (setup) |
 | **Discovery** | `discovery.md` | Reason about code, find issues | No |
 | **ASan Validator** | `asan-validator.md` | Crash detection with ASan | Yes (per finding) |
 | **LLDB Debugger** | `lldb-debugger.md` | Blind state inspection without ASan | Yes (per finding) |
 | **Chain Researcher** | `chain-researcher.md` | Escalation + primitives + CVSS + leads | Yes (per finding) |
-| **Reporter** | `reporter.md` | VRP report + explainer (one agent) | Background |
+| **Reporter** | `reporter.md` | VRP report + explainer (Claude Sonnet API) | Background |
 
-**Claude does consensus** (compares ASan + LLDB). No agent needed.
-**Claude manages state** (context.json). No agent needed.
+**Orchestrator runs locally** (Qwen 3.5 122B) - decides, prioritizes, no API cost.
+**Reporter uses Claude Sonnet 4.6** - only when integrity/confidentiality confirmed.
 **v3 agents archived** in `.claude/agents/_archive_v3/`
 
 ### Build Agent Workflow

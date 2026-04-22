@@ -1540,78 +1540,147 @@ main() {
     local max_dry_cycles=6
     local new_leads_file="$SCRIPT_DIR/state/new_leads.json"
 
-    # Main state machine loop (with hunt loop rollback)
+    # =========================================================================
+    # ORCHESTRATOR LOOP
+    # Local model decides what to do next. Bash executes.
+    # =========================================================================
+
+    # Setup phase (always runs first, bash-driven)
+    phase_build
+    phase_codeql
+
+    # Now the local model orchestrates the hunt loop
+    log "INFO" "=== LOCAL ORCHESTRATOR STARTING ==="
+
     while true; do
-        local phase=$(get_phase)
+        # Prepare state for orchestrator
+        local state=$(cat "$STATE_FILE")
+        local last_results=""
 
-        case $phase in
-            init)
-                set_phase "build" "Create ASan build"
-                ;;
-            build)
-                phase_build
-                ;;
-            codeql)
-                phase_codeql
-                ;;
-            discovery)
-                ((cycle_count++)) || true
-                log "INFO" "Hunt cycle: $cycle_count (dry_cycles: $dry_cycles/$max_dry_cycles)"
-                phase_discovery
-                ;;
-            validation)
-                phase_validation
-                ;;
-            chain)
-                phase_chain
+        # Collect latest results from all findings
+        for bug_dir in "$SCRIPT_DIR/bugs/$TARGET_NAME"/*/; do
+            [[ -d "$bug_dir" ]] || continue
+            local fid=$(basename "$bug_dir")
+            for result_file in "$bug_dir"/validation/*.json "$bug_dir"/consensus/*.json "$bug_dir"/analysis/*.json; do
+                [[ -f "$result_file" ]] && last_results+="$(cat "$result_file")"$'\n'
+            done
+        done
 
-                # === HUNT LOOP EXIT CHECK ===
-                local has_new_leads=false
-                if [[ -f "$new_leads_file" ]]; then
-                    local leads_count=$(jq '.new_leads | length' "$new_leads_file" 2>/dev/null || echo 0)
-                    [[ $leads_count -gt 0 ]] && has_new_leads=true
-                fi
+        # Ask orchestrator what to do next
+        local orch_prompt="You are the VulnHunter orchestrator. Decide what to do next.
 
-                # Check if this cycle confirmed any new bugs
-                local cycle_confirmed=$(jq --arg cycle "$cycle_count" '.cycle_confirmed // 0' "$STATE_FILE" 2>/dev/null || echo 0)
-                if [[ $cycle_confirmed -gt 0 ]]; then
-                    dry_cycles=0  # Reset on new confirmation
-                    log "OK" "Cycle $cycle_count confirmed $cycle_confirmed new bugs - dry_cycles reset"
-                fi
+CURRENT STATE:
+$state
 
-                if [[ $dry_cycles -ge $max_dry_cycles ]]; then
-                    log "OK" "Hunt loop complete: $max_dry_cycles dry cycles reached"
-                    set_phase "impact" "Final impact analysis"
-                elif [[ "$has_new_leads" == "true" ]]; then
-                    log "INFO" "Chain research found new leads - rolling back to discovery"
-                    set_phase "discovery" "Focused scan with new leads (cycle $((cycle_count+1)))"
-                else
-                    ((dry_cycles++)) || true
-                    log "INFO" "No new leads (dry_cycles: $dry_cycles/$max_dry_cycles)"
-                    if [[ $dry_cycles -ge $max_dry_cycles ]]; then
-                        log "OK" "Hunt loop complete: $max_dry_cycles dry cycles"
-                        set_phase "impact" "Final impact analysis"
-                    else
-                        set_phase "discovery" "Next hunt cycle"
-                    fi
-                fi
+LATEST RESULTS:
+$last_results
+
+AVAILABLE AGENTS:
+- discovery.md: Find potential issues (cycle 1=full scan, cycle 2+=focused on leads)
+- asan-validator.md: Validate with ASan crash detection
+- lldb-debugger.md: Blind state inspection without ASan
+- chain-researcher.md: Escalation + primitives + CVSS + new_leads
+- reporter.md: Generate VRP report (uses Claude Sonnet API)
+- build-agent.md: Compile specific target/runtime
+
+HUNT LOOP RULES:
+- dry_cycles: $dry_cycles / $max_dry_cycles (exit at $max_dry_cycles)
+- Confirmed findings reset dry_cycles to 0
+- Prioritize memory WRITES over DoS
+- Only report if integrity/confidentiality impact
+- Every finding is a primitive, never discard
+
+Respond with ONLY valid JSON:
+{\"action\": \"run_agent|parallel|report|exit_loop\", \"agent\": \"name.md\", \"context\": \"...\", \"reason\": \"...\"}
+
+For parallel validation:
+{\"action\": \"parallel\", \"agents\": [{\"agent\": \"asan-validator.md\", \"context\": \"...\"}, {\"agent\": \"lldb-debugger.md\", \"context\": \"...\"}]}
+
+For exit:
+{\"action\": \"exit_loop\", \"reason\": \"why stopping\"}"
+
+        local decision
+        decision=$(run_agent_local "orchestrator.md" "$orch_prompt" "$SESSION_LOGS_DIR/orchestrator.log")
+
+        if [[ -z "$decision" ]]; then
+            log "ERROR" "Orchestrator returned empty response"
+            ((dry_cycles++)) || true
+            if [[ $dry_cycles -ge $max_dry_cycles ]]; then
+                break
+            fi
+            continue
+        fi
+
+        # Parse decision
+        local action=$(echo "$decision" | jq -r '.action // "unknown"' 2>/dev/null)
+
+        case "$action" in
+            run_agent)
+                local agent=$(echo "$decision" | jq -r '.agent' 2>/dev/null)
+                local ctx=$(echo "$decision" | jq -r '.context' 2>/dev/null)
+                local reason=$(echo "$decision" | jq -r '.reason' 2>/dev/null)
+                log "INFO" "Orchestrator: $agent ($reason)"
+
+                run_agent_with_retry "$agent" "$ctx" "$SESSION_LOGS_DIR/${agent%.md}.log"
                 ;;
-            impact)
-                phase_impact
+
+            parallel)
+                local agents_json=$(echo "$decision" | jq -c '.agents[]' 2>/dev/null)
+                local reason=$(echo "$decision" | jq -r '.reason' 2>/dev/null)
+                log "INFO" "Orchestrator: parallel ($reason)"
+
+                local pids=()
+                while read -r agent_entry; do
+                    local agent=$(echo "$agent_entry" | jq -r '.agent')
+                    local ctx=$(echo "$agent_entry" | jq -r '.context')
+                    ( run_agent_with_retry "$agent" "$ctx" "$SESSION_LOGS_DIR/${agent%.md}_parallel.log" ) &
+                    pids+=($!)
+                done <<< "$agents_json"
+
+                wait "${pids[@]}" 2>/dev/null || true
+                log "OK" "Parallel agents completed"
                 ;;
-            reporting)
-                phase_reporting
+
+            report)
+                local finding_id=$(echo "$decision" | jq -r '.finding_id' 2>/dev/null)
+                local reason=$(echo "$decision" | jq -r '.reason' 2>/dev/null)
+                log "INFO" "Orchestrator: report $finding_id via Claude Sonnet ($reason)"
+
+                local bug_dir="$SCRIPT_DIR/bugs/$TARGET_NAME/$finding_id"
+                local report_ctx="Finding: $(jq -c --arg id "$finding_id" '.findings[] | select(.id == $id)' "$STATE_FILE")
+Bug Directory: $bug_dir
+Chain Analysis: $(cat "$bug_dir/analysis/chain_analysis.json" 2>/dev/null || echo 'N/A')
+ASan: $(cat "$bug_dir/validation/asan_result.json" 2>/dev/null || echo 'N/A')
+LLDB: $(cat "$bug_dir/validation/lldb_result.json" 2>/dev/null || echo 'N/A')"
+
+                ( run_agent_with_retry "reporter.md" "$report_ctx" "$SESSION_LOGS_DIR/report_$finding_id.log" ) &
+                log "INFO" "Reporter launched in background"
                 ;;
-            done)
-                phase_done
+
+            exit_loop)
+                local reason=$(echo "$decision" | jq -r '.reason' 2>/dev/null)
+                log "OK" "Orchestrator decided to exit: $reason"
                 break
                 ;;
+
             *)
-                log "ERROR" "Unknown phase: $phase"
-                exit 1
+                log "WARN" "Unknown action: $action - asking orchestrator again"
+                ((dry_cycles++)) || true
+                if [[ $dry_cycles -ge $max_dry_cycles ]]; then
+                    log "OK" "Max dry cycles - forcing exit"
+                    break
+                fi
                 ;;
         esac
     done
+
+    # Post-loop: wait for background reporters, final summary
+    log "INFO" "Waiting for background reporters..."
+    wait 2>/dev/null || true
+
+    phase_impact
+    phase_reporting
+    phase_done
 }
 
 # Trap for clean shutdown
