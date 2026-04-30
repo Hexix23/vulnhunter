@@ -1,0 +1,12 @@
+diff --git a/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc b/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
+--- a/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
++++ b/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
+@@ -339,7 +339,7 @@ class CompositorFrameSinkSupportTestBase : public testing::Test {
+     return manager_->transition_token_to_animation_manager_.size();
+   }
+ 
+-  size_t SharedImageCount() const {
++  size_t SharedImageCount() {
+     return static_cast<gpu::TestSharedImageInterface*>(
+                shared_image_interface_provider_.GetSharedImageInterface())
+         ->shared_image_count();

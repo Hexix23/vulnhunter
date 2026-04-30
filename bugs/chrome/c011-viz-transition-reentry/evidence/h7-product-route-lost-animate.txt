@@ -1,0 +1,21 @@
+Command:
+orb -m ubuntu -w /home/carlosgomez/chromium-engagement/src env ASAN_OPTIONS=detect_odr_violation=0 xvfb-run -a out/c001_asan/viz_unittests --gtest_filter='*PendingAnimateLeavesManagerCached*' --single-process-tests
+
+Result:
+exit code 0
+
+Key output:
+Note: Google Test filter = *PendingAnimateLeavesManagerCached*
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from CompositorFrameSinkSupportTestBase
+[ RUN      ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedPendingAnimateLeavesManagerCached
+[       OK ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedPendingAnimateLeavesManagerCached (101 ms)
+[----------] 1 test from CompositorFrameSinkSupportTestBase (117 ms total)
+[==========] 1 test from 1 test suite ran. (127 ms total)
+[  PASSED  ] 1 test.
+
+Interpretation:
+The real product observer route is reached. CacheSurfaceAnimationManager() notifies Surface, Surface activates its pending frame, and kAnimateRenderer is processed synchronously. While OnSaveTransitionDirectiveProcessed() is still on stack, the old local map key exists with a moved-out manager. The animate path erases that local key and returns before taking the freshly cached global manager. After completion:
+- pending frame has activated;
+- global FrameSinkManagerImpl cache still contains the token manager;
+- local CompositorFrameSinkSupport map does not contain the token manager.

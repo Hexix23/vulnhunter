@@ -1,0 +1,27 @@
+Command:
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 out/sandbox_dcheck_linux/d8 --sandbox-testing --allow-natives-syntax --expose-gc test/mjsunit/sandbox/regress-501147587.js
+
+Build:
+/home/carlosgomez/v8-linux/v8/out/sandbox_dcheck_linux/d8
+V8 14.8.178.9, Linux x86_64, GN args include:
+  v8_enable_sandbox=true
+  v8_enable_memory_corruption_api=true
+  v8_enable_test_features=true
+  dcheck_always_on=true
+  v8_enable_verify_heap=true
+
+Exit:
+0
+
+Output:
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x210800000000,0x220800000000)
+[*] suspender handle: 0x41b400
+[*] resolving -> terminate
+[*] post-term: handle still 0x41b400
+[*] gc(last-resort) -> ReleaseFinishedStacks -> ~StackMemory
+[*] resuming via dangling EPT (struct freed)...
+Caught harmless memory access violation (nullptr dereference). Exiting process...
+
+Interpretation:
+The upstream regression is fixed in this checkout. The suspender handle is still present, but its external pointer resolves to null after unwind. Resuming reaches a harmless null dereference instead of a stale out-of-sandbox StackMemory pointer.

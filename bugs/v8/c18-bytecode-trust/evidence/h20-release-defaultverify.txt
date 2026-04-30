@@ -1,0 +1,7 @@
+box-debug
+0x1a100101ff25 <Object map = 0x1a100101e875>
+arr-debug
+0x1a100101ff59 <JSArray[1]>
+done
+
+EXIT:0

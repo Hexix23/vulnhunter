@@ -1,0 +1,20 @@
+Command:
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 out/dcheck_linux/d8 /mnt/mac/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c20-wasm-shared-memory-grow-race/poc/h4-resizable-toggle-grow-race.js
+
+Exit:
+0
+
+Output:
+OK
+
+Repeat command:
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 bash -lc 'for i in $(seq 1 25); do out/dcheck_linux/d8 /mnt/mac/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c20-wasm-shared-memory-grow-race/poc/h4-resizable-toggle-grow-race.js >/tmp/c20-h4.out 2>&1 || { echo FAIL-$i; cat /tmp/c20-h4.out; exit 1; }; done; echo OK-25'
+
+Repeat exit:
+0
+
+Repeat output:
+OK-25
+
+Interpretation:
+Linux x64 dcheck build did not reproduce a stale visible buffer, resizable-buffer length regression, fixed-buffer short length, or worker exception while racing shared memory grow with toResizableBuffer()/toFixedLengthBuffer().

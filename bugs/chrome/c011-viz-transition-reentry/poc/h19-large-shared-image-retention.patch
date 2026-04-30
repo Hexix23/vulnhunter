@@ -1,0 +1,102 @@
+diff --git a/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc b/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
+--- a/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
++++ b/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
+@@ -3694,5 +3694,98 @@ TEST_F(CompositorFrameSinkSupportTestBase,
+   EXPECT_EQ(0u, SharedImageCount());
+ }
+ 
++TEST_F(CompositorFrameSinkSupportTestBase,
++       SharedElementLostAnimateRetainsLargeSharedImageAfterCopyCompletion) {
++  constexpr int kEdge = 4096;
++  constexpr uint64_t kExpectedBytes =
++      static_cast<uint64_t>(kEdge) * kEdge * 4;
++  gfx::Rect rect(0, 0, kEdge, kEdge);
++  gfx::Transform transform;
++  blink::ViewTransitionToken token_x;
++  ViewTransitionElementResourceId resource_id(token_x, 1, false);
++
++  auto root_render_pass = CompositorRenderPass::Create();
++  CompositorRenderPassId root_id{1};
++  root_render_pass->SetNew(root_id, rect, rect, transform);
++  SharedQuadState* shared_quad_state =
++      root_render_pass->CreateAndAppendSharedQuadState();
++  auto* vt_quad =
++      root_render_pass->CreateAndAppendDrawQuad<SharedElementDrawQuad>();
++  vt_quad->SetNew(shared_quad_state, rect, rect, resource_id);
++
++  auto orphan_render_pass = CompositorRenderPass::Create();
++  CompositorRenderPassId orphan_id{2};
++  orphan_render_pass->SetNew(orphan_id, rect, rect, transform);
++  shared_quad_state = orphan_render_pass->CreateAndAppendSharedQuadState();
++  auto* solid_quad =
++      orphan_render_pass->CreateAndAppendDrawQuad<SolidColorDrawQuad>();
++  solid_quad->SetNew(shared_quad_state, rect, rect, SkColors::kBlue, false);
++
++  CompositorRenderPassList render_passes;
++  render_passes.push_back(std::move(orphan_render_pass));
++  render_passes.push_back(std::move(root_render_pass));
++  CompositorFrame save_frame = MakeCompositorFrame(std::move(render_passes));
++  save_frame.metadata.has_shared_element_resources = true;
++  support_->SubmitCompositorFrame(local_surface_id_, std::move(save_frame));
++  Surface* save_surface = support_->GetLastCreatedSurfaceForTesting();
++  ASSERT_TRUE(save_surface);
++
++  CompositorFrameTransitionDirective::SharedElement shared_element;
++  shared_element.render_pass_id = orphan_id;
++  shared_element.view_transition_element_resource_id = resource_id;
++  auto save_directive = CompositorFrameTransitionDirective::CreateSave(
++      token_x, /*maybe_cross_frame_sink=*/true, 1, {shared_element}, {},
++      /*delay_layer_tree_view_deletion=*/true);
++  ProcessCompositorFrameTransitionDirective(support_.get(), save_directive,
++                                            save_surface);
++  ASSERT_TRUE(save_surface->HasCopyOutputRequests());
++
++  LocalSurfaceId animate_local_surface_id(
++      local_surface_id_.parent_sequence_number() + 1,
++      local_surface_id_.embed_token());
++  CompositorFrame animate_frame =
++      MakeDefaultInteractiveCompositorFrame(kBeginFrameSourceId);
++  animate_frame.metadata.has_shared_element_resources = true;
++  animate_frame.metadata.transition_directives.push_back(
++      CompositorFrameTransitionDirective::CreateAnimate(
++          token_x, /*maybe_cross_frame_sink=*/true, 2,
++          /*delay_layer_tree_view_deletion=*/true));
++  support_->SubmitCompositorFrame(animate_local_surface_id,
++                                  std::move(animate_frame));
++  base::RunLoop().RunUntilIdle();
++
++  ASSERT_TRUE(HasAnimationManagerForToken(token_x));
++  ASSERT_EQ(1u, CachedAnimationManagerCount());
++  ASSERT_EQ(1u, SharedImageCount());
++
++  Surface::CopyRequestsMap requests_map;
++  save_surface->TakeCopyOutputRequests(&requests_map);
++  ASSERT_EQ(1u, requests_map.size());
++  auto request = std::move(requests_map.begin()->second);
++  ASSERT_TRUE(request->has_blit_request());
++  scoped_refptr<gpu::ClientSharedImage> shared_image =
++      request->blit_request().shared_image();
++  ASSERT_TRUE(shared_image);
++  EXPECT_EQ(gfx::Size(kEdge, kEdge), shared_image->size());
++  EXPECT_EQ(kExpectedBytes, shared_image->EstimatedSizeInBytes().InBytes());
++  request->SendResult(std::make_unique<CopyOutputSharedImageResult>(
++      CopyOutputResult::Format::RGBA, rect, shared_image, base::DoNothing()));
++
++  base::RunLoop().RunUntilIdle();
++
++  EXPECT_FALSE(save_surface->HasCopyOutputRequests());
++  EXPECT_TRUE(HasAnimationManagerForToken(token_x));
++  EXPECT_EQ(1u, CachedAnimationManagerCount());
++  EXPECT_EQ(1u, SharedImageCount());
++
++  request.reset();
++  shared_image.reset();
++
++  manager_->ClearSurfaceAnimationManager(token_x);
++  EXPECT_FALSE(HasAnimationManagerForToken(token_x));
++  EXPECT_EQ(0u, CachedAnimationManagerCount());
++  EXPECT_EQ(0u, SharedImageCount());
++}
++
+ TEST_P(AckOnSurfaceActivationWhenInteractiveTest,
+        TreesInVizAcksCompositorFrames) {

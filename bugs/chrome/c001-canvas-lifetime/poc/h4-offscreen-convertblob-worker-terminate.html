@@ -1,0 +1,41 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>C001 H4 OffscreenCanvas convertToBlob worker terminate</title>
+<pre id="out"></pre>
+<script>
+const out = document.getElementById("out");
+function say(x) { out.textContent += x + "\n"; }
+
+const workerSource = `
+onmessage = async () => {
+  const canvas = new OffscreenCanvas(4096, 4096);
+  const ctx = canvas.getContext("2d");
+  ctx.fillStyle = "#123456";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  postMessage("started");
+  // WebP avoids progressive idle encoding and uses the non-idle path.
+  canvas.convertToBlob({type: "image/webp", quality: 0.92}).then(
+    b => postMessage("blob " + b.size),
+    e => postMessage("err " + e.name)
+  );
+};`;
+
+async function one(i) {
+  const worker = new Worker(URL.createObjectURL(new Blob([workerSource], {type: "text/javascript"})));
+  worker.onmessage = e => {
+    if (e.data === "started") {
+      worker.terminate();
+    }
+  };
+  worker.postMessage("go");
+  await new Promise(resolve => setTimeout(resolve, 10));
+  if (window.gc) gc();
+  if (i % 10 === 0) say("iter " + i);
+}
+
+(async () => {
+  say("H4 start");
+  for (let i = 0; i < 100; i++) await one(i);
+  say("H4 done");
+})();
+</script>

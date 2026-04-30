@@ -1,0 +1,2 @@
+/Users/carlosgomez/v8-engagement/scratch/asan-options.sh: line 5: /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/2026-reset-p1a-maglev-phi-sinks/poc/h1-string-check-after-retagged-phi.js: Permission denied
+/Users/carlosgomez/v8-engagement/scratch/asan-options.sh: line 5: exec: /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/2026-reset-p1a-maglev-phi-sinks/poc/h1-string-check-after-retagged-phi.js: cannot execute: Undefined error: 0

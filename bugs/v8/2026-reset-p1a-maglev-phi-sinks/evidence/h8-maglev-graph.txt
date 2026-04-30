@@ -1,0 +1,128 @@
+Concurrent maglev has been disabled for tracing.
+Compiling 0x38c60101e381 <JSFunction f (sfi = 0x38c60101e1ed)> with Maglev
+----- Bytecode array -----
+Parameter count 2
+Register count 4
+Frame size 32
+         0xeb7010001e0 @    0 : 0b 03             Ldar a0
+         0xeb7010001e2 @    2 : a6 08             JumpIfToBooleanFalse [8] (0xeb7010001ea @ 10)
+         0xeb7010001e4 @    4 : 19 02             LdaImmutableCurrentContextSlot [2]
+         0xeb7010001e6 @    6 : ba 00             ThrowReferenceErrorIfHole [0:"H0"]
+         0xeb7010001e8 @    8 : 98 06             Jump [6] (0xeb7010001ee @ 14)
+         0xeb7010001ea @   10 : 19 03             LdaImmutableCurrentContextSlot [3]
+         0xeb7010001ec @   12 : ba 01             ThrowReferenceErrorIfHole [1:"H1"]
+         0xeb7010001ee @   14 : d4                Star0
+         0xeb7010001ef @   15 : 4f 01 00          AddSmi [1], FBV[0]
+         0xeb7010001f2 @   18 : 0b 03             Ldar a0
+         0xeb7010001f4 @   20 : a6 08             JumpIfToBooleanFalse [8] (0xeb7010001fc @ 28)
+         0xeb7010001f6 @   22 : 19 04             LdaImmutableCurrentContextSlot [4]
+         0xeb7010001f8 @   24 : ba 02             ThrowReferenceErrorIfHole [2:"object_value"]
+         0xeb7010001fa @   26 : 98 04             Jump [4] (0xeb7010001fe @ 30)
+         0xeb7010001fc @   28 : 0b f9             Ldar r0
+         0xeb7010001fe @   30 : d3                Star1
+         0xeb7010001ff @   31 : 19 05             LdaImmutableCurrentContextSlot [5]
+         0xeb701000201 @   33 : ba 03             ThrowReferenceErrorIfHole [3:"arr"]
+         0xeb701000203 @   35 : d2                Star2
+         0xeb701000204 @   36 : 0c                LdaZero
+         0xeb701000205 @   37 : d1                Star3
+         0xeb701000206 @   38 : 0b f8             Ldar r1
+         0xeb701000208 @   40 : 3c f7 f6 01       SetKeyedProperty r2, r3, FBV[1]
+         0xeb70100020c @   44 : 19 06             LdaImmutableCurrentContextSlot [6]
+         0xeb70100020e @   46 : ba 04             ThrowReferenceErrorIfHole [4:"holder"]
+         0xeb701000210 @   48 : d2                Star2
+         0xeb701000211 @   49 : 0b f8             Ldar r1
+         0xeb701000213 @   51 : 3a f7 05 03       SetNamedProperty r2, [5:"x"], FBV[3]
+         0xeb701000217 @   55 : 0e                LdaUndefined
+         0xeb701000218 @   56 : b9                Return
+Constant pool (size = 6)
+Handler Table (size = 0)
+Source Position Table (size = 0)
+0x38c60101e4e5 <FeedbackVector[5]>
+----- After register allocation -----
+Graph
+
+  [0m   [0m1/34: Constant(0x38c60101e2d5 <FeedbackCell[one closure]>) → v-1, live range: [1-33]
+  [0m    [0m2/3: Constant(0x38c60101e381 <JSFunction f (sfi = 0x38c60101e1ed)>) → v-1, live range: [2-29]
+  [0m    [0m3/4: Constant(0x38c60101e2f5 <ScriptContext[7]>) → v-1, live range: [3-29]
+  [0m   [0m4/18: Constant(0x38c60104b6d9 <Object map = 0x38c60101e3dd>) → v-1, live range: [4-21]
+  [0m   [0m5/22: Constant(0x38c60104b6e9 <JSArray[1]>) → v-1, live range: [5-30]
+  [0m   [0m6/32: Constant(0x38c60104b719 <Object map = 0x38c60101e405>) → v-1, live range: [6-32]
+  [0m    [0m7/5: RootConstant(undefined_value) → v-1, live range: [7-34]
+  [0m   [0m8/23: SmiConstant(0) → v-1, live range: [8-29]
+  [0m   [0m9/28: Int32Constant(0) → v-1, live range: [9-31]
+  [0m  [0m10/38: Float64Constant(7) → v-1, live range: [10-18]
+  [0m  [0m11/37: Float64Constant(42) → v-1, live range: [11-17]
+   [0mBlock b0
+  [0m[1;34m0x38c60101e1ed <SharedFunctionInfo f> (0x38c60104a65d <String[89]: "bugs/v8/2026-reset-p1a-maglev-phi-sinks/poc/h8-array-store-then-field-store-stale-type.js">:21:10)
+[m  [0m[0;34m   0 : 0b 03             Ldar a0
+[m  [0m   [0m12/1: InitialValue(<this>) → [stack:-6|t], live range: [12-29]
+  [0m   [0m13/2: InitialValue(a0) → [stack:-7|t], live range: [13-29]
+  [0m   [0m14/6: FunctionEntryStackCheck
+  [0m         ↳ lazy @-1 (3 live vars)
+  [0m   [0m15/7: Jump b1
+  [0m      ↓
+   [0mBlock b1
+  [0m     [0m40: GapMove([stack:-7|t] → [x0|R|t])
+  [0m[1;34m0x38c60101e1ed <SharedFunctionInfo f> (0x38c60104a65d <String[89]: "bugs/v8/2026-reset-p1a-maglev-phi-sinks/poc/h8-array-store-then-field-store-stale-type.js">:0:0)
+[m  [0m[0;34m   2 : a6 08             JumpIfToBooleanFalse [8]
+[m[0;31m╭────[0m16/8: BranchIfToBooleanTrue [v13/n2:[x0|R|t]] b2 b3
+[0;31m│ [0m      ↓
+[0;31m│  [0mBlock b2
+[0;31m│ [0m[0;34m   8 : 98 06             Jump [6]
+[m[0;31m│[0;32m╭──[0m17/10: Jump b4
+[0;31m│[0;32m│[0m         with gap moves:
+[0;31m│[0;32m│[0m           - v11/n37:[constant:v-1] → 13: φᶠ <accumulator> [v0|R|f64]
+[0;31m│[0;32m│[0m         with register merges:
+[0;31m│[0;32m│[0m
+[0;31m╰─►[0mBlock b3
+ [0;32m│[0m[0;34m  14 : d4                Star0
+[m [0;32m│[0m  [0m18/12: Jump b4
+ [0;32m│[0m      │  with gap moves:
+ [0;32m│[0m      │    - v10/n38:[constant:v-1] → 13: φᶠ <accumulator> [v0|R|f64]
+ [0;32m│[0m      │  with register merges:
+ [0;32m│[0m      ▼
+ [0;32m╰►[0mBlock b4
+  [0m  [0m19/13: φᶠʰ <accumulator> (n37, n38) → [v0|R|f64], live range: [19-22]
+  [0m[0;34m  20 : a6 08             JumpIfToBooleanFalse [8]
+[m[0;31m╭───[0m20/17: BranchIfToBooleanTrue [v13/n2:[x0|R|t]] b5 b6
+[0;31m│ [0m      ↓
+[0;31m│  [0mBlock b5
+[0;31m│ [0m[0;34m  26 : 98 04             Jump [4]
+[m[0;31m│[0;32m╭──[0m21/19: Jump b7
+[0;31m│[0;32m│[0m         with gap moves:
+[0;31m│[0;32m│[0m           - v4/n18:[constant:v-1] → 21: φᵀ <accumulator> [x1|R|t]
+[0;31m│[0;32m│[0m         with register merges:
+[0;31m│[0;32m│[0m
+[0;31m╰─►[0mBlock b6
+ [0;32m│[0m  [0m22/39: Float64ToTagged[kForceHeapNumber] [v19/n13:[v0|R|f64]] → [x1|R|t], live range: [22-23]
+ [0;32m│[0m[0;34m  30 : d3                Star1
+[m [0;32m│[0m  [0m23/20: Jump b7
+ [0;32m│[0m      │  with gap moves:
+ [0;32m│[0m      │    - v22/n39:[x1|R|t] → 21: φᵀ <accumulator> [x1|R|t]
+ [0;32m│[0m      │  with register merges:
+ [0;32m│[0m      ▼
+ [0;32m╰►[0mBlock b7
+  [0m  [0m24/21: φᵀʰ <accumulator> (n18, n39) (decompressed) → [x1|R|t], live range: [24-32]
+  [0m     [0m41: ConstantGapMove(n22 → [x2|R|t])
+  [0m[0;34m  40 : 3c f7 f6 01       SetKeyedProperty r2, r3, FBV[1]
+[m  [0m         ↱ eager @40 (7 live vars)
+  [0m  [0m25/24: CheckMaps(0x38c60100d161 <Map[16](PACKED_ELEMENTS)>, no heapobj check) [v5/n22:[x2|R|t]]
+  [0m  [0m26/25: LoadTaggedField(0x8, decompressed) [v5/n22:[x2|R|t]] → [x3|R|t], live range: [26-30]
+  [0m  [0m27/26: LoadTaggedField(0xc: 0x38c600000e19 <String[6]: #length>, compressed, Smi) [v5/n22:[x2|R|t]] → [x4|R|t], live range: [27-28]
+  [0m  [0m28/27: UnsafeSmiUntag [v27/n26:[x4|R|t]] → [x4|R|w32], live range: [28-29]
+  [0m     [0m42: ConstantGapMove(n28 → [x5|R|w32])
+  [0m         ↱ eager @40 (7 live vars)
+  [0m  [0m29/29: CheckInt32Condition[UnsignedLessThan, OutOfBounds] [v9/n28:[x5|R|w32], v28/n27:[x4|R|w32]]
+  [0m  [0m30/30: EnsureWritableFastElements [v26/n25:[x3|R|t], v5/n22:[x2|R|t]] → [x3|R|t], live range: [30-31]
+  [0m     [0m43: GapMove([x1|R|t] → [x0|R|t])
+  [0m     [0m44: ConstantGapMove(n28 → [x2|R|w32])
+  [0m  [0m31/31: StoreFixedArrayElementWithWriteBarrier [v30/n30:[x3|R|t], v9/n28:[x2|R|w32], v24/n21:[x0|R|t]]
+  [0m     [0m45: ConstantGapMove(n32 → [x1|R|t])
+  [0m[0;34m  51 : 3a f7 05 03       SetNamedProperty r2, [5:"x"], FBV[3]
+[m  [0m  [0m32/33: StoreTaggedFieldWithWriteBarrier(0xc: 0x38c6000036dd <String[1]: #x>, mutable, maybe_smi:0) [v6/n32:[x1|R|t], v24/n21:[x0|R|t]]
+  [0m     [0m46: ConstantGapMove(n34 → [x0|R|t])
+  [0m[0;34m  56 : b9                Return
+[m  [0m  [0m33/35: ReduceInterruptBudgetForReturn(56) [v1/n34:[x0|R|t]]
+  [0m     [0m47: ConstantGapMove(n5 → [x0|R|t])
+  [0m  [0m34/36: Return [v7/n5:[x0|R|t]]
+  [0m

@@ -1,0 +1,29 @@
+Command:
+
+orb -m ubuntu -w /home/carlosgomez/chromium-engagement/src \
+  env ASAN_OPTIONS=detect_odr_violation=0 \
+  xvfb-run -a out/c001_asan/viz_unittests \
+  --gtest_filter='*OnSaveTransitionDirectiveProcessedMojoRemoteClientIsAsync*' \
+  --single-process-tests
+
+Result:
+
+PASS
+
+Relevant output:
+
+  [ RUN      ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedMojoRemoteClientIsAsync
+  [       OK ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedMojoRemoteClientIsAsync (189 ms)
+  [  PASSED  ] 1 test.
+
+Interpretation:
+
+For the normal non-bundled product path, `CompositorFrameSinkSupport` can hold
+`client_ = mojo::Remote<mojom::CompositorFrameSinkClient>::get()`. Sending
+`OnCompositorFrameTransitionDirectiveProcessed()` to that remote does not run
+the receiver callback synchronously. The test receiver destroys the support
+when the Mojo message is flushed, and the support remains alive until after
+`OnSaveTransitionDirectiveProcessed()` returns.
+
+This refutes H1 reachability for the ordinary non-bundle Mojo remote path.
+

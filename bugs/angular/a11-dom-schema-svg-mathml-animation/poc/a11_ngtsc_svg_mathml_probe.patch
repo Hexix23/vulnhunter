@@ -1,0 +1,47 @@
+diff --git a/packages/compiler-cli/test/ngtsc/ngtsc_spec.ts b/packages/compiler-cli/test/ngtsc/ngtsc_spec.ts
+index 5afd2bb601..c20279e922 100644
+--- a/packages/compiler-cli/test/ngtsc/ngtsc_spec.ts
++++ b/packages/compiler-cli/test/ngtsc/ngtsc_spec.ts
+@@ -8676,6 +8676,42 @@ runInEachFileSystem((os: string) => {
+         );
+       });
+ 
++      it('A11 probe: should show residual SVG/MathML security contexts', () => {
++        env.write(
++          'test.ts',
++          `
++            import {Component} from '@angular/core';
++
++            @Component({
++              selector: 'test-cmp',
++              template: \`
++                <svg>
++                  <use [attr.xlink:href]="url"></use>
++                  <use [attr.href]="url"></use>
++                  <image [attr.xlink:href]="url" [attr.href]="url"></image>
++                  <mpath [attr.xlink:href]="url" [attr.href]="url"></mpath>
++                  <animate attributeName="href" [attr.by]="url"></animate>
++                </svg>
++                <math><mi [attr.href]="url" [attr.xlink:href]="url"></mi></math>
++              \`,
++            })
++            export class TestCmp {
++              url = 'javascript:alert(1)';
++            }
++          `,
++        );
++
++        env.driveMain();
++
++        const jsContents = env.getContents('test.js');
++        expect(jsContents).toContain('i0.ɵɵattribute("href", ctx.url, null, "xlink");');
++        expect(jsContents).toContain('i0.ɵɵattribute("href", ctx.url);');
++        expect(jsContents).toContain('i0.ɵɵattribute("by", ctx.url);');
++        expect(jsContents).toContain(
++          'i0.ɵɵattribute("href", ctx.url, i0.ɵɵsanitizeUrl)("href", ctx.url, i0.ɵɵsanitizeUrl, "xlink");',
++        );
++      });
++
+       it('should not generate sanitizers for URL properties in hostBindings fn in Component', () => {
+         env.write(
+           `test.ts`,

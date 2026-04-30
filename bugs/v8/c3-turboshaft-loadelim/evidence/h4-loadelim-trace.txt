@@ -1,0 +1,2459 @@
+
+old MERGE B0
+new MERGE B0
+╭── o1:     Constant()[heap object: 0x1081010116e5 <NativeContext[307]>]
+╰─> n0:     Constant()[heap object: 0x1081010116e5 <NativeContext[307]>]
+
+╭── o2:     Constant()[heap object: 0x10810102b1c5 <JSFunction hot (sfi = 0x10810102b0e9)>]
+╰─> n1:     Constant()[heap object: 0x10810102b1c5 <JSFunction hot (sfi = 0x10810102b0e9)>]
+
+╭── o3:     Constant()[heap object: 0x1081010173f9 <JSFunction Int32Array (sfi = 0x10810047b961)>]
+╰─> n2:     Constant()[heap object: 0x1081010173f9 <JSFunction Int32Array (sfi = 0x10810047b961)>]
+
+╭── o4:     Constant()[heap object: 0x10810002fffd <the_hole_value>]
+╰─> n3:     Constant()[heap object: 0x10810002fffd <the_hole_value>]
+
+╭── o5:     Constant()[smi: 0]
+╰─> n4:     Constant()[smi: 0]
+
+╭── o6:     Constant()[smi: 1]
+╰─> n5:     Constant()[smi: 1]
+
+╭── o7:     Constant()[smi: 2]
+╰─> n6:     Constant()[smi: 2]
+
+╭── o8:     Constant()[smi: 19]
+╰─> n7:     Constant()[smi: 19]
+
+╭── o9:     Constant()[smi: 23]
+╰─> n8:     Constant()[smi: 23]
+
+╭── o10:    Constant()[smi: 20000]
+╰─> n9:     Constant()[smi: 20000]
+
+╭── o11:    Constant()[word32: -1]
+╰─> n10:    Constant()[word32: -1]
+
+╭── o12:    Constant()[word32: 0]
+╰─> n11:    Constant()[word32: 0]
+
+╭── o13:    Constant()[word32: 1]
+╰─> n12:    Constant()[word32: 1]
+
+╭── o14:    Constant()[word32: 19]
+╰─> n13:    Constant()[word32: 19]
+
+╭── o15:    Constant()[word32: 23]
+╰─> n14:    Constant()[word32: 23]
+
+╭── o16:    Constant()[word32: 20000]
+╰─> n15:    Constant()[word32: 20000]
+
+╭── o17:    Parameter()[0, <this>]
+╰─> n16:    Parameter()[0, <this>]
+
+╭── o18:    FrameState(#o2, #o17, #o1)[not inlined, UNOPTIMIZED_FRAME, -1, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #2(kRepTagged|kTypeAny) #17(kRepTagged|kTypeAny) #1(kRepTagged|kTypeAny) . . . . . . . .]
+╰─> n17:    FrameState(#n1, #n16, #n0)[not inlined, UNOPTIMIZED_FRAME, -1, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #16(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) . . . . . . . .]
+
+╭── o20:    JSStackCheck(#o1, #o18)[function-entry]
+╰─> n19:    JSStackCheck(#n0, #n17)[function-entry]
+
+
+Inlining MERGE B1 <- B0
+╭── o22:    FrameState(#o2, #o17, #o1)[not inlined, UNOPTIMIZED_FRAME, 9, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #2(kRepTagged|kTypeAny) #17(kRepTagged|kTypeAny) #1(kRepTagged|kTypeAny) . . . . . . . .]
+╰─> n20:    FrameState(#n1, #n16, #n0)[not inlined, UNOPTIMIZED_FRAME, 9, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #16(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) . . . . . . . .]
+
+╭── o24:    FrameState(#o22, #o5, #o4, #o1)[inlined, CONSTRUCT_INVOKE_STUB, -1, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #5(kRepTagged|kTypeAny) #4(kRepTagged|kTypeAny) #1(kRepTagged|kTypeAny)]
+╰─> n22:    FrameState(#n20, #n4, #n3, #n0)[inlined, CONSTRUCT_INVOKE_STUB, -1, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #4(kRepTagged|kTypeAny) #3(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny)]
+
+╭── o26:    Constant()[word32: 2]
+╰─> n24:    Constant()[word32: 2]
+
+╭── o27:    Constant()[heap object: 0x10810048a1d5 <Code BUILTIN TypedArrayConstructor>]
+╰─> n25:    Constant()[heap object: 0x10810048a1d5 <Code BUILTIN TypedArrayConstructor>]
+
+╭── o28:    Call(#o27, #o24, #o3, #o3, #o26, #o12, #o4, #o7, #o1)[Code:JSTrampoline Descriptor:r1s2i8f1]
+╭── o32:    DidntThrow(#o28)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n26:    Call(#n25, #n22, #n2, #n2, #n24, #n11, #n3, #n6, #n0)[Code:JSTrampoline Descriptor:r1s2i8f1]
+╰─> n30:    DidntThrow(#n26)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o34:    FrameState(#o2, #o17, #o1, #o32, #o5, #o8)[not inlined, UNOPTIMIZED_FRAME, 19, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #2(kRepTagged|kTypeAny) #17(kRepTagged|kTypeAny) #1(kRepTagged|kTypeAny) #32(kRepTagged|kTypeAny) . . . . . #5(kRepTagged|kTypeAny) #8(kRepTagged|kTypeAny)]
+╰─> n32:    FrameState(#n1, #n16, #n0, #n30, #n4, #n7)[not inlined, UNOPTIMIZED_FRAME, 19, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #16(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #30(kRepTagged|kTypeAny) . . . . . #4(kRepTagged|kTypeAny) #7(kRepTagged|kTypeAny)]
+
+╭── o37:    CheckMaps(#o32, #o34)[{0x10810101742d <Map[60](INT32ELEMENTS)>}, None, FeedbackSource(INVALID)]
+│   n35:    Load *(#n30) [tagged base, TaggedPointer, Tagged]
+│   n36:    Constant()[heap object: 0x10810101742d <Map[60](INT32ELEMENTS)>]
+│   n37:    Comparison(#n35, #n36)[Equal, Tagged]
+│   n38:    DeoptimizeIf(#n37, #n32)[negated, WrongMap, FeedbackSource(INVALID)]
+│   n39:    AssumeMap(#n30)[{0x10810101742d <Map[60](INT32ELEMENTS)>}]
+
+╭── o39:    Load *(#o32 + 32) [tagged base, Uint64, Word64, offset: 32]
+╰─> n41:    Load *(#n30 + 32) [tagged base, Uint64, Word64, offset: 32]
+
+╭── o40:    Constant()[word32: 29]
+╰─> n42:    Constant()[word32: 29]
+
+╭── o41:    Shift(#o39, #o40)[ShiftRightLogical, Word64]
+╰─> n43:    Shift(#n41, #n42)[ShiftRightLogical, Word64]
+
+╭── o42:    Shift(#o41, #o26)[ShiftRightLogical, Word64]
+╰─> n44:    Shift(#n43, #n24)[ShiftRightLogical, Word64]
+
+╭── o43:    Constant()[word64: 0]
+╰─> n45:    Constant()[word64: 0]
+
+╭── o44:    Comparison(#o43, #o42)[UnsignedLessThan, Word64]
+╰─> n46:    Comparison(#n45, #n44)[UnsignedLessThan, Word64]
+
+╭── o45:    DeoptimizeIf(#o44, #o34)[negated, OutOfBounds, FeedbackSource(INVALID)]
+╰─> n47:    DeoptimizeIf(#n46, #n32)[negated, OutOfBounds, FeedbackSource(INVALID)]
+
+╭── o47:    Load *(#o32 + 48) [tagged base, SandboxedPointer, Word64, offset: 48]
+╰─> n48:    Load *(#n30 + 48) [tagged base, SandboxedPointer, Word64, offset: 48]
+
+╭── o48:    Load *(#o32 + 56) [tagged base, AnyTagged, Tagged, offset: 56]
+╰─> n49:    Load *(#n30 + 56) [tagged base, AnyTagged, Tagged, offset: 56]
+
+╭── o49:    StoreTypedElement(#o32, #o48, #o47, #o43, #o14)[5]
+│   n50:    TaggedBitcast(#n49)[Tagged, Word64, Any]
+│   n51:    Change(#n50)[Truncate, NoAssumption, Word64, Word32]
+│   n52:    Change(#n51)[ZeroExtend, NoAssumption, Word32, Word64]
+│   n53:    WordBinop(#n52, #n48)[Add, Word64]
+│   n54:    Store *(#n52 + #n48) = #n13 [raw, Int32, NoWriteBarrier]
+│   n56:    Retain(#n30)
+
+╭── o51:    FrameState(#o2, #o17, #o1, #o32, #o6, #o9)[not inlined, UNOPTIMIZED_FRAME, 28, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #2(kRepTagged|kTypeAny) #17(kRepTagged|kTypeAny) #1(kRepTagged|kTypeAny) #32(kRepTagged|kTypeAny) . . . . . #6(kRepTagged|kTypeAny) #9(kRepTagged|kTypeAny)]
+╰─> n57:    FrameState(#n1, #n16, #n0, #n30, #n5, #n8)[not inlined, UNOPTIMIZED_FRAME, 28, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #16(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #30(kRepTagged|kTypeAny) . . . . . #5(kRepTagged|kTypeAny) #8(kRepTagged|kTypeAny)]
+
+╭── o53:    Constant()[word64: 1]
+╰─> n60:    Constant()[word64: 1]
+
+╭── o54:    Comparison(#o53, #o42)[UnsignedLessThan, Word64]
+╰─> n61:    Comparison(#n60, #n44)[UnsignedLessThan, Word64]
+
+╭── o55:    DeoptimizeIf(#o54, #o51)[negated, OutOfBounds, FeedbackSource(INVALID)]
+╰─> n62:    DeoptimizeIf(#n61, #n57)[negated, OutOfBounds, FeedbackSource(INVALID)]
+
+╭── o57:    Load *(#o32 + 48) [tagged base, SandboxedPointer, Word64, offset: 48]
+╰─> n63:    Load *(#n30 + 48) [tagged base, SandboxedPointer, Word64, offset: 48]
+
+╭── o58:    Load *(#o32 + 56) [tagged base, AnyTagged, Tagged, offset: 56]
+╰─> n64:    Load *(#n30 + 56) [tagged base, AnyTagged, Tagged, offset: 56]
+
+╭── o59:    StoreTypedElement(#o32, #o58, #o57, #o53, #o15)[5]
+│   n65:    TaggedBitcast(#n64)[Tagged, Word64, Any]
+│   n66:    Change(#n65)[Truncate, NoAssumption, Word64, Word32]
+│   n67:    Change(#n66)[ZeroExtend, NoAssumption, Word32, Word64]
+│   n68:    WordBinop(#n67, #n63)[Add, Word64]
+│   n69:    Store *(#n67 + 4 + #n63) = #n14 [raw, Int32, NoWriteBarrier, offset: 4]
+│   n71:    Retain(#n30)
+
+╭── o61:    Constant()[heap object: 0x10810048bb55 <Code BUILTIN CEntry_Return1_ArgvOnStack_NoBuiltinExit>]
+╰─> n72:    Constant()[heap object: 0x10810048bb55 <Code BUILTIN CEntry_Return1_ArgvOnStack_NoBuiltinExit>]
+
+╭── o62:    Constant()[external: 0x10691b700 <ScheduleGCInStackCheck.entry>]
+╰─> n73:    Constant()[external: 0x10691b700 <ScheduleGCInStackCheck.entry>]
+
+╭── o63:    FrameState(#o2, #o17, #o1, #o32)[not inlined, UNOPTIMIZED_FRAME, 32, PokeAt(0), 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #2(kRepTagged|kTypeAny) #17(kRepTagged|kTypeAny) #1(kRepTagged|kTypeAny) #32(kRepTagged|kTypeAny) . . . . . . .]
+╰─> n74:    FrameState(#n1, #n16, #n0, #n30)[not inlined, UNOPTIMIZED_FRAME, 32, PokeAt(0), 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #16(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #30(kRepTagged|kTypeAny) . . . . . . .]
+
+╭── o65:    Call(#o61, #o63, #o62, #o12, #o1)[Code:ScheduleGCInStackCheck:r1s0i4f1]
+╭── o68:    DidntThrow(#o65)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n76:    Call(#n72, #n74, #n73, #n11, #n0)[Code:ScheduleGCInStackCheck:r1s0i4f1]
+╰─> n79:    DidntThrow(#n76)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o70:    Load *(#o32 + 48) [tagged base, SandboxedPointer, Word64, offset: 48]
+╰─> n81:    Load *(#n30 + 48) [tagged base, SandboxedPointer, Word64, offset: 48]
+
+╭── o71:    Load *(#o32 + 56) [tagged base, AnyTagged, Tagged, offset: 56]
+╰─> n82:    Load *(#n30 + 56) [tagged base, AnyTagged, Tagged, offset: 56]
+
+╭── o72:    LoadTypedElement(#o32, #o71, #o70, #o53)[5]
+│   n83:    TaggedBitcast(#n82)[Tagged, Word64, Any]
+│   n84:    Change(#n83)[Truncate, NoAssumption, Word64, Word32]
+│   n85:    Change(#n84)[ZeroExtend, NoAssumption, Word32, Word64]
+│   n86:    WordBinop(#n85, #n81)[Add, Word64]
+╰─> n87:    Load *(#n85 + 4 + #n81) [raw, Int32, Word32, offset: 4]
+    n89:    Retain(#n30)
+
+╭── o73:    FrameState(#o2, #o17, #o1, #o32, #o72, #o12, #o13)[not inlined, UNOPTIMIZED_FRAME, 71, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #2(kRepTagged|kTypeAny) #17(kRepTagged|kTypeAny) #1(kRepTagged|kTypeAny) #32(kRepTagged|kTypeAny) #72(kRepWord32|kTypeInt32) #12(kRepWord32|kTypeInt32) . #13(kRepWord32|kTypeInt32) . . .]
+╰─> n90:    FrameState(#n1, #n16, #n0, #n30, #n87, #n11, #n12)[not inlined, UNOPTIMIZED_FRAME, 71, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #16(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #30(kRepTagged|kTypeAny) #87(kRepWord32|kTypeInt32) #11(kRepWord32|kTypeInt32) . #12(kRepWord32|kTypeInt32) . . .]
+
+╭── o76:    JSStackCheck(#o1, #o73)[loop]
+╰─> n93:    JSStackCheck(#n0, #n90)[loop]
+
+╭── o77:    Goto()[B2, 0]
+│   n94:    Goto()[<invalid block>, 0]
+
+
+old MERGE B1 <- B0
+new MERGE B1
+╰─> unreachable
+
+
+old LOOP B2 <- B1, B3
+new LOOP B1 <- B0
+╭── o78:    Phi(#o5, #o100)[Tagged]
+╰─> n95:    PendingLoopPhi(#n4)[Tagged]
+
+╭── o79:    Phi(#o6, #o101)[Tagged]
+╰─> n96:    PendingLoopPhi(#n5)[Tagged]
+
+╭── o80:    FrameState(#o2, #o17, #o1, #o32, #o72, #o78, #o79, #o10)[not inlined, UNOPTIMIZED_FRAME, 51, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #2(kRepTagged|kTypeAny) #17(kRepTagged|kTypeAny) #1(kRepTagged|kTypeAny) #32(kRepTagged|kTypeAny) #72(kRepWord32|kTypeInt32) #78(kRepTagged|kTypeAny) . #79(kRepTagged|kTypeAny) . . #10(kRepTagged|kTypeAny)]
+╰─> n97:    FrameState(#n1, #n16, #n0, #n30, #n87, #n95, #n96, #n9)[not inlined, UNOPTIMIZED_FRAME, 51, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #16(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #30(kRepTagged|kTypeAny) #87(kRepWord32|kTypeInt32) #95(kRepTagged|kTypeAny) . #96(kRepTagged|kTypeAny) . . #9(kRepTagged|kTypeAny)]
+
+╭── o83:    ConvertJSPrimitiveToUntaggedOrDeopt(#o79, #o80)[Smi, Int32, dont-check-for-minus-zero, FeedbackSource(INVALID)]
+│   n100:   WordBinop(#n96, #n12)[BitwiseAnd, Word32]
+│   n101:   Comparison(#n100, #n11)[Equal, Word32]
+│   n102:   DeoptimizeIf(#n100, #n97)[NotASmi, FeedbackSource(INVALID)]
+│   n103:   TaggedBitcast(#n96)[Tagged, Word32, Smi]
+╰─> n104:   Shift(#n103, #n12)[ShiftRightArithmeticShiftOutZeros, Word32]
+
+╭── o85:    Comparison(#o83, #o16)[SignedLessThan, Word32]
+│   n105:   Constant()[word32: 40000]
+╰─> n106:   Comparison(#n103, #n105)[SignedLessThan, Word32]
+
+╭── o86:    Branch(#o85)[B3, B4, None]
+╰─> n107:   Branch(#n106)[<invalid block>, <invalid block>, None]
+
+
+
+old BLOCK B3 <- B2
+new BLOCK B2 <- B1
+╭── o88:    ConvertJSPrimitiveToUntaggedOrDeopt(#o78, #o80)[Smi, Int32, dont-check-for-minus-zero, FeedbackSource(INVALID)]
+│   n109:   WordBinop(#n95, #n12)[BitwiseAnd, Word32]
+│   n110:   Comparison(#n109, #n11)[Equal, Word32]
+│   n111:   DeoptimizeIf(#n109, #n97)[NotASmi, FeedbackSource(INVALID)]
+│   n113:   TaggedBitcast(#n95)[Tagged, Word32, Smi]
+╰─> n114:   Shift(#n113, #n12)[ShiftRightArithmeticShiftOutZeros, Word32]
+
+╭── o90:    WordBinopDeoptOnOverflow(#o83, #o88, #o80)[signed add, Word32, dont-check-for-minus-zero]
+│   n115:   OverflowCheckedBinop(#n104, #n114)[signed add, Word32]
+╰─> n116:   Projection(#n115)[0, Word32]
+    n117:   Projection(#n115)[1, Word32]
+    n118:   MakeTuple(#n116, #n117)
+    n119:   DeoptimizeIf(#n117, #n97)[Overflow, FeedbackSource(INVALID)]
+
+╭── o93:    WordBinopDeoptOnOverflow(#o83, #o13, #o80)[signed add, Word32, dont-check-for-minus-zero]
+│   n120:   OverflowCheckedBinop(#n104, #n12)[signed add, Word32]
+╰─> n121:   Projection(#n120)[0, Word32]
+    n122:   Projection(#n120)[1, Word32]
+    n123:   MakeTuple(#n121, #n122)
+    n124:   DeoptimizeIf(#n122, #n97)[Overflow, FeedbackSource(INVALID)]
+
+╭── o96:    FrameState(#o2, #o17, #o1, #o32, #o72, #o90, #o93)[not inlined, UNOPTIMIZED_FRAME, 71, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #2(kRepTagged|kTypeAny) #17(kRepTagged|kTypeAny) #1(kRepTagged|kTypeAny) #32(kRepTagged|kTypeAny) #72(kRepWord32|kTypeInt32) #90(kRepWord32|kTypeInt32) . #93(kRepWord32|kTypeInt32) . . .]
+╰─> n126:   FrameState(#n1, #n16, #n0, #n30, #n87, #n116, #n121)[not inlined, UNOPTIMIZED_FRAME, 71, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #16(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #30(kRepTagged|kTypeAny) #87(kRepWord32|kTypeInt32) #116(kRepWord32|kTypeInt32) . #121(kRepWord32|kTypeInt32) . . .]
+
+╭── o99:    JSStackCheck(#o1, #o96)[loop]
+╰─> n129:   JSStackCheck(#n0, #n126)[loop]
+
+╭── o100:   ConvertUntaggedToJSPrimitive(#o90)[Number, Word32, Signed, dont-check-for-minus-zero]
+│   n130:   OverflowCheckedBinop(#n116, #n116)[signed add, Word32]
+│   n131:   Projection(#n130)[0, Word32]
+│   n132:   Projection(#n130)[1, Word32]
+│   n133:   MakeTuple(#n131, #n132)
+│   n134:   Branch(#n132)[B4, B3, False]
+new BLOCK B3 <- B2
+│   n136:   TaggedBitcast(#n131)[Word32, Tagged, Smi]
+│   n137:   Goto()[B5, 0]
+new BLOCK B4 <- B2
+│   n138:   Change(#n116)[SignedToFloat, NoAssumption, Word32, Float64]
+│   n139:   Constant()[word64: 12]
+│   n140:   Allocate(#n139)[Young, tagged aligned]
+│   n141:   Constant()[heap object: 0x108100000515 <Map[12](HEAP_NUMBER_TYPE)>]
+│   n142:   Store *(#n140) = #n141 [tagged base, TaggedPointer, MapWriteBarrier, initializing]
+│   n143:   Store *(#n140 + 4) = #n138 [tagged base, Float64, NoWriteBarrier, offset: 4, initializing]
+│   n145:   Goto()[B5, 0]
+new MERGE B5 <- B3, B4
+╰─> n146:   Phi(#n136, #n140)[Tagged]
+
+╭── o101:   ConvertUntaggedToJSPrimitive(#o93)[Number, Word32, Signed, dont-check-for-minus-zero]
+│   n147:   OverflowCheckedBinop(#n121, #n121)[signed add, Word32]
+│   n148:   Projection(#n147)[0, Word32]
+│   n149:   Projection(#n147)[1, Word32]
+│   n150:   MakeTuple(#n148, #n149)
+│   n151:   Branch(#n149)[B7, B6, False]
+new BLOCK B6 <- B5
+│   n153:   TaggedBitcast(#n148)[Word32, Tagged, Smi]
+│   n154:   Goto()[B8, 0]
+new BLOCK B7 <- B5
+│   n155:   Change(#n121)[SignedToFloat, NoAssumption, Word32, Float64]
+│   n156:   Constant()[word64: 12]
+│   n157:   Allocate(#n156)[Young, tagged aligned]
+│   n158:   Constant()[heap object: 0x108100000515 <Map[12](HEAP_NUMBER_TYPE)>]
+│   n159:   Store *(#n157) = #n158 [tagged base, TaggedPointer, MapWriteBarrier, initializing]
+│   n160:   Store *(#n157 + 4) = #n155 [tagged base, Float64, NoWriteBarrier, offset: 4, initializing]
+│   n162:   Goto()[B8, 0]
+new MERGE B8 <- B6, B7
+╰─> n163:   Phi(#n153, #n157)[Tagged]
+
+╭── o102:   Goto()[B2, 1]
+│   n164:   Goto()[B1, 1]
+
+
+
+old BLOCK B4 <- B2
+new BLOCK B9 <- B1
+╭── o103:   Load *(#o32 + 48) [tagged base, SandboxedPointer, Word64, offset: 48]
+╰─> n165:   Load *(#n30 + 48) [tagged base, SandboxedPointer, Word64, offset: 48]
+
+╭── o104:   Load *(#o32 + 56) [tagged base, AnyTagged, Tagged, offset: 56]
+╰─> n166:   Load *(#n30 + 56) [tagged base, AnyTagged, Tagged, offset: 56]
+
+╭── o105:   LoadTypedElement(#o32, #o104, #o103, #o43)[5]
+│   n167:   TaggedBitcast(#n166)[Tagged, Word64, Any]
+│   n168:   Change(#n167)[Truncate, NoAssumption, Word64, Word32]
+│   n169:   Change(#n168)[ZeroExtend, NoAssumption, Word32, Word64]
+│   n170:   WordBinop(#n169, #n165)[Add, Word64]
+╰─> n171:   Load *(#n169 + #n165) [raw, Int32, Word32]
+    n172:   Retain(#n30)
+
+╭── o107:   FrameState(#o2, #o17, #o1, #o72, #o78, #o105)[not inlined, UNOPTIMIZED_FRAME, 82, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #2(kRepTagged|kTypeAny) #17(kRepTagged|kTypeAny) #1(kRepTagged|kTypeAny) . #72(kRepWord32|kTypeInt32) #78(kRepTagged|kTypeAny) . . . . #105(kRepWord32|kTypeInt32)]
+╰─> n173:   FrameState(#n1, #n16, #n0, #n87, #n95, #n171)[not inlined, UNOPTIMIZED_FRAME, 82, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #16(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) . #87(kRepWord32|kTypeInt32) #95(kRepTagged|kTypeAny) . . . . #171(kRepWord32|kTypeInt32)]
+
+╭── o109:   WordBinopDeoptOnOverflow(#o72, #o105, #o107)[signed add, Word32, dont-check-for-minus-zero]
+│   n176:   OverflowCheckedBinop(#n87, #n171)[signed add, Word32]
+╰─> n177:   Projection(#n176)[0, Word32]
+    n178:   Projection(#n176)[1, Word32]
+    n179:   MakeTuple(#n177, #n178)
+    n180:   DeoptimizeIf(#n178, #n173)[Overflow, FeedbackSource(INVALID)]
+
+╭── o112:   ConvertJSPrimitiveToUntaggedOrDeopt(#o78, #o107)[Smi, Int32, dont-check-for-minus-zero, FeedbackSource(INVALID)]
+│   n181:   WordBinop(#n95, #n12)[BitwiseAnd, Word32]
+│   n182:   Comparison(#n181, #n11)[Equal, Word32]
+│   n183:   DeoptimizeIf(#n181, #n173)[NotASmi, FeedbackSource(INVALID)]
+│   n185:   TaggedBitcast(#n95)[Tagged, Word32, Smi]
+╰─> n186:   Shift(#n185, #n12)[ShiftRightArithmeticShiftOutZeros, Word32]
+
+╭── o114:   Comparison(#o112, #o11)[Equal, Word32]
+│   n187:   Constant()[word32: -2]
+╰─> n188:   Comparison(#n185, #n187)[Equal, Word32]
+
+╭── o115:   Branch(#o114)[B5, B6, None]
+╰─> n189:   Branch(#n188)[<invalid block>, <invalid block>, None]
+
+
+
+old BLOCK B5 <- B4
+new BLOCK B10 <- B9
+╭── o117:   Goto()[B7, 0]
+│   n191:   Goto()[<invalid block>, 0]
+
+
+
+old BLOCK B6 <- B4
+new BLOCK B11 <- B9
+╭── o118:   Goto()[B7, 0]
+│   n192:   Goto()[<invalid block>, 0]
+
+
+
+old MERGE B7 <- B5, B6
+new MERGE B12 <- B10, B11
+╭── o119:   Phi(#o6, #o5)[Tagged]
+╰─> n193:   Phi(#n5, #n4)[Tagged]
+
+╭── o120:   TaggedBitcast(#o119)[Tagged, Word32, Smi]
+╰─> n194:   TaggedBitcast(#n193)[Tagged, Word32, Smi]
+
+╭── o121:   Shift(#o120, #o13)[ShiftRightArithmeticShiftOutZeros, Word32]
+╰─> n195:   Shift(#n194, #n12)[ShiftRightArithmeticShiftOutZeros, Word32]
+
+╭── o122:   FrameState(#o2, #o17, #o1, #o109, #o119)[not inlined, UNOPTIMIZED_FRAME, 99, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #2(kRepTagged|kTypeAny) #17(kRepTagged|kTypeAny) #1(kRepTagged|kTypeAny) . . . . . #109(kRepWord32|kTypeInt32) . #119(kRepTagged|kTypeAny)]
+╰─> n196:   FrameState(#n1, #n16, #n0, #n177, #n193)[not inlined, UNOPTIMIZED_FRAME, 99, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #16(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) . . . . . #177(kRepWord32|kTypeInt32) . #193(kRepTagged|kTypeAny)]
+
+╭── o125:   WordBinopDeoptOnOverflow(#o109, #o121, #o122)[signed add, Word32, dont-check-for-minus-zero]
+│   n198:   OverflowCheckedBinop(#n177, #n195)[signed add, Word32]
+╰─> n199:   Projection(#n198)[0, Word32]
+    n200:   Projection(#n198)[1, Word32]
+    n201:   MakeTuple(#n199, #n200)
+    n202:   DeoptimizeIf(#n200, #n196)[Overflow, FeedbackSource(INVALID)]
+
+╭── o128:   ConvertUntaggedToJSPrimitive(#o125)[Number, Word32, Signed, dont-check-for-minus-zero]
+│   n204:   OverflowCheckedBinop(#n199, #n199)[signed add, Word32]
+│   n205:   Projection(#n204)[0, Word32]
+│   n206:   Projection(#n204)[1, Word32]
+│   n207:   MakeTuple(#n205, #n206)
+│   n208:   Branch(#n206)[B14, B13, False]
+new BLOCK B13 <- B12
+│   n210:   TaggedBitcast(#n205)[Word32, Tagged, Smi]
+│   n211:   Goto()[B15, 0]
+new BLOCK B14 <- B12
+│   n212:   Change(#n199)[SignedToFloat, NoAssumption, Word32, Float64]
+│   n213:   Constant()[word64: 12]
+│   n214:   Allocate(#n213)[Young, tagged aligned]
+│   n215:   Constant()[heap object: 0x108100000515 <Map[12](HEAP_NUMBER_TYPE)>]
+│   n216:   Store *(#n214) = #n215 [tagged base, TaggedPointer, MapWriteBarrier, initializing]
+│   n217:   Store *(#n214 + 4) = #n212 [tagged base, Float64, NoWriteBarrier, offset: 4, initializing]
+│   n219:   Goto()[B15, 0]
+new MERGE B15 <- B13, B14
+╰─> n220:   Phi(#n210, #n214)[Tagged]
+
+╭── o129:   Return(#o12, #o128)[0]
+╰─> n221:   Return(#n11, #n220)[0]
+
+
+
+old MERGE B0
+new MERGE B0
+╭── o0:     Constant()[heap object: 0x1081010116e5 <NativeContext[307]>]
+╰─> n0:     Constant()[heap object: 0x1081010116e5 <NativeContext[307]>]
+
+╭── o1:     Constant()[heap object: 0x10810102b1c5 <JSFunction hot (sfi = 0x10810102b0e9)>]
+╰─> n1:     Constant()[heap object: 0x10810102b1c5 <JSFunction hot (sfi = 0x10810102b0e9)>]
+
+╭── o2:     Constant()[heap object: 0x1081010173f9 <JSFunction Int32Array (sfi = 0x10810047b961)>]
+╰─> n2:     Constant()[heap object: 0x1081010173f9 <JSFunction Int32Array (sfi = 0x10810047b961)>]
+
+╭── o3:     Constant()[heap object: 0x10810002fffd <the_hole_value>]
+╰─> n3:     Constant()[heap object: 0x10810002fffd <the_hole_value>]
+
+╭── o4:     Constant()[smi: 0]
+╰─> n4:     Constant()[smi: 0]
+
+╭── o5:     Constant()[smi: 1]
+╰─> n5:     Constant()[smi: 1]
+
+╭── o6:     Constant()[smi: 2]
+╰─> n6:     Constant()[smi: 2]
+
+╭── o7:     Constant()[smi: 19]
+╰─> n7:     Constant()[smi: 19]
+
+╭── o8:     Constant()[smi: 23]
+╰─> n8:     Constant()[smi: 23]
+
+╭── o9:     Constant()[smi: 20000]
+╰─> n9:     Constant()[smi: 20000]
+
+╭── o11:    Constant()[word32: 0]
+╰─> n10:    Constant()[word32: 0]
+
+╭── o12:    Constant()[word32: 1]
+╰─> n11:    Constant()[word32: 1]
+
+╭── o13:    Constant()[word32: 19]
+╰─> n12:    Constant()[word32: 19]
+
+╭── o14:    Constant()[word32: 23]
+╰─> n13:    Constant()[word32: 23]
+
+╭── o16:    Parameter()[0, <this>]
+╰─> n14:    Parameter()[0, <this>]
+
+╭── o17:    FrameState(#o1, #o16, #o0)[not inlined, UNOPTIMIZED_FRAME, -1, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #16(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) . . . . . . . .]
+╰─> n15:    FrameState(#n1, #n14, #n0)[not inlined, UNOPTIMIZED_FRAME, -1, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) . . . . . . . .]
+
+╭── o19:    JSStackCheck(#o0, #o17)[function-entry]
+╰─> n17:    JSStackCheck(#n0, #n15)[function-entry]
+
+╭── o20:    FrameState(#o1, #o16, #o0)[not inlined, UNOPTIMIZED_FRAME, 9, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #16(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) . . . . . . . .]
+╰─> n18:    FrameState(#n1, #n14, #n0)[not inlined, UNOPTIMIZED_FRAME, 9, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) . . . . . . . .]
+
+╭── o22:    FrameState(#o20, #o4, #o3, #o0)[inlined, CONSTRUCT_INVOKE_STUB, -1, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #4(kRepTagged|kTypeAny) #3(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny)]
+╰─> n20:    FrameState(#n18, #n4, #n3, #n0)[inlined, CONSTRUCT_INVOKE_STUB, -1, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #4(kRepTagged|kTypeAny) #3(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny)]
+
+╭── o24:    Constant()[word32: 2]
+╰─> n22:    Constant()[word32: 2]
+
+╭── o25:    Constant()[heap object: 0x10810048a1d5 <Code BUILTIN TypedArrayConstructor>]
+╰─> n23:    Constant()[heap object: 0x10810048a1d5 <Code BUILTIN TypedArrayConstructor>]
+
+╭── o26:    Call(#o25, #o22, #o2, #o2, #o24, #o11, #o3, #o6, #o0)[Code:JSTrampoline Descriptor:r1s2i8f1]
+╭── o30:    DidntThrow(#o26)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n24:    Call(#n23, #n20, #n2, #n2, #n22, #n10, #n3, #n6, #n0)[Code:JSTrampoline Descriptor:r1s2i8f1]
+╰─> n28:    DidntThrow(#n24)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o32:    FrameState(#o1, #o16, #o0, #o30, #o4, #o7)[not inlined, UNOPTIMIZED_FRAME, 19, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #16(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #30(kRepTagged|kTypeAny) . . . . . #4(kRepTagged|kTypeAny) #7(kRepTagged|kTypeAny)]
+╰─> n30:    FrameState(#n1, #n14, #n0, #n28, #n4, #n7)[not inlined, UNOPTIMIZED_FRAME, 19, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #28(kRepTagged|kTypeAny) . . . . . #4(kRepTagged|kTypeAny) #7(kRepTagged|kTypeAny)]
+
+╭── o35:    Load *(#o30) [tagged base, TaggedPointer, Tagged]
+╰─> n33:    Load *(#n28) [tagged base, TaggedPointer, Tagged]
+
+╭── o36:    Constant()[heap object: 0x10810101742d <Map[60](INT32ELEMENTS)>]
+╰─> n34:    Constant()[heap object: 0x10810101742d <Map[60](INT32ELEMENTS)>]
+
+╭── o37:    Comparison(#o35, #o36)[Equal, Tagged]
+╰─> n35:    Comparison(#n33, #n34)[Equal, Tagged]
+
+╭── o38:    DeoptimizeIf(#o37, #o32)[negated, WrongMap, FeedbackSource(INVALID)]
+╰─> n36:    DeoptimizeIf(#n35, #n30)[negated, WrongMap, FeedbackSource(INVALID)]
+
+╭── o39:    AssumeMap(#o30)[{0x10810101742d <Map[60](INT32ELEMENTS)>}]
+
+╭── o41:    Load *(#o30 + 32) [tagged base, Uint64, Word64, offset: 32]
+╰─> n37:    Load *(#n28 + 32) [tagged base, Uint64, Word64, offset: 32]
+
+╭── o42:    Constant()[word32: 29]
+╰─> n38:    Constant()[word32: 29]
+
+╭── o43:    Shift(#o41, #o42)[ShiftRightLogical, Word64]
+╰─> n39:    Shift(#n37, #n38)[ShiftRightLogical, Word64]
+
+╭── o44:    Shift(#o43, #o24)[ShiftRightLogical, Word64]
+╰─> n40:    Shift(#n39, #n22)[ShiftRightLogical, Word64]
+
+╭── o45:    Constant()[word64: 0]
+╰─> n41:    Constant()[word64: 0]
+
+╭── o46:    Comparison(#o45, #o44)[UnsignedLessThan, Word64]
+╰─> n42:    Comparison(#n41, #n40)[UnsignedLessThan, Word64]
+
+╭── o47:    DeoptimizeIf(#o46, #o32)[negated, OutOfBounds, FeedbackSource(INVALID)]
+╰─> n43:    DeoptimizeIf(#n42, #n30)[negated, OutOfBounds, FeedbackSource(INVALID)]
+
+╭── o48:    Load *(#o30 + 48) [tagged base, SandboxedPointer, Word64, offset: 48]
+╰─> n45:    Load *(#n28 + 48) [tagged base, SandboxedPointer, Word64, offset: 48]
+
+╭── o49:    Load *(#o30 + 56) [tagged base, AnyTagged, Tagged, offset: 56]
+╰─> n46:    Load *(#n28 + 56) [tagged base, AnyTagged, Tagged, offset: 56]
+
+╭── o50:    TaggedBitcast(#o49)[Tagged, Word64, Any]
+╰─> n47:    TaggedBitcast(#n46)[Tagged, Word64, Any]
+
+╭── o51:    Change(#o50)[Truncate, NoAssumption, Word64, Word32]
+╰─> n48:    Change(#n47)[Truncate, NoAssumption, Word64, Word32]
+
+╭── o52:    Change(#o51)[ZeroExtend, NoAssumption, Word32, Word64]
+╰─> n49:    Change(#n48)[ZeroExtend, NoAssumption, Word32, Word64]
+
+╭── o54:    Store *(#o52 + #o48) = #o13 [raw, Int32, NoWriteBarrier]
+╰─> n50:    Store *(#n49 + #n45) = #n12 [raw, Int32, NoWriteBarrier]
+
+╭── o56:    Retain(#o30)
+╰─> n52:    Retain(#n28)
+
+╭── o57:    FrameState(#o1, #o16, #o0, #o30, #o5, #o8)[not inlined, UNOPTIMIZED_FRAME, 28, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #16(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #30(kRepTagged|kTypeAny) . . . . . #5(kRepTagged|kTypeAny) #8(kRepTagged|kTypeAny)]
+╰─> n53:    FrameState(#n1, #n14, #n0, #n28, #n5, #n8)[not inlined, UNOPTIMIZED_FRAME, 28, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #28(kRepTagged|kTypeAny) . . . . . #5(kRepTagged|kTypeAny) #8(kRepTagged|kTypeAny)]
+
+╭── o60:    Constant()[word64: 1]
+╰─> n55:    Constant()[word64: 1]
+
+╭── o61:    Comparison(#o60, #o44)[UnsignedLessThan, Word64]
+╰─> n56:    Comparison(#n55, #n40)[UnsignedLessThan, Word64]
+
+╭── o62:    DeoptimizeIf(#o61, #o57)[negated, OutOfBounds, FeedbackSource(INVALID)]
+╰─> n57:    DeoptimizeIf(#n56, #n53)[negated, OutOfBounds, FeedbackSource(INVALID)]
+
+╭── o63:    Load *(#o30 + 48) [tagged base, SandboxedPointer, Word64, offset: 48]
+╰─> #n45
+
+╭── o64:    Load *(#o30 + 56) [tagged base, AnyTagged, Tagged, offset: 56]
+╰─> #n46
+
+╭── o65:    TaggedBitcast(#o64)[Tagged, Word64, Any]
+╰─> n59:    TaggedBitcast(#n46)[Tagged, Word64, Any]
+
+╭── o66:    Change(#o65)[Truncate, NoAssumption, Word64, Word32]
+╰─> n60:    Change(#n59)[Truncate, NoAssumption, Word64, Word32]
+
+╭── o67:    Change(#o66)[ZeroExtend, NoAssumption, Word32, Word64]
+╰─> n61:    Change(#n60)[ZeroExtend, NoAssumption, Word32, Word64]
+
+╭── o69:    Store *(#o67 + 4 + #o63) = #o14 [raw, Int32, NoWriteBarrier, offset: 4]
+╰─> n62:    Store *(#n61 + 4 + #n45) = #n13 [raw, Int32, NoWriteBarrier, offset: 4]
+
+╭── o71:    Retain(#o30)
+╰─> n64:    Retain(#n28)
+
+╭── o72:    Constant()[heap object: 0x10810048bb55 <Code BUILTIN CEntry_Return1_ArgvOnStack_NoBuiltinExit>]
+╰─> n65:    Constant()[heap object: 0x10810048bb55 <Code BUILTIN CEntry_Return1_ArgvOnStack_NoBuiltinExit>]
+
+╭── o73:    Constant()[external: 0x10691b700 <ScheduleGCInStackCheck.entry>]
+╰─> n66:    Constant()[external: 0x10691b700 <ScheduleGCInStackCheck.entry>]
+
+╭── o74:    FrameState(#o1, #o16, #o0, #o30)[not inlined, UNOPTIMIZED_FRAME, 32, PokeAt(0), 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #16(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #30(kRepTagged|kTypeAny) . . . . . . .]
+╰─> n67:    FrameState(#n1, #n14, #n0, #n28)[not inlined, UNOPTIMIZED_FRAME, 32, PokeAt(0), 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #28(kRepTagged|kTypeAny) . . . . . . .]
+
+╭── o76:    Call(#o72, #o74, #o73, #o11, #o0)[Code:ScheduleGCInStackCheck:r1s0i4f1]
+╭── o79:    DidntThrow(#o76)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n69:    Call(#n65, #n67, #n66, #n10, #n0)[Code:ScheduleGCInStackCheck:r1s0i4f1]
+╰─> n72:    DidntThrow(#n69)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o81:    Load *(#o30 + 48) [tagged base, SandboxedPointer, Word64, offset: 48]
+╰─> n74:    Load *(#n28 + 48) [tagged base, SandboxedPointer, Word64, offset: 48]
+
+╭── o82:    Load *(#o30 + 56) [tagged base, AnyTagged, Tagged, offset: 56]
+╰─> n75:    Load *(#n28 + 56) [tagged base, AnyTagged, Tagged, offset: 56]
+
+╭── o83:    TaggedBitcast(#o82)[Tagged, Word64, Any]
+╰─> n76:    TaggedBitcast(#n75)[Tagged, Word64, Any]
+
+╭── o84:    Change(#o83)[Truncate, NoAssumption, Word64, Word32]
+╰─> n77:    Change(#n76)[Truncate, NoAssumption, Word64, Word32]
+
+╭── o85:    Change(#o84)[ZeroExtend, NoAssumption, Word32, Word64]
+╰─> n78:    Change(#n77)[ZeroExtend, NoAssumption, Word32, Word64]
+
+╭── o87:    Load *(#o85 + 4 + #o81) [raw, Int32, Word32, offset: 4]
+╰─> n79:    Load *(#n78 + 4 + #n74) [raw, Int32, Word32, offset: 4]
+
+╭── o89:    Retain(#o30)
+╰─> n80:    Retain(#n28)
+
+╭── o90:    FrameState(#o1, #o16, #o0, #o30, #o87, #o11, #o12)[not inlined, UNOPTIMIZED_FRAME, 71, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #16(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #30(kRepTagged|kTypeAny) #87(kRepWord32|kTypeInt32) #11(kRepWord32|kTypeInt32) . #12(kRepWord32|kTypeInt32) . . .]
+╰─> n81:    FrameState(#n1, #n14, #n0, #n28, #n79, #n10, #n11)[not inlined, UNOPTIMIZED_FRAME, 71, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #28(kRepTagged|kTypeAny) #79(kRepWord32|kTypeInt32) #10(kRepWord32|kTypeInt32) . #11(kRepWord32|kTypeInt32) . . .]
+
+╭── o93:    JSStackCheck(#o0, #o90)[loop]
+╰─> n84:    JSStackCheck(#n0, #n81)[loop]
+
+╭── o94:    Goto()[B1, 0]
+│   n85:    Goto()[<invalid block>, 0]
+
+
+
+old LOOP B1 <- B0, B8
+new LOOP B1 <- B0
+╭── o95:    Phi(#o4, #o146)[Tagged]
+╰─> n86:    PendingLoopPhi(#n4)[Tagged]
+
+╭── o96:    Phi(#o5, #o163)[Tagged]
+╰─> n87:    PendingLoopPhi(#n5)[Tagged]
+
+╭── o97:    FrameState(#o1, #o16, #o0, #o30, #o87, #o95, #o96, #o9)[not inlined, UNOPTIMIZED_FRAME, 51, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #16(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #30(kRepTagged|kTypeAny) #87(kRepWord32|kTypeInt32) #95(kRepTagged|kTypeAny) . #96(kRepTagged|kTypeAny) . . #9(kRepTagged|kTypeAny)]
+╰─> n88:    FrameState(#n1, #n14, #n0, #n28, #n79, #n86, #n87, #n9)[not inlined, UNOPTIMIZED_FRAME, 51, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #28(kRepTagged|kTypeAny) #79(kRepWord32|kTypeInt32) #86(kRepTagged|kTypeAny) . #87(kRepTagged|kTypeAny) . . #9(kRepTagged|kTypeAny)]
+
+╭── o100:   WordBinop(#o96, #o12)[BitwiseAnd, Word32]
+╰─> n91:    WordBinop(#n87, #n11)[BitwiseAnd, Word32]
+
+╭── o102:   DeoptimizeIf(#o100, #o97)[NotASmi, FeedbackSource(INVALID)]
+╰─> n92:    DeoptimizeIf(#n91, #n88)[NotASmi, FeedbackSource(INVALID)]
+
+╭── o103:   TaggedBitcast(#o96)[Tagged, Word32, Smi]
+╰─> n94:    TaggedBitcast(#n87)[Tagged, Word32, Smi]
+
+╭── o104:   Shift(#o103, #o12)[ShiftRightArithmeticShiftOutZeros, Word32]
+╰─> n95:    Shift(#n94, #n11)[ShiftRightArithmeticShiftOutZeros, Word32]
+
+╭── o105:   Constant()[word32: 40000]
+╰─> n96:    Constant()[word32: 40000]
+
+╭── o106:   Comparison(#o103, #o105)[SignedLessThan, Word32]
+╰─> n97:    Comparison(#n94, #n96)[SignedLessThan, Word32]
+
+╭── o107:   Branch(#o106)[B2, B9, None]
+╰─> n98:    Branch(#n97)[<invalid block>, <invalid block>, None]
+
+
+
+old BLOCK B2 <- B1
+new BLOCK B2 <- B1
+╭── o109:   WordBinop(#o95, #o12)[BitwiseAnd, Word32]
+╰─> n100:   WordBinop(#n86, #n11)[BitwiseAnd, Word32]
+
+╭── o111:   DeoptimizeIf(#o109, #o97)[NotASmi, FeedbackSource(INVALID)]
+╰─> n101:   DeoptimizeIf(#n100, #n88)[NotASmi, FeedbackSource(INVALID)]
+
+╭── o113:   TaggedBitcast(#o95)[Tagged, Word32, Smi]
+╰─> n102:   TaggedBitcast(#n86)[Tagged, Word32, Smi]
+
+╭── o114:   Shift(#o113, #o12)[ShiftRightArithmeticShiftOutZeros, Word32]
+╰─> n103:   Shift(#n102, #n11)[ShiftRightArithmeticShiftOutZeros, Word32]
+
+╭── o115:   OverflowCheckedBinop(#o104, #o114)[signed add, Word32]
+│   n104:   OverflowCheckedBinop(#n95, #n103)[signed add, Word32]
+│   n105:   Projection(#n104)[0, Word32]
+│   n106:   Projection(#n104)[1, Word32]
+╰─> n107:   MakeTuple(#n105, #n106)
+
+╭── o116:   Projection(#o115)[0, Word32]
+╰─> #n105
+
+╭── o117:   Projection(#o115)[1, Word32]
+╰─> #n106
+
+╭── o119:   DeoptimizeIf(#o117, #o97)[Overflow, FeedbackSource(INVALID)]
+╰─> n108:   DeoptimizeIf(#n106, #n88)[Overflow, FeedbackSource(INVALID)]
+
+╭── o120:   OverflowCheckedBinop(#o104, #o12)[signed add, Word32]
+│   n110:   OverflowCheckedBinop(#n95, #n11)[signed add, Word32]
+│   n111:   Projection(#n110)[0, Word32]
+│   n112:   Projection(#n110)[1, Word32]
+╰─> n113:   MakeTuple(#n111, #n112)
+
+╭── o121:   Projection(#o120)[0, Word32]
+╰─> #n111
+
+╭── o122:   Projection(#o120)[1, Word32]
+╰─> #n112
+
+╭── o124:   DeoptimizeIf(#o122, #o97)[Overflow, FeedbackSource(INVALID)]
+╰─> n114:   DeoptimizeIf(#n112, #n88)[Overflow, FeedbackSource(INVALID)]
+
+╭── o126:   FrameState(#o1, #o16, #o0, #o30, #o87, #o116, #o121)[not inlined, UNOPTIMIZED_FRAME, 71, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #16(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #30(kRepTagged|kTypeAny) #87(kRepWord32|kTypeInt32) #116(kRepWord32|kTypeInt32) . #121(kRepWord32|kTypeInt32) . . .]
+╰─> n115:   FrameState(#n1, #n14, #n0, #n28, #n79, #n105, #n111)[not inlined, UNOPTIMIZED_FRAME, 71, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #28(kRepTagged|kTypeAny) #79(kRepWord32|kTypeInt32) #105(kRepWord32|kTypeInt32) . #111(kRepWord32|kTypeInt32) . . .]
+
+╭── o129:   JSStackCheck(#o0, #o126)[loop]
+╰─> n118:   JSStackCheck(#n0, #n115)[loop]
+
+╭── o130:   OverflowCheckedBinop(#o116, #o116)[signed add, Word32]
+│   n119:   OverflowCheckedBinop(#n105, #n105)[signed add, Word32]
+│   n120:   Projection(#n119)[0, Word32]
+│   n121:   Projection(#n119)[1, Word32]
+╰─> n122:   MakeTuple(#n120, #n121)
+
+╭── o131:   Projection(#o130)[0, Word32]
+╰─> #n120
+
+╭── o132:   Projection(#o130)[1, Word32]
+╰─> #n121
+
+╭── o134:   Branch(#o132)[B4, B3, False]
+╰─> n123:   Branch(#n121)[<invalid block>, <invalid block>, False]
+
+
+
+old BLOCK B3 <- B2
+new BLOCK B3 <- B2
+╭── o136:   TaggedBitcast(#o131)[Word32, Tagged, Smi]
+╰─> n125:   TaggedBitcast(#n120)[Word32, Tagged, Smi]
+
+╭── o137:   Goto()[B5, 0]
+│   n126:   Goto()[<invalid block>, 0]
+
+
+
+old BLOCK B4 <- B2
+new BLOCK B4 <- B2
+╭── o138:   Change(#o116)[SignedToFloat, NoAssumption, Word32, Float64]
+╰─> n127:   Change(#n105)[SignedToFloat, NoAssumption, Word32, Float64]
+
+╭── o139:   Constant()[word64: 12]
+╰─> n128:   Constant()[word64: 12]
+
+╭── o140:   Allocate(#o139)[Young, tagged aligned]
+╰─> n129:   Allocate(#n128)[Young, tagged aligned]
+
+╭── o141:   Constant()[heap object: 0x108100000515 <Map[12](HEAP_NUMBER_TYPE)>]
+╰─> n130:   Constant()[heap object: 0x108100000515 <Map[12](HEAP_NUMBER_TYPE)>]
+
+╭── o142:   Store *(#o140) = #o141 [tagged base, TaggedPointer, MapWriteBarrier, initializing]
+╰─> n131:   Store *(#n129) = #n130 [tagged base, TaggedPointer, MapWriteBarrier, initializing]
+
+╭── o143:   Store *(#o140 + 4) = #o138 [tagged base, Float64, NoWriteBarrier, offset: 4, initializing]
+╰─> n133:   Store *(#n129 + 4) = #n127 [tagged base, Float64, NoWriteBarrier, offset: 4, initializing]
+
+╭── o145:   Goto()[B5, 0]
+│   n134:   Goto()[<invalid block>, 0]
+
+
+
+old MERGE B5 <- B3, B4
+new MERGE B5 <- B3, B4
+╭── o146:   Phi(#o136, #o140)[Tagged]
+╰─> n135:   Phi(#n125, #n129)[Tagged]
+
+╭── o147:   OverflowCheckedBinop(#o121, #o121)[signed add, Word32]
+│   n136:   OverflowCheckedBinop(#n111, #n111)[signed add, Word32]
+│   n137:   Projection(#n136)[0, Word32]
+│   n138:   Projection(#n136)[1, Word32]
+╰─> n139:   MakeTuple(#n137, #n138)
+
+╭── o148:   Projection(#o147)[0, Word32]
+╰─> #n137
+
+╭── o149:   Projection(#o147)[1, Word32]
+╰─> #n138
+
+╭── o151:   Branch(#o149)[B7, B6, False]
+╰─> n140:   Branch(#n138)[<invalid block>, <invalid block>, False]
+
+
+
+old BLOCK B6 <- B5
+new BLOCK B6 <- B5
+╭── o153:   TaggedBitcast(#o148)[Word32, Tagged, Smi]
+╰─> n142:   TaggedBitcast(#n137)[Word32, Tagged, Smi]
+
+╭── o154:   Goto()[B8, 0]
+│   n143:   Goto()[<invalid block>, 0]
+
+
+
+old BLOCK B7 <- B5
+new BLOCK B7 <- B5
+╭── o155:   Change(#o121)[SignedToFloat, NoAssumption, Word32, Float64]
+╰─> n144:   Change(#n111)[SignedToFloat, NoAssumption, Word32, Float64]
+
+╭── o156:   Constant()[word64: 12]
+╰─> n145:   Constant()[word64: 12]
+
+╭── o157:   Allocate(#o156)[Young, tagged aligned]
+╰─> n146:   Allocate(#n145)[Young, tagged aligned]
+
+╭── o158:   Constant()[heap object: 0x108100000515 <Map[12](HEAP_NUMBER_TYPE)>]
+╰─> n147:   Constant()[heap object: 0x108100000515 <Map[12](HEAP_NUMBER_TYPE)>]
+
+╭── o159:   Store *(#o157) = #o158 [tagged base, TaggedPointer, MapWriteBarrier, initializing]
+╰─> n148:   Store *(#n146) = #n147 [tagged base, TaggedPointer, MapWriteBarrier, initializing]
+
+╭── o160:   Store *(#o157 + 4) = #o155 [tagged base, Float64, NoWriteBarrier, offset: 4, initializing]
+╰─> n150:   Store *(#n146 + 4) = #n144 [tagged base, Float64, NoWriteBarrier, offset: 4, initializing]
+
+╭── o162:   Goto()[B8, 0]
+│   n151:   Goto()[<invalid block>, 0]
+
+
+
+old MERGE B8 <- B6, B7
+new MERGE B8 <- B6, B7
+╭── o163:   Phi(#o153, #o157)[Tagged]
+╰─> n152:   Phi(#n142, #n146)[Tagged]
+
+╭── o164:   Goto()[B1, 1]
+│   n153:   Goto()[B1, 1]
+
+
+
+old BLOCK B9 <- B1
+new BLOCK B9 <- B1
+╭── o165:   Load *(#o30 + 48) [tagged base, SandboxedPointer, Word64, offset: 48]
+╰─> #n74
+
+╭── o166:   Load *(#o30 + 56) [tagged base, AnyTagged, Tagged, offset: 56]
+╰─> #n75
+
+╭── o167:   TaggedBitcast(#o166)[Tagged, Word64, Any]
+╰─> n154:   TaggedBitcast(#n75)[Tagged, Word64, Any]
+
+╭── o168:   Change(#o167)[Truncate, NoAssumption, Word64, Word32]
+╰─> n155:   Change(#n154)[Truncate, NoAssumption, Word64, Word32]
+
+╭── o169:   Change(#o168)[ZeroExtend, NoAssumption, Word32, Word64]
+╰─> n156:   Change(#n155)[ZeroExtend, NoAssumption, Word32, Word64]
+
+╭── o171:   Load *(#o169 + #o165) [raw, Int32, Word32]
+╰─> n157:   Load *(#n156 + #n74) [raw, Int32, Word32]
+
+╭── o172:   Retain(#o30)
+╰─> n159:   Retain(#n28)
+
+╭── o173:   FrameState(#o1, #o16, #o0, #o87, #o95, #o171)[not inlined, UNOPTIMIZED_FRAME, 82, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #16(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) . #87(kRepWord32|kTypeInt32) #95(kRepTagged|kTypeAny) . . . . #171(kRepWord32|kTypeInt32)]
+╰─> n160:   FrameState(#n1, #n14, #n0, #n79, #n86, #n157)[not inlined, UNOPTIMIZED_FRAME, 82, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) . #79(kRepWord32|kTypeInt32) #86(kRepTagged|kTypeAny) . . . . #157(kRepWord32|kTypeInt32)]
+
+╭── o176:   OverflowCheckedBinop(#o87, #o171)[signed add, Word32]
+│   n162:   OverflowCheckedBinop(#n79, #n157)[signed add, Word32]
+│   n163:   Projection(#n162)[0, Word32]
+│   n164:   Projection(#n162)[1, Word32]
+╰─> n165:   MakeTuple(#n163, #n164)
+
+╭── o177:   Projection(#o176)[0, Word32]
+╰─> #n163
+
+╭── o178:   Projection(#o176)[1, Word32]
+╰─> #n164
+
+╭── o180:   DeoptimizeIf(#o178, #o173)[Overflow, FeedbackSource(INVALID)]
+╰─> n166:   DeoptimizeIf(#n164, #n160)[Overflow, FeedbackSource(INVALID)]
+
+╭── o181:   WordBinop(#o95, #o12)[BitwiseAnd, Word32]
+╰─> n168:   WordBinop(#n86, #n11)[BitwiseAnd, Word32]
+
+╭── o183:   DeoptimizeIf(#o181, #o173)[NotASmi, FeedbackSource(INVALID)]
+╰─> n169:   DeoptimizeIf(#n168, #n160)[NotASmi, FeedbackSource(INVALID)]
+
+╭── o185:   TaggedBitcast(#o95)[Tagged, Word32, Smi]
+╰─> n170:   TaggedBitcast(#n86)[Tagged, Word32, Smi]
+
+╭── o187:   Constant()[word32: -2]
+╰─> n171:   Constant()[word32: -2]
+
+╭── o188:   Comparison(#o185, #o187)[Equal, Word32]
+╰─> n172:   Comparison(#n170, #n171)[Equal, Word32]
+
+╭── o189:   Branch(#o188)[B10, B11, None]
+╰─> n173:   Branch(#n172)[<invalid block>, <invalid block>, None]
+
+
+
+old BLOCK B10 <- B9
+new BLOCK B10 <- B9
+╭── o191:   Goto()[B12, 0]
+│   n175:   Goto()[<invalid block>, 0]
+
+
+
+old BLOCK B11 <- B9
+new BLOCK B11 <- B9
+╭── o192:   Goto()[B12, 0]
+│   n176:   Goto()[<invalid block>, 0]
+
+
+
+old MERGE B12 <- B10, B11
+new MERGE B12 <- B10, B11
+╭── o193:   Phi(#o5, #o4)[Tagged]
+╰─> n177:   Phi(#n5, #n4)[Tagged]
+
+╭── o194:   TaggedBitcast(#o193)[Tagged, Word32, Smi]
+╰─> n178:   TaggedBitcast(#n177)[Tagged, Word32, Smi]
+
+╭── o195:   Shift(#o194, #o12)[ShiftRightArithmeticShiftOutZeros, Word32]
+╰─> n179:   Shift(#n178, #n11)[ShiftRightArithmeticShiftOutZeros, Word32]
+
+╭── o196:   FrameState(#o1, #o16, #o0, #o177, #o193)[not inlined, UNOPTIMIZED_FRAME, 99, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #16(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) . . . . . #177(kRepWord32|kTypeInt32) . #193(kRepTagged|kTypeAny)]
+╰─> n180:   FrameState(#n1, #n14, #n0, #n163, #n177)[not inlined, UNOPTIMIZED_FRAME, 99, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) . . . . . #163(kRepWord32|kTypeInt32) . #177(kRepTagged|kTypeAny)]
+
+╭── o198:   OverflowCheckedBinop(#o177, #o195)[signed add, Word32]
+│   n183:   OverflowCheckedBinop(#n163, #n179)[signed add, Word32]
+│   n184:   Projection(#n183)[0, Word32]
+│   n185:   Projection(#n183)[1, Word32]
+╰─> n186:   MakeTuple(#n184, #n185)
+
+╭── o199:   Projection(#o198)[0, Word32]
+╰─> #n184
+
+╭── o200:   Projection(#o198)[1, Word32]
+╰─> #n185
+
+╭── o202:   DeoptimizeIf(#o200, #o196)[Overflow, FeedbackSource(INVALID)]
+╰─> n187:   DeoptimizeIf(#n185, #n180)[Overflow, FeedbackSource(INVALID)]
+
+╭── o204:   OverflowCheckedBinop(#o199, #o199)[signed add, Word32]
+│   n188:   OverflowCheckedBinop(#n184, #n184)[signed add, Word32]
+│   n189:   Projection(#n188)[0, Word32]
+│   n190:   Projection(#n188)[1, Word32]
+╰─> n191:   MakeTuple(#n189, #n190)
+
+╭── o205:   Projection(#o204)[0, Word32]
+╰─> #n189
+
+╭── o206:   Projection(#o204)[1, Word32]
+╰─> #n190
+
+╭── o208:   Branch(#o206)[B14, B13, False]
+╰─> n192:   Branch(#n190)[<invalid block>, <invalid block>, False]
+
+
+
+old BLOCK B13 <- B12
+new BLOCK B13 <- B12
+╭── o210:   TaggedBitcast(#o205)[Word32, Tagged, Smi]
+╰─> n194:   TaggedBitcast(#n189)[Word32, Tagged, Smi]
+
+╭── o211:   Goto()[B15, 0]
+│   n195:   Return(#n10, #n194)[0]
+
+
+
+old BLOCK B14 <- B12
+new BLOCK B14 <- B12
+╭── o212:   Change(#o199)[SignedToFloat, NoAssumption, Word32, Float64]
+╰─> n196:   Change(#n184)[SignedToFloat, NoAssumption, Word32, Float64]
+
+╭── o213:   Constant()[word64: 12]
+╰─> n197:   Constant()[word64: 12]
+
+╭── o214:   Allocate(#o213)[Young, tagged aligned]
+╰─> n198:   Allocate(#n197)[Young, tagged aligned]
+
+╭── o215:   Constant()[heap object: 0x108100000515 <Map[12](HEAP_NUMBER_TYPE)>]
+╰─> n199:   Constant()[heap object: 0x108100000515 <Map[12](HEAP_NUMBER_TYPE)>]
+
+╭── o216:   Store *(#o214) = #o215 [tagged base, TaggedPointer, MapWriteBarrier, initializing]
+╰─> n200:   Store *(#n198) = #n199 [tagged base, TaggedPointer, MapWriteBarrier, initializing]
+
+╭── o217:   Store *(#o214 + 4) = #o212 [tagged base, Float64, NoWriteBarrier, offset: 4, initializing]
+╰─> n202:   Store *(#n198 + 4) = #n196 [tagged base, Float64, NoWriteBarrier, offset: 4, initializing]
+
+╭── o219:   Goto()[B15, 0]
+│   n203:   Return(#n10, #n198)[0]
+
+
+
+old MERGE B15 <- B13, B14
+new MERGE B15
+╰─> unreachable
+
+
+old MERGE B0
+new MERGE B0
+╭── o0:     Constant()[heap object: 0x1081010116e5 <NativeContext[307]>]
+╰─> n0:     Constant()[heap object: 0x1081010116e5 <NativeContext[307]>]
+
+╭── o1:     Constant()[heap object: 0x10810102b1c5 <JSFunction hot (sfi = 0x10810102b0e9)>]
+╰─> n1:     Constant()[heap object: 0x10810102b1c5 <JSFunction hot (sfi = 0x10810102b0e9)>]
+
+╭── o2:     Constant()[heap object: 0x1081010173f9 <JSFunction Int32Array (sfi = 0x10810047b961)>]
+╰─> n2:     Constant()[heap object: 0x1081010173f9 <JSFunction Int32Array (sfi = 0x10810047b961)>]
+
+╭── o3:     Constant()[heap object: 0x10810002fffd <the_hole_value>]
+╰─> n3:     Constant()[heap object: 0x10810002fffd <the_hole_value>]
+
+╭── o4:     Constant()[smi: 0]
+╰─> n4:     Constant()[smi: 0]
+
+╭── o5:     Constant()[smi: 1]
+╰─> n5:     Constant()[smi: 1]
+
+╭── o6:     Constant()[smi: 2]
+╰─> n6:     Constant()[smi: 2]
+
+╭── o7:     Constant()[smi: 19]
+╰─> n7:     Constant()[smi: 19]
+
+╭── o8:     Constant()[smi: 23]
+╰─> n8:     Constant()[smi: 23]
+
+╭── o9:     Constant()[smi: 20000]
+╰─> n9:     Constant()[smi: 20000]
+
+╭── o10:    Constant()[word32: 0]
+╰─> n10:    Constant()[word32: 0]
+
+╭── o11:    Constant()[word32: 1]
+╰─> n11:    Constant()[word32: 1]
+
+╭── o12:    Constant()[word32: 19]
+╰─> n12:    Constant()[word32: 19]
+
+╭── o13:    Constant()[word32: 23]
+╰─> n13:    Constant()[word32: 23]
+
+╭── o14:    Parameter()[0, <this>]
+╰─> n14:    Parameter()[0, <this>]
+
+╭── o15:    FrameState(#o1, #o14, #o0)[not inlined, UNOPTIMIZED_FRAME, -1, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) . . . . . . . .]
+╰─> n15:    FrameState(#n1, #n14, #n0)[not inlined, UNOPTIMIZED_FRAME, -1, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) . . . . . . . .]
+
+╭── o17:    JSStackCheck(#o0, #o15)[function-entry]
+╰─> n17:    JSStackCheck(#n0, #n15)[function-entry]
+
+╭── o18:    FrameState(#o1, #o14, #o0)[not inlined, UNOPTIMIZED_FRAME, 9, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) . . . . . . . .]
+╰─> n18:    FrameState(#n1, #n14, #n0)[not inlined, UNOPTIMIZED_FRAME, 9, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) . . . . . . . .]
+
+╭── o20:    FrameState(#o18, #o4, #o3, #o0)[inlined, CONSTRUCT_INVOKE_STUB, -1, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #4(kRepTagged|kTypeAny) #3(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny)]
+╰─> n20:    FrameState(#n18, #n4, #n3, #n0)[inlined, CONSTRUCT_INVOKE_STUB, -1, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #4(kRepTagged|kTypeAny) #3(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny)]
+
+╭── o22:    Constant()[word32: 2]
+╰─> n22:    Constant()[word32: 2]
+
+╭── o23:    Constant()[heap object: 0x10810048a1d5 <Code BUILTIN TypedArrayConstructor>]
+╰─> n23:    Constant()[heap object: 0x10810048a1d5 <Code BUILTIN TypedArrayConstructor>]
+
+╭── o24:    Call(#o23, #o20, #o2, #o2, #o22, #o10, #o3, #o6, #o0)[Code:JSTrampoline Descriptor:r1s2i8f1]
+╭── o28:    DidntThrow(#o24)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n24:    Call(#n23, #n20, #n2, #n2, #n22, #n10, #n3, #n6, #n0)[Code:JSTrampoline Descriptor:r1s2i8f1]
+╰─> n28:    DidntThrow(#n24)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o30:    FrameState(#o1, #o14, #o0, #o28, #o4, #o7)[not inlined, UNOPTIMIZED_FRAME, 19, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #28(kRepTagged|kTypeAny) . . . . . #4(kRepTagged|kTypeAny) #7(kRepTagged|kTypeAny)]
+╰─> n30:    FrameState(#n1, #n14, #n0, #n28, #n4, #n7)[not inlined, UNOPTIMIZED_FRAME, 19, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #28(kRepTagged|kTypeAny) . . . . . #4(kRepTagged|kTypeAny) #7(kRepTagged|kTypeAny)]
+
+╭── o33:    Load *(#o28) [tagged base, TaggedPointer, Tagged]
+╰─> n33:    Load *(#n28) [tagged base, TaggedPointer, Tagged]
+
+╭── o34:    Constant()[heap object: 0x10810101742d <Map[60](INT32ELEMENTS)>]
+╰─> n34:    Constant()[heap object: 0x10810101742d <Map[60](INT32ELEMENTS)>]
+
+╭── o35:    Comparison(#o33, #o34)[Equal, Tagged]
+╰─> n35:    Comparison(#n33, #n34)[Equal, Tagged]
+
+╭── o36:    DeoptimizeIf(#o35, #o30)[negated, WrongMap, FeedbackSource(INVALID)]
+╰─> n36:    DeoptimizeIf(#n35, #n30)[negated, WrongMap, FeedbackSource(INVALID)]
+
+╭── o37:    Load *(#o28 + 32) [tagged base, Uint64, Word64, offset: 32]
+╰─> n37:    Load *(#n28 + 32) [tagged base, Uint64, Word64, offset: 32]
+
+╭── o38:    Constant()[word32: 29]
+╰─> n38:    Constant()[word32: 29]
+
+╭── o39:    Shift(#o37, #o38)[ShiftRightLogical, Word64]
+╰─> n39:    Shift(#n37, #n38)[ShiftRightLogical, Word64]
+
+╭── o40:    Shift(#o39, #o22)[ShiftRightLogical, Word64]
+╰─> n40:    Shift(#n39, #n22)[ShiftRightLogical, Word64]
+
+╭── o41:    Constant()[word64: 0]
+╰─> n41:    Constant()[word64: 0]
+
+╭── o42:    Comparison(#o41, #o40)[UnsignedLessThan, Word64]
+╰─> n42:    Comparison(#n41, #n40)[UnsignedLessThan, Word64]
+
+╭── o43:    DeoptimizeIf(#o42, #o30)[negated, OutOfBounds, FeedbackSource(INVALID)]
+╰─> n43:    DeoptimizeIf(#n42, #n30)[negated, OutOfBounds, FeedbackSource(INVALID)]
+
+╭── o45:    Load *(#o28 + 48) [tagged base, SandboxedPointer, Word64, offset: 48]
+╰─> n45:    Load *(#n28 + 48) [tagged base, SandboxedPointer, Word64, offset: 48]
+
+╭── o46:    Load *(#o28 + 56) [tagged base, AnyTagged, Tagged, offset: 56]
+╰─> n46:    Load *(#n28 + 56) [tagged base, AnyTagged, Tagged, offset: 56]
+
+╭── o47:    TaggedBitcast(#o46)[Tagged, Word64, Any]
+╰─> n47:    TaggedBitcast(#n46)[Tagged, Word64, Any]
+
+╭── o48:    Change(#o47)[Truncate, NoAssumption, Word64, Word32]
+╰─> n48:    Change(#n47)[Truncate, NoAssumption, Word64, Word32]
+
+╭── o49:    Change(#o48)[ZeroExtend, NoAssumption, Word32, Word64]
+╰─> n49:    Change(#n48)[ZeroExtend, NoAssumption, Word32, Word64]
+
+╭── o50:    Store *(#o49 + #o45) = #o12 [raw, Int32, NoWriteBarrier]
+╰─> n50:    Store *(#n49 + #n45) = #n12 [raw, Int32, NoWriteBarrier]
+
+╭── o52:    Retain(#o28)
+╰─> n52:    Retain(#n28)
+
+╭── o53:    FrameState(#o1, #o14, #o0, #o28, #o5, #o8)[not inlined, UNOPTIMIZED_FRAME, 28, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #28(kRepTagged|kTypeAny) . . . . . #5(kRepTagged|kTypeAny) #8(kRepTagged|kTypeAny)]
+╰─> n53:    FrameState(#n1, #n14, #n0, #n28, #n5, #n8)[not inlined, UNOPTIMIZED_FRAME, 28, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #28(kRepTagged|kTypeAny) . . . . . #5(kRepTagged|kTypeAny) #8(kRepTagged|kTypeAny)]
+
+╭── o55:    Constant()[word64: 1]
+╰─> n55:    Constant()[word64: 1]
+
+╭── o56:    Comparison(#o55, #o40)[UnsignedLessThan, Word64]
+╰─> n56:    Comparison(#n55, #n40)[UnsignedLessThan, Word64]
+
+╭── o57:    DeoptimizeIf(#o56, #o53)[negated, OutOfBounds, FeedbackSource(INVALID)]
+╰─> n57:    DeoptimizeIf(#n56, #n53)[negated, OutOfBounds, FeedbackSource(INVALID)]
+
+╭── o59:    TaggedBitcast(#o46)[Tagged, Word64, Any]
+╰─> n59:    TaggedBitcast(#n46)[Tagged, Word64, Any]
+
+╭── o60:    Change(#o59)[Truncate, NoAssumption, Word64, Word32]
+╰─> n60:    Change(#n59)[Truncate, NoAssumption, Word64, Word32]
+
+╭── o61:    Change(#o60)[ZeroExtend, NoAssumption, Word32, Word64]
+╰─> n61:    Change(#n60)[ZeroExtend, NoAssumption, Word32, Word64]
+
+╭── o62:    Store *(#o61 + 4 + #o45) = #o13 [raw, Int32, NoWriteBarrier, offset: 4]
+╰─> n62:    Store *(#n61 + 4 + #n45) = #n13 [raw, Int32, NoWriteBarrier, offset: 4]
+
+╭── o64:    Retain(#o28)
+╰─> n64:    Retain(#n28)
+
+╭── o65:    Constant()[heap object: 0x10810048bb55 <Code BUILTIN CEntry_Return1_ArgvOnStack_NoBuiltinExit>]
+╰─> n65:    Constant()[heap object: 0x10810048bb55 <Code BUILTIN CEntry_Return1_ArgvOnStack_NoBuiltinExit>]
+
+╭── o66:    Constant()[external: 0x10691b700 <ScheduleGCInStackCheck.entry>]
+╰─> n66:    Constant()[external: 0x10691b700 <ScheduleGCInStackCheck.entry>]
+
+╭── o67:    FrameState(#o1, #o14, #o0, #o28)[not inlined, UNOPTIMIZED_FRAME, 32, PokeAt(0), 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #28(kRepTagged|kTypeAny) . . . . . . .]
+╰─> n67:    FrameState(#n1, #n14, #n0, #n28)[not inlined, UNOPTIMIZED_FRAME, 32, PokeAt(0), 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #28(kRepTagged|kTypeAny) . . . . . . .]
+
+╭── o69:    Call(#o65, #o67, #o66, #o10, #o0)[Code:ScheduleGCInStackCheck:r1s0i4f1]
+╭── o72:    DidntThrow(#o69)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n69:    Call(#n65, #n67, #n66, #n10, #n0)[Code:ScheduleGCInStackCheck:r1s0i4f1]
+╰─> n72:    DidntThrow(#n69)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o74:    Load *(#o28 + 48) [tagged base, SandboxedPointer, Word64, offset: 48]
+╰─> n74:    Load *(#n28 + 48) [tagged base, SandboxedPointer, Word64, offset: 48]
+
+╭── o75:    Load *(#o28 + 56) [tagged base, AnyTagged, Tagged, offset: 56]
+╰─> n75:    Load *(#n28 + 56) [tagged base, AnyTagged, Tagged, offset: 56]
+
+╭── o76:    TaggedBitcast(#o75)[Tagged, Word64, Any]
+╰─> n76:    TaggedBitcast(#n75)[Tagged, Word64, Any]
+
+╭── o77:    Change(#o76)[Truncate, NoAssumption, Word64, Word32]
+╰─> n77:    Change(#n76)[Truncate, NoAssumption, Word64, Word32]
+
+╭── o78:    Change(#o77)[ZeroExtend, NoAssumption, Word32, Word64]
+╰─> n78:    Change(#n77)[ZeroExtend, NoAssumption, Word32, Word64]
+
+╭── o79:    Load *(#o78 + 4 + #o74) [raw, Int32, Word32, offset: 4]
+╰─> n79:    Load *(#n78 + 4 + #n74) [raw, Int32, Word32, offset: 4]
+
+╭── o80:    Retain(#o28)
+╰─> n80:    Retain(#n28)
+
+╭── o81:    FrameState(#o1, #o14, #o0, #o28, #o79, #o10, #o11)[not inlined, UNOPTIMIZED_FRAME, 71, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #28(kRepTagged|kTypeAny) #79(kRepWord32|kTypeInt32) #10(kRepWord32|kTypeInt32) . #11(kRepWord32|kTypeInt32) . . .]
+╰─> n81:    FrameState(#n1, #n14, #n0, #n28, #n79, #n10, #n11)[not inlined, UNOPTIMIZED_FRAME, 71, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #28(kRepTagged|kTypeAny) #79(kRepWord32|kTypeInt32) #10(kRepWord32|kTypeInt32) . #11(kRepWord32|kTypeInt32) . . .]
+
+╭── o84:    JSStackCheck(#o0, #o81)[loop]
+╰─> n84:    JSStackCheck(#n0, #n81)[loop]
+
+╭── o85:    Goto()[B1, 0]
+│   n85:    Goto()[<invalid block>, 0]
+
+
+
+old LOOP B1 <- B0, B8
+new LOOP B1 <- B0
+╭── o86:    Phi(#o4, #o135)[Tagged]
+╰─> n86:    PendingLoopPhi(#n4)[Tagged]
+
+╭── o87:    Phi(#o5, #o152)[Tagged]
+╰─> n87:    PendingLoopPhi(#n5)[Tagged]
+
+╭── o88:    FrameState(#o1, #o14, #o0, #o28, #o79, #o86, #o87, #o9)[not inlined, UNOPTIMIZED_FRAME, 51, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #28(kRepTagged|kTypeAny) #79(kRepWord32|kTypeInt32) #86(kRepTagged|kTypeAny) . #87(kRepTagged|kTypeAny) . . #9(kRepTagged|kTypeAny)]
+╰─> n88:    FrameState(#n1, #n14, #n0, #n28, #n79, #n86, #n87, #n9)[not inlined, UNOPTIMIZED_FRAME, 51, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #28(kRepTagged|kTypeAny) #79(kRepWord32|kTypeInt32) #86(kRepTagged|kTypeAny) . #87(kRepTagged|kTypeAny) . . #9(kRepTagged|kTypeAny)]
+
+╭── o91:    WordBinop(#o87, #o11)[BitwiseAnd, Word32]
+╰─> n91:    WordBinop(#n87, #n11)[BitwiseAnd, Word32]
+
+╭── o92:    DeoptimizeIf(#o91, #o88)[NotASmi, FeedbackSource(INVALID)]
+╰─> n92:    DeoptimizeIf(#n91, #n88)[NotASmi, FeedbackSource(INVALID)]
+
+╭── o94:    TaggedBitcast(#o87)[Tagged, Word32, Smi]
+╰─> n94:    TaggedBitcast(#n87)[Tagged, Word32, Smi]
+
+╭── o95:    Shift(#o94, #o11)[ShiftRightArithmeticShiftOutZeros, Word32]
+╰─> n95:    Shift(#n94, #n11)[ShiftRightArithmeticShiftOutZeros, Word32]
+
+╭── o96:    Constant()[word32: 40000]
+╰─> n96:    Constant()[word32: 40000]
+
+╭── o97:    Comparison(#o94, #o96)[SignedLessThan, Word32]
+╰─> n97:    Comparison(#n94, #n96)[SignedLessThan, Word32]
+
+╭── o98:    Branch(#o97)[B2, B9, None]
+╰─> n98:    Branch(#n97)[<invalid block>, <invalid block>, None]
+
+
+
+old BLOCK B2 <- B1
+new BLOCK B2 <- B1
+╭── o100:   WordBinop(#o86, #o11)[BitwiseAnd, Word32]
+╰─> n100:   WordBinop(#n86, #n11)[BitwiseAnd, Word32]
+
+╭── o101:   DeoptimizeIf(#o100, #o88)[NotASmi, FeedbackSource(INVALID)]
+╰─> n101:   DeoptimizeIf(#n100, #n88)[NotASmi, FeedbackSource(INVALID)]
+
+╭── o102:   TaggedBitcast(#o86)[Tagged, Word32, Smi]
+╰─> n102:   TaggedBitcast(#n86)[Tagged, Word32, Smi]
+
+╭── o103:   Shift(#o102, #o11)[ShiftRightArithmeticShiftOutZeros, Word32]
+╰─> n103:   Shift(#n102, #n11)[ShiftRightArithmeticShiftOutZeros, Word32]
+
+╭── o104:   OverflowCheckedBinop(#o95, #o103)[signed add, Word32]
+│   n104:   OverflowCheckedBinop(#n95, #n103)[signed add, Word32]
+│   n105:   Projection(#n104)[0, Word32]
+│   n106:   Projection(#n104)[1, Word32]
+╰─> n107:   MakeTuple(#n105, #n106)
+
+╭── o105:   Projection(#o104)[0, Word32]
+╰─> #n105
+
+╭── o106:   Projection(#o104)[1, Word32]
+╰─> #n106
+
+╭── o108:   DeoptimizeIf(#o106, #o88)[Overflow, FeedbackSource(INVALID)]
+╰─> n108:   DeoptimizeIf(#n106, #n88)[Overflow, FeedbackSource(INVALID)]
+
+╭── o110:   OverflowCheckedBinop(#o95, #o11)[signed add, Word32]
+│   n110:   OverflowCheckedBinop(#n95, #n11)[signed add, Word32]
+│   n111:   Projection(#n110)[0, Word32]
+│   n112:   Projection(#n110)[1, Word32]
+╰─> n113:   MakeTuple(#n111, #n112)
+
+╭── o111:   Projection(#o110)[0, Word32]
+╰─> #n111
+
+╭── o112:   Projection(#o110)[1, Word32]
+╰─> #n112
+
+╭── o114:   DeoptimizeIf(#o112, #o88)[Overflow, FeedbackSource(INVALID)]
+╰─> n114:   DeoptimizeIf(#n112, #n88)[Overflow, FeedbackSource(INVALID)]
+
+╭── o115:   FrameState(#o1, #o14, #o0, #o28, #o79, #o105, #o111)[not inlined, UNOPTIMIZED_FRAME, 71, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #28(kRepTagged|kTypeAny) #79(kRepWord32|kTypeInt32) #105(kRepWord32|kTypeInt32) . #111(kRepWord32|kTypeInt32) . . .]
+╰─> n115:   FrameState(#n1, #n14, #n0, #n28, #n79, #n105, #n111)[not inlined, UNOPTIMIZED_FRAME, 71, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #28(kRepTagged|kTypeAny) #79(kRepWord32|kTypeInt32) #105(kRepWord32|kTypeInt32) . #111(kRepWord32|kTypeInt32) . . .]
+
+╭── o118:   JSStackCheck(#o0, #o115)[loop]
+╰─> n118:   JSStackCheck(#n0, #n115)[loop]
+
+╭── o119:   OverflowCheckedBinop(#o105, #o105)[signed add, Word32]
+│   n119:   OverflowCheckedBinop(#n105, #n105)[signed add, Word32]
+│   n120:   Projection(#n119)[0, Word32]
+│   n121:   Projection(#n119)[1, Word32]
+╰─> n122:   MakeTuple(#n120, #n121)
+
+╭── o120:   Projection(#o119)[0, Word32]
+╰─> #n120
+
+╭── o121:   Projection(#o119)[1, Word32]
+╰─> #n121
+
+╭── o123:   Branch(#o121)[B4, B3, False]
+╰─> n123:   Branch(#n121)[<invalid block>, <invalid block>, False]
+
+
+
+old BLOCK B3 <- B2
+new BLOCK B3 <- B2
+╭── o125:   TaggedBitcast(#o120)[Word32, Tagged, Smi]
+╰─> n125:   TaggedBitcast(#n120)[Word32, Tagged, Smi]
+
+╭── o126:   Goto()[B5, 0]
+│   n126:   Goto()[<invalid block>, 0]
+
+
+
+old BLOCK B4 <- B2
+new BLOCK B4 <- B2
+╭── o127:   Change(#o105)[SignedToFloat, NoAssumption, Word32, Float64]
+╰─> n127:   Change(#n105)[SignedToFloat, NoAssumption, Word32, Float64]
+
+╭── o128:   Constant()[word64: 12]
+╰─> n128:   Constant()[word64: 12]
+
+╭── o129:   Allocate(#o128)[Young, tagged aligned]
+│   n129:   Constant()[external: 0x46 <new_allocation_info_top>]
+│   n130:   Load *(#n129) [raw, Uint64, Word64]
+│   n131:   Constant()[heap object: 0x10810047fe41 <Code BUILTIN AllocateInYoungGeneration>]
+│   n132:   Constant()[external: 0x47 <new_allocation_info_limit>]
+│   n133:   Constant()[word64: 131072]
+│   n134:   Goto()[B5, 0]
+new MERGE B5 <- B4
+│   n135:   Load *(#n132) [raw, Uint64, Word64]
+│   n136:   WordBinop(#n130, #n128)[Add, Word64]
+│   n137:   Comparison(#n136, #n135)[UnsignedLessThan, Word64]
+│   n138:   Branch(#n137)[B7, B6, True]
+new BLOCK B6 <- B5
+│   n140:   Call(#n131, #n128)[Code:Allocate Descriptor:r1s0i2f0]
+│   n142:   DidntThrow(#n140)[🁣🁣 🁣🁣 🁤🁪 🁣 i a, 0]
+│   n144:   TaggedBitcast(#n142)[Tagged, Word64, HeapObject]
+│   n145:   Constant()[word64: -1]
+│   n146:   WordBinop(#n144, #n145)[Add, Word64]
+│   n147:   Goto()[B8, 0]
+new BLOCK B7 <- B5
+│   n148:   Goto()[B8, 0]
+new MERGE B8 <- B7, B6
+│   n149:   Phi(#n130, #n146)[Word64]
+│   n150:   Constant()[external: 0x11 <last_young_allocation>]
+│   n151:   Store *(#n150) = #n149 [raw, Uint64, NoWriteBarrier]
+│   n153:   WordBinop(#n149, #n128)[Add, Word64]
+│   n154:   Store *(#n129) = #n153 [raw, Uint64, NoWriteBarrier]
+│   n155:   WordBinop(#n149, #n55)[Add, Word64]
+╰─> n156:   TaggedBitcast(#n155)[Word64, Tagged, HeapObject]
+
+╭── o130:   Constant()[heap object: 0x108100000515 <Map[12](HEAP_NUMBER_TYPE)>]
+╰─> n157:   Constant()[heap object: 0x108100000515 <Map[12](HEAP_NUMBER_TYPE)>]
+
+╭── o131:   Store *(#o129) = #o130 [tagged base, TaggedPointer, MapWriteBarrier, initializing]
+│   n158:   Store *(#n156) = #n157 [tagged base, TaggedPointer, SkippedWriteBarrier, initializing]
+
+╭── o133:   Store *(#o129 + 4) = #o127 [tagged base, Float64, NoWriteBarrier, offset: 4, initializing]
+╰─> n160:   Store *(#n156 + 4) = #n127 [tagged base, Float64, NoWriteBarrier, offset: 4, initializing]
+
+╭── o134:   Goto()[B5, 0]
+│   n161:   Goto()[<invalid block>, 0]
+
+
+
+old MERGE B5 <- B3, B4
+new MERGE B9 <- B3, B8
+╭── o135:   Phi(#o125, #o129)[Tagged]
+╰─> n162:   Phi(#n125, #n156)[Tagged]
+
+╭── o136:   OverflowCheckedBinop(#o111, #o111)[signed add, Word32]
+│   n163:   OverflowCheckedBinop(#n111, #n111)[signed add, Word32]
+│   n164:   Projection(#n163)[0, Word32]
+│   n165:   Projection(#n163)[1, Word32]
+╰─> n166:   MakeTuple(#n164, #n165)
+
+╭── o137:   Projection(#o136)[0, Word32]
+╰─> #n164
+
+╭── o138:   Projection(#o136)[1, Word32]
+╰─> #n165
+
+╭── o140:   Branch(#o138)[B7, B6, False]
+╰─> n167:   Branch(#n165)[<invalid block>, <invalid block>, False]
+
+
+
+old BLOCK B6 <- B5
+new BLOCK B10 <- B9
+╭── o142:   TaggedBitcast(#o137)[Word32, Tagged, Smi]
+╰─> n169:   TaggedBitcast(#n164)[Word32, Tagged, Smi]
+
+╭── o143:   Goto()[B8, 0]
+│   n170:   Goto()[<invalid block>, 0]
+
+
+
+old BLOCK B7 <- B5
+new BLOCK B11 <- B9
+╭── o144:   Change(#o111)[SignedToFloat, NoAssumption, Word32, Float64]
+╰─> n171:   Change(#n111)[SignedToFloat, NoAssumption, Word32, Float64]
+
+╭── o145:   Constant()[word64: 12]
+╰─> n172:   Constant()[word64: 12]
+
+╭── o146:   Allocate(#o145)[Young, tagged aligned]
+│   n173:   Constant()[external: 0x46 <new_allocation_info_top>]
+│   n174:   Load *(#n173) [raw, Uint64, Word64]
+│   n175:   Constant()[heap object: 0x10810047fe41 <Code BUILTIN AllocateInYoungGeneration>]
+│   n176:   Constant()[external: 0x47 <new_allocation_info_limit>]
+│   n177:   Constant()[word64: 131072]
+│   n178:   Goto()[B12, 0]
+new MERGE B12 <- B11
+│   n179:   Load *(#n176) [raw, Uint64, Word64]
+│   n180:   WordBinop(#n174, #n172)[Add, Word64]
+│   n181:   Comparison(#n180, #n179)[UnsignedLessThan, Word64]
+│   n182:   Branch(#n181)[B14, B13, True]
+new BLOCK B13 <- B12
+│   n184:   Call(#n175, #n172)[Code:Allocate Descriptor:r1s0i2f0]
+│   n186:   DidntThrow(#n184)[🁣🁣 🁣🁣 🁤🁪 🁣 i a, 0]
+│   n188:   TaggedBitcast(#n186)[Tagged, Word64, HeapObject]
+│   n189:   Constant()[word64: -1]
+│   n190:   WordBinop(#n188, #n189)[Add, Word64]
+│   n191:   Goto()[B15, 0]
+new BLOCK B14 <- B12
+│   n192:   Goto()[B15, 0]
+new MERGE B15 <- B14, B13
+│   n193:   Phi(#n174, #n190)[Word64]
+│   n194:   Constant()[external: 0x11 <last_young_allocation>]
+│   n195:   Store *(#n194) = #n193 [raw, Uint64, NoWriteBarrier]
+│   n197:   WordBinop(#n193, #n172)[Add, Word64]
+│   n198:   Store *(#n173) = #n197 [raw, Uint64, NoWriteBarrier]
+│   n199:   WordBinop(#n193, #n55)[Add, Word64]
+╰─> n200:   TaggedBitcast(#n199)[Word64, Tagged, HeapObject]
+
+╭── o147:   Constant()[heap object: 0x108100000515 <Map[12](HEAP_NUMBER_TYPE)>]
+╰─> n201:   Constant()[heap object: 0x108100000515 <Map[12](HEAP_NUMBER_TYPE)>]
+
+╭── o148:   Store *(#o146) = #o147 [tagged base, TaggedPointer, MapWriteBarrier, initializing]
+│   n202:   Store *(#n200) = #n201 [tagged base, TaggedPointer, SkippedWriteBarrier, initializing]
+
+╭── o150:   Store *(#o146 + 4) = #o144 [tagged base, Float64, NoWriteBarrier, offset: 4, initializing]
+╰─> n204:   Store *(#n200 + 4) = #n171 [tagged base, Float64, NoWriteBarrier, offset: 4, initializing]
+
+╭── o151:   Goto()[B8, 0]
+│   n205:   Goto()[<invalid block>, 0]
+
+
+
+old MERGE B8 <- B6, B7
+new MERGE B16 <- B10, B15
+╭── o152:   Phi(#o142, #o146)[Tagged]
+╰─> n206:   Phi(#n169, #n200)[Tagged]
+
+╭── o153:   Goto()[B1, 1]
+│   n207:   Goto()[B1, 1]
+
+
+
+old BLOCK B9 <- B1
+new BLOCK B17 <- B1
+╭── o154:   TaggedBitcast(#o75)[Tagged, Word64, Any]
+╰─> n208:   TaggedBitcast(#n75)[Tagged, Word64, Any]
+
+╭── o155:   Change(#o154)[Truncate, NoAssumption, Word64, Word32]
+╰─> n209:   Change(#n208)[Truncate, NoAssumption, Word64, Word32]
+
+╭── o156:   Change(#o155)[ZeroExtend, NoAssumption, Word32, Word64]
+╰─> n210:   Change(#n209)[ZeroExtend, NoAssumption, Word32, Word64]
+
+╭── o157:   Load *(#o156 + #o74) [raw, Int32, Word32]
+╰─> n211:   Load *(#n210 + #n74) [raw, Int32, Word32]
+
+╭── o159:   Retain(#o28)
+╰─> n213:   Retain(#n28)
+
+╭── o160:   FrameState(#o1, #o14, #o0, #o79, #o86, #o157)[not inlined, UNOPTIMIZED_FRAME, 82, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) . #79(kRepWord32|kTypeInt32) #86(kRepTagged|kTypeAny) . . . . #157(kRepWord32|kTypeInt32)]
+╰─> n214:   FrameState(#n1, #n14, #n0, #n79, #n86, #n211)[not inlined, UNOPTIMIZED_FRAME, 82, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) . #79(kRepWord32|kTypeInt32) #86(kRepTagged|kTypeAny) . . . . #211(kRepWord32|kTypeInt32)]
+
+╭── o162:   OverflowCheckedBinop(#o79, #o157)[signed add, Word32]
+│   n216:   OverflowCheckedBinop(#n79, #n211)[signed add, Word32]
+│   n217:   Projection(#n216)[0, Word32]
+│   n218:   Projection(#n216)[1, Word32]
+╰─> n219:   MakeTuple(#n217, #n218)
+
+╭── o163:   Projection(#o162)[0, Word32]
+╰─> #n217
+
+╭── o164:   Projection(#o162)[1, Word32]
+╰─> #n218
+
+╭── o166:   DeoptimizeIf(#o164, #o160)[Overflow, FeedbackSource(INVALID)]
+╰─> n220:   DeoptimizeIf(#n218, #n214)[Overflow, FeedbackSource(INVALID)]
+
+╭── o168:   WordBinop(#o86, #o11)[BitwiseAnd, Word32]
+╰─> n222:   WordBinop(#n86, #n11)[BitwiseAnd, Word32]
+
+╭── o169:   DeoptimizeIf(#o168, #o160)[NotASmi, FeedbackSource(INVALID)]
+╰─> n223:   DeoptimizeIf(#n222, #n214)[NotASmi, FeedbackSource(INVALID)]
+
+╭── o170:   TaggedBitcast(#o86)[Tagged, Word32, Smi]
+╰─> n224:   TaggedBitcast(#n86)[Tagged, Word32, Smi]
+
+╭── o171:   Constant()[word32: -2]
+╰─> n225:   Constant()[word32: -2]
+
+╭── o172:   Comparison(#o170, #o171)[Equal, Word32]
+╰─> n226:   Comparison(#n224, #n225)[Equal, Word32]
+
+╭── o173:   Branch(#o172)[B10, B11, None]
+╰─> n227:   Branch(#n226)[<invalid block>, <invalid block>, None]
+
+
+
+old BLOCK B10 <- B9
+new BLOCK B18 <- B17
+╭── o175:   Goto()[B12, 0]
+│   n229:   Goto()[<invalid block>, 0]
+
+
+
+old BLOCK B11 <- B9
+new BLOCK B19 <- B17
+╭── o176:   Goto()[B12, 0]
+│   n230:   Goto()[<invalid block>, 0]
+
+
+
+old MERGE B12 <- B10, B11
+new MERGE B20 <- B18, B19
+╭── o177:   Phi(#o5, #o4)[Tagged]
+╰─> n231:   Phi(#n5, #n4)[Tagged]
+
+╭── o178:   TaggedBitcast(#o177)[Tagged, Word32, Smi]
+╰─> n232:   TaggedBitcast(#n231)[Tagged, Word32, Smi]
+
+╭── o179:   Shift(#o178, #o11)[ShiftRightArithmeticShiftOutZeros, Word32]
+╰─> n233:   Shift(#n232, #n11)[ShiftRightArithmeticShiftOutZeros, Word32]
+
+╭── o180:   FrameState(#o1, #o14, #o0, #o163, #o177)[not inlined, UNOPTIMIZED_FRAME, 99, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) . . . . . #163(kRepWord32|kTypeInt32) . #177(kRepTagged|kTypeAny)]
+╰─> n234:   FrameState(#n1, #n14, #n0, #n217, #n231)[not inlined, UNOPTIMIZED_FRAME, 99, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) . . . . . #217(kRepWord32|kTypeInt32) . #231(kRepTagged|kTypeAny)]
+
+╭── o183:   OverflowCheckedBinop(#o163, #o179)[signed add, Word32]
+│   n237:   OverflowCheckedBinop(#n217, #n233)[signed add, Word32]
+│   n238:   Projection(#n237)[0, Word32]
+│   n239:   Projection(#n237)[1, Word32]
+╰─> n240:   MakeTuple(#n238, #n239)
+
+╭── o184:   Projection(#o183)[0, Word32]
+╰─> #n238
+
+╭── o185:   Projection(#o183)[1, Word32]
+╰─> #n239
+
+╭── o187:   DeoptimizeIf(#o185, #o180)[Overflow, FeedbackSource(INVALID)]
+╰─> n241:   DeoptimizeIf(#n239, #n234)[Overflow, FeedbackSource(INVALID)]
+
+╭── o188:   OverflowCheckedBinop(#o184, #o184)[signed add, Word32]
+│   n242:   OverflowCheckedBinop(#n238, #n238)[signed add, Word32]
+│   n243:   Projection(#n242)[0, Word32]
+│   n244:   Projection(#n242)[1, Word32]
+╰─> n245:   MakeTuple(#n243, #n244)
+
+╭── o189:   Projection(#o188)[0, Word32]
+╰─> #n243
+
+╭── o190:   Projection(#o188)[1, Word32]
+╰─> #n244
+
+╭── o192:   Branch(#o190)[B14, B13, False]
+╰─> n246:   Branch(#n244)[<invalid block>, <invalid block>, False]
+
+
+
+old BLOCK B13 <- B12
+new BLOCK B21 <- B20
+╭── o194:   TaggedBitcast(#o189)[Word32, Tagged, Smi]
+╰─> n248:   TaggedBitcast(#n243)[Word32, Tagged, Smi]
+
+╭── o195:   Return(#o10, #o194)[0]
+╰─> n249:   Return(#n10, #n248)[0]
+
+
+
+old BLOCK B14 <- B12
+new BLOCK B22 <- B20
+╭── o196:   Change(#o184)[SignedToFloat, NoAssumption, Word32, Float64]
+╰─> n250:   Change(#n238)[SignedToFloat, NoAssumption, Word32, Float64]
+
+╭── o197:   Constant()[word64: 12]
+╰─> n251:   Constant()[word64: 12]
+
+╭── o198:   Allocate(#o197)[Young, tagged aligned]
+│   n252:   Constant()[external: 0x46 <new_allocation_info_top>]
+│   n253:   Load *(#n252) [raw, Uint64, Word64]
+│   n254:   Constant()[heap object: 0x10810047fe41 <Code BUILTIN AllocateInYoungGeneration>]
+│   n255:   Constant()[external: 0x47 <new_allocation_info_limit>]
+│   n256:   Constant()[word64: 131072]
+│   n257:   Goto()[B23, 0]
+new MERGE B23 <- B22
+│   n258:   Load *(#n255) [raw, Uint64, Word64]
+│   n259:   WordBinop(#n253, #n251)[Add, Word64]
+│   n260:   Comparison(#n259, #n258)[UnsignedLessThan, Word64]
+│   n261:   Branch(#n260)[B25, B24, True]
+new BLOCK B24 <- B23
+│   n263:   Call(#n254, #n251)[Code:Allocate Descriptor:r1s0i2f0]
+│   n265:   DidntThrow(#n263)[🁣🁣 🁣🁣 🁤🁪 🁣 i a, 0]
+│   n267:   TaggedBitcast(#n265)[Tagged, Word64, HeapObject]
+│   n268:   Constant()[word64: -1]
+│   n269:   WordBinop(#n267, #n268)[Add, Word64]
+│   n270:   Goto()[B26, 0]
+new BLOCK B25 <- B23
+│   n271:   Goto()[B26, 0]
+new MERGE B26 <- B25, B24
+│   n272:   Phi(#n253, #n269)[Word64]
+│   n273:   Constant()[external: 0x11 <last_young_allocation>]
+│   n274:   Store *(#n273) = #n272 [raw, Uint64, NoWriteBarrier]
+│   n276:   WordBinop(#n272, #n251)[Add, Word64]
+│   n277:   Store *(#n252) = #n276 [raw, Uint64, NoWriteBarrier]
+│   n278:   WordBinop(#n272, #n55)[Add, Word64]
+╰─> n279:   TaggedBitcast(#n278)[Word64, Tagged, HeapObject]
+
+╭── o199:   Constant()[heap object: 0x108100000515 <Map[12](HEAP_NUMBER_TYPE)>]
+╰─> n280:   Constant()[heap object: 0x108100000515 <Map[12](HEAP_NUMBER_TYPE)>]
+
+╭── o200:   Store *(#o198) = #o199 [tagged base, TaggedPointer, MapWriteBarrier, initializing]
+│   n281:   Store *(#n279) = #n280 [tagged base, TaggedPointer, SkippedWriteBarrier, initializing]
+
+╭── o202:   Store *(#o198 + 4) = #o196 [tagged base, Float64, NoWriteBarrier, offset: 4, initializing]
+╰─> n283:   Store *(#n279 + 4) = #n250 [tagged base, Float64, NoWriteBarrier, offset: 4, initializing]
+
+╭── o203:   Return(#o10, #o198)[0]
+╰─> n284:   Return(#n10, #n279)[0]
+
+
+
+old MERGE B0
+new MERGE B0
+╭── o0:     Constant()[heap object: 0x1081010116e5 <NativeContext[307]>]
+╰─> n0:     Constant()[heap object: 0x1081010116e5 <NativeContext[307]>]
+
+╭── o1:     Constant()[heap object: 0x10810102b1c5 <JSFunction hot (sfi = 0x10810102b0e9)>]
+╰─> n1:     Constant()[heap object: 0x10810102b1c5 <JSFunction hot (sfi = 0x10810102b0e9)>]
+
+╭── o2:     Constant()[heap object: 0x1081010173f9 <JSFunction Int32Array (sfi = 0x10810047b961)>]
+╰─> n2:     Constant()[heap object: 0x1081010173f9 <JSFunction Int32Array (sfi = 0x10810047b961)>]
+
+╭── o3:     Constant()[heap object: 0x10810002fffd <the_hole_value>]
+╰─> n3:     Constant()[heap object: 0x10810002fffd <the_hole_value>]
+
+╭── o4:     Constant()[smi: 0]
+╰─> n4:     Constant()[smi: 0]
+
+╭── o5:     Constant()[smi: 1]
+╰─> n5:     Constant()[smi: 1]
+
+╭── o6:     Constant()[smi: 2]
+╰─> n6:     Constant()[smi: 2]
+
+╭── o7:     Constant()[smi: 19]
+╰─> n7:     Constant()[smi: 19]
+
+╭── o8:     Constant()[smi: 23]
+╰─> n8:     Constant()[smi: 23]
+
+╭── o9:     Constant()[smi: 20000]
+╰─> n9:     Constant()[smi: 20000]
+
+╭── o10:    Constant()[word32: 0]
+╰─> n10:    Constant()[word32: 0]
+
+╭── o11:    Constant()[word32: 1]
+╰─> n11:    Constant()[word32: 1]
+
+╭── o12:    Constant()[word32: 19]
+╰─> n12:    Constant()[word32: 19]
+
+╭── o13:    Constant()[word32: 23]
+╰─> n13:    Constant()[word32: 23]
+
+╭── o14:    Parameter()[0, <this>]
+╰─> n14:    Parameter()[0, <this>]
+
+╭── o15:    FrameState(#o1, #o14, #o0)[not inlined, UNOPTIMIZED_FRAME, -1, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) . . . . . . . .]
+╰─> n15:    FrameState(#n1, #n14, #n0)[not inlined, UNOPTIMIZED_FRAME, -1, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) . . . . . . . .]
+
+╭── o17:    JSStackCheck(#o0, #o15)[function-entry]
+│   n17:    Constant()[external: 0x11 <last_young_allocation>]
+│   n18:    Constant()[word64: 0]
+│   n19:    Store *(#n17 + #n18) = #n18 [raw, Uint64, NoWriteBarrier]
+│   n21:    Constant()[external: 0x633000004020]
+│   n22:    Load *(#n21 + #n18) [raw, Uint64, Word64]
+│   n24:    StackPointerGreaterThan(#n22)[JSFunctionEntry]
+│   n25:    Branch(#n24)[B2, B1, True]
+new BLOCK B1 <- B0
+│   n27:    FrameConstant()[stack check offset]
+│   n28:    Constant()[external: 0x10685cb78 <StackGuardWithGap.entry>]
+│   n29:    Constant()[heap object: 0x10810048bb55 <Code BUILTIN CEntry_Return1_ArgvOnStack_NoBuiltinExit>]
+│   n30:    Call(#n29, #n15, #n27, #n28, #n11, #n0)[Code:StackGuardWithGap:r1s1i5f1]
+│   n33:    DidntThrow(#n30)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n35:    Goto()[B3, 0]
+new BLOCK B2 <- B0
+│   n36:    Goto()[B3, 0]
+new MERGE B3 <- B1, B2
+
+╭── o18:    FrameState(#o1, #o14, #o0)[not inlined, UNOPTIMIZED_FRAME, 9, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) . . . . . . . .]
+╰─> n37:    FrameState(#n1, #n14, #n0)[not inlined, UNOPTIMIZED_FRAME, 9, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) . . . . . . . .]
+
+╭── o20:    FrameState(#o18, #o4, #o3, #o0)[inlined, CONSTRUCT_INVOKE_STUB, -1, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #4(kRepTagged|kTypeAny) #3(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny)]
+╰─> n39:    FrameState(#n37, #n4, #n3, #n0)[inlined, CONSTRUCT_INVOKE_STUB, -1, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #4(kRepTagged|kTypeAny) #3(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny)]
+
+╭── o22:    Constant()[word32: 2]
+╰─> n41:    Constant()[word32: 2]
+
+╭── o23:    Constant()[heap object: 0x10810048a1d5 <Code BUILTIN TypedArrayConstructor>]
+╰─> n42:    Constant()[heap object: 0x10810048a1d5 <Code BUILTIN TypedArrayConstructor>]
+
+╭── o24:    Call(#o23, #o20, #o2, #o2, #o22, #o10, #o3, #o6, #o0)[Code:JSTrampoline Descriptor:r1s2i8f1]
+╭── o28:    DidntThrow(#o24)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n43:    Call(#n42, #n39, #n2, #n2, #n41, #n10, #n3, #n6, #n0)[Code:JSTrampoline Descriptor:r1s2i8f1]
+╰─> n47:    DidntThrow(#n43)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o30:    FrameState(#o1, #o14, #o0, #o28, #o4, #o7)[not inlined, UNOPTIMIZED_FRAME, 19, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #28(kRepTagged|kTypeAny) . . . . . #4(kRepTagged|kTypeAny) #7(kRepTagged|kTypeAny)]
+╰─> n49:    FrameState(#n1, #n14, #n0, #n47, #n4, #n7)[not inlined, UNOPTIMIZED_FRAME, 19, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #47(kRepTagged|kTypeAny) . . . . . #4(kRepTagged|kTypeAny) #7(kRepTagged|kTypeAny)]
+
+╭── o33:    Load *(#o28) [tagged base, TaggedPointer, Tagged]
+│   n51:    TaggedBitcast(#n47)[Tagged, Word64, HeapObject]
+│   n52:    Constant()[word64: -1]
+╰─> n53:    Load *(#n51 + #n52) [raw, TaggedPointer, Tagged]
+
+╭── o34:    Constant()[heap object: 0x10810101742d <Map[60](INT32ELEMENTS)>]
+╰─> n55:    Constant()[heap object: 0x10810101742d <Map[60](INT32ELEMENTS)>]
+
+╭── o35:    Comparison(#o33, #o34)[Equal, Tagged]
+╰─> n56:    Comparison(#n53, #n55)[Equal, Tagged]
+
+╭── o36:    DeoptimizeIf(#o35, #o30)[negated, WrongMap, FeedbackSource(INVALID)]
+╰─> n57:    DeoptimizeIf(#n56, #n49)[negated, WrongMap, FeedbackSource(INVALID)]
+
+╭── o37:    Load *(#o28 + 32) [tagged base, Uint64, Word64, offset: 32]
+│   n58:    TaggedBitcast(#n47)[Tagged, Word64, HeapObject]
+│   n59:    Constant()[word64: 31]
+╰─> n60:    Load *(#n58 + #n59) [raw, Uint64, Word64]
+
+╭── o38:    Constant()[word32: 29]
+╰─> n62:    Constant()[word32: 29]
+
+╭── o39:    Shift(#o37, #o38)[ShiftRightLogical, Word64]
+╰─> n63:    Shift(#n60, #n62)[ShiftRightLogical, Word64]
+
+╭── o40:    Shift(#o39, #o22)[ShiftRightLogical, Word64]
+╰─> n64:    Shift(#n63, #n41)[ShiftRightLogical, Word64]
+
+╭── o41:    Constant()[word64: 0]
+╰─> #n18
+
+╭── o42:    Comparison(#o41, #o40)[UnsignedLessThan, Word64]
+╰─> n65:    Comparison(#n18, #n64)[UnsignedLessThan, Word64]
+
+╭── o43:    DeoptimizeIf(#o42, #o30)[negated, OutOfBounds, FeedbackSource(INVALID)]
+╰─> n66:    DeoptimizeIf(#n65, #n49)[negated, OutOfBounds, FeedbackSource(INVALID)]
+
+╭── o45:    Load *(#o28 + 48) [tagged base, SandboxedPointer, Word64, offset: 48]
+│   n67:    TaggedBitcast(#n47)[Tagged, Word64, HeapObject]
+│   n68:    Constant()[word64: 47]
+╰─> n69:    Load *(#n67 + #n68) [raw, SandboxedPointer, Word64]
+
+╭── o46:    Load *(#o28 + 56) [tagged base, AnyTagged, Tagged, offset: 56]
+│   n71:    TaggedBitcast(#n47)[Tagged, Word64, HeapObject]
+│   n72:    Constant()[word64: 55]
+╰─> n73:    Load *(#n71 + #n72) [raw, AnyTagged, Tagged]
+
+╭── o47:    TaggedBitcast(#o46)[Tagged, Word64, Any]
+╰─> n74:    TaggedBitcast(#n73)[Tagged, Word64, Any]
+
+╭── o48:    Change(#o47)[Truncate, NoAssumption, Word64, Word32]
+╰─> n75:    Change(#n74)[Truncate, NoAssumption, Word64, Word32]
+
+╭── o49:    Change(#o48)[ZeroExtend, NoAssumption, Word32, Word64]
+╰─> n76:    Change(#n75)[ZeroExtend, NoAssumption, Word32, Word64]
+
+╭── o50:    Store *(#o49 + #o45) = #o12 [raw, Int32, NoWriteBarrier]
+╰─> n77:    Store *(#n76 + #n69) = #n12 [raw, Int32, NoWriteBarrier]
+
+╭── o52:    Retain(#o28)
+╰─> n79:    Retain(#n47)
+
+╭── o53:    FrameState(#o1, #o14, #o0, #o28, #o5, #o8)[not inlined, UNOPTIMIZED_FRAME, 28, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #28(kRepTagged|kTypeAny) . . . . . #5(kRepTagged|kTypeAny) #8(kRepTagged|kTypeAny)]
+╰─> n80:    FrameState(#n1, #n14, #n0, #n47, #n5, #n8)[not inlined, UNOPTIMIZED_FRAME, 28, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #47(kRepTagged|kTypeAny) . . . . . #5(kRepTagged|kTypeAny) #8(kRepTagged|kTypeAny)]
+
+╭── o55:    Constant()[word64: 1]
+╰─> n83:    Constant()[word64: 1]
+
+╭── o56:    Comparison(#o55, #o40)[UnsignedLessThan, Word64]
+╰─> n84:    Comparison(#n83, #n64)[UnsignedLessThan, Word64]
+
+╭── o57:    DeoptimizeIf(#o56, #o53)[negated, OutOfBounds, FeedbackSource(INVALID)]
+╰─> n85:    DeoptimizeIf(#n84, #n80)[negated, OutOfBounds, FeedbackSource(INVALID)]
+
+╭── o59:    TaggedBitcast(#o46)[Tagged, Word64, Any]
+╰─> n86:    TaggedBitcast(#n73)[Tagged, Word64, Any]
+
+╭── o60:    Change(#o59)[Truncate, NoAssumption, Word64, Word32]
+╰─> n87:    Change(#n86)[Truncate, NoAssumption, Word64, Word32]
+
+╭── o61:    Change(#o60)[ZeroExtend, NoAssumption, Word32, Word64]
+╰─> n88:    Change(#n87)[ZeroExtend, NoAssumption, Word32, Word64]
+
+╭── o62:    Store *(#o61 + 4 + #o45) = #o13 [raw, Int32, NoWriteBarrier, offset: 4]
+│   n89:    WordBinop(#n88, #n69)[Add, Word64]
+│   n90:    Constant()[word64: 4]
+╰─> n91:    Store *(#n89 + #n90) = #n13 [raw, Int32, NoWriteBarrier]
+
+╭── o64:    Retain(#o28)
+╰─> n93:    Retain(#n47)
+
+╭── o65:    Constant()[heap object: 0x10810048bb55 <Code BUILTIN CEntry_Return1_ArgvOnStack_NoBuiltinExit>]
+╰─> n94:    Constant()[heap object: 0x10810048bb55 <Code BUILTIN CEntry_Return1_ArgvOnStack_NoBuiltinExit>]
+
+╭── o66:    Constant()[external: 0x10691b700 <ScheduleGCInStackCheck.entry>]
+╰─> n95:    Constant()[external: 0x10691b700 <ScheduleGCInStackCheck.entry>]
+
+╭── o67:    FrameState(#o1, #o14, #o0, #o28)[not inlined, UNOPTIMIZED_FRAME, 32, PokeAt(0), 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #28(kRepTagged|kTypeAny) . . . . . . .]
+╰─> n96:    FrameState(#n1, #n14, #n0, #n47)[not inlined, UNOPTIMIZED_FRAME, 32, PokeAt(0), 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #47(kRepTagged|kTypeAny) . . . . . . .]
+
+╭── o69:    Call(#o65, #o67, #o66, #o10, #o0)[Code:ScheduleGCInStackCheck:r1s0i4f1]
+╭── o72:    DidntThrow(#o69)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n98:    Call(#n94, #n96, #n95, #n10, #n0)[Code:ScheduleGCInStackCheck:r1s0i4f1]
+╰─> n101:   DidntThrow(#n98)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o74:    Load *(#o28 + 48) [tagged base, SandboxedPointer, Word64, offset: 48]
+│   n103:   TaggedBitcast(#n47)[Tagged, Word64, HeapObject]
+╰─> n104:   Load *(#n103 + #n68) [raw, SandboxedPointer, Word64]
+
+╭── o75:    Load *(#o28 + 56) [tagged base, AnyTagged, Tagged, offset: 56]
+│   n106:   TaggedBitcast(#n47)[Tagged, Word64, HeapObject]
+╰─> n107:   Load *(#n106 + #n72) [raw, AnyTagged, Tagged]
+
+╭── o76:    TaggedBitcast(#o75)[Tagged, Word64, Any]
+╰─> n108:   TaggedBitcast(#n107)[Tagged, Word64, Any]
+
+╭── o77:    Change(#o76)[Truncate, NoAssumption, Word64, Word32]
+╰─> n109:   Change(#n108)[Truncate, NoAssumption, Word64, Word32]
+
+╭── o78:    Change(#o77)[ZeroExtend, NoAssumption, Word32, Word64]
+╰─> n110:   Change(#n109)[ZeroExtend, NoAssumption, Word32, Word64]
+
+╭── o79:    Load *(#o78 + 4 + #o74) [raw, Int32, Word32, offset: 4]
+│   n111:   WordBinop(#n110, #n104)[Add, Word64]
+╰─> n112:   Load *(#n111 + #n90) [raw, Int32, Word32]
+
+╭── o80:    Retain(#o28)
+╰─> n114:   Retain(#n47)
+
+╭── o81:    FrameState(#o1, #o14, #o0, #o28, #o79, #o10, #o11)[not inlined, UNOPTIMIZED_FRAME, 71, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #28(kRepTagged|kTypeAny) #79(kRepWord32|kTypeInt32) #10(kRepWord32|kTypeInt32) . #11(kRepWord32|kTypeInt32) . . .]
+╰─> n115:   FrameState(#n1, #n14, #n0, #n47, #n112, #n10, #n11)[not inlined, UNOPTIMIZED_FRAME, 71, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #47(kRepTagged|kTypeAny) #112(kRepWord32|kTypeInt32) #10(kRepWord32|kTypeInt32) . #11(kRepWord32|kTypeInt32) . . .]
+
+╭── o84:    JSStackCheck(#o0, #o81)[loop]
+│   n118:   Store *(#n17 + #n18) = #n18 [raw, Uint64, NoWriteBarrier]
+│   n120:   Constant()[external: 0x633000004031]
+│   n121:   Load *(#n120 + #n18) [raw, Uint8, Word32]
+│   n122:   Comparison(#n121, #n10)[Equal, Word32]
+│   n123:   Branch(#n122)[B5, B4, True]
+new BLOCK B4 <- B3
+│   n125:   Constant()[external: 0x10685c2fc <HandleNoHeapWritesInterrupts.entry>]
+│   n126:   Call(#n94, #n115, #n125, #n10, #n0)[Code:HandleNoHeapWritesInterrupts:r1s0i4f1]
+│   n129:   DidntThrow(#n126)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n131:   Goto()[B6, 0]
+new BLOCK B5 <- B3
+│   n132:   Goto()[B6, 0]
+new MERGE B6 <- B4, B5
+
+╭── o85:    Goto()[B1, 0]
+│   n133:   Goto()[<invalid block>, 0]
+
+
+
+old LOOP B1 <- B0, B16
+new LOOP B7 <- B6
+╭── o86:    Phi(#o4, #o162)[Tagged]
+╰─> n134:   PendingLoopPhi(#n4)[Tagged]
+
+╭── o87:    Phi(#o5, #o206)[Tagged]
+╰─> n135:   PendingLoopPhi(#n5)[Tagged]
+
+╭── o88:    FrameState(#o1, #o14, #o0, #o28, #o79, #o86, #o87, #o9)[not inlined, UNOPTIMIZED_FRAME, 51, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #28(kRepTagged|kTypeAny) #79(kRepWord32|kTypeInt32) #86(kRepTagged|kTypeAny) . #87(kRepTagged|kTypeAny) . . #9(kRepTagged|kTypeAny)]
+╰─> n136:   FrameState(#n1, #n14, #n0, #n47, #n112, #n134, #n135, #n9)[not inlined, UNOPTIMIZED_FRAME, 51, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #47(kRepTagged|kTypeAny) #112(kRepWord32|kTypeInt32) #134(kRepTagged|kTypeAny) . #135(kRepTagged|kTypeAny) . . #9(kRepTagged|kTypeAny)]
+
+╭── o91:    WordBinop(#o87, #o11)[BitwiseAnd, Word32]
+╰─> n139:   WordBinop(#n135, #n11)[BitwiseAnd, Word32]
+
+╭── o92:    DeoptimizeIf(#o91, #o88)[NotASmi, FeedbackSource(INVALID)]
+╰─> n140:   DeoptimizeIf(#n139, #n136)[NotASmi, FeedbackSource(INVALID)]
+
+╭── o94:    TaggedBitcast(#o87)[Tagged, Word32, Smi]
+╰─> n142:   TaggedBitcast(#n135)[Tagged, Word32, Smi]
+
+╭── o95:    Shift(#o94, #o11)[ShiftRightArithmeticShiftOutZeros, Word32]
+╰─> n143:   Shift(#n142, #n11)[ShiftRightArithmeticShiftOutZeros, Word32]
+
+╭── o96:    Constant()[word32: 40000]
+╰─> n144:   Constant()[word32: 40000]
+
+╭── o97:    Comparison(#o94, #o96)[SignedLessThan, Word32]
+╰─> n145:   Comparison(#n142, #n144)[SignedLessThan, Word32]
+
+╭── o98:    Branch(#o97)[B2, B17, None]
+╰─> n146:   Branch(#n145)[<invalid block>, <invalid block>, None]
+
+
+
+old BLOCK B2 <- B1
+new BLOCK B8 <- B7
+╭── o100:   WordBinop(#o86, #o11)[BitwiseAnd, Word32]
+╰─> n148:   WordBinop(#n134, #n11)[BitwiseAnd, Word32]
+
+╭── o101:   DeoptimizeIf(#o100, #o88)[NotASmi, FeedbackSource(INVALID)]
+╰─> n149:   DeoptimizeIf(#n148, #n136)[NotASmi, FeedbackSource(INVALID)]
+
+╭── o102:   TaggedBitcast(#o86)[Tagged, Word32, Smi]
+╰─> n150:   TaggedBitcast(#n134)[Tagged, Word32, Smi]
+
+╭── o103:   Shift(#o102, #o11)[ShiftRightArithmeticShiftOutZeros, Word32]
+╰─> n151:   Shift(#n150, #n11)[ShiftRightArithmeticShiftOutZeros, Word32]
+
+╭── o104:   OverflowCheckedBinop(#o95, #o103)[signed add, Word32]
+│   n152:   OverflowCheckedBinop(#n143, #n151)[signed add, Word32]
+│   n153:   Projection(#n152)[0, Word32]
+│   n154:   Projection(#n152)[1, Word32]
+╰─> n155:   MakeTuple(#n153, #n154)
+
+╭── o105:   Projection(#o104)[0, Word32]
+╰─> #n153
+
+╭── o106:   Projection(#o104)[1, Word32]
+╰─> #n154
+
+╭── o108:   DeoptimizeIf(#o106, #o88)[Overflow, FeedbackSource(INVALID)]
+╰─> n156:   DeoptimizeIf(#n154, #n136)[Overflow, FeedbackSource(INVALID)]
+
+╭── o110:   OverflowCheckedBinop(#o95, #o11)[signed add, Word32]
+│   n158:   OverflowCheckedBinop(#n143, #n11)[signed add, Word32]
+│   n159:   Projection(#n158)[0, Word32]
+│   n160:   Projection(#n158)[1, Word32]
+╰─> n161:   MakeTuple(#n159, #n160)
+
+╭── o111:   Projection(#o110)[0, Word32]
+╰─> #n159
+
+╭── o112:   Projection(#o110)[1, Word32]
+╰─> #n160
+
+╭── o114:   DeoptimizeIf(#o112, #o88)[Overflow, FeedbackSource(INVALID)]
+╰─> n162:   DeoptimizeIf(#n160, #n136)[Overflow, FeedbackSource(INVALID)]
+
+╭── o115:   FrameState(#o1, #o14, #o0, #o28, #o79, #o105, #o111)[not inlined, UNOPTIMIZED_FRAME, 71, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #28(kRepTagged|kTypeAny) #79(kRepWord32|kTypeInt32) #105(kRepWord32|kTypeInt32) . #111(kRepWord32|kTypeInt32) . . .]
+╰─> n163:   FrameState(#n1, #n14, #n0, #n47, #n112, #n153, #n159)[not inlined, UNOPTIMIZED_FRAME, 71, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) #47(kRepTagged|kTypeAny) #112(kRepWord32|kTypeInt32) #153(kRepWord32|kTypeInt32) . #159(kRepWord32|kTypeInt32) . . .]
+
+╭── o118:   JSStackCheck(#o0, #o115)[loop]
+│   n166:   Store *(#n17 + #n18) = #n18 [raw, Uint64, NoWriteBarrier]
+│   n168:   Load *(#n120 + #n18) [raw, Uint8, Word32]
+│   n170:   Comparison(#n168, #n10)[Equal, Word32]
+│   n171:   Branch(#n170)[B10, B9, True]
+new BLOCK B9 <- B8
+│   n173:   Constant()[external: 0x10685c2fc <HandleNoHeapWritesInterrupts.entry>]
+│   n174:   Call(#n94, #n163, #n173, #n10, #n0)[Code:HandleNoHeapWritesInterrupts:r1s0i4f1]
+│   n177:   DidntThrow(#n174)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n179:   Goto()[B11, 0]
+new BLOCK B10 <- B8
+│   n180:   Goto()[B11, 0]
+new MERGE B11 <- B9, B10
+
+╭── o119:   OverflowCheckedBinop(#o105, #o105)[signed add, Word32]
+│   n181:   OverflowCheckedBinop(#n153, #n153)[signed add, Word32]
+│   n182:   Projection(#n181)[0, Word32]
+│   n183:   Projection(#n181)[1, Word32]
+╰─> n184:   MakeTuple(#n182, #n183)
+
+╭── o120:   Projection(#o119)[0, Word32]
+╰─> #n182
+
+╭── o121:   Projection(#o119)[1, Word32]
+╰─> #n183
+
+╭── o123:   Branch(#o121)[B4, B3, False]
+╰─> n185:   Branch(#n183)[<invalid block>, <invalid block>, False]
+
+
+
+old BLOCK B3 <- B2
+new BLOCK B12 <- B11
+╭── o125:   TaggedBitcast(#o120)[Word32, Tagged, Smi]
+╰─> n187:   TaggedBitcast(#n182)[Word32, Tagged, Smi]
+
+╭── o126:   Goto()[B9, 0]
+│   n188:   Goto()[<invalid block>, 0]
+
+
+
+old BLOCK B4 <- B2
+new BLOCK B13 <- B11
+╭── o127:   Change(#o105)[SignedToFloat, NoAssumption, Word32, Float64]
+╰─> n189:   Change(#n153)[SignedToFloat, NoAssumption, Word32, Float64]
+
+╭── o128:   Constant()[word64: 12]
+╰─> n190:   Constant()[word64: 12]
+
+╭── o129:   Constant()[external: 0x46 <new_allocation_info_top>]
+╰─> n191:   Constant()[external: 0x46 <new_allocation_info_top>]
+
+╭── o130:   Load *(#o129) [raw, Uint64, Word64]
+╰─> n192:   Load *(#n191 + #n18) [raw, Uint64, Word64]
+
+╭── o131:   Constant()[heap object: 0x10810047fe41 <Code BUILTIN AllocateInYoungGeneration>]
+╰─> n193:   Constant()[heap object: 0x10810047fe41 <Code BUILTIN AllocateInYoungGeneration>]
+
+╭── o132:   Constant()[external: 0x47 <new_allocation_info_limit>]
+╰─> n194:   Constant()[external: 0x47 <new_allocation_info_limit>]
+
+╭── o134:   Goto()[B5, 0]
+│   n195:   Goto()[<invalid block>, 0]
+
+
+
+old MERGE B5 <- B4
+new MERGE B14 <- B13
+╭── o135:   Load *(#o132) [raw, Uint64, Word64]
+╰─> n196:   Load *(#n194 + #n18) [raw, Uint64, Word64]
+
+╭── o136:   WordBinop(#o130, #o128)[Add, Word64]
+╰─> n198:   WordBinop(#n192, #n190)[Add, Word64]
+
+╭── o137:   Comparison(#o136, #o135)[UnsignedLessThan, Word64]
+╰─> n199:   Comparison(#n198, #n196)[UnsignedLessThan, Word64]
+
+╭── o138:   Branch(#o137)[B7, B6, True]
+╰─> n200:   Branch(#n199)[<invalid block>, <invalid block>, True]
+
+
+
+old BLOCK B6 <- B5
+new BLOCK B15 <- B14
+╭── o140:   Call(#o131, #o128)[Code:Allocate Descriptor:r1s0i2f0]
+╭── o142:   DidntThrow(#o140)[🁣🁣 🁣🁣 🁤🁪 🁣 i a, 0]
+│   n202:   Call(#n193, #n190)[Code:Allocate Descriptor:r1s0i2f0]
+╰─> n204:   DidntThrow(#n202)[🁣🁣 🁣🁣 🁤🁪 🁣 i a, 0]
+
+╭── o144:   TaggedBitcast(#o142)[Tagged, Word64, HeapObject]
+╰─> n206:   TaggedBitcast(#n204)[Tagged, Word64, HeapObject]
+
+╭── o145:   Constant()[word64: -1]
+╰─> #n52
+
+╭── o146:   WordBinop(#o144, #o145)[Add, Word64]
+╰─> n207:   WordBinop(#n206, #n52)[Add, Word64]
+
+╭── o147:   Goto()[B8, 0]
+│   n208:   Goto()[<invalid block>, 0]
+
+
+
+old BLOCK B7 <- B5
+new BLOCK B16 <- B14
+╭── o148:   Goto()[B8, 0]
+│   n209:   Goto()[<invalid block>, 0]
+
+
+
+old MERGE B8 <- B7, B6
+new MERGE B17 <- B15, B16
+╭── o149:   Phi(#o130, #o146)[Word64]
+╰─> n210:   Phi(#n207, #n192)[Word64]
+
+╭── o150:   Constant()[external: 0x11 <last_young_allocation>]
+╰─> #n17
+
+╭── o151:   Store *(#o150) = #o149 [raw, Uint64, NoWriteBarrier]
+╰─> n211:   Store *(#n17 + #n18) = #n210 [raw, Uint64, NoWriteBarrier]
+
+╭── o153:   WordBinop(#o149, #o128)[Add, Word64]
+╰─> n213:   WordBinop(#n210, #n190)[Add, Word64]
+
+╭── o154:   Store *(#o129) = #o153 [raw, Uint64, NoWriteBarrier]
+╰─> n214:   Store *(#n191 + #n18) = #n213 [raw, Uint64, NoWriteBarrier]
+
+╭── o155:   WordBinop(#o149, #o55)[Add, Word64]
+╰─> n216:   WordBinop(#n210, #n83)[Add, Word64]
+
+╭── o156:   TaggedBitcast(#o155)[Word64, Tagged, HeapObject]
+╰─> n217:   TaggedBitcast(#n216)[Word64, Tagged, HeapObject]
+
+╭── o157:   Constant()[heap object: 0x108100000515 <Map[12](HEAP_NUMBER_TYPE)>]
+╰─> n218:   Constant()[heap object: 0x108100000515 <Map[12](HEAP_NUMBER_TYPE)>]
+
+╭── o158:   Store *(#o156) = #o157 [tagged base, TaggedPointer, SkippedWriteBarrier, initializing]
+│   n219:   TaggedBitcast(#n217)[Tagged, Word64, HeapObject]
+╰─> n220:   Store *(#n219 + #n52) = #n218 [raw, TaggedPointer, SkippedWriteBarrier, initializing]
+
+╭── o160:   Store *(#o156 + 4) = #o127 [tagged base, Float64, NoWriteBarrier, offset: 4, initializing]
+│   n222:   TaggedBitcast(#n217)[Tagged, Word64, HeapObject]
+│   n223:   Constant()[word64: 3]
+╰─> n224:   Store *(#n222 + #n223) = #n189 [raw, Float64, NoWriteBarrier, initializing]
+
+╭── o161:   Goto()[B9, 0]
+│   n226:   Goto()[<invalid block>, 0]
+
+
+
+old MERGE B9 <- B3, B8
+new MERGE B18 <- B12, B17
+╭── o162:   Phi(#o125, #o156)[Tagged]
+╰─> n227:   Phi(#n187, #n217)[Tagged]
+
+╭── o163:   OverflowCheckedBinop(#o111, #o111)[signed add, Word32]
+│   n228:   OverflowCheckedBinop(#n159, #n159)[signed add, Word32]
+│   n229:   Projection(#n228)[0, Word32]
+│   n230:   Projection(#n228)[1, Word32]
+╰─> n231:   MakeTuple(#n229, #n230)
+
+╭── o164:   Projection(#o163)[0, Word32]
+╰─> #n229
+
+╭── o165:   Projection(#o163)[1, Word32]
+╰─> #n230
+
+╭── o167:   Branch(#o165)[B11, B10, False]
+╰─> n232:   Branch(#n230)[<invalid block>, <invalid block>, False]
+
+
+
+old BLOCK B10 <- B9
+new BLOCK B19 <- B18
+╭── o169:   TaggedBitcast(#o164)[Word32, Tagged, Smi]
+╰─> n234:   TaggedBitcast(#n229)[Word32, Tagged, Smi]
+
+╭── o170:   Goto()[B16, 0]
+│   n235:   Goto()[<invalid block>, 0]
+
+
+
+old BLOCK B11 <- B9
+new BLOCK B20 <- B18
+╭── o171:   Change(#o111)[SignedToFloat, NoAssumption, Word32, Float64]
+╰─> n236:   Change(#n159)[SignedToFloat, NoAssumption, Word32, Float64]
+
+╭── o172:   Constant()[word64: 12]
+╰─> n237:   Constant()[word64: 12]
+
+╭── o173:   Constant()[external: 0x46 <new_allocation_info_top>]
+╰─> n238:   Constant()[external: 0x46 <new_allocation_info_top>]
+
+╭── o174:   Load *(#o173) [raw, Uint64, Word64]
+╰─> n239:   Load *(#n238 + #n18) [raw, Uint64, Word64]
+
+╭── o175:   Constant()[heap object: 0x10810047fe41 <Code BUILTIN AllocateInYoungGeneration>]
+╰─> n240:   Constant()[heap object: 0x10810047fe41 <Code BUILTIN AllocateInYoungGeneration>]
+
+╭── o176:   Constant()[external: 0x47 <new_allocation_info_limit>]
+╰─> n241:   Constant()[external: 0x47 <new_allocation_info_limit>]
+
+╭── o178:   Goto()[B12, 0]
+│   n242:   Goto()[<invalid block>, 0]
+
+
+
+old MERGE B12 <- B11
+new MERGE B21 <- B20
+╭── o179:   Load *(#o176) [raw, Uint64, Word64]
+╰─> n243:   Load *(#n241 + #n18) [raw, Uint64, Word64]
+
+╭── o180:   WordBinop(#o174, #o172)[Add, Word64]
+╰─> n245:   WordBinop(#n239, #n237)[Add, Word64]
+
+╭── o181:   Comparison(#o180, #o179)[UnsignedLessThan, Word64]
+╰─> n246:   Comparison(#n245, #n243)[UnsignedLessThan, Word64]
+
+╭── o182:   Branch(#o181)[B14, B13, True]
+╰─> n247:   Branch(#n246)[<invalid block>, <invalid block>, True]
+
+
+
+old BLOCK B13 <- B12
+new BLOCK B22 <- B21
+╭── o184:   Call(#o175, #o172)[Code:Allocate Descriptor:r1s0i2f0]
+╭── o186:   DidntThrow(#o184)[🁣🁣 🁣🁣 🁤🁪 🁣 i a, 0]
+│   n249:   Call(#n240, #n237)[Code:Allocate Descriptor:r1s0i2f0]
+╰─> n251:   DidntThrow(#n249)[🁣🁣 🁣🁣 🁤🁪 🁣 i a, 0]
+
+╭── o188:   TaggedBitcast(#o186)[Tagged, Word64, HeapObject]
+╰─> n253:   TaggedBitcast(#n251)[Tagged, Word64, HeapObject]
+
+╭── o189:   Constant()[word64: -1]
+╰─> #n52
+
+╭── o190:   WordBinop(#o188, #o189)[Add, Word64]
+╰─> n254:   WordBinop(#n253, #n52)[Add, Word64]
+
+╭── o191:   Goto()[B15, 0]
+│   n255:   Goto()[<invalid block>, 0]
+
+
+
+old BLOCK B14 <- B12
+new BLOCK B23 <- B21
+╭── o192:   Goto()[B15, 0]
+│   n256:   Goto()[<invalid block>, 0]
+
+
+
+old MERGE B15 <- B14, B13
+new MERGE B24 <- B22, B23
+╭── o193:   Phi(#o174, #o190)[Word64]
+╰─> n257:   Phi(#n254, #n239)[Word64]
+
+╭── o194:   Constant()[external: 0x11 <last_young_allocation>]
+╰─> #n17
+
+╭── o195:   Store *(#o194) = #o193 [raw, Uint64, NoWriteBarrier]
+╰─> n258:   Store *(#n17 + #n18) = #n257 [raw, Uint64, NoWriteBarrier]
+
+╭── o197:   WordBinop(#o193, #o172)[Add, Word64]
+╰─> n260:   WordBinop(#n257, #n237)[Add, Word64]
+
+╭── o198:   Store *(#o173) = #o197 [raw, Uint64, NoWriteBarrier]
+╰─> n261:   Store *(#n238 + #n18) = #n260 [raw, Uint64, NoWriteBarrier]
+
+╭── o199:   WordBinop(#o193, #o55)[Add, Word64]
+╰─> n263:   WordBinop(#n257, #n83)[Add, Word64]
+
+╭── o200:   TaggedBitcast(#o199)[Word64, Tagged, HeapObject]
+╰─> n264:   TaggedBitcast(#n263)[Word64, Tagged, HeapObject]
+
+╭── o201:   Constant()[heap object: 0x108100000515 <Map[12](HEAP_NUMBER_TYPE)>]
+╰─> n265:   Constant()[heap object: 0x108100000515 <Map[12](HEAP_NUMBER_TYPE)>]
+
+╭── o202:   Store *(#o200) = #o201 [tagged base, TaggedPointer, SkippedWriteBarrier, initializing]
+│   n266:   TaggedBitcast(#n264)[Tagged, Word64, HeapObject]
+╰─> n267:   Store *(#n266 + #n52) = #n265 [raw, TaggedPointer, SkippedWriteBarrier, initializing]
+
+╭── o204:   Store *(#o200 + 4) = #o171 [tagged base, Float64, NoWriteBarrier, offset: 4, initializing]
+│   n269:   TaggedBitcast(#n264)[Tagged, Word64, HeapObject]
+│   n270:   Constant()[word64: 3]
+╰─> n271:   Store *(#n269 + #n270) = #n236 [raw, Float64, NoWriteBarrier, initializing]
+
+╭── o205:   Goto()[B16, 0]
+│   n273:   Goto()[<invalid block>, 0]
+
+
+
+old MERGE B16 <- B10, B15
+new MERGE B25 <- B19, B24
+╭── o206:   Phi(#o169, #o200)[Tagged]
+╰─> n274:   Phi(#n234, #n264)[Tagged]
+
+╭── o207:   Goto()[B1, 1]
+│   n275:   Goto()[B7, 1]
+
+
+
+old BLOCK B17 <- B1
+new BLOCK B26 <- B7
+╭── o208:   TaggedBitcast(#o75)[Tagged, Word64, Any]
+╰─> n276:   TaggedBitcast(#n107)[Tagged, Word64, Any]
+
+╭── o209:   Change(#o208)[Truncate, NoAssumption, Word64, Word32]
+╰─> n277:   Change(#n276)[Truncate, NoAssumption, Word64, Word32]
+
+╭── o210:   Change(#o209)[ZeroExtend, NoAssumption, Word32, Word64]
+╰─> n278:   Change(#n277)[ZeroExtend, NoAssumption, Word32, Word64]
+
+╭── o211:   Load *(#o210 + #o74) [raw, Int32, Word32]
+╰─> n279:   Load *(#n278 + #n104) [raw, Int32, Word32]
+
+╭── o213:   Retain(#o28)
+╰─> n280:   Retain(#n47)
+
+╭── o214:   FrameState(#o1, #o14, #o0, #o79, #o86, #o211)[not inlined, UNOPTIMIZED_FRAME, 82, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) . #79(kRepWord32|kTypeInt32) #86(kRepTagged|kTypeAny) . . . . #211(kRepWord32|kTypeInt32)]
+╰─> n281:   FrameState(#n1, #n14, #n0, #n112, #n134, #n279)[not inlined, UNOPTIMIZED_FRAME, 82, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) . #112(kRepWord32|kTypeInt32) #134(kRepTagged|kTypeAny) . . . . #279(kRepWord32|kTypeInt32)]
+
+╭── o216:   OverflowCheckedBinop(#o79, #o211)[signed add, Word32]
+│   n284:   OverflowCheckedBinop(#n112, #n279)[signed add, Word32]
+│   n285:   Projection(#n284)[0, Word32]
+│   n286:   Projection(#n284)[1, Word32]
+╰─> n287:   MakeTuple(#n285, #n286)
+
+╭── o217:   Projection(#o216)[0, Word32]
+╰─> #n285
+
+╭── o218:   Projection(#o216)[1, Word32]
+╰─> #n286
+
+╭── o220:   DeoptimizeIf(#o218, #o214)[Overflow, FeedbackSource(INVALID)]
+╰─> n288:   DeoptimizeIf(#n286, #n281)[Overflow, FeedbackSource(INVALID)]
+
+╭── o222:   WordBinop(#o86, #o11)[BitwiseAnd, Word32]
+╰─> n289:   WordBinop(#n134, #n11)[BitwiseAnd, Word32]
+
+╭── o223:   DeoptimizeIf(#o222, #o214)[NotASmi, FeedbackSource(INVALID)]
+╰─> n290:   DeoptimizeIf(#n289, #n281)[NotASmi, FeedbackSource(INVALID)]
+
+╭── o224:   TaggedBitcast(#o86)[Tagged, Word32, Smi]
+╰─> n292:   TaggedBitcast(#n134)[Tagged, Word32, Smi]
+
+╭── o225:   Constant()[word32: -2]
+╰─> n293:   Constant()[word32: -2]
+
+╭── o226:   Comparison(#o224, #o225)[Equal, Word32]
+╰─> n294:   Comparison(#n292, #n293)[Equal, Word32]
+
+╭── o227:   Branch(#o226)[B18, B19, None]
+╰─> n295:   Branch(#n294)[<invalid block>, <invalid block>, None]
+
+
+
+old BLOCK B18 <- B17
+new BLOCK B27 <- B26
+╭── o229:   Goto()[B20, 0]
+│   n297:   Goto()[<invalid block>, 0]
+
+
+
+old BLOCK B19 <- B17
+new BLOCK B28 <- B26
+╭── o230:   Goto()[B20, 0]
+│   n298:   Goto()[<invalid block>, 0]
+
+
+
+old MERGE B20 <- B18, B19
+new MERGE B29 <- B27, B28
+╭── o231:   Phi(#o5, #o4)[Tagged]
+╰─> n299:   Phi(#n5, #n4)[Tagged]
+
+╭── o232:   TaggedBitcast(#o231)[Tagged, Word32, Smi]
+╰─> n300:   TaggedBitcast(#n299)[Tagged, Word32, Smi]
+
+╭── o233:   Shift(#o232, #o11)[ShiftRightArithmeticShiftOutZeros, Word32]
+╰─> n301:   Shift(#n300, #n11)[ShiftRightArithmeticShiftOutZeros, Word32]
+
+╭── o234:   FrameState(#o1, #o14, #o0, #o217, #o231)[not inlined, UNOPTIMIZED_FRAME, 99, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) . . . . . #217(kRepWord32|kTypeInt32) . #231(kRepTagged|kTypeAny)]
+╰─> n302:   FrameState(#n1, #n14, #n0, #n285, #n299)[not inlined, UNOPTIMIZED_FRAME, 99, Ignore, 0x10810102b0e9 <SharedFunctionInfo hot>, state values: #1(kRepTagged|kTypeAny) #14(kRepTagged|kTypeAny) #0(kRepTagged|kTypeAny) . . . . . #285(kRepWord32|kTypeInt32) . #299(kRepTagged|kTypeAny)]
+
+╭── o237:   OverflowCheckedBinop(#o217, #o233)[signed add, Word32]
+│   n304:   OverflowCheckedBinop(#n285, #n301)[signed add, Word32]
+│   n305:   Projection(#n304)[0, Word32]
+│   n306:   Projection(#n304)[1, Word32]
+╰─> n307:   MakeTuple(#n305, #n306)
+
+╭── o238:   Projection(#o237)[0, Word32]
+╰─> #n305
+
+╭── o239:   Projection(#o237)[1, Word32]
+╰─> #n306
+
+╭── o241:   DeoptimizeIf(#o239, #o234)[Overflow, FeedbackSource(INVALID)]
+╰─> n308:   DeoptimizeIf(#n306, #n302)[Overflow, FeedbackSource(INVALID)]
+
+╭── o242:   OverflowCheckedBinop(#o238, #o238)[signed add, Word32]
+│   n310:   OverflowCheckedBinop(#n305, #n305)[signed add, Word32]
+│   n311:   Projection(#n310)[0, Word32]
+│   n312:   Projection(#n310)[1, Word32]
+╰─> n313:   MakeTuple(#n311, #n312)
+
+╭── o243:   Projection(#o242)[0, Word32]
+╰─> #n311
+
+╭── o244:   Projection(#o242)[1, Word32]
+╰─> #n312
+
+╭── o246:   Branch(#o244)[B22, B21, False]
+╰─> n314:   Branch(#n312)[<invalid block>, <invalid block>, False]
+
+
+
+old BLOCK B21 <- B20
+new BLOCK B30 <- B29
+╭── o248:   TaggedBitcast(#o243)[Word32, Tagged, Smi]
+╰─> n316:   TaggedBitcast(#n311)[Word32, Tagged, Smi]
+
+╭── o249:   Return(#o10, #o248)[0]
+╰─> n317:   Return(#n10, #n316)[0]
+
+
+
+old BLOCK B22 <- B20
+new BLOCK B31 <- B29
+╭── o250:   Change(#o238)[SignedToFloat, NoAssumption, Word32, Float64]
+╰─> n318:   Change(#n305)[SignedToFloat, NoAssumption, Word32, Float64]
+
+╭── o251:   Constant()[word64: 12]
+╰─> n319:   Constant()[word64: 12]
+
+╭── o252:   Constant()[external: 0x46 <new_allocation_info_top>]
+╰─> n320:   Constant()[external: 0x46 <new_allocation_info_top>]
+
+╭── o253:   Load *(#o252) [raw, Uint64, Word64]
+╰─> n321:   Load *(#n320 + #n18) [raw, Uint64, Word64]
+
+╭── o254:   Constant()[heap object: 0x10810047fe41 <Code BUILTIN AllocateInYoungGeneration>]
+╰─> n322:   Constant()[heap object: 0x10810047fe41 <Code BUILTIN AllocateInYoungGeneration>]
+
+╭── o255:   Constant()[external: 0x47 <new_allocation_info_limit>]
+╰─> n323:   Constant()[external: 0x47 <new_allocation_info_limit>]
+
+╭── o257:   Goto()[B23, 0]
+│   n324:   Goto()[<invalid block>, 0]
+
+
+
+old MERGE B23 <- B22
+new MERGE B32 <- B31
+╭── o258:   Load *(#o255) [raw, Uint64, Word64]
+╰─> n325:   Load *(#n323 + #n18) [raw, Uint64, Word64]
+
+╭── o259:   WordBinop(#o253, #o251)[Add, Word64]
+╰─> n327:   WordBinop(#n321, #n319)[Add, Word64]
+
+╭── o260:   Comparison(#o259, #o258)[UnsignedLessThan, Word64]
+╰─> n328:   Comparison(#n327, #n325)[UnsignedLessThan, Word64]
+
+╭── o261:   Branch(#o260)[B25, B24, True]
+╰─> n329:   Branch(#n328)[<invalid block>, <invalid block>, True]
+
+
+
+old BLOCK B24 <- B23
+new BLOCK B33 <- B32
+╭── o263:   Call(#o254, #o251)[Code:Allocate Descriptor:r1s0i2f0]
+╭── o265:   DidntThrow(#o263)[🁣🁣 🁣🁣 🁤🁪 🁣 i a, 0]
+│   n331:   Call(#n322, #n319)[Code:Allocate Descriptor:r1s0i2f0]
+╰─> n333:   DidntThrow(#n331)[🁣🁣 🁣🁣 🁤🁪 🁣 i a, 0]
+
+╭── o267:   TaggedBitcast(#o265)[Tagged, Word64, HeapObject]
+╰─> n335:   TaggedBitcast(#n333)[Tagged, Word64, HeapObject]
+
+╭── o268:   Constant()[word64: -1]
+╰─> #n52
+
+╭── o269:   WordBinop(#o267, #o268)[Add, Word64]
+╰─> n336:   WordBinop(#n335, #n52)[Add, Word64]
+
+╭── o270:   Goto()[B26, 0]
+│   n337:   Goto()[<invalid block>, 0]
+
+
+
+old BLOCK B25 <- B23
+new BLOCK B34 <- B32
+╭── o271:   Goto()[B26, 0]
+│   n338:   Goto()[<invalid block>, 0]
+
+
+
+old MERGE B26 <- B25, B24
+new MERGE B35 <- B33, B34
+╭── o272:   Phi(#o253, #o269)[Word64]
+╰─> n339:   Phi(#n336, #n321)[Word64]
+
+╭── o273:   Constant()[external: 0x11 <last_young_allocation>]
+╰─> #n17
+
+╭── o274:   Store *(#o273) = #o272 [raw, Uint64, NoWriteBarrier]
+╰─> n340:   Store *(#n17 + #n18) = #n339 [raw, Uint64, NoWriteBarrier]
+
+╭── o276:   WordBinop(#o272, #o251)[Add, Word64]
+╰─> n342:   WordBinop(#n339, #n319)[Add, Word64]
+
+╭── o277:   Store *(#o252) = #o276 [raw, Uint64, NoWriteBarrier]
+╰─> n343:   Store *(#n320 + #n18) = #n342 [raw, Uint64, NoWriteBarrier]
+
+╭── o278:   WordBinop(#o272, #o55)[Add, Word64]
+╰─> n345:   WordBinop(#n339, #n83)[Add, Word64]
+
+╭── o279:   TaggedBitcast(#o278)[Word64, Tagged, HeapObject]
+╰─> n346:   TaggedBitcast(#n345)[Word64, Tagged, HeapObject]
+
+╭── o280:   Constant()[heap object: 0x108100000515 <Map[12](HEAP_NUMBER_TYPE)>]
+╰─> n347:   Constant()[heap object: 0x108100000515 <Map[12](HEAP_NUMBER_TYPE)>]
+
+╭── o281:   Store *(#o279) = #o280 [tagged base, TaggedPointer, SkippedWriteBarrier, initializing]
+│   n348:   TaggedBitcast(#n346)[Tagged, Word64, HeapObject]
+╰─> n349:   Store *(#n348 + #n52) = #n347 [raw, TaggedPointer, SkippedWriteBarrier, initializing]
+
+╭── o283:   Store *(#o279 + 4) = #o250 [tagged base, Float64, NoWriteBarrier, offset: 4, initializing]
+│   n351:   TaggedBitcast(#n346)[Tagged, Word64, HeapObject]
+│   n352:   Constant()[word64: 3]
+╰─> n353:   Store *(#n351 + #n352) = #n318 [raw, Float64, NoWriteBarrier, initializing]
+
+╭── o284:   Return(#o10, #o279)[0]
+╰─> n355:   Return(#n10, #n346)[0]
+
+
+OK

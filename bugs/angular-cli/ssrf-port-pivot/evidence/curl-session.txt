@@ -1,0 +1,77 @@
+$ curl -sv http://127.0.0.1:4200/ 2>&1 | head -25
+*   Trying 127.0.0.1:4200...
+* Connected to 127.0.0.1 (127.0.0.1) port 4200
+> GET / HTTP/1.1
+> Host: 127.0.0.1:4200
+> User-Agent: curl/8.7.1
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/1.1 200 OK
+< X-Powered-By: Express
+< content-type: text/html;charset=UTF-8
+< Date: Thu, 23 Apr 2026 13:19:19 GMT
+< Connection: keep-alive
+< Keep-Alive: timeout=5
+< Transfer-Encoding: chunked
+< 
+{ [772 bytes data]
+* Connection #0 to host 127.0.0.1 left intact
+<!DOCTYPE html><html lang="en" data-beasties-container><head>
+  <meta charset="utf-8">
+  <title>SsrfTest</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet" href="styles-5INURTSO.css"></head>
+
+
+$ curl -sv http://127.0.0.1:4200/ -H 'X-Forwarded-Host: 127.0.0.1:13306' 2>&1 | head -25
+*   Trying 127.0.0.1:4200...
+* Connected to 127.0.0.1 (127.0.0.1) port 4200
+> GET / HTTP/1.1
+> Host: 127.0.0.1:4200
+> User-Agent: curl/8.7.1
+> Accept: */*
+> X-Forwarded-Host: 127.0.0.1:13306
+> 
+* Request completely sent off
+< HTTP/1.1 200 OK
+< X-Powered-By: Express
+< content-type: text/html;charset=UTF-8
+< Date: Thu, 23 Apr 2026 13:19:19 GMT
+< Connection: keep-alive
+< Keep-Alive: timeout=5
+< Transfer-Encoding: chunked
+< 
+{ [780 bytes data]
+* Connection #0 to host 127.0.0.1 left intact
+<!DOCTYPE html><html lang="en" data-beasties-container><head>
+  <meta charset="utf-8">
+  <title>SsrfTest</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+
+$ curl -sv http://127.0.0.1:4200/ -H 'X-Forwarded-Host: evil.com:13306' 2>&1 | head -25
+*   Trying 127.0.0.1:4200...
+* Connected to 127.0.0.1 (127.0.0.1) port 4200
+> GET / HTTP/1.1
+> Host: 127.0.0.1:4200
+> User-Agent: curl/8.7.1
+> Accept: */*
+> X-Forwarded-Host: evil.com:13306
+> 
+* Request completely sent off
+< HTTP/1.1 400 Bad Request
+< X-Powered-By: Express
+< content-type: text/plain
+< Date: Thu, 23 Apr 2026 13:19:19 GMT
+< Connection: keep-alive
+< Keep-Alive: timeout=5
+< Transfer-Encoding: chunked
+< 
+{ [55 bytes data]
+* Connection #0 to host 127.0.0.1 left intact
+URL with hostname "evil.com" is not allowed.

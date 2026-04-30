@@ -1,0 +1,30 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x3b6c00000000,0x3c6c00000000)
+before=0x7
+
+
+#
+# Safely terminating process
+# The following harmless error was encountered: Check failed: InlineTargetIsTypeCompatible(decoder->module_, sig, inlinee.sig).
+#
+#
+#
+#FailureMessage Object: 0x7ffffffc2d40
+==== C stack trace ===============================
+
+    out/sandbox_release_linux/d8(+0x1c20ece) [0x555557174ece]
+    out/sandbox_release_linux/d8(+0x1c2038b) [0x55555717438b]
+    out/sandbox_release_linux/d8(+0x1c1357f) [0x55555716757f]
+    out/sandbox_release_linux/d8(+0x194d9a7) [0x555556ea19a7]
+    out/sandbox_release_linux/d8(+0x1933f6c) [0x555556e87f6c]
+    out/sandbox_release_linux/d8(+0x1921591) [0x555556e75591]
+    out/sandbox_release_linux/d8(+0x19200d5) [0x555556e740d5]
+    out/sandbox_release_linux/d8(+0x191fd1c) [0x555556e73d1c]
+    out/sandbox_release_linux/d8(+0x134c5e5) [0x5555568a05e5]
+    out/sandbox_release_linux/d8(+0x1906532) [0x555556e5a532]
+    out/sandbox_release_linux/d8(+0xfe95d4) [0x55555653d5d4]
+    out/sandbox_release_linux/d8(+0xfea2e2) [0x55555653e2e2]
+    out/sandbox_release_linux/d8(+0x104cbec) [0x5555565a0bec]
+    out/sandbox_release_linux/d8(+0xfeebc0) [0x555556542bc0]
+    out/sandbox_release_linux/d8(+0xf43cff) [0x555556497cff]
+    out/sandbox_release_linux/d8(+0x1ab76f1) [0x55555700b6f1]

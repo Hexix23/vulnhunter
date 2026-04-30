@@ -1,0 +1,62 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>
+html, body { margin: 0; height: 4000px; }
+#spacer { height: 1500px; }
+#subject { width: 100px; height: 300px; background: #ddd; }
+.target { position: relative; width: 40px; height: 40px; background: #37f; }
+</style>
+<div id="spacer"></div>
+<div id="subject"></div>
+<div id="targets"></div>
+<script>
+function churn() {
+  const a = [];
+  for (let i = 0; i < 2000; i++) a.push(new Array(128).fill(i));
+  if (window.gc) gc();
+}
+
+async function main() {
+  if (!window.TimelineTrigger || !window.ViewTimeline) {
+    document.body.textContent = "AnimationTrigger unavailable";
+    return;
+  }
+
+  const subject = document.getElementById("subject");
+  const box = document.getElementById("targets");
+  const trigger = new TimelineTrigger([{
+    timeline: new ViewTimeline({ subject, axis: "y" }),
+    activationRangeStart: "contain",
+    activationRangeEnd: "contain"
+  }]);
+
+  const animations = [];
+  for (let i = 0; i < 32; i++) {
+    const target = document.createElement("div");
+    target.className = "target";
+    box.appendChild(target);
+    const anim = new Animation(
+      new KeyframeEffect(target, [{ left: "0px" }, { left: "100px" }],
+                         { duration: 300, fill: "none" }));
+    trigger.addAnimation(anim, "reset", "none");
+    animations.push([target, anim]);
+  }
+
+  for (const [target, anim] of animations) {
+    anim.ready.then(() => {
+      target.remove();
+      anim.cancel();
+      churn();
+    }).catch(() => {});
+  }
+
+  for (let i = 0; i < 80; i++) {
+    scrollTo(0, i % 2 ? 0 : 1800);
+    await new Promise(r => requestAnimationFrame(r));
+    churn();
+  }
+  document.body.textContent = "done";
+}
+
+main().catch(e => document.body.textContent = String(e));
+</script>

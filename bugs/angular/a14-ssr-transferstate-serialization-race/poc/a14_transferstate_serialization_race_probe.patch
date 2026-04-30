@@ -1,0 +1,119 @@
+diff --git a/packages/platform-server/test/integration_spec.ts b/packages/platform-server/test/integration_spec.ts
+index a40f4fd9ff..c95d6bf98f 100644
+--- a/packages/platform-server/test/integration_spec.ts
++++ b/packages/platform-server/test/integration_spec.ts
+@@ -31,6 +31,7 @@ import {
+   Inject,
+   inject,
+   Injectable,
++  InjectionToken,
+   Input,
+   makeStateKey,
+   mergeApplicationConfig,
+@@ -469,6 +470,57 @@ class MyTransferStateModule {}
+ })
+ class DoubleTransferStateModule {}
+ 
++const A14_REQUEST_SECRET = new InjectionToken<string>('A14_REQUEST_SECRET');
++const A14_STATE_KEY = makeStateKey<string>('a14-secret');
++
++function createA14TransferStateApp(standalone: boolean) {
++  @Component({
++    standalone,
++    selector: 'app',
++    template: `transfer-race`,
++  })
++  class A14TransferStateApp {
++    constructor() {
++      const transferState = coreInject(TransferState);
++      const secret = coreInject(A14_REQUEST_SECRET);
++      const doc = coreInject(DOCUMENT);
++      transferState.onSerialize(A14_STATE_KEY, () => {
++        return `${secret}|${doc.body.getAttribute('data-a14')}`;
++      });
++    }
++  }
++
++  return A14TransferStateApp;
++}
++
++const A14AsyncSerializeHookProvider = {
++  provide: BEFORE_APP_SERIALIZED,
++  useFactory: (doc: Document) => {
++    return () =>
++      new Promise<void>((resolve) => {
++        setTimeout(() => {
++          doc.body.setAttribute('data-a14-hook', doc.body.getAttribute('data-a14') ?? '');
++          resolve();
++        }, 10);
++      });
++  },
++  multi: true,
++  deps: [DOCUMENT],
++};
++
++const A14TransferStateApp = createA14TransferStateApp(false);
++const A14TransferStateAppStandalone = getStandaloneBootstrapFn(createA14TransferStateApp(true), [
++  A14AsyncSerializeHookProvider,
++]);
++
++@NgModule({
++  declarations: [A14TransferStateApp],
++  imports: [BrowserModule, ServerModule],
++  providers: [A14AsyncSerializeHookProvider],
++  bootstrap: [A14TransferStateApp],
++})
++class A14TransferStateModule {}
++
+ @NgModule({
+   bootstrap: [MyServerApp],
+   imports: [MyServerAppModule, ServerModule, HttpClientModule, HttpClientTestingModule],
+@@ -962,6 +1014,48 @@ class HiddenModule {}
+             },
+           );
+ 
++          it(
++            `A14 probe: should isolate concurrent async TransferState serialization ` +
++              `(standalone:${isStandalone}, zoneless:${zoneless})`,
++            async () => {
++              const renderA = isStandalone
++                ? renderApplication(A14TransferStateAppStandalone, {
++                    document:
++                      '<html><head></head><body data-a14="doc-A"><app></app></body></html>',
++                    platformProviders: [{provide: A14_REQUEST_SECRET, useValue: 'secret-A'}],
++                  })
++                : renderModule(A14TransferStateModule, {
++                    document:
++                      '<html><head></head><body data-a14="doc-A"><app></app></body></html>',
++                    extraProviders: [{provide: A14_REQUEST_SECRET, useValue: 'secret-A'}],
++                  });
++
++              const renderB = isStandalone
++                ? renderApplication(A14TransferStateAppStandalone, {
++                    document:
++                      '<html><head></head><body data-a14="doc-B"><app></app></body></html>',
++                    platformProviders: [{provide: A14_REQUEST_SECRET, useValue: 'secret-B'}],
++                  })
++                : renderModule(A14TransferStateModule, {
++                    document:
++                      '<html><head></head><body data-a14="doc-B"><app></app></body></html>',
++                    extraProviders: [{provide: A14_REQUEST_SECRET, useValue: 'secret-B'}],
++                  });
++
++              const [outputA, outputB] = await Promise.all([renderA, renderB]);
++
++              expect(outputA).toContain('data-a14="doc-A" data-a14-hook="doc-A"');
++              expect(outputA).toContain('"a14-secret":"secret-A|doc-A"');
++              expect(outputA).not.toContain('secret-B');
++              expect(outputA).not.toContain('doc-B');
++
++              expect(outputB).toContain('data-a14="doc-B" data-a14-hook="doc-B"');
++              expect(outputB).toContain('"a14-secret":"secret-B|doc-B"');
++              expect(outputB).not.toContain('secret-A');
++              expect(outputB).not.toContain('doc-A');
++            },
++          );
++
+           it(
+             'uses `other` as the `serverContext` value when all symbols are removed after sanitization' +
+               `(standalone:${isStandalone}, zoneless:${zoneless})`,

@@ -1,0 +1,66 @@
+diff --git a/components/user_education/common/help_bubble/help_bubble_factory_registry_unittest.cc b/components/user_education/common/help_bubble/help_bubble_factory_registry_unittest.cc
+--- a/components/user_education/common/help_bubble/help_bubble_factory_registry_unittest.cc
++++ b/components/user_education/common/help_bubble/help_bubble_factory_registry_unittest.cc
+@@ -55,6 +55,27 @@ class HelpBubbleFactoryRegistryTest : public testing::Test {
+   HelpBubbleFactoryRegistry help_bubble_factory_registry_;
+   ui::test::TestElement test_element_;
+ };
++
++class ClosingOnBoundsBubble : public test::TestHelpBubble {
++ public:
++  ClosingOnBoundsBubble(ui::TrackedElement* element, HelpBubbleParams params)
++      : test::TestHelpBubble(element, std::move(params)) {}
++
++  void OnAnchorBoundsChanged() override {
++    Close(CloseReason::kAnchorHidden);
++  }
++};
++
++class ClosingOnFocusBubble : public test::TestHelpBubble {
++ public:
++  ClosingOnFocusBubble(ui::TrackedElement* element, HelpBubbleParams params)
++      : test::TestHelpBubble(element, std::move(params)) {}
++
++  bool ToggleFocusForAccessibility() override {
++    Close(CloseReason::kProgrammaticallyClosed);
++    return false;
++  }
++};
+ 
+ TEST_F(HelpBubbleFactoryRegistryTest, ShowsBubble) {
+   EXPECT_FALSE(help_bubble_factory_registry_.is_any_bubble_showing());
+@@ -233,6 +254,34 @@ TEST_F(HelpBubbleFactoryRegistryTest, CloseTwoBubbles) {
+   bubble2->Close(HelpBubble::CloseReason::kProgrammaticallyClosed);
+   EXPECT_FALSE(help_bubble_factory_registry_.is_any_bubble_showing());
+ }
++
++TEST_F(HelpBubbleFactoryRegistryTest,
++       NotifyAnchorBoundsChangedLiveIterationCloseCurrent) {
++  auto bubble = std::make_unique<ClosingOnBoundsBubble>(&test_element_,
++                                                        GetBubbleParams());
++  auto second = help_bubble_factory_registry_.CreateHelpBubble(
++      &test_element_, GetBubbleParams());
++  help_bubble_factory_registry_.AddHelpBubble(bubble.get());
++
++  help_bubble_factory_registry_.NotifyAnchorBoundsChanged(kTestElementContext);
++
++  EXPECT_FALSE(bubble->is_open());
++  second.reset();
++}
++
++TEST_F(HelpBubbleFactoryRegistryTest,
++       ToggleFocusForAccessibilityLiveIterationCloseCurrentAndContinue) {
++  auto bubble =
++      std::make_unique<ClosingOnFocusBubble>(&test_element_, GetBubbleParams());
++  auto second = help_bubble_factory_registry_.CreateHelpBubble(
++      &test_element_, GetBubbleParams());
++  help_bubble_factory_registry_.AddHelpBubble(bubble.get());
++
++  help_bubble_factory_registry_.ToggleFocusForAccessibility(kTestElementContext);
++
++  EXPECT_FALSE(bubble->is_open());
++  second.reset();
++}
+ 
+ TEST_F(HelpBubbleFactoryRegistryTest, OpenSecondBubbleAfterClose) {
+   auto bubble = help_bubble_factory_registry_.CreateHelpBubble(

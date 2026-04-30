@@ -1,0 +1,9 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x11fa00000000,0x12fa00000000)
+V8 is running with experimental features enabled. Stability and security will suffer.
+funcref_raw=0x4e
+externref_raw=0x160a
+visible_funcref_tagged=0x10399ed
+entry1_raw=0x10399ed
+call_ref_entry1=117
+call_indirect_entry1=37

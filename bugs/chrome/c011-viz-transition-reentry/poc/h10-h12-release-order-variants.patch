@@ -1,0 +1,138 @@
+diff --git a/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc b/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
+--- a/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
++++ b/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
+@@ -3232,6 +3232,134 @@ TEST_F(CompositorFrameSinkSupportTestBase,
+   manager_->ClearSurfaceAnimationManager(token_x);
+ }
+ 
++TEST_F(CompositorFrameSinkSupportTestBase,
++       OnSaveTransitionDirectiveProcessedAnimateThenReleaseClearsLostManager) {
++  blink::ViewTransitionToken token_x;
++
++  SubmitCompositorFrameWithResources({});
++  Surface* surface_a = support_->GetLastCreatedSurfaceForTesting();
++  ASSERT_TRUE(surface_a);
++
++  auto save_directive = CompositorFrameTransitionDirective::CreateSave(
++      token_x, /*maybe_cross_frame_sink=*/true, 1, {}, {}, false);
++  ProcessCompositorFrameTransitionDirective(support_.get(), save_directive,
++                                            surface_a);
++
++  LocalSurfaceId local_surface_id_b(
++      local_surface_id_.parent_sequence_number() + 1,
++      local_surface_id_.embed_token());
++
++  CompositorFrame frame_2 =
++      MakeDefaultInteractiveCompositorFrame(kBeginFrameSourceId);
++  frame_2.metadata.transition_directives.push_back(
++      CompositorFrameTransitionDirective::CreateAnimate(
++          token_x, /*maybe_cross_frame_sink=*/true, 2,
++          /*delay_layer_tree_view_deletion=*/true));
++  frame_2.metadata.transition_directives.push_back(
++      CompositorFrameTransitionDirective::CreateRelease(
++          token_x, /*maybe_cross_frame_sink=*/true, 3,
++          /*delay_layer_tree_view_deletion=*/true));
++
++  support_->SubmitCompositorFrame(local_surface_id_b, std::move(frame_2));
++  SurfaceId surface_id_b(support_->frame_sink_id(), local_surface_id_b);
++  Surface* surface_b =
++      manager_->surface_manager()->GetSurfaceForId(surface_id_b);
++  ASSERT_TRUE(surface_b);
++  ASSERT_TRUE(surface_b->HasPendingFrame());
++
++  OnSaveTransitionDirectiveProcessed(support_.get(), save_directive);
++
++  EXPECT_FALSE(surface_b->HasPendingFrame());
++  EXPECT_FALSE(HasAnimationManagerForToken(token_x));
++  EXPECT_FALSE(SupportHasSurfaceAnimationManagerForToken(support_.get(),
++                                                        token_x));
++}
++
++TEST_F(CompositorFrameSinkSupportTestBase,
++       OnSaveTransitionDirectiveProcessedReleaseThenAnimateClearsLostManager) {
++  blink::ViewTransitionToken token_x;
++
++  SubmitCompositorFrameWithResources({});
++  Surface* surface_a = support_->GetLastCreatedSurfaceForTesting();
++  ASSERT_TRUE(surface_a);
++
++  auto save_directive = CompositorFrameTransitionDirective::CreateSave(
++      token_x, /*maybe_cross_frame_sink=*/true, 1, {}, {}, false);
++  ProcessCompositorFrameTransitionDirective(support_.get(), save_directive,
++                                            surface_a);
++
++  LocalSurfaceId local_surface_id_b(
++      local_surface_id_.parent_sequence_number() + 1,
++      local_surface_id_.embed_token());
++
++  CompositorFrame frame_2 =
++      MakeDefaultInteractiveCompositorFrame(kBeginFrameSourceId);
++  frame_2.metadata.transition_directives.push_back(
++      CompositorFrameTransitionDirective::CreateRelease(
++          token_x, /*maybe_cross_frame_sink=*/true, 2,
++          /*delay_layer_tree_view_deletion=*/true));
++  frame_2.metadata.transition_directives.push_back(
++      CompositorFrameTransitionDirective::CreateAnimate(
++          token_x, /*maybe_cross_frame_sink=*/true, 3,
++          /*delay_layer_tree_view_deletion=*/true));
++
++  support_->SubmitCompositorFrame(local_surface_id_b, std::move(frame_2));
++  SurfaceId surface_id_b(support_->frame_sink_id(), local_surface_id_b);
++  Surface* surface_b =
++      manager_->surface_manager()->GetSurfaceForId(surface_id_b);
++  ASSERT_TRUE(surface_b);
++  ASSERT_TRUE(surface_b->HasPendingFrame());
++
++  OnSaveTransitionDirectiveProcessed(support_.get(), save_directive);
++
++  EXPECT_FALSE(surface_b->HasPendingFrame());
++  EXPECT_FALSE(HasAnimationManagerForToken(token_x));
++  EXPECT_FALSE(SupportHasSurfaceAnimationManagerForToken(support_.get(),
++                                                        token_x));
++}
++
++TEST_F(CompositorFrameSinkSupportTestBase,
++       OnSaveTransitionDirectiveProcessedLaterReleaseClearsLostManager) {
++  blink::ViewTransitionToken token_x;
++
++  SubmitCompositorFrameWithResources({});
++  Surface* surface_a = support_->GetLastCreatedSurfaceForTesting();
++  ASSERT_TRUE(surface_a);
++
++  auto save_directive = CompositorFrameTransitionDirective::CreateSave(
++      token_x, /*maybe_cross_frame_sink=*/true, 1, {}, {}, false);
++  ProcessCompositorFrameTransitionDirective(support_.get(), save_directive,
++                                            surface_a);
++
++  LocalSurfaceId local_surface_id_b(
++      local_surface_id_.parent_sequence_number() + 1,
++      local_surface_id_.embed_token());
++  CompositorFrame frame_2 =
++      MakeDefaultInteractiveCompositorFrame(kBeginFrameSourceId);
++  frame_2.metadata.transition_directives.push_back(
++      CompositorFrameTransitionDirective::CreateAnimate(
++          token_x, /*maybe_cross_frame_sink=*/true, 2,
++          /*delay_layer_tree_view_deletion=*/true));
++  support_->SubmitCompositorFrame(local_surface_id_b, std::move(frame_2));
++  OnSaveTransitionDirectiveProcessed(support_.get(), save_directive);
++  ASSERT_TRUE(HasAnimationManagerForToken(token_x));
++
++  LocalSurfaceId local_surface_id_c(
++      local_surface_id_.parent_sequence_number() + 2,
++      local_surface_id_.embed_token());
++  CompositorFrame frame_3 =
++      MakeDefaultInteractiveCompositorFrame(kBeginFrameSourceId);
++  frame_3.metadata.transition_directives.push_back(
++      CompositorFrameTransitionDirective::CreateRelease(
++          token_x, /*maybe_cross_frame_sink=*/true, 3,
++          /*delay_layer_tree_view_deletion=*/true));
++  support_->SubmitCompositorFrame(local_surface_id_c, std::move(frame_3));
++
++  EXPECT_FALSE(HasAnimationManagerForToken(token_x));
++  EXPECT_FALSE(SupportHasSurfaceAnimationManagerForToken(support_.get(),
++                                                        token_x));
++}
++
+ TEST_P(AckOnSurfaceActivationWhenInteractiveTest,
+        TreesInVizAcksCompositorFrames) {
+   base::test::ScopedFeatureList scoped_feature_list;

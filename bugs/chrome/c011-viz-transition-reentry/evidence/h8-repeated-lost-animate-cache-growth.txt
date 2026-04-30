@@ -1,0 +1,24 @@
+Command:
+orb -m ubuntu -w /home/carlosgomez/chromium-engagement/src env ASAN_OPTIONS=detect_odr_violation=0 xvfb-run -a out/c001_asan/viz_unittests --gtest_filter='*RepeatedLostAnimateGrowsCache*' --single-process-tests
+
+Result:
+exit code 0
+
+Key output:
+Note: Google Test filter = *RepeatedLostAnimateGrowsCache*
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from CompositorFrameSinkSupportTestBase
+[ RUN      ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedRepeatedLostAnimateGrowsCache
+[       OK ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedRepeatedLostAnimateGrowsCache (104 ms)
+[----------] 1 test from CompositorFrameSinkSupportTestBase (119 ms total)
+[==========] 1 test from 1 test suite ran. (128 ms total)
+[  PASSED  ] 1 test.
+
+Assertions inside the test:
+- each product pending frame activates after save completion;
+- local CompositorFrameSinkSupport map loses the token manager;
+- global FrameSinkManagerImpl cache keeps the token manager;
+- cache size grows linearly: after iteration i, size == i + 1.
+
+Interpretation:
+Repeated product-route lost-animate sequences accumulate SurfaceAnimationManager entries in FrameSinkManagerImpl::transition_token_to_animation_manager_ unless an explicit Release directive clears each token. This moves H7 from a one-off transition loss into a renderer-controllable global-cache growth primitive.

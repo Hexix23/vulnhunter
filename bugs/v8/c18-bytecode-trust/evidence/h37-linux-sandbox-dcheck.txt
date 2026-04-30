@@ -1,0 +1,40 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x157700000000,0x167700000000)
+baseline=13
+fv=0x102c731 slot0=0x102c63b slot4=0x102c3f3
+# Ignoring debug check failure in ../../src/ic/ic.cc, line 2170: Holder<To> v8::internal::TrustedCast(Holder<From>, SourceLocation) [To = v8::internal::Union<v8::internal::Smi, v8::internal::HeapNumber, v8::internal::BigInt, v8::internal::String, v8::internal::Symbol, v8::internal::Boolean, v8::internal::Null, v8::internal::Undefined, v8::internal::JSReceiver>, From = v8::internal::Object, Holder = v8::internal::DirectHandle]
+returned
+same-global false
+abort: Unexpected instance type encountered
+
+
+#
+# Safely terminating process due to error in ../../src/compiler/js-heap-broker.cc, line 618
+# The following harmless error was encountered: Check failed: IsPropertyCell(*feedback_value).
+#
+#
+#
+#FailureMessage Object: 0x7ffff7c7d6e0
+==== C stack trace ===============================
+
+    /home/carlosgomez/v8-linux/v8/out/sandbox_dcheck_linux/d8(+0x368669e) [0x555558bda69e]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_dcheck_linux/d8(+0x3685b5b) [0x555558bd9b5b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_dcheck_linux/d8(+0x366eb43) [0x555558bc2b43]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_dcheck_linux/d8(+0x20d7632) [0x55555762b632]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_dcheck_linux/d8(+0x20d9373) [0x55555762d373]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_dcheck_linux/d8(+0x186310c) [0x555556db710c]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_dcheck_linux/d8(+0x1862f91) [0x555556db6f91]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_dcheck_linux/d8(+0x1873f1b) [0x555556dc7f1b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_dcheck_linux/d8(+0x188bfee) [0x555556ddffee]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_dcheck_linux/d8(+0x18d499b) [0x555556e2899b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_dcheck_linux/d8(+0x17f85a1) [0x555556d4c5a1]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_dcheck_linux/d8(+0x184bc2a) [0x555556d9fc2a]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_dcheck_linux/d8(+0xb1f5f4) [0x5555560735f4]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_dcheck_linux/d8(+0x184dd14) [0x555556da1d14]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_dcheck_linux/d8(+0x368807b) [0x555558bdc07b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_dcheck_linux/d8(+0x368ba24) [0x555558bdfa24]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_dcheck_linux/d8(+0x3683321) [0x555558bd7321]
+    /lib/x86_64-linux-gnu/libc.so.6(+0x9caa4) [0x7fffff52daa4]
+    /lib/x86_64-linux-gnu/libc.so.6(__clone+0x44) [0x7fffff5baa64]
+
+EXIT:0

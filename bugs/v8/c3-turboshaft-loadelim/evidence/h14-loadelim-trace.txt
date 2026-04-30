@@ -1,0 +1,2199 @@
+V8 is running with experimental features enabled. Stability and security will suffer.
+
+old MERGE B0
+new MERGE B0
+╭── o1:     Parameter()[6]
+╰─> n0:     Parameter()[6]
+
+╭── o6:     LoadRootRegister()
+╰─> n1:     LoadRootRegister()
+
+╭── o7:     Load *(#o6 + 50296) [raw, Uint64, Word64, offset: 50296]
+╰─> n2:     Load *(#n1 + 50296) [raw, Uint64, Word64, offset: 50296]
+
+╭── o8:     Constant()[external: 0x103d73f2c <WasmThrowJSTypeError.entry>]
+╰─> n3:     Constant()[external: 0x103d73f2c <WasmThrowJSTypeError.entry>]
+
+╭── o9:     Constant()[word32: 0]
+╰─> n4:     Constant()[word32: 0]
+
+╭── o10:    Call(#o7, #o8, #o9, #o1)[Code:WasmThrowJSTypeError:r1s0i4f0]
+╭── o12:    DidntThrow(#o10)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n5:     Call(#n2, #n3, #n4, #n0)[Code:WasmThrowJSTypeError:r1s0i4f0]
+╰─> n8:     DidntThrow(#n5)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o14:    Unreachable()
+╰─> n10:    Unreachable()
+
+
+
+old MERGE B0
+new MERGE B0
+╭── o0:     Parameter()[6]
+╰─> n0:     Parameter()[6]
+
+╭── o1:     LoadRootRegister()
+╰─> n1:     LoadRootRegister()
+
+╭── o2:     Load *(#o1 + 50296) [raw, Uint64, Word64, offset: 50296]
+│   n2:     Constant()[word64: 50296]
+╰─> n3:     Load *(#n1 + #n2) [raw, Uint64, Word64]
+
+╭── o3:     Constant()[external: 0x103d73f2c <WasmThrowJSTypeError.entry>]
+╰─> n5:     Constant()[external: 0x103d73f2c <WasmThrowJSTypeError.entry>]
+
+╭── o4:     Constant()[word32: 0]
+╰─> n6:     Constant()[word32: 0]
+
+╭── o5:     Call(#o2, #o3, #o4, #o0)[Code:WasmThrowJSTypeError:r1s0i4f0]
+╭── o8:     DidntThrow(#o5)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n7:     Call(#n3, #n5, #n6, #n0)[Code:WasmThrowJSTypeError:r1s0i4f0]
+╰─> n9:     DidntThrow(#n7)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o10:    Unreachable()
+╰─> n11:    Unreachable()
+
+
+
+old MERGE B0
+new MERGE B0
+╭── o0:     Parameter()[0]
+╰─> n0:     Parameter()[0]
+
+╭── o3:     Load *(#o0) [tagged base, TaggedPointer, Tagged]
+╰─> n1:     Load *(#n0) [tagged base, TaggedPointer, Tagged]
+
+╭── o4:     Load *(#o3 + 8) [tagged base, immutable, Uint16, Word32, offset: 8]
+╰─> n2:     Load *(#n1 + 8) [tagged base, immutable, Uint16, Word32, offset: 8]
+
+╭── o5:     Constant()[word32: 192]
+╰─> n3:     Constant()[word32: 192]
+
+╭── o6:     Comparison(#o4, #o5)[Equal, Word32]
+╰─> n4:     Comparison(#n2, #n3)[Equal, Word32]
+
+╭── o7:     Branch(#o6)[B2, B1, True]
+╰─> n5:     Branch(#n4)[<invalid block>, <invalid block>, True]
+
+
+
+old BLOCK B1 <- B0
+new BLOCK B1 <- B0
+╭── o9:     Constant()[tagged index: 76]
+╰─> n7:     Constant()[tagged index: 76]
+
+╭── o10:    Constant()[smi: 0]
+╰─> n8:     Constant()[smi: 0]
+
+╭── o11:    LoadRootRegister()
+╰─> n9:     LoadRootRegister()
+
+╭── o12:    Load *(#o11 + 50296) [raw, Uint64, Word64, offset: 50296]
+╰─> n10:    Load *(#n9 + 50296) [raw, Uint64, Word64, offset: 50296]
+
+╭── o13:    Constant()[external: 0x102d46478 <Abort.entry>]
+╰─> n11:    Constant()[external: 0x102d46478 <Abort.entry>]
+
+╭── o14:    Constant()[word32: 1]
+╰─> n12:    Constant()[word32: 1]
+
+╭── o15:    Call(#o12, #o9, #o13, #o14, #o10)[Code:Abort:r1s1i5f0]
+╭── o18:    DidntThrow(#o15)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n13:    Call(#n10, #n7, #n11, #n12, #n8)[Code:Abort:r1s1i5f0]
+╰─> n16:    DidntThrow(#n13)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o20:    Unreachable()
+╰─> n18:    Unreachable()
+
+
+
+old BLOCK B2 <- B0
+new BLOCK B2 <- B0
+
+Inlining MERGE B3 <- B2
+╭── o22:    WasmStackCheck()[function-entry]
+╰─> n19:    WasmStackCheck()[function-entry]
+
+╭── o23:    Constant()[word32: 20000]
+╰─> n20:    Constant()[word32: 20000]
+
+╭── o24:    WasmRefFunc(#o0)[0]
+│   n21:    Load *(#n0 + 112) [tagged base, immutable, TaggedPointer, Tagged, offset: 112]
+│   n22:    Load *(#n21 + 8) [tagged base, AnyTagged, Tagged, offset: 8]
+│   n23:    Constant()[word32: 1]
+│   n24:    WordBinop(#n22, #n23)[BitwiseAnd, Word32]
+│   n25:    Constant()[word32: 0]
+│   n26:    Comparison(#n24, #n25)[Equal, Word32]
+│   n27:    Branch(#n24)[B4, B3, True]
+new BLOCK B3 <- B2
+│   n29:    Constant()[word32: 0]
+│   n30:    Constant()[word32: 0]
+│   n31:    Constant()[relocatable wasm stub call: WasmRefFunc (0x585)]
+│   n32:    Call(#n31, #n29, #n30)[WasmFunction:WasmRefFunc Descriptor:r1s0i3f0]
+│   n35:    DidntThrow(#n32)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n37:    Goto()[B5, 0]
+new BLOCK B4 <- B2
+│   n38:    Goto()[B5, 0]
+new MERGE B5 <- B3, B4
+╰─> n39:    Phi(#n35, #n22)[Tagged]
+
+╭── o25:    IsNull(#o24)[(ref 0) (raw=0x23)]
+│   n40:    Constant()[word64: 65533]
+│   n41:    TaggedBitcast(#n40)[Word64, Tagged, Any]
+╰─> n42:    Comparison(#n39, #n41)[Equal, Tagged]
+
+╭── o26:    TrapIf(#o25)[0, TrapNullDereference]
+╰─> n43:    TrapIf(#n42)[0, TrapNullDereference]
+
+╭── o27:    Constant()[smi: 0]
+╰─> n44:    Constant()[smi: 0]
+
+╭── o28:    LoadRootRegister()
+╰─> n45:    LoadRootRegister()
+
+╭── o29:    Load *(#o28 + 50296) [raw, Uint64, Word64, offset: 50296]
+╰─> n46:    Load *(#n45 + 50296) [raw, Uint64, Word64, offset: 50296]
+
+╭── o30:    Constant()[external: 0x103da8928 <WasmAllocateContinuation.entry>]
+╰─> n47:    Constant()[external: 0x103da8928 <WasmAllocateContinuation.entry>]
+
+╭── o31:    Constant()[word32: 2]
+╰─> n48:    Constant()[word32: 2]
+
+╭── o32:    Call(#o29, #o0, #o24, #o30, #o31, #o27)[Code:WasmAllocateContinuation:r1s2i6f0]
+╭── o35:    DidntThrow(#o32)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n49:    Call(#n46, #n0, #n39, #n47, #n48, #n44)[Code:WasmAllocateContinuation:r1s2i6f0]
+╰─> n52:    DidntThrow(#n49)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o37:    WasmRefFunc(#o0)[0]
+│   n54:    Load *(#n0 + 112) [tagged base, immutable, TaggedPointer, Tagged, offset: 112]
+│   n55:    Load *(#n54 + 8) [tagged base, AnyTagged, Tagged, offset: 8]
+│   n56:    Constant()[word32: 1]
+│   n57:    WordBinop(#n55, #n56)[BitwiseAnd, Word32]
+│   n58:    Constant()[word32: 0]
+│   n59:    Comparison(#n57, #n58)[Equal, Word32]
+│   n60:    Branch(#n57)[B7, B6, True]
+new BLOCK B6 <- B5
+│   n62:    Constant()[word32: 0]
+│   n63:    Constant()[word32: 0]
+│   n64:    Constant()[relocatable wasm stub call: WasmRefFunc (0x585)]
+│   n65:    Call(#n64, #n62, #n63)[WasmFunction:WasmRefFunc Descriptor:r1s0i3f0]
+│   n67:    DidntThrow(#n65)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n69:    Goto()[B8, 0]
+new BLOCK B7 <- B5
+│   n70:    Goto()[B8, 0]
+new MERGE B8 <- B6, B7
+╰─> n71:    Phi(#n67, #n55)[Tagged]
+
+╭── o38:    IsNull(#o37)[(ref 0) (raw=0x23)]
+│   n72:    Constant()[word64: 65533]
+│   n73:    TaggedBitcast(#n72)[Word64, Tagged, Any]
+╰─> n74:    Comparison(#n71, #n73)[Equal, Tagged]
+
+╭── o39:    TrapIf(#o38)[0, TrapNullDereference]
+╰─> n75:    TrapIf(#n74)[0, TrapNullDereference]
+
+╭── o40:    Constant()[smi: 0]
+╰─> n76:    Constant()[smi: 0]
+
+╭── o41:    LoadRootRegister()
+╰─> n77:    LoadRootRegister()
+
+╭── o42:    Load *(#o41 + 50296) [raw, Uint64, Word64, offset: 50296]
+╰─> n78:    Load *(#n77 + 50296) [raw, Uint64, Word64, offset: 50296]
+
+╭── o43:    Constant()[external: 0x103da8928 <WasmAllocateContinuation.entry>]
+╰─> n79:    Constant()[external: 0x103da8928 <WasmAllocateContinuation.entry>]
+
+╭── o44:    Constant()[word32: 2]
+╰─> n80:    Constant()[word32: 2]
+
+╭── o45:    Call(#o42, #o0, #o37, #o43, #o44, #o40)[Code:WasmAllocateContinuation:r1s2i6f0]
+╭── o48:    DidntThrow(#o45)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n81:    Call(#n78, #n0, #n71, #n79, #n80, #n76)[Code:WasmAllocateContinuation:r1s2i6f0]
+╰─> n84:    DidntThrow(#n81)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o50:    IsNull(#o48)[(ref 1) (raw=0x183)]
+│   n86:    Constant()[word64: 65533]
+│   n87:    TaggedBitcast(#n86)[Word64, Tagged, Any]
+╰─> n88:    Comparison(#n84, #n87)[Equal, Tagged]
+
+╭── o51:    TrapIf(#o50)[0, TrapNullDereference]
+╰─> n89:    TrapIf(#n88)[0, TrapNullDereference]
+
+╭── o52:    Load *(#o48 + 4) [tagged base, TaggedPointer, Tagged, offset: 4]
+╰─> n90:    Load *(#n84 + 4) [tagged base, TaggedPointer, Tagged, offset: 4]
+
+╭── o53:    Load *(#o52 + 4) [tagged base, Uint32, Word32, offset: 4]
+╰─> n91:    Load *(#n90 + 4) [tagged base, Uint32, Word32, offset: 4]
+
+╭── o54:    LoadExternalPointer(#o53)[tag_range: [78, 78]]
+╰─> n92:    LoadExternalPointer(#n91)[tag_range: [78, 78]]
+
+╭── o55:    Constant()[word64: 0]
+╰─> n93:    Constant()[word64: 0]
+
+╭── o56:    Comparison(#o54, #o55)[Equal, Word64]
+╰─> n94:    Comparison(#n92, #n93)[Equal, Word64]
+
+╭── o57:    TrapIf(#o56)[0, TrapResume]
+╰─> n95:    TrapIf(#n94)[0, TrapResume]
+
+╭── o58:    Load *(#o54 + 128) [raw, Uint64, Word64, offset: 128]
+╰─> n96:    Load *(#n92 + 128) [raw, Uint64, Word64, offset: 128]
+
+╭── o59:    Comparison(#o48, #o58)[Equal, Tagged]
+╰─> n97:    Comparison(#n84, #n96)[Equal, Tagged]
+
+╭── o60:    TrapIf(#o59)[1, TrapResume]
+╰─> n98:    TrapIf(#n97)[1, TrapResume]
+
+╭── o61:    Load *(#o54 + 168) [raw, Uint64, Word64, offset: 168]
+╰─> n99:    Load *(#n92 + 168) [raw, Uint64, Word64, offset: 168]
+
+╭── o62:    Store *(#o61) = #o35 [raw, AnyUncompressedTagged, NoWriteBarrier]
+╰─> n100:   Store *(#n99) = #n52 [raw, AnyUncompressedTagged, NoWriteBarrier]
+
+╭── o64:    Store *(#o61 + 8) = #o23 [raw, Int32, NoWriteBarrier, offset: 8]
+╰─> n102:   Store *(#n99 + 8) = #n20 [raw, Int32, NoWriteBarrier, offset: 8]
+
+╭── o65:    Constant()[relocatable wasm stub call: WasmFXResume (0x302)]
+╰─> n103:   Constant()[relocatable wasm stub call: WasmFXResume (0x302)]
+
+╭── o66:    Call(#o65, #o54, #o61)[WasmFunction:WasmFXResume Descriptor:r1s0i3f0]
+╭── o69:    CheckException(#o66)[B4, nullptr, effect handlers: 0[switch]]
+│   n104:   Call(#n103, #n92, #n99)[WasmFunction:WasmFXResume Descriptor:r1s0i3f0]
+│   n107:   CheckException(#n104)[B9, nullptr, effect handlers: 0[switch]]
+│   n110:   DidntThrow(#n104)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 1]
+│   n112:   Goto()[<invalid block>, 0]
+
+
+old MERGE B3 <- B2
+new MERGE B10
+╰─> unreachable
+
+
+old BLOCK B4 <- B3
+new MERGE B10
+╰─> unreachable
+
+
+old MERGE B5 <- B4
+new MERGE B10 <- B9
+╭── o75:    Load *(#o72) [raw, Int32, Word32]
+╰─> n113:   Load *(#n110) [raw, Int32, Word32]
+
+
+Inlining MERGE B6 <- B5
+╭── o77:    Constant()[word32: 0]
+╰─> n114:   Constant()[word32: 0]
+
+╭── o78:    Return(#o77, #o75)[0]
+╰─> n115:   Return(#n114, #n113)[0]
+
+
+old MERGE B6 <- B5
+new MERGE B11
+╰─> unreachable
+
+
+old MERGE B0
+new MERGE B0
+╭── o0:     Parameter()[0]
+╰─> n0:     Parameter()[0]
+
+╭── o1:     Load *(#o0) [tagged base, TaggedPointer, Tagged]
+╰─> n1:     Load *(#n0) [tagged base, TaggedPointer, Tagged]
+
+╭── o2:     Load *(#o1 + 8) [tagged base, immutable, Uint16, Word32, offset: 8]
+╰─> n2:     Load *(#n1 + 8) [tagged base, immutable, Uint16, Word32, offset: 8]
+
+╭── o3:     Constant()[word32: 192]
+╰─> n3:     Constant()[word32: 192]
+
+╭── o4:     Comparison(#o2, #o3)[Equal, Word32]
+╰─> n4:     Comparison(#n2, #n3)[Equal, Word32]
+
+╭── o5:     Branch(#o4)[B2, B1, True]
+╰─> n5:     Branch(#n4)[<invalid block>, <invalid block>, True]
+
+
+
+old BLOCK B1 <- B0
+new BLOCK B1 <- B0
+╭── o7:     Constant()[tagged index: 76]
+╰─> n7:     Constant()[tagged index: 76]
+
+╭── o8:     Constant()[smi: 0]
+╰─> n8:     Constant()[smi: 0]
+
+╭── o9:     LoadRootRegister()
+╰─> n9:     LoadRootRegister()
+
+╭── o10:    Load *(#o9 + 50296) [raw, Uint64, Word64, offset: 50296]
+╰─> n10:    Load *(#n9 + 50296) [raw, Uint64, Word64, offset: 50296]
+
+╭── o11:    Constant()[external: 0x102d46478 <Abort.entry>]
+╰─> n11:    Constant()[external: 0x102d46478 <Abort.entry>]
+
+╭── o12:    Constant()[word32: 1]
+╰─> n12:    Constant()[word32: 1]
+
+╭── o13:    Call(#o10, #o7, #o11, #o12, #o8)[Code:Abort:r1s1i5f0]
+╭── o16:    DidntThrow(#o13)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n13:    Call(#n10, #n7, #n11, #n12, #n8)[Code:Abort:r1s1i5f0]
+╰─> n16:    DidntThrow(#n13)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o18:    Unreachable()
+╰─> n18:    Unreachable()
+
+
+
+old BLOCK B2 <- B0
+new BLOCK B2 <- B0
+╭── o19:    WasmStackCheck()[function-entry]
+╰─> n19:    WasmStackCheck()[function-entry]
+
+╭── o20:    Constant()[word32: 20000]
+╰─> n20:    Constant()[word32: 20000]
+
+╭── o21:    Load *(#o0 + 112) [tagged base, immutable, TaggedPointer, Tagged, offset: 112]
+╰─> n21:    Load *(#n0 + 112) [tagged base, immutable, TaggedPointer, Tagged, offset: 112]
+
+╭── o22:    Load *(#o21 + 8) [tagged base, AnyTagged, Tagged, offset: 8]
+╰─> n22:    Load *(#n21 + 8) [tagged base, AnyTagged, Tagged, offset: 8]
+
+╭── o23:    Constant()[word32: 1]
+╰─> n23:    Constant()[word32: 1]
+
+╭── o24:    WordBinop(#o22, #o23)[BitwiseAnd, Word32]
+╰─> n24:    WordBinop(#n22, #n23)[BitwiseAnd, Word32]
+
+╭── o25:    Constant()[word32: 0]
+╰─> n25:    Constant()[word32: 0]
+
+╭── o27:    Branch(#o24)[B4, B3, True]
+╰─> n26:    Branch(#n24)[<invalid block>, <invalid block>, True]
+
+
+
+old BLOCK B3 <- B2
+new BLOCK B3 <- B2
+╭── o29:    Constant()[word32: 0]
+╰─> #n25
+
+╭── o30:    Constant()[word32: 0]
+╰─> #n25
+
+╭── o31:    Constant()[relocatable wasm stub call: WasmRefFunc (0x585)]
+╰─> n28:    Constant()[relocatable wasm stub call: WasmRefFunc (0x585)]
+
+╭── o32:    Call(#o31, #o29, #o30)[WasmFunction:WasmRefFunc Descriptor:r1s0i3f0]
+╭── o35:    DidntThrow(#o32)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n29:    Call(#n28, #n25, #n25)[WasmFunction:WasmRefFunc Descriptor:r1s0i3f0]
+╰─> n32:    DidntThrow(#n29)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o37:    Goto()[B5, 0]
+│   n34:    Goto()[<invalid block>, 0]
+
+
+
+old BLOCK B4 <- B2
+new BLOCK B4 <- B2
+╭── o38:    Goto()[B5, 0]
+│   n35:    Goto()[<invalid block>, 0]
+
+
+
+old MERGE B5 <- B3, B4
+new MERGE B5 <- B3, B4
+╭── o39:    Phi(#o35, #o22)[Tagged]
+╰─> n36:    Phi(#n32, #n22)[Tagged]
+
+╭── o40:    Constant()[word64: 65533]
+╰─> n37:    Constant()[word64: 65533]
+
+╭── o41:    TaggedBitcast(#o40)[Word64, Tagged, Any]
+╰─> n38:    TaggedBitcast(#n37)[Word64, Tagged, Any]
+
+╭── o42:    Comparison(#o39, #o41)[Equal, Tagged]
+╰─> n39:    Comparison(#n36, #n38)[Equal, Tagged]
+
+╭── o43:    TrapIf(#o42)[0, TrapNullDereference]
+╰─> n40:    TrapIf(#n39)[0, TrapNullDereference]
+
+╭── o44:    Constant()[smi: 0]
+╰─> n41:    Constant()[smi: 0]
+
+╭── o45:    LoadRootRegister()
+╰─> n42:    LoadRootRegister()
+
+╭── o46:    Load *(#o45 + 50296) [raw, Uint64, Word64, offset: 50296]
+╰─> n43:    Load *(#n42 + 50296) [raw, Uint64, Word64, offset: 50296]
+
+╭── o47:    Constant()[external: 0x103da8928 <WasmAllocateContinuation.entry>]
+╰─> n44:    Constant()[external: 0x103da8928 <WasmAllocateContinuation.entry>]
+
+╭── o48:    Constant()[word32: 2]
+╰─> n45:    Constant()[word32: 2]
+
+╭── o49:    Call(#o46, #o0, #o39, #o47, #o48, #o44)[Code:WasmAllocateContinuation:r1s2i6f0]
+╭── o52:    DidntThrow(#o49)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n46:    Call(#n43, #n0, #n36, #n44, #n45, #n41)[Code:WasmAllocateContinuation:r1s2i6f0]
+╰─> n49:    DidntThrow(#n46)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o54:    Load *(#o0 + 112) [tagged base, immutable, TaggedPointer, Tagged, offset: 112]
+╰─> #n21
+
+╭── o55:    Load *(#o54 + 8) [tagged base, AnyTagged, Tagged, offset: 8]
+╰─> n51:    Load *(#n21 + 8) [tagged base, AnyTagged, Tagged, offset: 8]
+
+╭── o56:    Constant()[word32: 1]
+╰─> #n23
+
+╭── o57:    WordBinop(#o55, #o56)[BitwiseAnd, Word32]
+╰─> n52:    WordBinop(#n51, #n23)[BitwiseAnd, Word32]
+
+╭── o58:    Constant()[word32: 0]
+╰─> #n25
+
+╭── o60:    Branch(#o57)[B7, B6, True]
+╰─> n53:    Branch(#n52)[<invalid block>, <invalid block>, True]
+
+
+
+old BLOCK B6 <- B5
+new BLOCK B6 <- B5
+╭── o62:    Constant()[word32: 0]
+╰─> #n25
+
+╭── o63:    Constant()[word32: 0]
+╰─> #n25
+
+╭── o64:    Constant()[relocatable wasm stub call: WasmRefFunc (0x585)]
+╰─> n55:    Constant()[relocatable wasm stub call: WasmRefFunc (0x585)]
+
+╭── o65:    Call(#o64, #o62, #o63)[WasmFunction:WasmRefFunc Descriptor:r1s0i3f0]
+╭── o67:    DidntThrow(#o65)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n56:    Call(#n55, #n25, #n25)[WasmFunction:WasmRefFunc Descriptor:r1s0i3f0]
+╰─> n58:    DidntThrow(#n56)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o69:    Goto()[B8, 0]
+│   n60:    Goto()[<invalid block>, 0]
+
+
+
+old BLOCK B7 <- B5
+new BLOCK B7 <- B5
+╭── o70:    Goto()[B8, 0]
+│   n61:    Goto()[<invalid block>, 0]
+
+
+
+old MERGE B8 <- B6, B7
+new MERGE B8 <- B6, B7
+╭── o71:    Phi(#o67, #o55)[Tagged]
+╰─> n62:    Phi(#n58, #n51)[Tagged]
+
+╭── o72:    Constant()[word64: 65533]
+╰─> #n37
+
+╭── o73:    TaggedBitcast(#o72)[Word64, Tagged, Any]
+╰─> n63:    TaggedBitcast(#n37)[Word64, Tagged, Any]
+
+╭── o74:    Comparison(#o71, #o73)[Equal, Tagged]
+╰─> n64:    Comparison(#n62, #n63)[Equal, Tagged]
+
+╭── o75:    TrapIf(#o74)[0, TrapNullDereference]
+╰─> n65:    TrapIf(#n64)[0, TrapNullDereference]
+
+╭── o76:    Constant()[smi: 0]
+╰─> #n41
+
+╭── o77:    LoadRootRegister()
+╰─> #n42
+
+╭── o78:    Load *(#o77 + 50296) [raw, Uint64, Word64, offset: 50296]
+╰─> n66:    Load *(#n42 + 50296) [raw, Uint64, Word64, offset: 50296]
+
+╭── o79:    Constant()[external: 0x103da8928 <WasmAllocateContinuation.entry>]
+╰─> #n44
+
+╭── o80:    Constant()[word32: 2]
+╰─> #n45
+
+╭── o81:    Call(#o78, #o0, #o71, #o79, #o80, #o76)[Code:WasmAllocateContinuation:r1s2i6f0]
+╭── o84:    DidntThrow(#o81)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n67:    Call(#n66, #n0, #n62, #n44, #n45, #n41)[Code:WasmAllocateContinuation:r1s2i6f0]
+╰─> n70:    DidntThrow(#n67)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o86:    Constant()[word64: 65533]
+╰─> #n37
+
+╭── o87:    TaggedBitcast(#o86)[Word64, Tagged, Any]
+╰─> n72:    TaggedBitcast(#n37)[Word64, Tagged, Any]
+
+╭── o88:    Comparison(#o84, #o87)[Equal, Tagged]
+╰─> n73:    Comparison(#n70, #n72)[Equal, Tagged]
+
+╭── o89:    TrapIf(#o88)[0, TrapNullDereference]
+╰─> n74:    TrapIf(#n73)[0, TrapNullDereference]
+
+╭── o90:    Load *(#o84 + 4) [tagged base, TaggedPointer, Tagged, offset: 4]
+╰─> n75:    Load *(#n70 + 4) [tagged base, TaggedPointer, Tagged, offset: 4]
+
+╭── o91:    Load *(#o90 + 4) [tagged base, Uint32, Word32, offset: 4]
+╰─> n76:    Load *(#n75 + 4) [tagged base, Uint32, Word32, offset: 4]
+
+╭── o92:    LoadExternalPointer(#o91)[tag_range: [78, 78]]
+│   n77:    Load *(#n42 + 360) [raw, Uint64, Word64, offset: 360]
+│   n78:    Constant()[word32: 6]
+│   n79:    Shift(#n76, #n78)[ShiftRightLogical, Word32]
+│   n80:    Change(#n79)[ZeroExtend, NoAssumption, Word32, Word64]
+│   n81:    Load *(#n77 + #n80*8) [raw, Uint64, Word64, element size: 2^3]
+│   n83:    Constant()[word64: 71494644084506624]
+│   n84:    WordBinop(#n81, #n83)[BitwiseAnd, Word64]
+│   n85:    Constant()[word32: 49]
+│   n86:    Shift(#n84, #n85)[ShiftRightLogical, Word64]
+│   n87:    Change(#n86)[Truncate, NoAssumption, Word64, Word32]
+│   n88:    Constant()[word32: 78]
+│   n89:    Comparison(#n87, #n88)[Equal, Word32]
+│   n90:    Branch(#n89)[B10, B9, True]
+new BLOCK B9 <- B8
+│   n92:    Unreachable()
+new BLOCK B10 <- B8
+│   n93:    Constant()[word64: -71776119061217281]
+╰─> n94:    WordBinop(#n81, #n93)[BitwiseAnd, Word64]
+
+╭── o93:    Constant()[word64: 0]
+╰─> n95:    Constant()[word64: 0]
+
+╭── o94:    Comparison(#o92, #o93)[Equal, Word64]
+╰─> n96:    Comparison(#n94, #n95)[Equal, Word64]
+
+╭── o95:    TrapIf(#o94)[0, TrapResume]
+╰─> n97:    TrapIf(#n96)[0, TrapResume]
+
+╭── o96:    Load *(#o92 + 128) [raw, Uint64, Word64, offset: 128]
+╰─> n98:    Load *(#n94 + 128) [raw, Uint64, Word64, offset: 128]
+
+╭── o97:    Comparison(#o84, #o96)[Equal, Tagged]
+╰─> n99:    Comparison(#n70, #n98)[Equal, Tagged]
+
+╭── o98:    TrapIf(#o97)[1, TrapResume]
+╰─> n100:   TrapIf(#n99)[1, TrapResume]
+
+╭── o99:    Load *(#o92 + 168) [raw, Uint64, Word64, offset: 168]
+╰─> n101:   Load *(#n94 + 168) [raw, Uint64, Word64, offset: 168]
+
+╭── o100:   Store *(#o99) = #o52 [raw, AnyUncompressedTagged, NoWriteBarrier]
+╰─> n102:   Store *(#n101) = #n49 [raw, AnyUncompressedTagged, NoWriteBarrier]
+
+╭── o102:   Store *(#o99 + 8) = #o20 [raw, Int32, NoWriteBarrier, offset: 8]
+╰─> n103:   Store *(#n101 + 8) = #n20 [raw, Int32, NoWriteBarrier, offset: 8]
+
+╭── o103:   Constant()[relocatable wasm stub call: WasmFXResume (0x302)]
+╰─> n105:   Constant()[relocatable wasm stub call: WasmFXResume (0x302)]
+
+╭── o104:   Call(#o103, #o92, #o99)[WasmFunction:WasmFXResume Descriptor:r1s0i3f0]
+╭── o107:   CheckException(#o104)[B9, nullptr, effect handlers: 0[switch]]
+│   n106:   Call(#n105, #n94, #n101)[WasmFunction:WasmFXResume Descriptor:r1s0i3f0]
+│   n108:   CheckException(#n106)[B11, nullptr, effect handlers: 0[switch]]
+│   n111:   DidntThrow(#n106)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 1]
+│   n113:   Load *(#n111) [raw, Int32, Word32]
+│   n114:   Return(#n25, #n113)[0]
+
+
+
+old BLOCK B9 <- B8
+new MERGE B12
+╰─> unreachable
+
+
+old MERGE B10 <- B9
+new MERGE B12
+╰─> unreachable
+
+
+old MERGE B0
+new MERGE B0
+╭── o0:     Parameter()[0]
+╰─> n0:     Parameter()[0]
+
+╭── o1:     Load *(#o0) [tagged base, TaggedPointer, Tagged]
+│   n1:     TaggedBitcast(#n0)[Tagged, Word64, HeapObject]
+│   n2:     Constant()[word64: -1]
+╰─> n3:     Load *(#n1 + #n2) [raw, TaggedPointer, Tagged]
+
+╭── o2:     Load *(#o1 + 8) [tagged base, immutable, Uint16, Word32, offset: 8]
+│   n5:     TaggedBitcast(#n3)[Tagged, Word64, HeapObject]
+│   n6:     Constant()[word64: 7]
+╰─> n7:     Load *(#n5 + #n6) [raw, immutable, Uint16, Word32]
+
+╭── o3:     Constant()[word32: 192]
+╰─> n8:     Constant()[word32: 192]
+
+╭── o4:     Comparison(#o2, #o3)[Equal, Word32]
+╰─> n9:     Comparison(#n7, #n8)[Equal, Word32]
+
+╭── o5:     Branch(#o4)[B2, B1, True]
+╰─> n10:    Branch(#n9)[<invalid block>, <invalid block>, True]
+
+
+
+old BLOCK B1 <- B0
+new BLOCK B1 <- B0
+╭── o7:     Constant()[tagged index: 76]
+╰─> n12:    Constant()[tagged index: 76]
+
+╭── o8:     Constant()[smi: 0]
+╰─> n13:    Constant()[smi: 0]
+
+╭── o9:     LoadRootRegister()
+╰─> n14:    LoadRootRegister()
+
+╭── o10:    Load *(#o9 + 50296) [raw, Uint64, Word64, offset: 50296]
+│   n15:    Constant()[word64: 50296]
+╰─> n16:    Load *(#n14 + #n15) [raw, Uint64, Word64]
+
+╭── o11:    Constant()[external: 0x102d46478 <Abort.entry>]
+╰─> n18:    Constant()[external: 0x102d46478 <Abort.entry>]
+
+╭── o12:    Constant()[word32: 1]
+╰─> n19:    Constant()[word32: 1]
+
+╭── o13:    Call(#o10, #o7, #o11, #o12, #o8)[Code:Abort:r1s1i5f0]
+╭── o16:    DidntThrow(#o13)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n20:    Call(#n16, #n12, #n18, #n19, #n13)[Code:Abort:r1s1i5f0]
+╰─> n23:    DidntThrow(#n20)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o18:    Unreachable()
+╰─> n25:    Unreachable()
+
+
+
+old BLOCK B2 <- B0
+new BLOCK B2 <- B0
+╭── o19:    WasmStackCheck()[function-entry]
+│   n26:    LoadRootRegister()
+│   n27:    Constant()[word64: -224]
+│   n28:    Load *(#n26 + #n27) [raw, Uint64, Word64]
+│   n29:    StackPointerGreaterThan(#n28)[Wasm]
+│   n30:    Branch(#n29)[B4, B3, True]
+new BLOCK B3 <- B2
+│   n32:    Constant()[relocatable wasm stub call: WasmStackGuard (0x590)]
+│   n33:    Call(#n32)[WasmFunction:NoContext Descriptor:r1s0i1f0]
+│   n35:    DidntThrow(#n33)[🁤🁤 🁪🁪 🁤🁪 🁤 i a, 0]
+│   n37:    Goto()[B5, 0]
+new BLOCK B4 <- B2
+│   n38:    Goto()[B5, 0]
+new MERGE B5 <- B3, B4
+
+╭── o20:    Constant()[word32: 20000]
+╰─> n39:    Constant()[word32: 20000]
+
+╭── o21:    Load *(#o0 + 112) [tagged base, immutable, TaggedPointer, Tagged, offset: 112]
+│   n40:    TaggedBitcast(#n0)[Tagged, Word64, HeapObject]
+│   n41:    Constant()[word64: 111]
+╰─> n42:    Load *(#n40 + #n41) [raw, immutable, TaggedPointer, Tagged]
+
+╭── o22:    Load *(#o21 + 8) [tagged base, AnyTagged, Tagged, offset: 8]
+│   n44:    TaggedBitcast(#n42)[Tagged, Word64, HeapObject]
+╰─> n45:    Load *(#n44 + #n6) [raw, AnyTagged, Tagged]
+
+╭── o23:    Constant()[word32: 1]
+╰─> n46:    Constant()[word32: 1]
+
+╭── o24:    WordBinop(#o22, #o23)[BitwiseAnd, Word32]
+╰─> n47:    WordBinop(#n45, #n46)[BitwiseAnd, Word32]
+
+╭── o25:    Constant()[word32: 0]
+╰─> n48:    Constant()[word32: 0]
+
+╭── o26:    Branch(#o24)[B4, B3, True]
+╰─> n49:    Branch(#n47)[<invalid block>, <invalid block>, True]
+
+
+
+old BLOCK B3 <- B2
+new BLOCK B6 <- B5
+╭── o28:    Constant()[relocatable wasm stub call: WasmRefFunc (0x585)]
+╰─> n51:    Constant()[relocatable wasm stub call: WasmRefFunc (0x585)]
+
+╭── o29:    Call(#o28, #o25, #o25)[WasmFunction:WasmRefFunc Descriptor:r1s0i3f0]
+╭── o32:    DidntThrow(#o29)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n52:    Call(#n51, #n48, #n48)[WasmFunction:WasmRefFunc Descriptor:r1s0i3f0]
+╰─> n55:    DidntThrow(#n52)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o34:    Goto()[B5, 0]
+│   n57:    Goto()[<invalid block>, 0]
+
+
+
+old BLOCK B4 <- B2
+new BLOCK B7 <- B5
+╭── o35:    Goto()[B5, 0]
+│   n58:    Goto()[<invalid block>, 0]
+
+
+
+old MERGE B5 <- B3, B4
+new MERGE B8 <- B6, B7
+╭── o36:    Phi(#o32, #o22)[Tagged]
+╰─> n59:    Phi(#n55, #n45)[Tagged]
+
+╭── o37:    Constant()[word64: 65533]
+╰─> n60:    Constant()[word64: 65533]
+
+╭── o38:    TaggedBitcast(#o37)[Word64, Tagged, Any]
+╰─> n61:    TaggedBitcast(#n60)[Word64, Tagged, Any]
+
+╭── o39:    Comparison(#o36, #o38)[Equal, Tagged]
+╰─> n62:    Comparison(#n59, #n61)[Equal, Tagged]
+
+╭── o40:    TrapIf(#o39)[0, TrapNullDereference]
+╰─> n63:    TrapIf(#n62)[0, TrapNullDereference]
+
+╭── o41:    Constant()[smi: 0]
+╰─> n64:    Constant()[smi: 0]
+
+╭── o42:    LoadRootRegister()
+╰─> #n26
+
+╭── o43:    Load *(#o42 + 50296) [raw, Uint64, Word64, offset: 50296]
+│   n65:    Constant()[word64: 50296]
+╰─> n66:    Load *(#n26 + #n65) [raw, Uint64, Word64]
+
+╭── o44:    Constant()[external: 0x103da8928 <WasmAllocateContinuation.entry>]
+╰─> n67:    Constant()[external: 0x103da8928 <WasmAllocateContinuation.entry>]
+
+╭── o45:    Constant()[word32: 2]
+╰─> n68:    Constant()[word32: 2]
+
+╭── o46:    Call(#o43, #o0, #o36, #o44, #o45, #o41)[Code:WasmAllocateContinuation:r1s2i6f0]
+╭── o49:    DidntThrow(#o46)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n69:    Call(#n66, #n0, #n59, #n67, #n68, #n64)[Code:WasmAllocateContinuation:r1s2i6f0]
+╰─> n72:    DidntThrow(#n69)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o51:    Load *(#o21 + 8) [tagged base, AnyTagged, Tagged, offset: 8]
+│   n74:    TaggedBitcast(#n42)[Tagged, Word64, HeapObject]
+╰─> n75:    Load *(#n74 + #n6) [raw, AnyTagged, Tagged]
+
+╭── o52:    WordBinop(#o51, #o23)[BitwiseAnd, Word32]
+╰─> n77:    WordBinop(#n75, #n46)[BitwiseAnd, Word32]
+
+╭── o53:    Branch(#o52)[B7, B6, True]
+╰─> n78:    Branch(#n77)[<invalid block>, <invalid block>, True]
+
+
+
+old BLOCK B6 <- B5
+new BLOCK B9 <- B8
+╭── o55:    Constant()[relocatable wasm stub call: WasmRefFunc (0x585)]
+╰─> n80:    Constant()[relocatable wasm stub call: WasmRefFunc (0x585)]
+
+╭── o56:    Call(#o55, #o25, #o25)[WasmFunction:WasmRefFunc Descriptor:r1s0i3f0]
+╭── o58:    DidntThrow(#o56)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n81:    Call(#n80, #n48, #n48)[WasmFunction:WasmRefFunc Descriptor:r1s0i3f0]
+╰─> n83:    DidntThrow(#n81)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o60:    Goto()[B8, 0]
+│   n85:    Goto()[<invalid block>, 0]
+
+
+
+old BLOCK B7 <- B5
+new BLOCK B10 <- B8
+╭── o61:    Goto()[B8, 0]
+│   n86:    Goto()[<invalid block>, 0]
+
+
+
+old MERGE B8 <- B6, B7
+new MERGE B11 <- B9, B10
+╭── o62:    Phi(#o58, #o51)[Tagged]
+╰─> n87:    Phi(#n83, #n75)[Tagged]
+
+╭── o63:    TaggedBitcast(#o37)[Word64, Tagged, Any]
+╰─> n88:    TaggedBitcast(#n60)[Word64, Tagged, Any]
+
+╭── o64:    Comparison(#o62, #o63)[Equal, Tagged]
+╰─> n89:    Comparison(#n87, #n88)[Equal, Tagged]
+
+╭── o65:    TrapIf(#o64)[0, TrapNullDereference]
+╰─> n90:    TrapIf(#n89)[0, TrapNullDereference]
+
+╭── o66:    Load *(#o42 + 50296) [raw, Uint64, Word64, offset: 50296]
+╰─> n91:    Load *(#n26 + #n65) [raw, Uint64, Word64]
+
+╭── o67:    Call(#o66, #o0, #o62, #o44, #o45, #o41)[Code:WasmAllocateContinuation:r1s2i6f0]
+╭── o70:    DidntThrow(#o67)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n93:    Call(#n91, #n0, #n87, #n67, #n68, #n64)[Code:WasmAllocateContinuation:r1s2i6f0]
+╰─> n96:    DidntThrow(#n93)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o72:    TaggedBitcast(#o37)[Word64, Tagged, Any]
+╰─> n98:    TaggedBitcast(#n60)[Word64, Tagged, Any]
+
+╭── o73:    Comparison(#o70, #o72)[Equal, Tagged]
+╰─> n99:    Comparison(#n96, #n98)[Equal, Tagged]
+
+╭── o74:    TrapIf(#o73)[0, TrapNullDereference]
+╰─> n100:   TrapIf(#n99)[0, TrapNullDereference]
+
+╭── o75:    Load *(#o70 + 4) [tagged base, TaggedPointer, Tagged, offset: 4]
+│   n101:   TaggedBitcast(#n96)[Tagged, Word64, HeapObject]
+│   n102:   Constant()[word64: 3]
+╰─> n103:   Load *(#n101 + #n102) [raw, TaggedPointer, Tagged]
+
+╭── o76:    Load *(#o75 + 4) [tagged base, Uint32, Word32, offset: 4]
+│   n104:   TaggedBitcast(#n103)[Tagged, Word64, HeapObject]
+╰─> n105:   Load *(#n104 + #n102) [raw, Uint32, Word32]
+
+╭── o77:    Load *(#o42 + 360) [raw, Uint64, Word64, offset: 360]
+│   n107:   Constant()[word64: 360]
+╰─> n108:   Load *(#n26 + #n107) [raw, Uint64, Word64]
+
+╭── o78:    Constant()[word32: 6]
+╰─> n109:   Constant()[word32: 6]
+
+╭── o79:    Shift(#o76, #o78)[ShiftRightLogical, Word32]
+╰─> n110:   Shift(#n105, #n109)[ShiftRightLogical, Word32]
+
+╭── o80:    Change(#o79)[ZeroExtend, NoAssumption, Word32, Word64]
+╰─> n111:   Change(#n110)[ZeroExtend, NoAssumption, Word32, Word64]
+
+╭── o81:    Load *(#o77 + #o80*8) [raw, Uint64, Word64, element size: 2^3]
+│   n112:   Constant()[word32: 3]
+│   n113:   Shift(#n111, #n112)[ShiftLeft, Word64]
+╰─> n114:   Load *(#n108 + #n113) [raw, Uint64, Word64]
+
+╭── o83:    Constant()[word64: 71494644084506624]
+╰─> n116:   Constant()[word64: 71494644084506624]
+
+╭── o84:    WordBinop(#o81, #o83)[BitwiseAnd, Word64]
+╰─> n117:   WordBinop(#n114, #n116)[BitwiseAnd, Word64]
+
+╭── o85:    Constant()[word32: 49]
+╰─> n118:   Constant()[word32: 49]
+
+╭── o86:    Shift(#o84, #o85)[ShiftRightLogical, Word64]
+╰─> n119:   Shift(#n117, #n118)[ShiftRightLogical, Word64]
+
+╭── o87:    Change(#o86)[Truncate, NoAssumption, Word64, Word32]
+╰─> n120:   Change(#n119)[Truncate, NoAssumption, Word64, Word32]
+
+╭── o88:    Constant()[word32: 78]
+╰─> n121:   Constant()[word32: 78]
+
+╭── o89:    Comparison(#o87, #o88)[Equal, Word32]
+╰─> n122:   Comparison(#n120, #n121)[Equal, Word32]
+
+╭── o90:    Branch(#o89)[B10, B9, True]
+╰─> n123:   Branch(#n122)[<invalid block>, <invalid block>, True]
+
+
+
+old BLOCK B9 <- B8
+new BLOCK B12 <- B11
+╭── o92:    Unreachable()
+╰─> n125:   Unreachable()
+
+
+
+old BLOCK B10 <- B8
+new BLOCK B13 <- B11
+╭── o93:    Constant()[word64: -71776119061217281]
+╰─> n126:   Constant()[word64: -71776119061217281]
+
+╭── o94:    WordBinop(#o81, #o93)[BitwiseAnd, Word64]
+╰─> n127:   WordBinop(#n114, #n126)[BitwiseAnd, Word64]
+
+╭── o95:    Constant()[word64: 0]
+╰─> n128:   Constant()[word64: 0]
+
+╭── o96:    Comparison(#o94, #o95)[Equal, Word64]
+╰─> n129:   Comparison(#n127, #n128)[Equal, Word64]
+
+╭── o97:    TrapIf(#o96)[0, TrapResume]
+╰─> n130:   TrapIf(#n129)[0, TrapResume]
+
+╭── o98:    Load *(#o94 + 128) [raw, Uint64, Word64, offset: 128]
+│   n131:   Constant()[word64: 128]
+╰─> n132:   Load *(#n127 + #n131) [raw, Uint64, Word64]
+
+╭── o99:    Comparison(#o70, #o98)[Equal, Tagged]
+╰─> n133:   Comparison(#n96, #n132)[Equal, Tagged]
+
+╭── o100:   TrapIf(#o99)[1, TrapResume]
+╰─> n134:   TrapIf(#n133)[1, TrapResume]
+
+╭── o101:   Load *(#o94 + 168) [raw, Uint64, Word64, offset: 168]
+│   n135:   Constant()[word64: 168]
+╰─> n136:   Load *(#n127 + #n135) [raw, Uint64, Word64]
+
+╭── o102:   Store *(#o101) = #o49 [raw, AnyUncompressedTagged, NoWriteBarrier]
+╰─> n138:   Store *(#n136 + #n128) = #n72 [raw, AnyUncompressedTagged, NoWriteBarrier]
+
+╭── o103:   Store *(#o101 + 8) = #o20 [raw, Int32, NoWriteBarrier, offset: 8]
+│   n140:   Constant()[word64: 8]
+╰─> n141:   Store *(#n136 + #n140) = #n39 [raw, Int32, NoWriteBarrier]
+
+╭── o105:   Constant()[relocatable wasm stub call: WasmFXResume (0x302)]
+╰─> n143:   Constant()[relocatable wasm stub call: WasmFXResume (0x302)]
+
+╭── o106:   Call(#o105, #o94, #o101)[WasmFunction:WasmFXResume Descriptor:r1s0i3f0]
+╭── o108:   CheckException(#o106)[B11, nullptr, effect handlers: 0[switch]]
+│   n144:   Call(#n143, #n127, #n136)[WasmFunction:WasmFXResume Descriptor:r1s0i3f0]
+│   n146:   CheckException(#n144)[B14, nullptr, effect handlers: 0[switch]]
+│   n149:   DidntThrow(#n144)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 1]
+│   n151:   Load *(#n149 + #n128) [raw, Int32, Word32]
+│   n153:   Return(#n48, #n151)[0]
+
+
+
+old BLOCK B11 <- B10
+new MERGE B15
+╰─> unreachable
+
+
+old MERGE B0
+new MERGE B0
+╭── o0:     Parameter()[0]
+╰─> n0:     Parameter()[0]
+
+╭── o1:     Parameter()[1]
+╰─> n1:     Parameter()[1]
+
+╭── o3:     Load *(#o0 + 136) [raw, UncompressedTaggedPointer, Tagged, offset: 136]
+╰─> n3:     Load *(#n0 + 136) [raw, UncompressedTaggedPointer, Tagged, offset: 136]
+
+╭── o4:     Load *(#o3) [tagged base, TaggedPointer, Tagged]
+╰─> n4:     Load *(#n3) [tagged base, TaggedPointer, Tagged]
+
+╭── o5:     Load *(#o4 + 8) [tagged base, immutable, Uint16, Word32, offset: 8]
+╰─> n5:     Load *(#n4 + 8) [tagged base, immutable, Uint16, Word32, offset: 8]
+
+╭── o6:     Constant()[word32: 296]
+╰─> n6:     Constant()[word32: 296]
+
+╭── o7:     Comparison(#o5, #o6)[Equal, Word32]
+╰─> n7:     Comparison(#n5, #n6)[Equal, Word32]
+
+╭── o8:     Branch(#o7)[B2, B1, None]
+╰─> n8:     Branch(#n7)[<invalid block>, <invalid block>, None]
+
+
+
+old BLOCK B1 <- B0
+new BLOCK B1 <- B0
+╭── o10:    Constant()[number: 76]
+╰─> n10:    Constant()[number: 76]
+
+╭── o11:    Constant()[smi: 0]
+╰─> n11:    Constant()[smi: 0]
+
+╭── o12:    LoadRootRegister()
+╰─> n12:    LoadRootRegister()
+
+╭── o13:    Load *(#o12 + 50296) [raw, Uint64, Word64, offset: 50296]
+╰─> n13:    Load *(#n12 + 50296) [raw, Uint64, Word64, offset: 50296]
+
+╭── o14:    Constant()[external: 0x102d46478 <Abort.entry>]
+╰─> n14:    Constant()[external: 0x102d46478 <Abort.entry>]
+
+╭── o15:    Constant()[word32: 1]
+╰─> n15:    Constant()[word32: 1]
+
+╭── o16:    Call(#o13, #o10, #o14, #o15, #o11)[Code:Abort:r1s1i5f0]
+╭── o19:    DidntThrow(#o16)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n16:    Call(#n13, #n10, #n14, #n15, #n11)[Code:Abort:r1s1i5f0]
+╰─> n19:    DidntThrow(#n16)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o21:    Goto()[B3, 0]
+│   n21:    Goto()[<invalid block>, 0]
+
+
+
+old BLOCK B2 <- B0
+new BLOCK B2 <- B0
+╭── o22:    Goto()[B3, 0]
+│   n22:    Goto()[<invalid block>, 0]
+
+
+
+old MERGE B3 <- B1, B2
+new MERGE B3 <- B1, B2
+╭── o23:    Load *(#o3 + 4) [tagged base, immutable, Uint32, Word32, offset: 4]
+╰─> n23:    Load *(#n3 + 4) [tagged base, immutable, Uint32, Word32, offset: 4]
+
+╭── o24:    LoadRootRegister()
+╰─> n24:    LoadRootRegister()
+
+╭── o25:    Load *(#o24 + 472) [raw, immutable, Uint64, Word64, offset: 472]
+╰─> n25:    Load *(#n24 + 472) [raw, immutable, Uint64, Word64, offset: 472]
+
+╭── o26:    LoadTrustedPointer(#o25, #o23)[is_immutable: 1, tag_range: [3, 3]]
+╰─> n26:    LoadTrustedPointer(#n25, #n23)[is_immutable: 1, tag_range: [3, 3]]
+
+╭── o27:    Load *(#o26 + 8) [tagged base, immutable, ProtectedPointer, Tagged, offset: 8]
+╰─> n27:    Load *(#n26 + 8) [tagged base, immutable, ProtectedPointer, Tagged, offset: 8]
+
+╭── o28:    Load *(#o26 + 20) [tagged base, immutable, Uint32, Word32, offset: 20]
+╰─> n28:    Load *(#n26 + 20) [tagged base, immutable, Uint32, Word32, offset: 20]
+
+╭── o29:    Load *(#o1) [raw, AnyUncompressedTagged, Tagged]
+╰─> n29:    Load *(#n1) [raw, AnyUncompressedTagged, Tagged]
+
+╭── o30:    Load *(#o1 + 8) [raw, Int32, Word32, offset: 8]
+╰─> n30:    Load *(#n1 + 8) [raw, Int32, Word32, offset: 8]
+
+╭── o31:    Call(#o28, #o27, #o30, #o29)[WasmFunctionIndirect:wasm-call:r1s0i4f0]
+╭── o34:    DidntThrow(#o31)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n31:    Call(#n28, #n27, #n30, #n29)[WasmFunctionIndirect:wasm-call:r1s0i4f0]
+╰─> n34:    DidntThrow(#n31)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o36:    StackSlot()[4, 16, 0]
+╰─> n36:    StackSlot()[4, 16, 0]
+
+╭── o37:    Store *(#o36) = #o34 [raw, Int32, NoWriteBarrier]
+╰─> n37:    Store *(#n36) = #n34 [raw, Int32, NoWriteBarrier]
+
+╭── o38:    Constant()[smi: 775]
+╰─> n38:    Constant()[smi: 775]
+
+╭── o39:    Call(#o38, #o36)[BuiltinPointer:WasmFXReturn Descriptor:r0s0i2f0]
+╭── o41:    DidntThrow(#o39)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n39:    Call(#n38, #n36)[BuiltinPointer:WasmFXReturn Descriptor:r0s0i2f0]
+╰─> n41:    DidntThrow(#n39)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o43:    Unreachable()
+╰─> n43:    Unreachable()
+
+
+
+old MERGE B0
+new MERGE B0
+╭── o0:     Parameter()[0]
+╰─> n0:     Parameter()[0]
+
+╭── o1:     Parameter()[1]
+╰─> n1:     Parameter()[1]
+
+╭── o3:     Load *(#o0 + 136) [raw, UncompressedTaggedPointer, Tagged, offset: 136]
+│   n3:     Constant()[word64: 136]
+╰─> n4:     Load *(#n0 + #n3) [raw, UncompressedTaggedPointer, Tagged]
+
+╭── o4:     Load *(#o3) [tagged base, TaggedPointer, Tagged]
+│   n5:     TaggedBitcast(#n4)[Tagged, Word64, HeapObject]
+│   n6:     Constant()[word64: -1]
+╰─> n7:     Load *(#n5 + #n6) [raw, TaggedPointer, Tagged]
+
+╭── o5:     Load *(#o4 + 8) [tagged base, immutable, Uint16, Word32, offset: 8]
+│   n9:     TaggedBitcast(#n7)[Tagged, Word64, HeapObject]
+│   n10:    Constant()[word64: 7]
+╰─> n11:    Load *(#n9 + #n10) [raw, immutable, Uint16, Word32]
+
+╭── o6:     Constant()[word32: 296]
+╰─> n12:    Constant()[word32: 296]
+
+╭── o7:     Comparison(#o5, #o6)[Equal, Word32]
+╰─> n13:    Comparison(#n11, #n12)[Equal, Word32]
+
+╭── o8:     Branch(#o7)[B2, B1, None]
+╰─> n14:    Branch(#n13)[<invalid block>, <invalid block>, None]
+
+
+
+old BLOCK B1 <- B0
+new BLOCK B1 <- B0
+╭── o10:    Constant()[number: 76]
+╰─> n16:    Constant()[number: 76]
+
+╭── o11:    Constant()[smi: 0]
+╰─> n17:    Constant()[smi: 0]
+
+╭── o12:    LoadRootRegister()
+╰─> n18:    LoadRootRegister()
+
+╭── o13:    Load *(#o12 + 50296) [raw, Uint64, Word64, offset: 50296]
+│   n19:    Constant()[word64: 50296]
+╰─> n20:    Load *(#n18 + #n19) [raw, Uint64, Word64]
+
+╭── o14:    Constant()[external: 0x102d46478 <Abort.entry>]
+╰─> n22:    Constant()[external: 0x102d46478 <Abort.entry>]
+
+╭── o15:    Constant()[word32: 1]
+╰─> n23:    Constant()[word32: 1]
+
+╭── o16:    Call(#o13, #o10, #o14, #o15, #o11)[Code:Abort:r1s1i5f0]
+╭── o19:    DidntThrow(#o16)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n24:    Call(#n20, #n16, #n22, #n23, #n17)[Code:Abort:r1s1i5f0]
+╰─> n27:    DidntThrow(#n24)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o21:    Goto()[B3, 0]
+│   n29:    Goto()[<invalid block>, 0]
+
+
+
+old BLOCK B2 <- B0
+new BLOCK B2 <- B0
+╭── o22:    Goto()[B3, 0]
+│   n30:    Goto()[<invalid block>, 0]
+
+
+
+old MERGE B3 <- B1, B2
+new MERGE B3 <- B1, B2
+╭── o23:    Load *(#o3 + 4) [tagged base, immutable, Uint32, Word32, offset: 4]
+│   n31:    TaggedBitcast(#n4)[Tagged, Word64, HeapObject]
+│   n32:    Constant()[word64: 3]
+╰─> n33:    Load *(#n31 + #n32) [raw, immutable, Uint32, Word32]
+
+╭── o24:    LoadRootRegister()
+╰─> n34:    LoadRootRegister()
+
+╭── o25:    Load *(#o24 + 472) [raw, immutable, Uint64, Word64, offset: 472]
+│   n35:    Constant()[word64: 472]
+╰─> n36:    Load *(#n34 + #n35) [raw, immutable, Uint64, Word64]
+
+╭── o26:    LoadTrustedPointer(#o25, #o23)[is_immutable: 1, tag_range: [3, 3]]
+│   n38:    Constant()[word32: 9]
+│   n39:    Shift(#n33, #n38)[ShiftRightLogical, Word32]
+│   n40:    Constant()[word32: 3]
+│   n41:    Shift(#n39, #n40)[ShiftLeft, Word32]
+│   n42:    Change(#n41)[ZeroExtend, NoAssumption, Word32, Word64]
+│   n43:    Load *(#n36 + #n42) [raw, immutable, Uint64, Word64]
+│   n44:    Constant()[word32: 49]
+│   n45:    Shift(#n43, #n44)[ShiftRightLogical, Word64]
+│   n46:    Change(#n45)[Truncate, NoAssumption, Word64, Word32]
+│   n47:    Constant()[word32: 3]
+│   n48:    Comparison(#n46, #n47)[Equal, Word32]
+│   n49:    Constant()[word64: 0]
+│   n50:    Select(#n48, #n43, #n49)[Word64, True, CMove]
+│   n52:    Constant()[word64: 281474976710655]
+│   n53:    WordBinop(#n50, #n52)[BitwiseAnd, Word64]
+╰─> n54:    TaggedBitcast(#n53)[Word64, Tagged, Any]
+
+╭── o27:    Load *(#o26 + 8) [tagged base, immutable, ProtectedPointer, Tagged, offset: 8]
+│   n55:    TaggedBitcast(#n54)[Tagged, Word64, HeapObject]
+╰─> n56:    Load *(#n55 + #n10) [raw, immutable, ProtectedPointer, Tagged]
+
+╭── o28:    Load *(#o26 + 20) [tagged base, immutable, Uint32, Word32, offset: 20]
+│   n57:    TaggedBitcast(#n54)[Tagged, Word64, HeapObject]
+│   n58:    Constant()[word64: 19]
+╰─> n59:    Load *(#n57 + #n58) [raw, immutable, Uint32, Word32]
+
+╭── o29:    Load *(#o1) [raw, AnyUncompressedTagged, Tagged]
+│   n61:    Constant()[word64: 0]
+╰─> n62:    Load *(#n1 + #n61) [raw, AnyUncompressedTagged, Tagged]
+
+╭── o30:    Load *(#o1 + 8) [raw, Int32, Word32, offset: 8]
+│   n63:    Constant()[word64: 8]
+╰─> n64:    Load *(#n1 + #n63) [raw, Int32, Word32]
+
+╭── o31:    Call(#o28, #o27, #o30, #o29)[WasmFunctionIndirect:wasm-call:r1s0i4f0]
+╭── o34:    DidntThrow(#o31)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n66:    Call(#n59, #n56, #n64, #n62)[WasmFunctionIndirect:wasm-call:r1s0i4f0]
+╰─> n68:    DidntThrow(#n66)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o36:    StackSlot()[4, 16, 0]
+╰─> n70:    StackSlot()[4, 16, 0]
+
+╭── o37:    Store *(#o36) = #o34 [raw, Int32, NoWriteBarrier]
+╰─> n71:    Store *(#n70 + #n61) = #n68 [raw, Int32, NoWriteBarrier]
+
+╭── o38:    Constant()[smi: 775]
+╰─> n73:    Constant()[smi: 775]
+
+╭── o39:    Call(#o38, #o36)[BuiltinPointer:WasmFXReturn Descriptor:r0s0i2f0]
+╭── o41:    DidntThrow(#o39)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n74:    Call(#n73, #n70)[BuiltinPointer:WasmFXReturn Descriptor:r0s0i2f0]
+╰─> n76:    DidntThrow(#n74)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o43:    Unreachable()
+╰─> n78:    Unreachable()
+
+
+
+old MERGE B0
+new MERGE B0
+╭── o0:     Parameter()[0]
+╰─> n0:     Parameter()[0]
+
+╭── o1:     Parameter()[1]
+╰─> n1:     Parameter()[1]
+
+╭── o3:     Parameter()[2]
+╰─> n3:     Parameter()[2]
+
+╭── o5:     Load *(#o0 + 80) [tagged base, immutable, TaggedPointer, Tagged, offset: 80]
+╰─> n4:     Load *(#n0 + 80) [tagged base, immutable, TaggedPointer, Tagged, offset: 80]
+
+╭── o6:     Load *(#o0) [tagged base, TaggedPointer, Tagged]
+╰─> n5:     Load *(#n0) [tagged base, TaggedPointer, Tagged]
+
+╭── o7:     Load *(#o6 + 8) [tagged base, immutable, Uint16, Word32, offset: 8]
+╰─> n6:     Load *(#n5 + 8) [tagged base, immutable, Uint16, Word32, offset: 8]
+
+╭── o8:     Constant()[word32: 192]
+╰─> n7:     Constant()[word32: 192]
+
+╭── o9:     Comparison(#o7, #o8)[Equal, Word32]
+╰─> n8:     Comparison(#n6, #n7)[Equal, Word32]
+
+╭── o10:    Branch(#o9)[B2, B1, True]
+╰─> n9:     Branch(#n8)[<invalid block>, <invalid block>, True]
+
+
+
+old BLOCK B1 <- B0
+new BLOCK B1 <- B0
+╭── o12:    Constant()[tagged index: 76]
+╰─> n11:    Constant()[tagged index: 76]
+
+╭── o13:    Constant()[smi: 0]
+╰─> n12:    Constant()[smi: 0]
+
+╭── o14:    LoadRootRegister()
+╰─> n13:    LoadRootRegister()
+
+╭── o15:    Load *(#o14 + 50296) [raw, Uint64, Word64, offset: 50296]
+╰─> n14:    Load *(#n13 + 50296) [raw, Uint64, Word64, offset: 50296]
+
+╭── o16:    Constant()[external: 0x102d46478 <Abort.entry>]
+╰─> n15:    Constant()[external: 0x102d46478 <Abort.entry>]
+
+╭── o17:    Constant()[word32: 1]
+╰─> n16:    Constant()[word32: 1]
+
+╭── o18:    Call(#o15, #o12, #o16, #o17, #o13)[Code:Abort:r1s1i5f0]
+╭── o21:    DidntThrow(#o18)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n17:    Call(#n14, #n11, #n15, #n16, #n12)[Code:Abort:r1s1i5f0]
+╰─> n20:    DidntThrow(#n17)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o23:    Unreachable()
+╰─> n22:    Unreachable()
+
+
+
+old BLOCK B2 <- B0
+new BLOCK B2 <- B0
+
+Inlining MERGE B3 <- B2
+╭── o25:    WasmStackCheck()[function-entry]
+╰─> n23:    WasmStackCheck()[function-entry]
+
+╭── o26:    Goto()[B4, 0]
+│   n24:    Goto()[<invalid block>, 0]
+
+
+old MERGE B3 <- B2
+new MERGE B3
+╰─> unreachable
+
+
+old LOOP B4 <- B3, B9
+new LOOP B3 <- B2
+╭── o27:    Phi(#o1, #o87)[Word32]
+╰─> n25:    PendingLoopPhi(#n1)[Word32]
+
+╭── o28:    Phi(#o3, #o86)[Tagged]
+╰─> n26:    PendingLoopPhi(#n3)[Tagged]
+
+╭── o29:    WasmStackCheck()[loop]
+╰─> n27:    WasmStackCheck()[loop]
+
+╭── o30:    Constant()[word32: 0]
+╰─> n28:    Constant()[word32: 0]
+
+╭── o31:    Comparison(#o27, #o30)[Equal, Word32]
+╰─> n29:    Comparison(#n25, #n28)[Equal, Word32]
+
+╭── o32:    Branch(#o31)[B10, B5, None]
+╰─> n30:    Branch(#n25)[<invalid block>, <invalid block>, None]
+
+
+
+old BLOCK B5 <- B4
+new BLOCK B4 <- B3
+╭── o34:    Constant()[word32: 1]
+╰─> n32:    Constant()[word32: 1]
+
+╭── o35:    WordBinop(#o27, #o34)[Sub, Word32]
+│   n33:    Constant()[word32: -1]
+╰─> n34:    WordBinop(#n25, #n33)[Add, Word32]
+
+╭── o36:    LoadRootRegister()
+╰─> n35:    LoadRootRegister()
+
+╭── o37:    Load *(#o36 + 192) [raw, Uint8, Word32, offset: 192]
+╰─> n36:    Load *(#n35 + 192) [raw, Uint8, Word32, offset: 192]
+
+╭── o38:    Branch(#o37)[B6, B7, None]
+╰─> n37:    Branch(#n36)[<invalid block>, <invalid block>, None]
+
+
+
+old BLOCK B6 <- B5
+new BLOCK B5 <- B4
+╭── o40:    LoadRootRegister()
+╰─> n39:    LoadRootRegister()
+
+╭── o41:    Load *(#o40 + 50296) [raw, Uint64, Word64, offset: 50296]
+╰─> n40:    Load *(#n39 + 50296) [raw, Uint64, Word64, offset: 50296]
+
+╭── o42:    Constant()[external: 0x103d74a7c <ThrowWasmFXSuspendError.entry>]
+╰─> n41:    Constant()[external: 0x103d74a7c <ThrowWasmFXSuspendError.entry>]
+
+╭── o43:    Constant()[word32: 0]
+╰─> n42:    Constant()[word32: 0]
+
+╭── o44:    Call(#o41, #o42, #o43, #o5)[Code:ThrowWasmFXSuspendError:r1s0i4f0]
+╭── o47:    DidntThrow(#o44)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n43:    Call(#n40, #n41, #n42, #n4)[Code:ThrowWasmFXSuspendError:r1s0i4f0]
+╰─> n46:    DidntThrow(#n43)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o49:    Unreachable()
+╰─> n48:    Unreachable()
+
+
+
+old BLOCK B7 <- B5
+new BLOCK B6 <- B4
+
+Inlining MERGE B8 <- B7
+╭── o51:    IsNull(#o28)[(ref 1) (raw=0x183)]
+│   n49:    Constant()[word64: 65533]
+│   n50:    TaggedBitcast(#n49)[Word64, Tagged, Any]
+╰─> n51:    Comparison(#n26, #n50)[Equal, Tagged]
+
+╭── o52:    TrapIf(#o51)[0, TrapNullDereference]
+╰─> n52:    TrapIf(#n51)[0, TrapNullDereference]
+
+╭── o53:    Load *(#o28 + 4) [tagged base, TaggedPointer, Tagged, offset: 4]
+╰─> n53:    Load *(#n26 + 4) [tagged base, TaggedPointer, Tagged, offset: 4]
+
+╭── o54:    Load *(#o53 + 4) [tagged base, Uint32, Word32, offset: 4]
+╰─> n54:    Load *(#n53 + 4) [tagged base, Uint32, Word32, offset: 4]
+
+╭── o55:    LoadExternalPointer(#o54)[tag_range: [78, 78]]
+╰─> n55:    LoadExternalPointer(#n54)[tag_range: [78, 78]]
+
+╭── o56:    Constant()[word64: 0]
+╰─> n56:    Constant()[word64: 0]
+
+╭── o57:    Comparison(#o55, #o56)[Equal, Word64]
+╰─> n57:    Comparison(#n55, #n56)[Equal, Word64]
+
+╭── o58:    TrapIf(#o57)[0, TrapResume]
+╰─> n58:    TrapIf(#n57)[0, TrapResume]
+
+╭── o59:    Load *(#o55 + 128) [raw, Uint64, Word64, offset: 128]
+╰─> n59:    Load *(#n55 + 128) [raw, Uint64, Word64, offset: 128]
+
+╭── o60:    Comparison(#o28, #o59)[Equal, Tagged]
+╰─> n60:    Comparison(#n26, #n59)[Equal, Tagged]
+
+╭── o61:    TrapIf(#o60)[1, TrapResume]
+╰─> n61:    TrapIf(#n60)[1, TrapResume]
+
+╭── o62:    Constant()[word64: 8]
+╰─> n62:    Constant()[word64: 8]
+
+╭── o63:    Allocate(#o62)[Young, tagged aligned]
+╰─> n63:    Allocate(#n62)[Young, tagged aligned]
+
+╭── o64:    LoadRootRegister()
+╰─> n64:    LoadRootRegister()
+
+╭── o65:    Load *(#o64 + 1440) [raw, immutable, AnyUncompressedTagged, Tagged, offset: 1440]
+╰─> n65:    Load *(#n64 + 1440) [raw, immutable, AnyUncompressedTagged, Tagged, offset: 1440]
+
+╭── o66:    Store *(#o63) = #o65 [tagged base, TaggedPointer, NoWriteBarrier, initializing]
+╰─> n66:    Store *(#n63) = #n65 [tagged base, TaggedPointer, NoWriteBarrier, initializing]
+
+╭── o67:    LoadRootRegister()
+╰─> n67:    LoadRootRegister()
+
+╭── o68:    Load *(#o67 + 632) [raw, immutable, AnyUncompressedTagged, Tagged, offset: 632]
+╰─> n68:    Load *(#n67 + 632) [raw, immutable, AnyUncompressedTagged, Tagged, offset: 632]
+
+╭── o69:    Store *(#o63 + 4) = #o68 [tagged base, AnyTagged, NoWriteBarrier, offset: 4, initializing]
+╰─> n69:    Store *(#n63 + 4) = #n68 [tagged base, AnyTagged, NoWriteBarrier, offset: 4, initializing]
+
+╭── o71:    Load *(#o55 + 168) [raw, Uint64, Word64, offset: 168]
+╰─> n71:    Load *(#n55 + 168) [raw, Uint64, Word64, offset: 168]
+
+╭── o72:    Store *(#o71) = #o63 [raw, AnyUncompressedTagged, NoWriteBarrier]
+╰─> n72:    Store *(#n71) = #n63 [raw, AnyUncompressedTagged, NoWriteBarrier]
+
+╭── o73:    Store *(#o71 + 8) = #o35 [raw, Int32, NoWriteBarrier, offset: 8]
+╰─> n73:    Store *(#n71 + 8) = #n34 [raw, Int32, NoWriteBarrier, offset: 8]
+
+╭── o75:    Load *(#o0 + 108) [tagged base, immutable, TaggedPointer, Tagged, offset: 108]
+╰─> n75:    Load *(#n0 + 108) [tagged base, immutable, TaggedPointer, Tagged, offset: 108]
+
+╭── o76:    Load *(#o75 + 8) [tagged base, AnyTagged, Tagged, offset: 8]
+╰─> n76:    Load *(#n75 + 8) [tagged base, AnyTagged, Tagged, offset: 8]
+
+╭── o77:    StackSlot()[12, 8, 0]
+╰─> n77:    StackSlot()[12, 8, 0]
+
+╭── o78:    Constant()[relocatable wasm canonical signature ID: 32]
+╰─> n78:    Constant()[relocatable wasm canonical signature ID: 32]
+
+╭── o79:    Constant()[relocatable wasm stub call: WasmFXSwitch (0x306)]
+╰─> n79:    Constant()[relocatable wasm stub call: WasmFXSwitch (0x306)]
+
+╭── o80:    Call(#o79, #o76, #o63, #o55, #o77, #o78, #o5)[WasmFunction:WasmFXSwitch Descriptor:r1s1i7f0]
+╭── o83:    DidntThrow(#o80)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n80:    Call(#n79, #n76, #n63, #n55, #n77, #n78, #n4)[WasmFunction:WasmFXSwitch Descriptor:r1s1i7f0]
+╰─> n83:    DidntThrow(#n80)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o85:    Load *(#o77) [raw, AnyUncompressedTagged, Tagged]
+╰─> n85:    Load *(#n77) [raw, AnyUncompressedTagged, Tagged]
+
+╭── o86:    WasmTypeAnnotation(#o85)[(ref 1) (raw=0x183)]
+╰─> #n85
+
+╭── o87:    Load *(#o77 + 8) [raw, Int32, Word32, offset: 8]
+╰─> n86:    Load *(#n77 + 8) [raw, Int32, Word32, offset: 8]
+
+Inlining MERGE B9 <- B8
+╭── o89:    Goto()[B4, 1]
+│   n87:    Goto()[B3, 1]
+
+
+old MERGE B8 <- B7
+new MERGE B7
+╰─> unreachable
+
+
+old MERGE B9 <- B8
+new MERGE B7
+╰─> unreachable
+
+
+old BLOCK B10 <- B4
+new BLOCK B7 <- B3
+╭── o90:    Constant()[word32: 0]
+╰─> n88:    Constant()[word32: 0]
+
+╭── o91:    Return(#o90, #o27)[0]
+╰─> n89:    Return(#n88, #n25)[0]
+
+
+
+old MERGE B0
+new MERGE B0
+╭── o0:     Parameter()[0]
+╰─> n0:     Parameter()[0]
+
+╭── o1:     Parameter()[1]
+╰─> n1:     Parameter()[1]
+
+╭── o3:     Parameter()[2]
+╰─> n3:     Parameter()[2]
+
+╭── o4:     Load *(#o0 + 80) [tagged base, immutable, TaggedPointer, Tagged, offset: 80]
+╰─> n4:     Load *(#n0 + 80) [tagged base, immutable, TaggedPointer, Tagged, offset: 80]
+
+╭── o5:     Load *(#o0) [tagged base, TaggedPointer, Tagged]
+╰─> n5:     Load *(#n0) [tagged base, TaggedPointer, Tagged]
+
+╭── o6:     Load *(#o5 + 8) [tagged base, immutable, Uint16, Word32, offset: 8]
+╰─> n6:     Load *(#n5 + 8) [tagged base, immutable, Uint16, Word32, offset: 8]
+
+╭── o7:     Constant()[word32: 192]
+╰─> n7:     Constant()[word32: 192]
+
+╭── o8:     Comparison(#o6, #o7)[Equal, Word32]
+╰─> n8:     Comparison(#n6, #n7)[Equal, Word32]
+
+╭── o9:     Branch(#o8)[B2, B1, True]
+╰─> n9:     Branch(#n8)[<invalid block>, <invalid block>, True]
+
+
+
+old BLOCK B1 <- B0
+new BLOCK B1 <- B0
+╭── o11:    Constant()[tagged index: 76]
+╰─> n11:    Constant()[tagged index: 76]
+
+╭── o12:    Constant()[smi: 0]
+╰─> n12:    Constant()[smi: 0]
+
+╭── o13:    LoadRootRegister()
+╰─> n13:    LoadRootRegister()
+
+╭── o14:    Load *(#o13 + 50296) [raw, Uint64, Word64, offset: 50296]
+╰─> n14:    Load *(#n13 + 50296) [raw, Uint64, Word64, offset: 50296]
+
+╭── o15:    Constant()[external: 0x102d46478 <Abort.entry>]
+╰─> n15:    Constant()[external: 0x102d46478 <Abort.entry>]
+
+╭── o16:    Constant()[word32: 1]
+╰─> n16:    Constant()[word32: 1]
+
+╭── o17:    Call(#o14, #o11, #o15, #o16, #o12)[Code:Abort:r1s1i5f0]
+╭── o20:    DidntThrow(#o17)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n17:    Call(#n14, #n11, #n15, #n16, #n12)[Code:Abort:r1s1i5f0]
+╰─> n20:    DidntThrow(#n17)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o22:    Unreachable()
+╰─> n22:    Unreachable()
+
+
+
+old BLOCK B2 <- B0
+new BLOCK B2 <- B0
+╭── o23:    WasmStackCheck()[function-entry]
+╰─> n23:    WasmStackCheck()[function-entry]
+
+╭── o24:    Goto()[B3, 0]
+│   n24:    Goto()[<invalid block>, 0]
+
+
+
+old LOOP B3 <- B2, B6
+new LOOP B3 <- B2
+╭── o25:    Phi(#o1, #o86)[Word32]
+╰─> n25:    PendingLoopPhi(#n1)[Word32]
+
+╭── o26:    Phi(#o3, #o85)[Tagged]
+╰─> n26:    PendingLoopPhi(#n3)[Tagged]
+
+╭── o27:    WasmStackCheck()[loop]
+╰─> n27:    WasmStackCheck()[loop]
+
+╭── o28:    Constant()[word32: 0]
+╰─> n28:    Constant()[word32: 0]
+
+╭── o30:    Branch(#o25)[B4, B7, None]
+╰─> n29:    Branch(#n25)[<invalid block>, <invalid block>, None]
+
+
+
+old BLOCK B4 <- B3
+new BLOCK B4 <- B3
+╭── o33:    Constant()[word32: -1]
+╰─> n31:    Constant()[word32: -1]
+
+╭── o34:    WordBinop(#o25, #o33)[Add, Word32]
+╰─> n32:    WordBinop(#n25, #n31)[Add, Word32]
+
+╭── o35:    LoadRootRegister()
+╰─> n33:    LoadRootRegister()
+
+╭── o36:    Load *(#o35 + 192) [raw, Uint8, Word32, offset: 192]
+╰─> n34:    Load *(#n33 + 192) [raw, Uint8, Word32, offset: 192]
+
+╭── o37:    Branch(#o36)[B5, B6, None]
+╰─> n35:    Branch(#n34)[<invalid block>, <invalid block>, None]
+
+
+
+old BLOCK B5 <- B4
+new BLOCK B5 <- B4
+╭── o39:    LoadRootRegister()
+╰─> #n33
+
+╭── o40:    Load *(#o39 + 50296) [raw, Uint64, Word64, offset: 50296]
+╰─> n37:    Load *(#n33 + 50296) [raw, Uint64, Word64, offset: 50296]
+
+╭── o41:    Constant()[external: 0x103d74a7c <ThrowWasmFXSuspendError.entry>]
+╰─> n38:    Constant()[external: 0x103d74a7c <ThrowWasmFXSuspendError.entry>]
+
+╭── o42:    Constant()[word32: 0]
+╰─> #n28
+
+╭── o43:    Call(#o40, #o41, #o42, #o4)[Code:ThrowWasmFXSuspendError:r1s0i4f0]
+╭── o46:    DidntThrow(#o43)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n39:    Call(#n37, #n38, #n28, #n4)[Code:ThrowWasmFXSuspendError:r1s0i4f0]
+╰─> n42:    DidntThrow(#n39)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o48:    Unreachable()
+╰─> n44:    Unreachable()
+
+
+
+old BLOCK B6 <- B4
+new BLOCK B6 <- B4
+╭── o49:    Constant()[word64: 65533]
+╰─> n45:    Constant()[word64: 65533]
+
+╭── o50:    TaggedBitcast(#o49)[Word64, Tagged, Any]
+╰─> n46:    TaggedBitcast(#n45)[Word64, Tagged, Any]
+
+╭── o51:    Comparison(#o26, #o50)[Equal, Tagged]
+╰─> n47:    Comparison(#n26, #n46)[Equal, Tagged]
+
+╭── o52:    TrapIf(#o51)[0, TrapNullDereference]
+╰─> n48:    TrapIf(#n47)[0, TrapNullDereference]
+
+╭── o53:    Load *(#o26 + 4) [tagged base, TaggedPointer, Tagged, offset: 4]
+╰─> n49:    Load *(#n26 + 4) [tagged base, TaggedPointer, Tagged, offset: 4]
+
+╭── o54:    Load *(#o53 + 4) [tagged base, Uint32, Word32, offset: 4]
+╰─> n50:    Load *(#n49 + 4) [tagged base, Uint32, Word32, offset: 4]
+
+╭── o55:    LoadExternalPointer(#o54)[tag_range: [78, 78]]
+│   n51:    Load *(#n33 + 360) [raw, Uint64, Word64, offset: 360]
+│   n52:    Constant()[word32: 6]
+│   n53:    Shift(#n50, #n52)[ShiftRightLogical, Word32]
+│   n54:    Change(#n53)[ZeroExtend, NoAssumption, Word32, Word64]
+│   n55:    Load *(#n51 + #n54*8) [raw, Uint64, Word64, element size: 2^3]
+│   n56:    Constant()[word64: 71494644084506624]
+│   n57:    WordBinop(#n55, #n56)[BitwiseAnd, Word64]
+│   n58:    Constant()[word32: 49]
+│   n59:    Shift(#n57, #n58)[ShiftRightLogical, Word64]
+│   n60:    Change(#n59)[Truncate, NoAssumption, Word64, Word32]
+│   n61:    Constant()[word32: 78]
+│   n62:    Comparison(#n60, #n61)[Equal, Word32]
+│   n63:    Branch(#n62)[B8, B7, True]
+new BLOCK B7 <- B6
+│   n65:    Unreachable()
+new BLOCK B8 <- B6
+│   n66:    Constant()[word64: -71776119061217281]
+╰─> n67:    WordBinop(#n55, #n66)[BitwiseAnd, Word64]
+
+╭── o56:    Constant()[word64: 0]
+╰─> n68:    Constant()[word64: 0]
+
+╭── o57:    Comparison(#o55, #o56)[Equal, Word64]
+╰─> n69:    Comparison(#n67, #n68)[Equal, Word64]
+
+╭── o58:    TrapIf(#o57)[0, TrapResume]
+╰─> n70:    TrapIf(#n69)[0, TrapResume]
+
+╭── o59:    Load *(#o55 + 128) [raw, Uint64, Word64, offset: 128]
+╰─> n71:    Load *(#n67 + 128) [raw, Uint64, Word64, offset: 128]
+
+╭── o60:    Comparison(#o26, #o59)[Equal, Tagged]
+╰─> n72:    Comparison(#n26, #n71)[Equal, Tagged]
+
+╭── o61:    TrapIf(#o60)[1, TrapResume]
+╰─> n73:    TrapIf(#n72)[1, TrapResume]
+
+╭── o62:    Constant()[word64: 8]
+╰─> n74:    Constant()[word64: 8]
+
+╭── o63:    Allocate(#o62)[Young, tagged aligned]
+│   n75:    Constant()[external: 0x46 <new_allocation_info_top>]
+│   n76:    Load *(#n75) [raw, Uint64, Word64]
+│   n77:    Constant()[smi: 130]
+│   n78:    Constant()[external: 0x47 <new_allocation_info_limit>]
+│   n79:    Constant()[word64: 131072]
+│   n80:    Constant()[word32: 1]
+│   n81:    Goto()[B9, 0]
+new MERGE B9 <- B8
+│   n82:    Load *(#n78) [raw, Uint64, Word64]
+│   n83:    WordBinop(#n76, #n74)[Add, Word64]
+│   n84:    Comparison(#n83, #n82)[UnsignedLessThan, Word64]
+│   n85:    Branch(#n84)[B11, B10, True]
+new BLOCK B10 <- B9
+│   n87:    Call(#n77, #n74)[BuiltinPointer:Allocate Descriptor:r1s0i2f0]
+│   n89:    DidntThrow(#n87)[🁣🁣 🁣🁣 🁤🁪 🁣 i a, 0]
+│   n91:    TaggedBitcast(#n89)[Tagged, Word64, HeapObject]
+│   n92:    Constant()[word64: 1]
+│   n93:    Constant()[word64: -1]
+│   n94:    WordBinop(#n91, #n93)[Add, Word64]
+│   n95:    Goto()[B12, 0]
+new BLOCK B11 <- B9
+│   n96:    Goto()[B12, 0]
+new MERGE B12 <- B11, B10
+│   n97:    Phi(#n76, #n94)[Word64]
+│   n98:    Constant()[external: 0x11 <last_young_allocation>]
+│   n99:    Store *(#n98) = #n97 [raw, Uint64, NoWriteBarrier]
+│   n101:   WordBinop(#n97, #n74)[Add, Word64]
+│   n102:   Store *(#n75) = #n101 [raw, Uint64, NoWriteBarrier]
+│   n103:   Constant()[word64: 1]
+│   n104:   WordBinop(#n97, #n103)[Add, Word64]
+╰─> n105:   TaggedBitcast(#n104)[Word64, Tagged, HeapObject]
+
+╭── o64:    LoadRootRegister()
+╰─> #n33
+
+╭── o65:    Load *(#o64 + 1440) [raw, immutable, AnyUncompressedTagged, Tagged, offset: 1440]
+╰─> n106:   Load *(#n33 + 1440) [raw, immutable, AnyUncompressedTagged, Tagged, offset: 1440]
+
+╭── o66:    Store *(#o63) = #o65 [tagged base, TaggedPointer, NoWriteBarrier, initializing]
+╰─> n107:   Store *(#n105) = #n106 [tagged base, TaggedPointer, NoWriteBarrier, initializing]
+
+╭── o67:    LoadRootRegister()
+╰─> #n33
+
+╭── o68:    Load *(#o67 + 632) [raw, immutable, AnyUncompressedTagged, Tagged, offset: 632]
+╰─> n109:   Load *(#n33 + 632) [raw, immutable, AnyUncompressedTagged, Tagged, offset: 632]
+
+╭── o69:    Store *(#o63 + 4) = #o68 [tagged base, AnyTagged, NoWriteBarrier, offset: 4, initializing]
+╰─> n110:   Store *(#n105 + 4) = #n109 [tagged base, AnyTagged, NoWriteBarrier, offset: 4, initializing]
+
+╭── o71:    Load *(#o55 + 168) [raw, Uint64, Word64, offset: 168]
+╰─> n111:   Load *(#n67 + 168) [raw, Uint64, Word64, offset: 168]
+
+╭── o72:    Store *(#o71) = #o63 [raw, AnyUncompressedTagged, NoWriteBarrier]
+╰─> n112:   Store *(#n111) = #n105 [raw, AnyUncompressedTagged, NoWriteBarrier]
+
+╭── o73:    Store *(#o71 + 8) = #o34 [raw, Int32, NoWriteBarrier, offset: 8]
+╰─> n114:   Store *(#n111 + 8) = #n32 [raw, Int32, NoWriteBarrier, offset: 8]
+
+╭── o75:    Load *(#o0 + 108) [tagged base, immutable, TaggedPointer, Tagged, offset: 108]
+╰─> n115:   Load *(#n0 + 108) [tagged base, immutable, TaggedPointer, Tagged, offset: 108]
+
+╭── o76:    Load *(#o75 + 8) [tagged base, AnyTagged, Tagged, offset: 8]
+╰─> n116:   Load *(#n115 + 8) [tagged base, AnyTagged, Tagged, offset: 8]
+
+╭── o77:    StackSlot()[12, 8, 0]
+╰─> n117:   StackSlot()[12, 8, 0]
+
+╭── o78:    Constant()[relocatable wasm canonical signature ID: 32]
+╰─> n118:   Constant()[relocatable wasm canonical signature ID: 32]
+
+╭── o79:    Constant()[relocatable wasm stub call: WasmFXSwitch (0x306)]
+╰─> n119:   Constant()[relocatable wasm stub call: WasmFXSwitch (0x306)]
+
+╭── o80:    Call(#o79, #o76, #o63, #o55, #o77, #o78, #o4)[WasmFunction:WasmFXSwitch Descriptor:r1s1i7f0]
+╭── o83:    DidntThrow(#o80)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n120:   Call(#n119, #n116, #n105, #n67, #n117, #n118, #n4)[WasmFunction:WasmFXSwitch Descriptor:r1s1i7f0]
+╰─> n124:   DidntThrow(#n120)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o85:    Load *(#o77) [raw, AnyUncompressedTagged, Tagged]
+╰─> n126:   Load *(#n117) [raw, AnyUncompressedTagged, Tagged]
+
+╭── o86:    Load *(#o77 + 8) [raw, Int32, Word32, offset: 8]
+╰─> n127:   Load *(#n117 + 8) [raw, Int32, Word32, offset: 8]
+
+╭── o87:    Goto()[B3, 1]
+│   n128:   Goto()[B3, 1]
+
+
+
+old BLOCK B7 <- B3
+new BLOCK B13 <- B3
+╭── o88:    Constant()[word32: 0]
+╰─> #n28
+
+╭── o89:    Return(#o88, #o25)[0]
+╰─> n129:   Return(#n28, #n25)[0]
+
+
+
+old MERGE B0
+new MERGE B0
+╭── o0:     Parameter()[0]
+╰─> n0:     Parameter()[0]
+
+╭── o1:     Parameter()[1]
+╰─> n1:     Parameter()[1]
+
+╭── o3:     Parameter()[2]
+╰─> n3:     Parameter()[2]
+
+╭── o4:     Load *(#o0 + 80) [tagged base, immutable, TaggedPointer, Tagged, offset: 80]
+│   n4:     TaggedBitcast(#n0)[Tagged, Word64, HeapObject]
+│   n5:     Constant()[word64: 79]
+╰─> n6:     Load *(#n4 + #n5) [raw, immutable, TaggedPointer, Tagged]
+
+╭── o5:     Load *(#o0) [tagged base, TaggedPointer, Tagged]
+│   n8:     TaggedBitcast(#n0)[Tagged, Word64, HeapObject]
+│   n9:     Constant()[word64: -1]
+╰─> n10:    Load *(#n8 + #n9) [raw, TaggedPointer, Tagged]
+
+╭── o6:     Load *(#o5 + 8) [tagged base, immutable, Uint16, Word32, offset: 8]
+│   n11:    TaggedBitcast(#n10)[Tagged, Word64, HeapObject]
+│   n12:    Constant()[word64: 7]
+╰─> n13:    Load *(#n11 + #n12) [raw, immutable, Uint16, Word32]
+
+╭── o7:     Constant()[word32: 192]
+╰─> n15:    Constant()[word32: 192]
+
+╭── o8:     Comparison(#o6, #o7)[Equal, Word32]
+╰─> n16:    Comparison(#n13, #n15)[Equal, Word32]
+
+╭── o9:     Branch(#o8)[B2, B1, True]
+╰─> n17:    Branch(#n16)[<invalid block>, <invalid block>, True]
+
+
+
+old BLOCK B1 <- B0
+new BLOCK B1 <- B0
+╭── o11:    Constant()[tagged index: 76]
+╰─> n19:    Constant()[tagged index: 76]
+
+╭── o12:    Constant()[smi: 0]
+╰─> n20:    Constant()[smi: 0]
+
+╭── o13:    LoadRootRegister()
+╰─> n21:    LoadRootRegister()
+
+╭── o14:    Load *(#o13 + 50296) [raw, Uint64, Word64, offset: 50296]
+│   n22:    Constant()[word64: 50296]
+╰─> n23:    Load *(#n21 + #n22) [raw, Uint64, Word64]
+
+╭── o15:    Constant()[external: 0x102d46478 <Abort.entry>]
+╰─> n24:    Constant()[external: 0x102d46478 <Abort.entry>]
+
+╭── o16:    Constant()[word32: 1]
+╰─> n25:    Constant()[word32: 1]
+
+╭── o17:    Call(#o14, #o11, #o15, #o16, #o12)[Code:Abort:r1s1i5f0]
+╭── o20:    DidntThrow(#o17)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n26:    Call(#n23, #n19, #n24, #n25, #n20)[Code:Abort:r1s1i5f0]
+╰─> n29:    DidntThrow(#n26)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o22:    Unreachable()
+╰─> n31:    Unreachable()
+
+
+
+old BLOCK B2 <- B0
+new BLOCK B2 <- B0
+╭── o23:    WasmStackCheck()[function-entry]
+│   n32:    LoadRootRegister()
+│   n33:    Constant()[word64: -224]
+│   n34:    Load *(#n32 + #n33) [raw, Uint64, Word64]
+│   n36:    StackPointerGreaterThan(#n34)[Wasm]
+│   n37:    Branch(#n36)[B4, B3, True]
+new BLOCK B3 <- B2
+│   n39:    Constant()[relocatable wasm stub call: WasmStackGuard (0x590)]
+│   n40:    Call(#n39)[WasmFunction:NoContext Descriptor:r1s0i1f0]
+│   n42:    DidntThrow(#n40)[🁤🁤 🁪🁪 🁤🁪 🁤 i a, 0]
+│   n44:    Goto()[B5, 0]
+new BLOCK B4 <- B2
+│   n45:    Goto()[B5, 0]
+new MERGE B5 <- B3, B4
+
+╭── o24:    Goto()[B3, 0]
+│   n46:    Goto()[<invalid block>, 0]
+
+
+
+old LOOP B3 <- B2, B12
+new LOOP B6 <- B5
+╭── o25:    Phi(#o1, #o127)[Word32]
+╰─> n47:    PendingLoopPhi(#n1)[Word32]
+
+╭── o26:    Phi(#o3, #o126)[Tagged]
+╰─> n48:    PendingLoopPhi(#n3)[Tagged]
+
+╭── o27:    WasmStackCheck()[loop]
+│   n49:    Constant()[word64: -207]
+│   n50:    Load *(#n32 + #n49) [raw, Uint8, Word32]
+│   n51:    Constant()[word32: 0]
+│   n52:    Comparison(#n50, #n51)[Equal, Word32]
+│   n53:    Branch(#n52)[B8, B7, True]
+new BLOCK B7 <- B6
+│   n55:    Constant()[relocatable wasm stub call: WasmStackGuardLoop (0x591)]
+│   n56:    Call(#n55)[WasmFunction:NoContext Descriptor:r1s0i1f0]
+│   n58:    DidntThrow(#n56)[🁤🁤 🁪🁪 🁤🁪 🁣 i a, 0]
+│   n60:    Goto()[B9, 0]
+new BLOCK B8 <- B6
+│   n61:    Goto()[B9, 0]
+new MERGE B9 <- B7, B8
+
+╭── o28:    Constant()[word32: 0]
+╰─> #n51
+
+╭── o29:    Branch(#o25)[B4, B13, None]
+╰─> n62:    Branch(#n47)[<invalid block>, <invalid block>, None]
+
+
+
+old BLOCK B4 <- B3
+new BLOCK B10 <- B9
+╭── o31:    Constant()[word32: -1]
+╰─> n64:    Constant()[word32: -1]
+
+╭── o32:    WordBinop(#o25, #o31)[Add, Word32]
+╰─> n65:    WordBinop(#n47, #n64)[Add, Word32]
+
+╭── o33:    LoadRootRegister()
+╰─> #n32
+
+╭── o34:    Load *(#o33 + 192) [raw, Uint8, Word32, offset: 192]
+│   n66:    Constant()[word64: 192]
+╰─> n67:    Load *(#n32 + #n66) [raw, Uint8, Word32]
+
+╭── o35:    Branch(#o34)[B5, B6, None]
+╰─> n69:    Branch(#n67)[<invalid block>, <invalid block>, None]
+
+
+
+old BLOCK B5 <- B4
+new BLOCK B11 <- B10
+╭── o37:    Load *(#o33 + 50296) [raw, Uint64, Word64, offset: 50296]
+│   n71:    Constant()[word64: 50296]
+╰─> n72:    Load *(#n32 + #n71) [raw, Uint64, Word64]
+
+╭── o38:    Constant()[external: 0x103d74a7c <ThrowWasmFXSuspendError.entry>]
+╰─> n73:    Constant()[external: 0x103d74a7c <ThrowWasmFXSuspendError.entry>]
+
+╭── o39:    Call(#o37, #o38, #o28, #o4)[Code:ThrowWasmFXSuspendError:r1s0i4f0]
+╭── o42:    DidntThrow(#o39)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n74:    Call(#n72, #n73, #n51, #n6)[Code:ThrowWasmFXSuspendError:r1s0i4f0]
+╰─> n77:    DidntThrow(#n74)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o44:    Unreachable()
+╰─> n79:    Unreachable()
+
+
+
+old BLOCK B6 <- B4
+new BLOCK B12 <- B10
+╭── o45:    Constant()[word64: 65533]
+╰─> n80:    Constant()[word64: 65533]
+
+╭── o46:    TaggedBitcast(#o45)[Word64, Tagged, Any]
+╰─> n81:    TaggedBitcast(#n80)[Word64, Tagged, Any]
+
+╭── o47:    Comparison(#o26, #o46)[Equal, Tagged]
+╰─> n82:    Comparison(#n48, #n81)[Equal, Tagged]
+
+╭── o48:    TrapIf(#o47)[0, TrapNullDereference]
+╰─> n83:    TrapIf(#n82)[0, TrapNullDereference]
+
+╭── o49:    Load *(#o26 + 4) [tagged base, TaggedPointer, Tagged, offset: 4]
+│   n84:    TaggedBitcast(#n48)[Tagged, Word64, HeapObject]
+│   n85:    Constant()[word64: 3]
+╰─> n86:    Load *(#n84 + #n85) [raw, TaggedPointer, Tagged]
+
+╭── o50:    Load *(#o49 + 4) [tagged base, Uint32, Word32, offset: 4]
+│   n87:    TaggedBitcast(#n86)[Tagged, Word64, HeapObject]
+╰─> n88:    Load *(#n87 + #n85) [raw, Uint32, Word32]
+
+╭── o51:    Load *(#o33 + 360) [raw, Uint64, Word64, offset: 360]
+│   n90:    Constant()[word64: 360]
+╰─> n91:    Load *(#n32 + #n90) [raw, Uint64, Word64]
+
+╭── o52:    Constant()[word32: 6]
+╰─> n92:    Constant()[word32: 6]
+
+╭── o53:    Shift(#o50, #o52)[ShiftRightLogical, Word32]
+╰─> n93:    Shift(#n88, #n92)[ShiftRightLogical, Word32]
+
+╭── o54:    Change(#o53)[ZeroExtend, NoAssumption, Word32, Word64]
+╰─> n94:    Change(#n93)[ZeroExtend, NoAssumption, Word32, Word64]
+
+╭── o55:    Load *(#o51 + #o54*8) [raw, Uint64, Word64, element size: 2^3]
+│   n95:    Constant()[word32: 3]
+│   n96:    Shift(#n94, #n95)[ShiftLeft, Word64]
+╰─> n97:    Load *(#n91 + #n96) [raw, Uint64, Word64]
+
+╭── o56:    Constant()[word64: 71494644084506624]
+╰─> n99:    Constant()[word64: 71494644084506624]
+
+╭── o57:    WordBinop(#o55, #o56)[BitwiseAnd, Word64]
+╰─> n100:   WordBinop(#n97, #n99)[BitwiseAnd, Word64]
+
+╭── o58:    Constant()[word32: 49]
+╰─> n101:   Constant()[word32: 49]
+
+╭── o59:    Shift(#o57, #o58)[ShiftRightLogical, Word64]
+╰─> n102:   Shift(#n100, #n101)[ShiftRightLogical, Word64]
+
+╭── o60:    Change(#o59)[Truncate, NoAssumption, Word64, Word32]
+╰─> n103:   Change(#n102)[Truncate, NoAssumption, Word64, Word32]
+
+╭── o61:    Constant()[word32: 78]
+╰─> n104:   Constant()[word32: 78]
+
+╭── o62:    Comparison(#o60, #o61)[Equal, Word32]
+╰─> n105:   Comparison(#n103, #n104)[Equal, Word32]
+
+╭── o63:    Branch(#o62)[B8, B7, True]
+╰─> n106:   Branch(#n105)[<invalid block>, <invalid block>, True]
+
+
+
+old BLOCK B7 <- B6
+new BLOCK B13 <- B12
+╭── o65:    Unreachable()
+╰─> n108:   Unreachable()
+
+
+
+old BLOCK B8 <- B6
+new BLOCK B14 <- B12
+╭── o66:    Constant()[word64: -71776119061217281]
+╰─> n109:   Constant()[word64: -71776119061217281]
+
+╭── o67:    WordBinop(#o55, #o66)[BitwiseAnd, Word64]
+╰─> n110:   WordBinop(#n97, #n109)[BitwiseAnd, Word64]
+
+╭── o68:    Constant()[word64: 0]
+╰─> n111:   Constant()[word64: 0]
+
+╭── o69:    Comparison(#o67, #o68)[Equal, Word64]
+╰─> n112:   Comparison(#n110, #n111)[Equal, Word64]
+
+╭── o70:    TrapIf(#o69)[0, TrapResume]
+╰─> n113:   TrapIf(#n112)[0, TrapResume]
+
+╭── o71:    Load *(#o67 + 128) [raw, Uint64, Word64, offset: 128]
+│   n114:   Constant()[word64: 128]
+╰─> n115:   Load *(#n110 + #n114) [raw, Uint64, Word64]
+
+╭── o72:    Comparison(#o26, #o71)[Equal, Tagged]
+╰─> n116:   Comparison(#n48, #n115)[Equal, Tagged]
+
+╭── o73:    TrapIf(#o72)[1, TrapResume]
+╰─> n117:   TrapIf(#n116)[1, TrapResume]
+
+╭── o74:    Constant()[word64: 8]
+╰─> n118:   Constant()[word64: 8]
+
+╭── o75:    Constant()[external: 0x46 <new_allocation_info_top>]
+╰─> n119:   Constant()[external: 0x46 <new_allocation_info_top>]
+
+╭── o76:    Load *(#o75) [raw, Uint64, Word64]
+╰─> n120:   Load *(#n119 + #n111) [raw, Uint64, Word64]
+
+╭── o77:    Constant()[smi: 130]
+╰─> n122:   Constant()[smi: 130]
+
+╭── o78:    Constant()[external: 0x47 <new_allocation_info_limit>]
+╰─> n123:   Constant()[external: 0x47 <new_allocation_info_limit>]
+
+╭── o81:    Goto()[B9, 0]
+│   n124:   Goto()[<invalid block>, 0]
+
+
+
+old MERGE B9 <- B8
+new MERGE B15 <- B14
+╭── o82:    Load *(#o78) [raw, Uint64, Word64]
+╰─> n125:   Load *(#n123 + #n111) [raw, Uint64, Word64]
+
+╭── o83:    WordBinop(#o76, #o74)[Add, Word64]
+╰─> n126:   WordBinop(#n120, #n118)[Add, Word64]
+
+╭── o84:    Comparison(#o83, #o82)[UnsignedLessThan, Word64]
+╰─> n127:   Comparison(#n126, #n125)[UnsignedLessThan, Word64]
+
+╭── o85:    Branch(#o84)[B11, B10, True]
+╰─> n128:   Branch(#n127)[<invalid block>, <invalid block>, True]
+
+
+
+old BLOCK B10 <- B9
+new BLOCK B16 <- B15
+╭── o87:    Call(#o77, #o74)[BuiltinPointer:Allocate Descriptor:r1s0i2f0]
+╭── o89:    DidntThrow(#o87)[🁣🁣 🁣🁣 🁤🁪 🁣 i a, 0]
+│   n130:   Call(#n122, #n118)[BuiltinPointer:Allocate Descriptor:r1s0i2f0]
+╰─> n132:   DidntThrow(#n130)[🁣🁣 🁣🁣 🁤🁪 🁣 i a, 0]
+
+╭── o91:    TaggedBitcast(#o89)[Tagged, Word64, HeapObject]
+╰─> n134:   TaggedBitcast(#n132)[Tagged, Word64, HeapObject]
+
+╭── o93:    Constant()[word64: -1]
+╰─> #n9
+
+╭── o94:    WordBinop(#o91, #o93)[Add, Word64]
+╰─> n135:   WordBinop(#n134, #n9)[Add, Word64]
+
+╭── o95:    Goto()[B12, 0]
+│   n136:   Goto()[<invalid block>, 0]
+
+
+
+old BLOCK B11 <- B9
+new BLOCK B17 <- B15
+╭── o96:    Goto()[B12, 0]
+│   n137:   Goto()[<invalid block>, 0]
+
+
+
+old MERGE B12 <- B11, B10
+new MERGE B18 <- B16, B17
+╭── o97:    Phi(#o76, #o94)[Word64]
+╰─> n138:   Phi(#n135, #n120)[Word64]
+
+╭── o98:    Constant()[external: 0x11 <last_young_allocation>]
+╰─> n139:   Constant()[external: 0x11 <last_young_allocation>]
+
+╭── o99:    Store *(#o98) = #o97 [raw, Uint64, NoWriteBarrier]
+╰─> n140:   Store *(#n139 + #n111) = #n138 [raw, Uint64, NoWriteBarrier]
+
+╭── o101:   WordBinop(#o97, #o74)[Add, Word64]
+╰─> n142:   WordBinop(#n138, #n118)[Add, Word64]
+
+╭── o102:   Store *(#o75) = #o101 [raw, Uint64, NoWriteBarrier]
+╰─> n143:   Store *(#n119 + #n111) = #n142 [raw, Uint64, NoWriteBarrier]
+
+╭── o103:   Constant()[word64: 1]
+╰─> n145:   Constant()[word64: 1]
+
+╭── o104:   WordBinop(#o97, #o103)[Add, Word64]
+╰─> n146:   WordBinop(#n138, #n145)[Add, Word64]
+
+╭── o105:   TaggedBitcast(#o104)[Word64, Tagged, HeapObject]
+╰─> n147:   TaggedBitcast(#n146)[Word64, Tagged, HeapObject]
+
+╭── o106:   Load *(#o33 + 1440) [raw, immutable, AnyUncompressedTagged, Tagged, offset: 1440]
+│   n148:   Constant()[word64: 1440]
+╰─> n149:   Load *(#n32 + #n148) [raw, immutable, AnyUncompressedTagged, Tagged]
+
+╭── o107:   Store *(#o105) = #o106 [tagged base, TaggedPointer, NoWriteBarrier, initializing]
+│   n151:   TaggedBitcast(#n147)[Tagged, Word64, HeapObject]
+╰─> n152:   Store *(#n151 + #n9) = #n149 [raw, TaggedPointer, NoWriteBarrier, initializing]
+
+╭── o109:   Load *(#o33 + 632) [raw, immutable, AnyUncompressedTagged, Tagged, offset: 632]
+│   n154:   Constant()[word64: 632]
+╰─> n155:   Load *(#n32 + #n154) [raw, immutable, AnyUncompressedTagged, Tagged]
+
+╭── o110:   Store *(#o105 + 4) = #o109 [tagged base, AnyTagged, NoWriteBarrier, offset: 4, initializing]
+│   n156:   TaggedBitcast(#n147)[Tagged, Word64, HeapObject]
+╰─> n157:   Store *(#n156 + #n85) = #n155 [raw, AnyTagged, NoWriteBarrier, initializing]
+
+╭── o111:   Load *(#o67 + 168) [raw, Uint64, Word64, offset: 168]
+│   n159:   Constant()[word64: 168]
+╰─> n160:   Load *(#n110 + #n159) [raw, Uint64, Word64]
+
+╭── o112:   Store *(#o111) = #o105 [raw, AnyUncompressedTagged, NoWriteBarrier]
+╰─> n162:   Store *(#n160 + #n111) = #n147 [raw, AnyUncompressedTagged, NoWriteBarrier]
+
+╭── o114:   Store *(#o111 + 8) = #o32 [raw, Int32, NoWriteBarrier, offset: 8]
+╰─> n164:   Store *(#n160 + #n118) = #n65 [raw, Int32, NoWriteBarrier]
+
+╭── o115:   Load *(#o0 + 108) [tagged base, immutable, TaggedPointer, Tagged, offset: 108]
+│   n166:   TaggedBitcast(#n0)[Tagged, Word64, HeapObject]
+│   n167:   Constant()[word64: 107]
+╰─> n168:   Load *(#n166 + #n167) [raw, immutable, TaggedPointer, Tagged]
+
+╭── o116:   Load *(#o115 + 8) [tagged base, AnyTagged, Tagged, offset: 8]
+│   n169:   TaggedBitcast(#n168)[Tagged, Word64, HeapObject]
+╰─> n170:   Load *(#n169 + #n12) [raw, AnyTagged, Tagged]
+
+╭── o117:   StackSlot()[12, 8, 0]
+╰─> n172:   StackSlot()[12, 8, 0]
+
+╭── o118:   Constant()[relocatable wasm canonical signature ID: 32]
+╰─> n173:   Constant()[relocatable wasm canonical signature ID: 32]
+
+╭── o119:   Constant()[relocatable wasm stub call: WasmFXSwitch (0x306)]
+╰─> n174:   Constant()[relocatable wasm stub call: WasmFXSwitch (0x306)]
+
+╭── o120:   Call(#o119, #o116, #o105, #o67, #o117, #o118, #o4)[WasmFunction:WasmFXSwitch Descriptor:r1s1i7f0]
+╭── o124:   DidntThrow(#o120)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n175:   Call(#n174, #n170, #n147, #n110, #n172, #n173, #n6)[WasmFunction:WasmFXSwitch Descriptor:r1s1i7f0]
+╰─> n178:   DidntThrow(#n175)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o126:   Load *(#o117) [raw, AnyUncompressedTagged, Tagged]
+╰─> n180:   Load *(#n172 + #n111) [raw, AnyUncompressedTagged, Tagged]
+
+╭── o127:   Load *(#o117 + 8) [raw, Int32, Word32, offset: 8]
+╰─> n182:   Load *(#n172 + #n118) [raw, Int32, Word32]
+
+╭── o128:   Goto()[B3, 1]
+│   n183:   Goto()[B6, 1]
+
+
+
+old BLOCK B13 <- B3
+new BLOCK B19 <- B9
+╭── o129:   Return(#o28, #o25)[0]
+╰─> n184:   Return(#n51, #n47)[0]
+
+
+OK

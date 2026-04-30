@@ -1,0 +1,6 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x274800000000,0x284800000000)
+good=8
+bad_direct_throw=RuntimeError:function signature mismatch
+entry_is_null=true
+bad_hidden_throw=RuntimeError:function signature mismatch

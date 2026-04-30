@@ -1,0 +1,45 @@
+Command:
+
+orb -m ubuntu -w /home/carlosgomez/chromium-engagement/src env ASAN_OPTIONS=detect_odr_violation=0 xvfb-run -a out/c001_asan/viz_unittests --gtest_filter='CompositorFrameSinkSupportTestBase.SharedElementLostAnimateRetainsLargeSharedImageAfterCopyCompletion' --single-process-tests
+
+Output:
+
+[256212:256212:WARNING:base/debug/stack_trace_posix.cc:932] Failed to open file: /mnt/rv/[rosetta]: No such file or directory (2)
+WARN: SystemInfo_vulkan.cpp:197 (HasKhronosValidationLayer): Vulkan validation layers are missing
+Note: Google Test filter = CompositorFrameSinkSupportTestBase.SharedElementLostAnimateRetainsLargeSharedImageAfterCopyCompletion
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from CompositorFrameSinkSupportTestBase
+[ RUN      ] CompositorFrameSinkSupportTestBase.SharedElementLostAnimateRetainsLargeSharedImageAfterCopyCompletion
+[256212:256212:ERROR:components/viz/service/transitions/surface_animation_manager.cc:276] No SurfaceAnimationManager for token : 6089BA5F1D48666505C3C383EC112185
+[       OK ] CompositorFrameSinkSupportTestBase.SharedElementLostAnimateRetainsLargeSharedImageAfterCopyCompletion (142 ms)
+[----------] 1 test from CompositorFrameSinkSupportTestBase (158 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (165 ms total)
+[  PASSED  ] 1 test.
+
+Assertions inside H19:
+
+- shared image size is exactly gfx::Size(4096, 4096)
+- ClientSharedImage::EstimatedSizeInBytes() is exactly 4096 * 4096 * 4 = 67,108,864 bytes
+- after copy completion, the source surface has no pending CopyOutputRequest
+- after copy completion, FrameSinkManagerImpl still has one cached SurfaceAnimationManager
+- after copy completion, TestSharedImageInterface still tracks one live shared image
+- explicit ClearSurfaceAnimationManager(token) releases the manager and shared image
+
+Interpretation:
+
+The retained object is not just a small bookkeeping node. The product lost-animate
+state can retain a large shared-image resource after copy completion. H15 already
+proved linear growth across tokens; H19 quantifies one retained token at 64 MiB
+for a 4096x4096 RGBA shared image in this test shape.
+
+Regression bundle:
+
+orb -m ubuntu -w /home/carlosgomez/chromium-engagement/src env ASAN_OPTIONS=detect_odr_violation=0 xvfb-run -a out/c001_asan/viz_unittests --gtest_filter='CompositorFrameSinkSupportTestBase.SaveCompletionPostedCallbackLosesPendingAnimateManager:CompositorFrameSinkSupportTestBase.SaveCompletionWithSharedElementLeavesCachedManagerAndPendingCopy:CompositorFrameSinkSupportTestBase.RepeatedSharedElementLostAnimateGrowsCacheAndPendingCopies:CompositorFrameSinkSupportTestBase.SameDocumentPostedCompletionKeepsManagerLocal:CompositorFrameSinkSupportTestBase.SharedElementLostAnimateRetainsManagerAfterCopyCompletion:CompositorFrameSinkSupportTestBase.SharedElementLostAnimateRetainsLargeSharedImageAfterCopyCompletion' --single-process-tests
+
+Result:
+
+[==========] Running 6 tests from 1 test suite.
+[  PASSED  ] 6 tests.

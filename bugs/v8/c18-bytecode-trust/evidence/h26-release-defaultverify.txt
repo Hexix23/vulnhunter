@@ -1,0 +1,6 @@
+start
+assign-ok 1 true
+spread-ok 1 true
+done
+
+EXIT:0

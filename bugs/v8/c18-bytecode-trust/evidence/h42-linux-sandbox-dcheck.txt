@@ -1,0 +1,9 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x115800000000,0x125800000000)
+after-corrupt f=99 A=13 B=99
+after-A-write f=99 A=44 B=99
+after-B-write f=1234 A=44 B=1234
+reads_B true
+done
+
+EXIT:0

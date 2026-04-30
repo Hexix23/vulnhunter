@@ -1,0 +1,73 @@
+diff --git a/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc b/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
+--- a/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
++++ b/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
+@@ -113,6 +113,22 @@ class MockLayerContextClient : public mojom::LayerContextClient {
+   MOCK_METHOD2(OnTilingsReadyForCleanup,
+                void(int32_t, const std::vector<float>&));
+ };
++
++class DestroyOnTransitionFakeCompositorFrameSinkClient
++    : public FakeCompositorFrameSinkClient {
++ public:
++  explicit DestroyOnTransitionFakeCompositorFrameSinkClient(
++      std::unique_ptr<CompositorFrameSinkSupport>* support)
++      : support_(support) {}
++
++  void OnCompositorFrameTransitionDirectiveProcessed(
++      uint32_t sequence_id) override {
++    support_->reset();
++  }
++
++ private:
++  raw_ptr<std::unique_ptr<CompositorFrameSinkSupport>> support_;
++};
+ 
+ }  // namespace
+ 
+@@ -2903,5 +2919,45 @@ TEST_F(CompositorFrameSinkSupportTestBase,
+   OnSaveTransitionDirectiveProcessed(raw_support, save_directive);
+ }
+ 
++TEST_F(CompositorFrameSinkSupportTestBase,
++       OnSaveTransitionDirectiveProcessedMojoRemoteClientIsAsync) {
++  manager_->RegisterFrameSinkId(kAnotherArbitraryFrameSinkId,
++                                true /* report_activation */);
++
++  std::unique_ptr<CompositorFrameSinkSupport> support;
++  DestroyOnTransitionFakeCompositorFrameSinkClient fake_client(&support);
++  mojo::Remote<mojom::CompositorFrameSinkClient> remote_client;
++  remote_client.Bind(fake_client.BindInterfaceRemote());
++
++  support = std::make_unique<CompositorFrameSinkSupport>(
++      remote_client.get(), manager_.get(), kAnotherArbitraryFrameSinkId,
++      kIsRoot);
++  support->SetBeginFrameSource(&begin_frame_source_);
++
++  blink::ViewTransitionToken token;
++  auto save_directive = CompositorFrameTransitionDirective::CreateSave(
++      token, /*maybe_cross_frame_sink=*/true, 1, {}, {}, false);
++
++  auto frame = MakeDefaultInteractiveCompositorFrame(kBeginFrameSourceId);
++  support->SubmitCompositorFrame(local_surface_id_, std::move(frame));
++  SurfaceId surface_id(support->frame_sink_id(), local_surface_id_);
++  Surface* surface = manager_->surface_manager()->GetSurfaceForId(surface_id);
++  ASSERT_TRUE(surface);
++
++  ProcessCompositorFrameTransitionDirective(support.get(), save_directive,
++                                            surface);
++  ASSERT_TRUE(SupportHasSurfaceAnimationManager(support.get()));
++
++  CompositorFrameSinkSupport* raw_support = support.get();
++  OnSaveTransitionDirectiveProcessed(raw_support, save_directive);
++
++  // Product non-bundle path uses a mojo::Remote client. The send must not
++  // synchronously run the client callback and destroy the support while
++  // OnSaveTransitionDirectiveProcessed() is still using `this`.
++  EXPECT_TRUE(support);
++
++  remote_client.FlushForTesting();
++  EXPECT_FALSE(support);
++}
++
+ TEST_P(AckOnSurfaceActivationWhenInteractiveTest,
+        TreesInVizAcksCompositorFrames) {

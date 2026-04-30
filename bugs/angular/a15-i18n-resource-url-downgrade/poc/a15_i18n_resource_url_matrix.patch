@@ -1,0 +1,147 @@
+diff --git a/packages/core/test/acceptance/i18n_spec.ts b/packages/core/test/acceptance/i18n_spec.ts
+index 777d0c9a8f..5720ba6581 100644
+--- a/packages/core/test/acceptance/i18n_spec.ts
++++ b/packages/core/test/acceptance/i18n_spec.ts
+@@ -3764,6 +3764,143 @@ describe('runtime i18n', () => {
+         expect(input.getAttribute('formaction')).toMatch(/^unsafe:/);
+       });
+     }
++
++    it('security research probe: resource URL i18n direct matrix', () => {
++      const cases = [
++        {
++          name: 'iframe-baseline-interpolation',
++          template: '<iframe src="{{httpUrl}}"></iframe>',
++          selector: 'iframe',
++          attr: 'src',
++        },
++        {
++          name: 'iframe-i18n-interpolation',
++          template: '<iframe src="{{httpUrl}}" i18n-src></iframe>',
++          selector: 'iframe',
++          attr: 'src',
++        },
++        {
++          name: 'iframe-i18n-javascript-control',
++          template: '<iframe src="{{jsUrl}}" i18n-src></iframe>',
++          selector: 'iframe',
++          attr: 'src',
++        },
++        {
++          name: 'object-baseline-interpolation',
++          template: '<object data="{{httpUrl}}"></object>',
++          selector: 'object',
++          attr: 'data',
++        },
++        {
++          name: 'object-i18n-interpolation',
++          template: '<object data="{{httpUrl}}" i18n-data></object>',
++          selector: 'object',
++          attr: 'data',
++        },
++        {
++          name: 'object-codebase-baseline-interpolation',
++          template: '<object codebase="{{httpUrl}}"></object>',
++          selector: 'object',
++          attr: 'codebase',
++        },
++        {
++          name: 'object-codebase-i18n-interpolation',
++          template: '<object codebase="{{httpUrl}}" i18n-codebase></object>',
++          selector: 'object',
++          attr: 'codebase',
++        },
++        {
++          name: 'embed-baseline-interpolation',
++          template: '<embed src="{{httpUrl}}">',
++          selector: 'embed',
++          attr: 'src',
++        },
++        {
++          name: 'embed-i18n-interpolation',
++          template: '<embed src="{{httpUrl}}" i18n-src>',
++          selector: 'embed',
++          attr: 'src',
++        },
++        {
++          name: 'frame-baseline-interpolation',
++          template: '<frame src="{{httpUrl}}">',
++          selector: 'frame',
++          attr: 'src',
++        },
++        {
++          name: 'frame-i18n-interpolation',
++          template: '<frame src="{{httpUrl}}" i18n-src>',
++          selector: 'frame',
++          attr: 'src',
++        },
++        {
++          name: 'base-baseline-interpolation',
++          template: '<base href="{{httpUrl}}">',
++          selector: 'base',
++          attr: 'href',
++        },
++        {
++          name: 'base-i18n-interpolation',
++          template: '<base href="{{httpUrl}}" i18n-href>',
++          selector: 'base',
++          attr: 'href',
++        },
++        {
++          name: 'script-i18n-interpolation',
++          template: '<script src="{{httpUrl}}" i18n-src></script>',
++          selector: 'script',
++          attr: 'src',
++        },
++        {
++          name: 'script-href-i18n-interpolation',
++          template: '<script href="{{httpUrl}}" i18n-href></script>',
++          selector: 'script',
++          attr: 'href',
++        },
++      ];
++      const results: unknown[] = [];
++
++      for (const testCase of cases) {
++        try {
++          TestBed.resetTestingModule();
++
++          @Component({
++            template: testCase.template,
++            standalone: false,
++            changeDetection: ChangeDetectionStrategy.Eager,
++          })
++          class ProbeComp {
++            httpUrl = 'https://attacker.example/resource';
++            jsUrl = 'javascript:alert("oh no")';
++          }
++
++          TestBed.configureTestingModule({
++            declarations: [ProbeComp],
++            providers: [provideZoneChangeDetection(), provideNgReflectAttributes()],
++            schemas: [NO_ERRORS_SCHEMA],
++          });
++          const fixture = TestBed.createComponent(ProbeComp);
++          fixture.detectChanges();
++          const element = fixture.nativeElement.querySelector(testCase.selector);
++          results.push({
++            name: testCase.name,
++            template: testCase.template,
++            outcome: 'rendered',
++            value: element?.getAttribute(testCase.attr) ?? null,
++            html: fixture.nativeElement.innerHTML,
++          });
++        } catch (error) {
++          results.push({
++            name: testCase.name,
++            template: testCase.template,
++            outcome: 'throw',
++            error: String((error as Error).message || error).replace(/\s+/g, ' ').slice(0, 220),
++          });
++        }
++      }
++
++      throw new Error(JSON.stringify(results, null, 2));
++    });
+   });
+ });

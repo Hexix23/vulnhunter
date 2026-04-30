@@ -1,0 +1,71 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>
+html, body { margin: 0; height: 5000px; }
+#subject { margin-top: 1000px; width: 200px; height: 500px; background: #eee; }
+.target {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  background: #0a8;
+  will-change: transform, opacity;
+}
+</style>
+<div id="subject"></div>
+<div id="targets"></div>
+<script>
+function churn() {
+  const junk = [];
+  for (let i = 0; i < 1000; i++) junk.push({ i, s: "x".repeat(256) });
+  if (window.gc) gc();
+}
+
+async function main() {
+  if (!window.TimelineTrigger || !window.ViewTimeline) {
+    document.body.textContent = "AnimationTrigger unavailable";
+    return;
+  }
+
+  const subject = document.getElementById("subject");
+  const targets = document.getElementById("targets");
+  const trigger = new TimelineTrigger([{
+    timeline: new ViewTimeline({ subject, axis: "y" }),
+    activationRangeStart: "contain",
+    activationRangeEnd: "contain"
+  }]);
+
+  const records = [];
+  for (let i = 0; i < 64; i++) {
+    const el = document.createElement("div");
+    el.className = "target";
+    targets.appendChild(el);
+    const anim = new Animation(
+      new KeyframeEffect(el,
+        [{ transform: "translateX(0px)", opacity: 1 },
+         { transform: "translateX(200px)", opacity: 0.5 }],
+        { duration: 1000, fill: "both" }));
+    trigger.addAnimation(anim, "play", "pause");
+    records.push({ el, anim });
+  }
+
+  for (let round = 0; round < 160; round++) {
+    scrollTo(0, round % 2 ? 0 : 1500);
+    await new Promise(r => requestAnimationFrame(r));
+    if (round % 3 === 0) {
+      for (let i = 0; i < records.length; i += 4) {
+        records[i].el.remove();
+        records[i].anim.cancel();
+      }
+    }
+    if (round % 5 === 0) {
+      for (const rec of records) {
+        if (!rec.el.isConnected) targets.appendChild(rec.el);
+      }
+    }
+    churn();
+  }
+  document.body.textContent = "done";
+}
+
+main().catch(e => document.body.textContent = String(e));
+</script>

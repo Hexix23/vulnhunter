@@ -1,0 +1,8 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x396200000000,0x3a6200000000)
+start
+same-global false
+Safely terminating process due to CSA check failure
+The following harmless failure was encountered: Torque assert 'Is<A>(o)' failed [src/builtins/cast.tq:963] [../../src/builtins/base.tq:654]
+
+EXIT:0

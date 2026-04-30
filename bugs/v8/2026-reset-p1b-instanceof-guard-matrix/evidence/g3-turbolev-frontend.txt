@@ -1,0 +1,994 @@
+
+----- Bytecode before MaglevGraphBuilding -----
+
+Function: 0x210d0104c881 <JSFunction check (sfi = 0x210d0101f095)>
+Parameter count 1
+Register count 1
+Frame size 8
+         0x16c401000608 @    0 : 19 02             LdaImmutableCurrentContextSlot [2]
+         0x16c40100060a @    2 : d4                Star0
+         0x16c40100060b @    3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+         0x16c40100060e @    6 : b9                Return
+Constant pool (size = 0)
+Handler Table (size = 0)
+Source Position Table (size = 0)
+0x210d0101f141 <FeedbackVector[1]>
+----- V8.TFTurbolevMaglevGraphBuilder -----
+Graph
+
+[0m   [0m2: Constant(0x210d0104c881 <JSFunction check (sfi = 0x210d0101f095)>), 2 uses
+[0m   [0m3: Constant(0x210d0104c86d <FunctionContext[3]>), 3 uses
+[0m   [0m7: Constant(0x210d0104c7c1 <Object map = 0x210d0101f001>), 2 uses
+[0m   [0m8: Constant(0x210d0101ed55 <JSFunction returnsMarker (sfi = 0x210d0101e805)>), 1 uses
+[0m   [0m9: Constant(0x210d0101eb69 <ScriptContext[4]>), 1 uses
+[0m   [0m4: RootConstant(undefined_value), 1 uses
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m   [0m1: InitialValue(<this>), 2 uses
+[0m   [0m5: FunctionEntryStackCheck
+[0m      ↳ lazy @-1 (2 live vars)
+[0m   [0m6: Jump b1
+[0m   ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m10: 🐢 CallKnownJSFunction(0x210d0101e805 <SharedFunctionInfo returnsMarker>, {}) [n8, n9, n7, n4, n7], 1 uses
+[0m      │      @3 (2 live vars)
+[0m      ↳ lazy @ToBooleanLazyDeoptContinuation
+[0m  [0m11: ToBoolean[check heapobj] [n10], 1 uses
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m12: Return [n11]
+[0m
+
+----- V8.TFTurbolevInliner -----
+Graph
+
+[0m   [0m2: Constant(0x210d0104c881 <JSFunction check (sfi = 0x210d0101f095)>), 2 uses
+[0m   [0m3: Constant(0x210d0104c86d <FunctionContext[3]>), 3 uses
+[0m   [0m7: Constant(0x210d0104c7c1 <Object map = 0x210d0101f001>), 2 uses
+[0m   [0m8: Constant(0x210d0101ed55 <JSFunction returnsMarker (sfi = 0x210d0101e805)>), 1 uses
+[0m   [0m9: Constant(0x210d0101eb69 <ScriptContext[4]>), 1 uses
+[0m   [0m4: RootConstant(undefined_value), 1 uses
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m   [0m1: InitialValue(<this>), 2 uses
+[0m   [0m5: FunctionEntryStackCheck
+[0m      ↳ lazy @-1 (2 live vars)
+[0m   [0m6: Jump b1
+[0m   ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m10: 🐢 CallKnownJSFunction(0x210d0101e805 <SharedFunctionInfo returnsMarker>, {}) [n8, n9, n7, n4, n7], 1 uses
+[0m      │      @3 (2 live vars)
+[0m      ↳ lazy @ToBooleanLazyDeoptContinuation
+[0m  [0m11: ToBoolean[check heapobj] [n10], 1 uses
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m12: Return [n11]
+[0m
+
+----- V8.TFTurbolevPostHoc -----
+Graph
+
+[0m   [0m2: Constant(0x210d0104c881 <JSFunction check (sfi = 0x210d0101f095)>), 2 uses
+[0m   [0m3: Constant(0x210d0104c86d <FunctionContext[3]>), 3 uses
+[0m   [0m7: Constant(0x210d0104c7c1 <Object map = 0x210d0101f001>), 2 uses
+[0m   [0m8: Constant(0x210d0101ed55 <JSFunction returnsMarker (sfi = 0x210d0101e805)>), 1 uses
+[0m   [0m9: Constant(0x210d0101eb69 <ScriptContext[4]>), 1 uses
+[0m   [0m4: RootConstant(undefined_value), 1 uses
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m   [0m1: InitialValue(<this>), 2 uses
+[0m   [0m5: FunctionEntryStackCheck
+[0m      ↳ lazy @-1 (2 live vars)
+[0m   [0m6: Jump b1
+[0m   ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m10: 🐢 CallKnownJSFunction(0x210d0101e805 <SharedFunctionInfo returnsMarker>, {}) [n8, n9, n7, n4, n7], 1 uses
+[0m      │      @3 (2 live vars)
+[0m      ↳ lazy @ToBooleanLazyDeoptContinuation
+[0m  [0m11: ToBoolean[check heapobj] [n10], 1 uses
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m12: Return [n11]
+[0m
+
+----- V8.TFTurbolevDeadNodeSweeping -----
+Graph
+
+[0m   [0m2: Constant(0x210d0104c881 <JSFunction check (sfi = 0x210d0101f095)>), 2 uses
+[0m   [0m3: Constant(0x210d0104c86d <FunctionContext[3]>), 3 uses
+[0m   [0m7: Constant(0x210d0104c7c1 <Object map = 0x210d0101f001>), 2 uses
+[0m   [0m8: Constant(0x210d0101ed55 <JSFunction returnsMarker (sfi = 0x210d0101e805)>), 1 uses
+[0m   [0m9: Constant(0x210d0101eb69 <ScriptContext[4]>), 1 uses
+[0m   [0m4: RootConstant(undefined_value), 1 uses
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m   [0m1: InitialValue(<this>), 2 uses
+[0m   [0m5: FunctionEntryStackCheck
+[0m      ↳ lazy @-1 (2 live vars)
+[0m   [0m6: Jump b1
+[0m   ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m10: 🐢 CallKnownJSFunction(0x210d0101e805 <SharedFunctionInfo returnsMarker>, {}) [n8, n9, n7, n4, n7], 1 uses
+[0m      │      @3 (2 live vars)
+[0m      ↳ lazy @ToBooleanLazyDeoptContinuation
+[0m  [0m11: ToBoolean[check heapobj] [n10], 1 uses
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m12: Return [n11]
+[0m
+
+----- Bytecode before MaglevGraphBuilding -----
+
+Function: 0x210d0104c999 <JSFunction check (sfi = 0x210d0101f095)>
+Parameter count 1
+Register count 1
+Frame size 8
+         0x16c401000608 @    0 : 19 02             LdaImmutableCurrentContextSlot [2]
+         0x16c40100060a @    2 : d4                Star0
+         0x16c40100060b @    3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+         0x16c40100060e @    6 : b9                Return
+Constant pool (size = 0)
+Handler Table (size = 0)
+Source Position Table (size = 0)
+0x210d0101f141 <FeedbackVector[1]>
+----- V8.TFTurbolevMaglevGraphBuilder -----
+Graph
+
+[0m  [0m4: RootConstant(undefined_value), 0 uses 🪦
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m2: InitialValue(<context>), 4 uses
+[0m  [0m3: InitialValue(<closure>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m  [0m7: LoadContextSlotNoCells(0x10, mutable) [n2], 2 uses
+[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n2, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- V8.TFTurbolevInliner -----
+Graph
+
+[0m  [0m4: RootConstant(undefined_value), 0 uses 🪦
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m2: InitialValue(<context>), 4 uses
+[0m  [0m3: InitialValue(<closure>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m  [0m7: LoadContextSlotNoCells(0x10, mutable) [n2], 2 uses
+[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n2, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- V8.TFTurbolevPostHoc -----
+Graph
+
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m2: InitialValue(<context>), 4 uses
+[0m  [0m3: InitialValue(<closure>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m  [0m7: LoadContextSlotNoCells(0x10, mutable) [n2], 2 uses
+[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n2, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- V8.TFTurbolevDeadNodeSweeping -----
+Graph
+
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m2: InitialValue(<context>), 4 uses
+[0m  [0m3: InitialValue(<closure>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m  [0m7: LoadContextSlotNoCells(0x10, mutable) [n2], 2 uses
+[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n2, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- Bytecode before MaglevGraphBuilding -----
+
+Function: 0x210d0104ca95 <JSFunction check (sfi = 0x210d0101f095)>
+Parameter count 1
+Register count 1
+Frame size 8
+         0x16c401000608 @    0 : 19 02             LdaImmutableCurrentContextSlot [2]
+         0x16c40100060a @    2 : d4                Star0
+         0x16c40100060b @    3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+         0x16c40100060e @    6 : b9                Return
+Constant pool (size = 0)
+Handler Table (size = 0)
+Source Position Table (size = 0)
+0x210d0101f141 <FeedbackVector[1]>
+----- V8.TFTurbolevMaglevGraphBuilder -----
+Graph
+
+[0m  [0m4: RootConstant(undefined_value), 0 uses 🪦
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m2: InitialValue(<context>), 4 uses
+[0m  [0m3: InitialValue(<closure>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m  [0m7: LoadContextSlotNoCells(0x10, mutable) [n2], 2 uses
+[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n2, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- V8.TFTurbolevInliner -----
+Graph
+
+[0m  [0m4: RootConstant(undefined_value), 0 uses 🪦
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m2: InitialValue(<context>), 4 uses
+[0m  [0m3: InitialValue(<closure>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m  [0m7: LoadContextSlotNoCells(0x10, mutable) [n2], 2 uses
+[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n2, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- V8.TFTurbolevPostHoc -----
+Graph
+
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m2: InitialValue(<context>), 4 uses
+[0m  [0m3: InitialValue(<closure>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m  [0m7: LoadContextSlotNoCells(0x10, mutable) [n2], 2 uses
+[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n2, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- V8.TFTurbolevDeadNodeSweeping -----
+Graph
+
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m2: InitialValue(<context>), 4 uses
+[0m  [0m3: InitialValue(<closure>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m  [0m7: LoadContextSlotNoCells(0x10, mutable) [n2], 2 uses
+[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n2, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- Bytecode before MaglevGraphBuilding -----
+
+Function: 0x210d0104cb41 <JSFunction check (sfi = 0x210d0101f095)>
+Parameter count 1
+Register count 1
+Frame size 8
+         0x16c401000608 @    0 : 19 02             LdaImmutableCurrentContextSlot [2]
+         0x16c40100060a @    2 : d4                Star0
+         0x16c40100060b @    3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+         0x16c40100060e @    6 : b9                Return
+Constant pool (size = 0)
+Handler Table (size = 0)
+Source Position Table (size = 0)
+0x210d0101f141 <FeedbackVector[1]>
+----- V8.TFTurbolevMaglevGraphBuilder -----
+Graph
+
+[0m  [0m4: RootConstant(undefined_value), 0 uses 🪦
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m2: InitialValue(<context>), 4 uses
+[0m  [0m3: InitialValue(<closure>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m  [0m7: LoadContextSlotNoCells(0x10, mutable) [n2], 2 uses
+[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n2, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- V8.TFTurbolevInliner -----
+Graph
+
+[0m  [0m4: RootConstant(undefined_value), 0 uses 🪦
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m2: InitialValue(<context>), 4 uses
+[0m  [0m3: InitialValue(<closure>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m  [0m7: LoadContextSlotNoCells(0x10, mutable) [n2], 2 uses
+[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n2, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- V8.TFTurbolevPostHoc -----
+Graph
+
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m2: InitialValue(<context>), 4 uses
+[0m  [0m3: InitialValue(<closure>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m  [0m7: LoadContextSlotNoCells(0x10, mutable) [n2], 2 uses
+[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n2, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- V8.TFTurbolevDeadNodeSweeping -----
+Graph
+
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m2: InitialValue(<context>), 4 uses
+[0m  [0m3: InitialValue(<closure>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m  [0m7: LoadContextSlotNoCells(0x10, mutable) [n2], 2 uses
+[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n2, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- Bytecode before MaglevGraphBuilding -----
+
+Function: 0x210d0104cbed <JSFunction check (sfi = 0x210d0101f095)>
+Parameter count 1
+Register count 1
+Frame size 8
+         0x16c401000608 @    0 : 19 02             LdaImmutableCurrentContextSlot [2]
+         0x16c40100060a @    2 : d4                Star0
+         0x16c40100060b @    3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+         0x16c40100060e @    6 : b9                Return
+Constant pool (size = 0)
+Handler Table (size = 0)
+Source Position Table (size = 0)
+0x210d0101f141 <FeedbackVector[1]>
+----- V8.TFTurbolevMaglevGraphBuilder -----
+Graph
+
+[0m  [0m4: RootConstant(undefined_value), 0 uses 🪦
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m2: InitialValue(<context>), 4 uses
+[0m  [0m3: InitialValue(<closure>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m  [0m7: LoadContextSlotNoCells(0x10, mutable) [n2], 2 uses
+[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n2, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- V8.TFTurbolevInliner -----
+Graph
+
+[0m  [0m4: RootConstant(undefined_value), 0 uses 🪦
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m2: InitialValue(<context>), 4 uses
+[0m  [0m3: InitialValue(<closure>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m  [0m7: LoadContextSlotNoCells(0x10, mutable) [n2], 2 uses
+[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n2, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- V8.TFTurbolevPostHoc -----
+Graph
+
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m2: InitialValue(<context>), 4 uses
+[0m  [0m3: InitialValue(<closure>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m  [0m7: LoadContextSlotNoCells(0x10, mutable) [n2], 2 uses
+[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n2, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- V8.TFTurbolevDeadNodeSweeping -----
+Graph
+
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m2: InitialValue(<context>), 4 uses
+[0m  [0m3: InitialValue(<closure>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m  [0m7: LoadContextSlotNoCells(0x10, mutable) [n2], 2 uses
+[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n2, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- Bytecode before MaglevGraphBuilding -----
+
+Function: 0x210d0104cd15 <JSFunction check (sfi = 0x210d0101f4bd)>
+Parameter count 1
+Register count 1
+Frame size 8
+ 1371 S> 0x16c401000db0 @    0 : 19 02             LdaImmutableCurrentContextSlot [2]
+         0x16c401000db2 @    2 : d4                Star0
+ 1382 E> 0x16c401000db3 @    3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+ 1397 S> 0x16c401000db6 @    6 : b9                Return
+Constant pool (size = 0)
+Handler Table (size = 0)
+Source Position Table (size = 9)
+0x210d0101f561 <FeedbackVector[1]>
+----- V8.TFTurbolevMaglevGraphBuilder -----
+Graph
+
+[0m  [0m2: Constant(0x210d0104cd15 <JSFunction check (sfi = 0x210d0101f4bd)>), 2 uses
+[0m  [0m3: Constant(0x210d0104cd01 <FunctionContext[3]>), 3 uses
+[0m  [0m7: Constant(0x210d0104ccb9 <Object map = 0x210d0101f001>), 2 uses
+[0m  [0m4: RootConstant(undefined_value), 0 uses 🪦
+ [0mBlock b0
+[0m[1;34m0x210d0101f4bd <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:56:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f4bd <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:57:15)
+[m[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n3, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[1;34m0x210d0101f4bd <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:57:30)
+[m[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- V8.TFTurbolevInliner -----
+Graph
+
+[0m  [0m2: Constant(0x210d0104cd15 <JSFunction check (sfi = 0x210d0101f4bd)>), 2 uses
+[0m  [0m3: Constant(0x210d0104cd01 <FunctionContext[3]>), 3 uses
+[0m  [0m7: Constant(0x210d0104ccb9 <Object map = 0x210d0101f001>), 2 uses
+[0m  [0m4: RootConstant(undefined_value), 0 uses 🪦
+ [0mBlock b0
+[0m[1;34m0x210d0101f4bd <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:56:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f4bd <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:57:15)
+[m[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n3, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[1;34m0x210d0101f4bd <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:57:30)
+[m[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- V8.TFTurbolevPostHoc -----
+Graph
+
+[0m  [0m2: Constant(0x210d0104cd15 <JSFunction check (sfi = 0x210d0101f4bd)>), 2 uses
+[0m  [0m3: Constant(0x210d0104cd01 <FunctionContext[3]>), 3 uses
+[0m  [0m7: Constant(0x210d0104ccb9 <Object map = 0x210d0101f001>), 2 uses
+ [0mBlock b0
+[0m[1;34m0x210d0101f4bd <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:56:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f4bd <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:57:15)
+[m[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n3, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[1;34m0x210d0101f4bd <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:57:30)
+[m[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- V8.TFTurbolevDeadNodeSweeping -----
+Graph
+
+[0m  [0m2: Constant(0x210d0104cd15 <JSFunction check (sfi = 0x210d0101f4bd)>), 2 uses
+[0m  [0m3: Constant(0x210d0104cd01 <FunctionContext[3]>), 3 uses
+[0m  [0m7: Constant(0x210d0104ccb9 <Object map = 0x210d0101f001>), 2 uses
+ [0mBlock b0
+[0m[1;34m0x210d0101f4bd <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:56:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f4bd <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:57:15)
+[m[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n3, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[1;34m0x210d0101f4bd <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:57:30)
+[m[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- Bytecode before MaglevGraphBuilding -----
+
+Function: 0x210d0104d47d <JSFunction check (sfi = 0x210d0101f095)>
+Parameter count 1
+Register count 1
+Frame size 8
+         0x16c401000608 @    0 : 19 02             LdaImmutableCurrentContextSlot [2]
+         0x16c40100060a @    2 : d4                Star0
+         0x16c40100060b @    3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+         0x16c40100060e @    6 : b9                Return
+Constant pool (size = 0)
+Handler Table (size = 0)
+Source Position Table (size = 0)
+0x210d0101f141 <FeedbackVector[1]>
+----- V8.TFTurbolevMaglevGraphBuilder -----
+Graph
+
+[0m  [0m4: RootConstant(undefined_value), 0 uses 🪦
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m2: InitialValue(<context>), 4 uses
+[0m  [0m3: InitialValue(<closure>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m  [0m7: LoadContextSlotNoCells(0x10, mutable) [n2], 2 uses
+[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n2, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- V8.TFTurbolevInliner -----
+Graph
+
+[0m  [0m4: RootConstant(undefined_value), 0 uses 🪦
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m2: InitialValue(<context>), 4 uses
+[0m  [0m3: InitialValue(<closure>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m  [0m7: LoadContextSlotNoCells(0x10, mutable) [n2], 2 uses
+[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n2, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- V8.TFTurbolevPostHoc -----
+Graph
+
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m2: InitialValue(<context>), 4 uses
+[0m  [0m3: InitialValue(<closure>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m  [0m7: LoadContextSlotNoCells(0x10, mutable) [n2], 2 uses
+[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n2, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- V8.TFTurbolevDeadNodeSweeping -----
+Graph
+
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m2: InitialValue(<context>), 4 uses
+[0m  [0m3: InitialValue(<closure>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m  [0m7: LoadContextSlotNoCells(0x10, mutable) [n2], 2 uses
+[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n2, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- Bytecode before MaglevGraphBuilding -----
+
+Function: 0x210d0104d55d <JSFunction check (sfi = 0x210d0101f095)>
+Parameter count 1
+Register count 1
+Frame size 8
+         0x16c401000608 @    0 : 19 02             LdaImmutableCurrentContextSlot [2]
+         0x16c40100060a @    2 : d4                Star0
+         0x16c40100060b @    3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+         0x16c40100060e @    6 : b9                Return
+Constant pool (size = 0)
+Handler Table (size = 0)
+Source Position Table (size = 0)
+0x210d0101f141 <FeedbackVector[1]>
+----- V8.TFTurbolevMaglevGraphBuilder -----
+Graph
+
+[0m  [0m4: RootConstant(undefined_value), 0 uses 🪦
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m2: InitialValue(<context>), 4 uses
+[0m  [0m3: InitialValue(<closure>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m  [0m7: LoadContextSlotNoCells(0x10, mutable) [n2], 2 uses
+[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n2, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- V8.TFTurbolevInliner -----
+Graph
+
+[0m  [0m4: RootConstant(undefined_value), 0 uses 🪦
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m2: InitialValue(<context>), 4 uses
+[0m  [0m3: InitialValue(<closure>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m  [0m7: LoadContextSlotNoCells(0x10, mutable) [n2], 2 uses
+[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n2, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- V8.TFTurbolevPostHoc -----
+Graph
+
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m2: InitialValue(<context>), 4 uses
+[0m  [0m3: InitialValue(<closure>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m  [0m7: LoadContextSlotNoCells(0x10, mutable) [n2], 2 uses
+[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n2, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- V8.TFTurbolevDeadNodeSweeping -----
+Graph
+
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m2: InitialValue(<context>), 4 uses
+[0m  [0m3: InitialValue(<closure>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m  [0m7: LoadContextSlotNoCells(0x10, mutable) [n2], 2 uses
+[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n2, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- Bytecode before MaglevGraphBuilding -----
+
+Function: 0x210d0104d775 <JSFunction check (sfi = 0x210d0101f095)>
+Parameter count 1
+Register count 1
+Frame size 8
+         0x16c401000608 @    0 : 19 02             LdaImmutableCurrentContextSlot [2]
+         0x16c40100060a @    2 : d4                Star0
+         0x16c40100060b @    3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+         0x16c40100060e @    6 : b9                Return
+Constant pool (size = 0)
+Handler Table (size = 0)
+Source Position Table (size = 0)
+0x210d0101f141 <FeedbackVector[1]>
+----- V8.TFTurbolevMaglevGraphBuilder -----
+Graph
+
+[0m  [0m4: RootConstant(undefined_value), 0 uses 🪦
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m2: InitialValue(<context>), 4 uses
+[0m  [0m3: InitialValue(<closure>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m  [0m7: LoadContextSlotNoCells(0x10, mutable) [n2], 2 uses
+[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n2, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- V8.TFTurbolevInliner -----
+Graph
+
+[0m  [0m4: RootConstant(undefined_value), 0 uses 🪦
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m2: InitialValue(<context>), 4 uses
+[0m  [0m3: InitialValue(<closure>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m  [0m7: LoadContextSlotNoCells(0x10, mutable) [n2], 2 uses
+[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n2, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- V8.TFTurbolevPostHoc -----
+Graph
+
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m2: InitialValue(<context>), 4 uses
+[0m  [0m3: InitialValue(<closure>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m  [0m7: LoadContextSlotNoCells(0x10, mutable) [n2], 2 uses
+[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n2, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m
+
+----- V8.TFTurbolevDeadNodeSweeping -----
+Graph
+
+ [0mBlock b0
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:42:16)
+[m[0m[0;34m   0 : 19 02             LdaImmutableCurrentContextSlot [2]
+[m[0m  [0m1: InitialValue(<this>), 2 uses
+[0m  [0m2: InitialValue(<context>), 4 uses
+[0m  [0m3: InitialValue(<closure>), 2 uses
+[0m  [0m5: FunctionEntryStackCheck
+[0m     ↳ lazy @-1 (2 live vars)
+[0m  [0m6: Jump b1
+[0m  ↓
+ [0mBlock b1
+[0m[1;34m0x210d0101f095 <SharedFunctionInfo check> (0x210d0104a65d <String[82]: "bugs/v8/2026-reset-p1b-instanceof-guard-matrix/poc/g3-instanceof-fixpath-matrix.js">:0:0)
+[m[0m  [0m7: LoadContextSlotNoCells(0x10, mutable) [n2], 2 uses
+[0m[0;34m   3 : 7d f9 00          TestInstanceOf r0, FBV[0]
+[m[0m  [0m8: 🐢 TestInstanceOf [n2, n7, n7], 1 uses
+[0m     ↳ lazy @3 (2 live vars)
+[0m[0;34m   6 : b9                Return
+[m[0m  [0m9: Return [n8]
+[0m

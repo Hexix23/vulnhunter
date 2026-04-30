@@ -1,0 +1,9 @@
+HTTP/1.1 400 Bad Request
+X-Powered-By: Express
+content-type: text/plain
+Date: Fri, 24 Apr 2026 16:45:59 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+Transfer-Encoding: chunked
+
+Header "x-forwarded-proto" must be either "http" or "https".

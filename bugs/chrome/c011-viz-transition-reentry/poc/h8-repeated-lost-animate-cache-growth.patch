@@ -1,0 +1,71 @@
+diff --git a/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc b/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
+--- a/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
++++ b/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
+@@ -333,6 +333,10 @@ class CompositorFrameSinkSupportTestBase : public testing::Test {
+     return manager_->transition_token_to_animation_manager_.contains(token);
+   }
+ 
++  size_t CachedAnimationManagerCount() const {
++    return manager_->transition_token_to_animation_manager_.size();
++  }
++
+   void ProcessCompositorFrameTransitionDirective(
+       CompositorFrameSinkSupport* support,
+       const CompositorFrameTransitionDirective& directive,
+@@ -3129,6 +3133,56 @@ TEST_F(CompositorFrameSinkSupportTestBase,
+                                                         token_x));
+ }
+ 
++TEST_F(CompositorFrameSinkSupportTestBase,
++       OnSaveTransitionDirectiveProcessedRepeatedLostAnimateGrowsCache) {
++  SubmitCompositorFrameWithResources({});
++  Surface* current_surface = support_->GetLastCreatedSurfaceForTesting();
++  ASSERT_TRUE(current_surface);
++
++  uint32_t parent_sequence = local_surface_id_.parent_sequence_number();
++  constexpr int kIterations = 8;
++  for (int i = 0; i < kIterations; ++i) {
++    blink::ViewTransitionToken token;
++    auto save_directive = CompositorFrameTransitionDirective::CreateSave(
++        token, /*maybe_cross_frame_sink=*/true, 100 + i, {}, {}, false);
++    ProcessCompositorFrameTransitionDirective(support_.get(), save_directive,
++                                              current_surface);
++    ASSERT_TRUE(SupportHasSurfaceAnimationManagerForToken(support_.get(),
++                                                         token));
++
++    ++parent_sequence;
++    LocalSurfaceId next_local_surface_id(parent_sequence,
++                                         local_surface_id_.embed_token());
++
++    CompositorFrame next_frame =
++        MakeDefaultInteractiveCompositorFrame(kBeginFrameSourceId);
++    next_frame.metadata.transition_directives.push_back(
++        CompositorFrameTransitionDirective::CreateAnimate(
++            token, /*maybe_cross_frame_sink=*/true, 200 + i,
++            /*delay_layer_tree_view_deletion=*/true));
++
++    support_->SubmitCompositorFrame(next_local_surface_id,
++                                    std::move(next_frame));
++
++    SurfaceId next_surface_id(support_->frame_sink_id(),
++                              next_local_surface_id);
++    Surface* next_surface =
++        manager_->surface_manager()->GetSurfaceForId(next_surface_id);
++    ASSERT_TRUE(next_surface);
++    ASSERT_TRUE(next_surface->HasPendingFrame());
++
++    OnSaveTransitionDirectiveProcessed(support_.get(), save_directive);
++
++    EXPECT_FALSE(next_surface->HasPendingFrame());
++    EXPECT_FALSE(SupportHasSurfaceAnimationManagerForToken(support_.get(),
++                                                          token));
++    EXPECT_TRUE(HasAnimationManagerForToken(token));
++    EXPECT_EQ(static_cast<size_t>(i + 1), CachedAnimationManagerCount());
++
++    current_surface = next_surface;
++  }
++}
++
+ TEST_P(AckOnSurfaceActivationWhenInteractiveTest,
+        TreesInVizAcksCompositorFrames) {
+   base::test::ScopedFeatureList scoped_feature_list;

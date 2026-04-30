@@ -1,0 +1,4 @@
+Flag processing error: Contradictory value for readonly flag --verify-heap.
+If a test variant caused this, it might be necessary to specify additional contradictory flags in tools/testrunner/local/variants.py.
+
+EXIT:134

@@ -1,0 +1,8 @@
+baseline 13
+bytecode 11,3,37,0,0,35,0,2,185
+mutate-staglobal 2 0 -> 255
+install
+run
+13
+
+EXIT:0

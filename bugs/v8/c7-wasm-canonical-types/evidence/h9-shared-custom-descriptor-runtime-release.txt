@@ -1,0 +1,34 @@
+V8 is running with experimental features enabled. Stability and security will suffer.
+
+
+#
+# Fatal error
+# unimplemented code
+#
+#
+#
+#FailureMessage Object: 0x16fd74a88
+==== C stack trace ===============================
+
+    0   d8                                  0x00000001015e4adc v8::base::debug::StackTrace::StackTrace() + 28
+    1   d8                                  0x00000001015e94c4 v8::platform::(anonymous namespace)::PrintStackTrace() + 24
+    2   d8                                  0x00000001015daae0 V8_Fatal(char const*, ...) + 340
+    3   d8                                  0x0000000100afbe88 v8::internal::CreateStructMap(v8::internal::Isolate*, v8::internal::wasm::CanonicalTypeIndex, v8::internal::DirectHandle<v8::internal::Map>, int, v8::internal::DirectHandle<v8::internal::NativeContext>) + 0
+    4   d8                                  0x00000001009ccffc v8::internal::Runtime_WasmAllocateDescriptorStruct(int, unsigned long*, v8::internal::Isolate*) + 192
+    5   d8                                  0x0000000101488414 Builtins_WasmCEntry + 148
+    6   d8                                  0x000000010156169c Builtins_WasmAllocateDescriptorStruct + 60
+    7   ???                                 0x00003811db36ca40 0x0 + 61649343400512
+    8   ???                                 0x0000000157e722f8 0x0 + 5769732856
+    9   ???                                 0x0000000157f51b64 0x0 + 5770648420
+    10  ???                                 0x0000000157dce348 0x0 + 5769061192
+    11  ???                                 0x0000000157dcb344 0x0 + 5769048900
+    12  ???                                 0x0000000157dcb03c 0x0 + 5769048124
+    13  d8                                  0x0000000100227c9c v8::internal::(anonymous namespace)::Invoke(v8::internal::Isolate*, v8::internal::(anonymous namespace)::InvokeParams const&) + 3296
+    14  d8                                  0x0000000100227f9c v8::internal::Execution::CallScript(v8::internal::Isolate*, v8::internal::DirectHandle<v8::internal::JSFunction>, v8::internal::DirectHandle<v8::internal::Object>, v8::internal::DirectHandle<v8::internal::Object>) + 164
+    15  d8                                  0x00000001000ea358 v8::Script::Run(v8::Local<v8::Context>, v8::Local<v8::Data>) + 720
+    16  d8                                  0x000000010009cc60 v8::Shell::ExecuteString(v8::Isolate*, v8::Local<v8::String>, v8::Local<v8::String>, v8::Shell::ReportExceptions, v8::Global<v8::Value>*) + 1476
+    17  d8                                  0x00000001000b6060 v8::SourceGroup::Execute(v8::Isolate*) + 424
+    18  d8                                  0x00000001000b9c94 v8::Shell::RunMainIsolate(v8::Isolate*, bool) + 352
+    19  d8                                  0x00000001000b9914 v8::Shell::RunMain(v8::Isolate*, bool) + 316
+    20  d8                                  0x00000001000baea0 v8::Shell::Main(int, char**) + 2932
+    21  dyld                                0x00000001849bfda4 start + 6992

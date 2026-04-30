@@ -1,0 +1,23 @@
+diff --git a/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc b/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
+--- a/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
++++ b/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
+@@ -2976,8 +2976,6 @@ TEST_F(CompositorFrameSinkSupportTestBase,
+   remote_client.FlushForTesting();
+   EXPECT_FALSE(support);
+ }
+-
+-TEST_P(AckOnSurfaceActivationWhenInteractiveTest,
+ TEST_F(CompositorFrameSinkSupportTestBase,
+        OnSaveTransitionDirectiveProcessedManagerObserverDestroysSupport) {
+   manager_->RegisterFrameSinkId(kAnotherArbitraryFrameSinkId,
+@@ -3011,8 +3009,8 @@ TEST_F(CompositorFrameSinkSupportTestBase,
+ 
+   manager_->RemoveObserver(&observer);
+ }
+-
+-       TreesInVizAcksCompositorFrames) {
++TEST_P(AckOnSurfaceActivationWhenInteractiveTest,
++       TreesInVizAcksCompositorFrames) {
+   base::test::ScopedFeatureList scoped_feature_list;
+   scoped_feature_list.InitAndEnableFeature(features::kTreesInViz);
+   manager_->RegisterFrameSinkId(kAnotherArbitraryFrameSinkId,

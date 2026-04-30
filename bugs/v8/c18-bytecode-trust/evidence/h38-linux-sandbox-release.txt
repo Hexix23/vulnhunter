@@ -1,0 +1,36 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x29e100000000,0x2ae100000000)
+start
+same-global false
+
+
+#
+# Safely terminating process
+# The following harmless error was encountered: Check failed: IsPropertyCell(*feedback_value).
+#
+#
+#
+#FailureMessage Object: 0x7ffffa482810
+==== C stack trace ===============================
+
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c20ece) [0x555557174ece]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2038b) [0x55555717438b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1357f) [0x55555716757f]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12cd32b) [0x55555682132b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12ce758) [0x555556822758]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc419) [0x555556310419]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc3ce) [0x5555563103ce]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdc8180) [0x55555631c180]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdd75fc) [0x55555632b5fc]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xe09fc8) [0x55555635dfc8]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xd96464) [0x5555562ea464]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdada04) [0x555556301a04]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x6fa11b) [0x555555c4e11b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdaf3a4) [0x5555563033a4]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2224b) [0x55555717624b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c25564) [0x555557179564]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1e088) [0x555557172088]
+    /lib/x86_64-linux-gnu/libc.so.6(+0x9caa4) [0x7fffff52daa4]
+    /lib/x86_64-linux-gnu/libc.so.6(__clone+0x44) [0x7fffff5baa64]
+
+EXIT:0

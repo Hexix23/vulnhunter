@@ -1,0 +1,17 @@
+ASan (bash /Users/carlosgomez/v8-engagement/scratch/repro.sh poc/h3.js)
+
+negated raw astral: OK [^\q{𐐀}]/v
+negated escaped codepoint: OK [^\q{\u{10400}}]/v
+negated escaped surrogates: OK [^\q{\uD801\uDC00}]/v
+negated raw astral ignorecase: OK [^\q{𐐀}]/iv
+negated escaped codepoint ignorecase: OK [^\q{\u{10400}}]/iv
+negated escaped surrogates ignorecase: OK [^\q{\uD801\uDC00}]/iv
+
+Release (/Users/carlosgomez/v8-engagement/v8/v8/out/release/d8 ... poc/h3.js)
+
+negated raw astral: OK [^\q{𐐀}]/v
+negated escaped codepoint: OK [^\q{\u{10400}}]/v
+negated escaped surrogates: OK [^\q{\uD801\uDC00}]/v
+negated raw astral ignorecase: OK [^\q{𐐀}]/iv
+negated escaped codepoint ignorecase: OK [^\q{\u{10400}}]/iv
+negated escaped surrogates ignorecase: OK [^\q{\uD801\uDC00}]/iv

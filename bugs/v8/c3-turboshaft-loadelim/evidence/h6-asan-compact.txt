@@ -1,0 +1,5 @@
+V8 is running with developer-only features enabled. Stability and security will suffer.
+[8359:0x633000004000]       84 ms: Mark-Compact 0.2 (0.8) -> 0.2 (0.8) MB, pooled: 0.0 MB, 13.59 / 0.00 ms (average mu = 0.804, current mu = 0.804) testing; GC in old space requested
+[8359:0x633000004000]       93 ms: Mark-Compact 0.2 (1.0) -> 0.2 (1.0) MB, pooled: 0.0 MB, 4.74 / 0.00 ms (average mu = 0.766, current mu = 0.481) testing; GC in old space requested
+[8359:0x633000004000]      163 ms: Mark-Compact 0.2 (1.5) -> 0.2 (1.2) MB, pooled: 0.0 MB, 2.59 / 0.00 ms (average mu = 0.893, current mu = 0.963) testing; GC in old space requested
+OK

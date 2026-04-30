@@ -1,0 +1,9 @@
+buddhist era no year: OK 2020-05-01[u-ca=buddhist]
+roc era no year: THROW RangeError Temporal error: Unknown era.
+japanese era no year: OK 2020-05-01[u-ca=japanese]
+gregory bce: OK 0000-01-01[u-ca=gregory]
+chinese era fields: THROW TypeError Temporal error: Invalid PlainDate fields provided.
+dangi era fields: THROW TypeError Temporal error: Invalid PlainDate fields provided.
+hebrew era fields: OK 2019-09-30[u-ca=hebrew]
+islamic era fields: THROW RangeError Temporal error: Invalid calendar string
+H7 DONE

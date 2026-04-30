@@ -1,0 +1,8 @@
+start
+loaded
+same_field true
+same_arr true
+cross_same true
+done
+
+EXIT:0

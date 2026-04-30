@@ -1,0 +1,11 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x34ed00000000,0x35ed00000000)
+V8 is running with experimental features enabled. Stability and security will suffer.
+entry1_is_marker=true
+unopt_before=1
+call1=117
+js_calls_after1=1
+unopt_after1=0
+call2=118
+js_calls_after2=2
+unopt_after2=0

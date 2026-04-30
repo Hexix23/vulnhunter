@@ -1,0 +1,6 @@
+ASAN and release produced identical output.
+
+PlainDate critical-first: THROW RangeError Temporal error: Duplicate calendar value with critical flag found.
+PlainDate critical-second: THROW RangeError Temporal error: Duplicate calendar value with critical flag found.
+PlainDateTime critical-mixed: THROW RangeError Temporal error: Duplicate calendar value with critical flag found.
+ZonedDateTime critical-mixed: THROW RangeError Temporal error: Duplicate calendar value with critical flag found.

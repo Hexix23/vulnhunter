@@ -1,0 +1,542 @@
+### src=0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x3d5000000000,0x3e5000000000)
+src=0 before=0x101f937 srcval=0x101f937 same=true
+bool true
+tag [object Number]
+EXIT:0
+### src=1
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x18b600000000,0x19b600000000)
+
+
+#
+# Safely terminating process
+# The following harmless error was encountered: Check failed: IsPropertyCell(*feedback_value).
+#
+#
+#
+#FailureMessage Object: 0x7ffff9480810
+==== C stack trace ===============================
+
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c20ece) [0x555557174ece]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2038b) [0x55555717438b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1357f) [0x55555716757f]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12cd32b) [0x55555682132b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12ce758) [0x555556822758]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc419) [0x555556310419]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc3ce) [0x5555563103ce]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdc8180) [0x55555631c180]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdd75fc) [0x55555632b5fc]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xe09fc8) [0x55555635dfc8]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xd96464) [0x5555562ea464]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdada04) [0x555556301a04]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x6fa11b) [0x555555c4e11b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdaf3a4) [0x5555563033a4]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2224b) [0x55555717624b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c25564) [0x555557179564]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1e088) [0x555557172088]
+    /lib/x86_64-linux-gnu/libc.so.6(+0x9caa4) [0x7fffff52daa4]
+    /lib/x86_64-linux-gnu/libc.so.6(__clone+0x44) [0x7fffff5baa64]
+EXIT:0
+### src=2
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x1e0500000000,0x1f0500000000)
+Caught harmless memory access violation (inside sandbox). Exiting process...
+EXIT:0
+### src=3
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x22bc00000000,0x23bc00000000)
+Caught harmless memory access violation (inside sandbox). Exiting process...
+EXIT:0
+### src=4
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x2f2400000000,0x302400000000)
+src=4 before=0x101f937 srcval=0x101f6df same=false
+bool true
+tag [object Object]
+
+
+#
+# Safely terminating process
+# The following harmless error was encountered: Check failed: IsPropertyCell(*feedback_value).
+#
+#
+#
+#FailureMessage Object: 0x7ffff7c7d810
+==== C stack trace ===============================
+
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c20ece) [0x555557174ece]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2038b) [0x55555717438b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1357f) [0x55555716757f]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12cd32b) [0x55555682132b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12ce758) [0x555556822758]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc419) [0x555556310419]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc3ce) [0x5555563103ce]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdc8180) [0x55555631c180]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdd75fc) [0x55555632b5fc]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xe09fc8) [0x55555635dfc8]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xd96464) [0x5555562ea464]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdada04) [0x555556301a04]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x6fa11b) [0x555555c4e11b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdaf3a4) [0x5555563033a4]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2224b) [0x55555717624b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c25564) [0x555557179564]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1e088) [0x555557172088]
+    /lib/x86_64-linux-gnu/libc.so.6(+0x9caa4) [0x7fffff52daa4]
+    /lib/x86_64-linux-gnu/libc.so.6(__clone+0x44) [0x7fffff5baa64]
+EXIT:0
+### src=5
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x347000000000,0x357000000000)
+src=5 before=0x101f937 srcval=0x3 same=true
+bool true
+tag [object Number]
+EXIT:0
+### src=6
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x3af100000000,0x3bf100000000)
+src=6 before=0x101f937 srcval=0x11 same=false
+bool true
+tag [object String]
+
+
+#
+# Safely terminating process
+# The following harmless error was encountered: Check failed: IsPropertyCell(*feedback_value).
+#
+#
+#
+#FailureMessage Object: 0x7ffffa482810
+==== C stack trace ===============================
+
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c20ece) [0x555557174ece]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2038b) [0x55555717438b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1357f) [0x55555716757f]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12cd32b) [0x55555682132b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12ce758) [0x555556822758]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc419) [0x555556310419]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc3ce) [0x5555563103ce]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdc8180) [0x55555631c180]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdd75fc) [0x55555632b5fc]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xe09fc8) [0x55555635dfc8]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xd96464) [0x5555562ea464]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdada04) [0x555556301a04]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x6fa11b) [0x555555c4e11b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdaf3a4) [0x5555563033a4]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2224b) [0x55555717624b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c25564) [0x555557179564]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1e088) [0x555557172088]
+    /lib/x86_64-linux-gnu/libc.so.6(+0x9caa4) [0x7fffff52daa4]
+    /lib/x86_64-linux-gnu/libc.so.6(__clone+0x44) [0x7fffff5baa64]
+EXIT:0
+### src=7
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x208f00000000,0x218f00000000)
+src=7 before=0x101f937 srcval=0x11 same=false
+bool true
+tag [object String]
+
+
+#
+# Safely terminating process
+# The following harmless error was encountered: Check failed: IsPropertyCell(*feedback_value).
+#
+#
+#
+#FailureMessage Object: 0x7ffff9c81810
+==== C stack trace ===============================
+
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c20ece) [0x555557174ece]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2038b) [0x55555717438b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1357f) [0x55555716757f]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12cd32b) [0x55555682132b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12ce758) [0x555556822758]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc419) [0x555556310419]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc3ce) [0x5555563103ce]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdc8180) [0x55555631c180]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdd75fc) [0x55555632b5fc]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xe09fc8) [0x55555635dfc8]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xd96464) [0x5555562ea464]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdada04) [0x555556301a04]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x6fa11b) [0x555555c4e11b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdaf3a4) [0x5555563033a4]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2224b) [0x55555717624b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c25564) [0x555557179564]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1e088) [0x555557172088]
+    /lib/x86_64-linux-gnu/libc.so.6(+0x9caa4) [0x7fffff52daa4]
+    /lib/x86_64-linux-gnu/libc.so.6(__clone+0x44) [0x7fffff5baa64]
+EXIT:0
+### src=8
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x287400000000,0x297400000000)
+src=8 before=0x101f937 srcval=0x11 same=false
+bool true
+tag [object String]
+
+
+#
+# Safely terminating process
+# The following harmless error was encountered: Check failed: IsPropertyCell(*feedback_value).
+#
+#
+#
+#FailureMessage Object: 0x7ffff747c810
+==== C stack trace ===============================
+
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c20ece) [0x555557174ece]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2038b) [0x55555717438b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1357f) [0x55555716757f]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12cd32b) [0x55555682132b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12ce758) [0x555556822758]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc419) [0x555556310419]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc3ce) [0x5555563103ce]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdc8180) [0x55555631c180]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdd75fc) [0x55555632b5fc]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xe09fc8) [0x55555635dfc8]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xd96464) [0x5555562ea464]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdada04) [0x555556301a04]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x6fa11b) [0x555555c4e11b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdaf3a4) [0x5555563033a4]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2224b) [0x55555717624b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c25564) [0x555557179564]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1e088) [0x555557172088]
+    /lib/x86_64-linux-gnu/libc.so.6(+0x9caa4) [0x7fffff52daa4]
+    /lib/x86_64-linux-gnu/libc.so.6(__clone+0x44) [0x7fffff5baa64]
+EXIT:0
+### src=9
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x204300000000,0x214300000000)
+
+
+#
+# Safely terminating process
+# The following harmless error was encountered: Check failed: IsPropertyCell(*feedback_value).
+#
+#
+#
+#FailureMessage Object: 0x7ffff8c7f810
+==== C stack trace ===============================
+
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c20ece) [0x555557174ece]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2038b) [0x55555717438b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1357f) [0x55555716757f]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12cd32b) [0x55555682132b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12ce758) [0x555556822758]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc419) [0x555556310419]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc3ce) [0x5555563103ce]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdc8180) [0x55555631c180]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdd75fc) [0x55555632b5fc]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xe09fc8) [0x55555635dfc8]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xd96464) [0x5555562ea464]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdada04) [0x555556301a04]
+    src=9 before=0x101f937 srcval=0x11 same=false
+/home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x6fa11b) [0x555555c4e11b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdaf3a4) [0x5555563033a4]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2224b) [0x55555717624b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c25564) [0x555557179564]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1e088) [0x555557172088]
+    /lib/x86_64-linux-gnu/libc.so.6(+0x9caa4) [0x7fffff52daa4]
+    /lib/x86_64-linux-gnu/libc.so.6(__clone+0x44) [0x7fffff5baa64]
+bool true
+EXIT:0
+### src=10
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x339e00000000,0x349e00000000)
+src=10 before=0x101f937 srcval=0x11 same=false
+bool true
+tag [object String]
+
+
+#
+# Safely terminating process
+# The following harmless error was encountered: Check failed: IsPropertyCell(*feedback_value).
+#
+#
+#
+#FailureMessage Object: 0x7ffff847e810
+==== C stack trace ===============================
+
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c20ece) [0x555557174ece]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2038b) [0x55555717438b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1357f) [0x55555716757f]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12cd32b) [0x55555682132b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12ce758) [0x555556822758]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc419) [0x555556310419]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc3ce) [0x5555563103ce]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdc8180) [0x55555631c180]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdd75fc) [0x55555632b5fc]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xe09fc8) [0x55555635dfc8]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xd96464) [0x5555562ea464]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdada04) [0x555556301a04]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x6fa11b) [0x555555c4e11b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdaf3a4) [0x5555563033a4]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2224b) [0x55555717624b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c25564) [0x555557179564]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1e088) [0x555557172088]
+    /lib/x86_64-linux-gnu/libc.so.6(+0x9caa4) [0x7fffff52daa4]
+    /lib/x86_64-linux-gnu/libc.so.6(__clone+0x44) [0x7fffff5baa64]
+EXIT:0
+### src=11
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x338400000000,0x348400000000)
+
+
+#
+# Safely terminating process
+# The following harmless error was encountered: Check failed: IsPropertyCell(*feedback_value).
+#
+#
+#
+#FailureMessage Object: 0x7ffff847e810src=11 before=0x101f937 srcval=0x11 same=false
+bool true
+
+==== C stack trace ===============================
+
+tag [object String]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c20ece) [0x555557174ece]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2038b) [0x55555717438b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1357f) [0x55555716757f]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12cd32b) [0x55555682132b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12ce758) [0x555556822758]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc419) [0x555556310419]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc3ce) [0x5555563103ce]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdc8180) [0x55555631c180]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdd75fc) [0x55555632b5fc]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xe09fc8) [0x55555635dfc8]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xd96464) [0x5555562ea464]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdada04) [0x555556301a04]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x6fa11b) [0x555555c4e11b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdaf3a4) [0x5555563033a4]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2224b) [0x55555717624b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c25564) [0x555557179564]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1e088) [0x555557172088]
+    /lib/x86_64-linux-gnu/libc.so.6(+0x9caa4) [0x7fffff52daa4]
+    /lib/x86_64-linux-gnu/libc.so.6(__clone+0x44) [0x7fffff5baa64]
+EXIT:0
+### src=12
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x214000000000,0x224000000000)
+
+
+#
+# Safely terminating process
+# The following harmless error was encountered: Check failed: IsPropertyCell(*feedback_value).
+#
+#
+#
+#FailureMessage Object: 0x7ffff847e810
+==== C stack trace ===============================
+
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c20ece) [0x555557174ece]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2038b) [0x55555717438b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1357f) [0x55555716757f]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12cd32b) [0x55555682132b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12ce758) [0x555556822758]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc419) [0x555556310419]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc3ce) [0x5555563103ce]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdc8180) [0x55555631c180]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdd75fc) [0x55555632b5fc]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xe09fc8) [0x55555635dfc8]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xd96464) [0x5555562ea464]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdada04) [0x555556301a04]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x6fa11b) [0x555555c4e11b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdaf3a4) [0x5555563033a4]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2224b) [0x55555717624b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c25564) [0x555557179564]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1e088) [0x555557172088]
+    /lib/x86_64-linux-gnu/libc.so.6(+0x9caa4) [0x7fffff52daa4]
+    /lib/x86_64-linux-gnu/libc.so.6(__clone+0x44) [0x7fffff5baa64]
+EXIT:0
+### src=13
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x1eeb00000000,0x1feb00000000)
+
+
+#
+# Safely terminating process
+# The following harmless error was encountered: Check failed: IsPropertyCell(*feedback_value).
+#
+#
+#
+#FailureMessage Object: 0x7ffff746c810
+==== C stack trace ===============================
+
+src=13 before=0x101f937 srcval=0x11 same=false
+    bool true
+/home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c20ece) [0x555557174ece]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2038b) [0x55555717438b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1357f) [0x55555716757f]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12cd32b) [0x55555682132b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12ce758) [0x555556822758]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc419) [0x555556310419]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc3ce) [0x5555563103ce]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdc8180) [0x55555631c180]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdd75fc) [0x55555632b5fc]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xe09fc8) [0x55555635dfc8]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xd96464) [0x5555562ea464]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdada04) [0x555556301a04]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x6fa11b) [0x555555c4e11b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdaf3a4) [0x5555563033a4]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2224b) [0x55555717624b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c25564) [0x555557179564]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1e088) [0x555557172088]
+    /lib/x86_64-linux-gnu/libc.so.6(+0x9caa4) [0x7fffff52daa4]
+    /lib/x86_64-linux-gnu/libc.so.6(__clone+0x44) [0x7fffff5baa64]
+tag [object String]
+EXIT:0
+### src=14
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x3b1800000000,0x3c1800000000)
+src=14 before=0x101f937 srcval=0x11 same=false
+bool true
+tag [object String]
+
+
+#
+# Safely terminating process
+# The following harmless error was encountered: Check failed: IsPropertyCell(*feedback_value).
+#
+#
+#
+#FailureMessage Object: 0x7ffffac83810
+==== C stack trace ===============================
+
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c20ece) [0x555557174ece]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2038b) [0x55555717438b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1357f) [0x55555716757f]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12cd32b) [0x55555682132b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12ce758) [0x555556822758]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc419) [0x555556310419]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc3ce) [0x5555563103ce]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdc8180) [0x55555631c180]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdd75fc) [0x55555632b5fc]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xe09fc8) [0x55555635dfc8]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xd96464) [0x5555562ea464]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdada04) [0x555556301a04]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x6fa11b) [0x555555c4e11b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdaf3a4) [0x5555563033a4]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2224b) [0x55555717624b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c25564) [0x555557179564]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1e088) [0x555557172088]
+    /lib/x86_64-linux-gnu/libc.so.6(+0x9caa4) [0x7fffff52daa4]
+    /lib/x86_64-linux-gnu/libc.so.6(__clone+0x44) [0x7fffff5baa64]
+EXIT:0
+### src=15
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0xc9600000000,0xd9600000000)
+src=15 before=0x101f937 srcval=0x11 same=false
+bool true
+tag [object String]
+
+
+#
+# Safely terminating process
+# The following harmless error was encountered: Check failed: IsPropertyCell(*feedback_value).
+#
+#
+#
+#FailureMessage Object: 0x7ffffac83810
+==== C stack trace ===============================
+
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c20ece) [0x555557174ece]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2038b) [0x55555717438b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1357f) [0x55555716757f]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12cd32b) [0x55555682132b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12ce758) [0x555556822758]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc419) [0x555556310419]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc3ce) [0x5555563103ce]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdc8180) [0x55555631c180]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdd75fc) [0x55555632b5fc]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xe09fc8) [0x55555635dfc8]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xd96464) [0x5555562ea464]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdada04) [0x555556301a04]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x6fa11b) [0x555555c4e11b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdaf3a4) [0x5555563033a4]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2224b) [0x55555717624b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c25564) [0x555557179564]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1e088) [0x555557172088]
+    /lib/x86_64-linux-gnu/libc.so.6(+0x9caa4) [0x7fffff52daa4]
+    /lib/x86_64-linux-gnu/libc.so.6(__clone+0x44) [0x7fffff5baa64]
+EXIT:0
+### src=16
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x276d00000000,0x286d00000000)
+src=16 before=0x101f937 srcval=0x11 same=false
+bool true
+tag [object String]
+
+
+#
+# Safely terminating process
+# The following harmless error was encountered: Check failed: IsPropertyCell(*feedback_value).
+#
+#
+#
+#FailureMessage Object: 0x7ffff747c810
+==== C stack trace ===============================
+
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c20ece) [0x555557174ece]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2038b) [0x55555717438b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1357f) [0x55555716757f]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12cd32b) [0x55555682132b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12ce758) [0x555556822758]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc419) [0x555556310419]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc3ce) [0x5555563103ce]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdc8180) [0x55555631c180]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdd75fc) [0x55555632b5fc]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xe09fc8) [0x55555635dfc8]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xd96464) [0x5555562ea464]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdada04) [0x555556301a04]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x6fa11b) [0x555555c4e11b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdaf3a4) [0x5555563033a4]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2224b) [0x55555717624b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c25564) [0x555557179564]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1e088) [0x555557172088]
+    /lib/x86_64-linux-gnu/libc.so.6(+0x9caa4) [0x7fffff52daa4]
+    /lib/x86_64-linux-gnu/libc.so.6(__clone+0x44) [0x7fffff5baa64]
+EXIT:0
+### src=31
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x31ed00000000,0x32ed00000000)
+src=31 before=0x101f937 srcval=0x11 same=false
+bool true
+tag [object String]
+
+
+#
+# Safely terminating process
+# The following harmless error was encountered: Check failed: IsPropertyCell(*feedback_value).
+#
+#
+#
+#FailureMessage Object: 0x7ffff6c7b810
+==== C stack trace ===============================
+
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c20ece) [0x555557174ece]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2038b) [0x55555717438b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1357f) [0x55555716757f]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12cd32b) [0x55555682132b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12ce758) [0x555556822758]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc419) [0x555556310419]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdbc3ce) [0x5555563103ce]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdc8180) [0x55555631c180]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdd75fc) [0x55555632b5fc]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xe09fc8) [0x55555635dfc8]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xd96464) [0x5555562ea464]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdada04) [0x555556301a04]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x6fa11b) [0x555555c4e11b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdaf3a4) [0x5555563033a4]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2224b) [0x55555717624b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c25564) [0x555557179564]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1e088) [0x555557172088]
+    /lib/x86_64-linux-gnu/libc.so.6(+0x9caa4) [0x7fffff52daa4]
+    /lib/x86_64-linux-gnu/libc.so.6(__clone+0x44) [0x7fffff5baa64]
+EXIT:0
+### src=63
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x155100000000,0x165100000000)
+src=63 before=0x101f937 srcval=0x3 same=true
+bool true
+tag [object Number]
+EXIT:0

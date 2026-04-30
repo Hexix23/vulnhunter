@@ -1,0 +1,69 @@
+diff --git a/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc b/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
+--- a/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
++++ b/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
+@@ -3010,0 +3011,64 @@
++
++TEST_F(CompositorFrameSinkSupportTestBase,
++       OnSaveTransitionDirectiveProcessedDuplicateCompletionIsIgnored) {
++  blink::ViewTransitionToken token;
++  auto save_directive = CompositorFrameTransitionDirective::CreateSave(
++      token, /*maybe_cross_frame_sink=*/true, 1, {}, {}, false);
++
++  auto frame = MakeDefaultInteractiveCompositorFrame(kBeginFrameSourceId);
++  support_->SubmitCompositorFrame(local_surface_id_, std::move(frame));
++  Surface* surface = support_->GetLastCreatedSurfaceForTesting();
++  ASSERT_TRUE(surface);
++
++  ProcessCompositorFrameTransitionDirective(support_.get(), save_directive,
++                                            surface);
++  ASSERT_TRUE(SupportHasSurfaceAnimationManager(support_.get()));
++
++  OnSaveTransitionDirectiveProcessed(support_.get(), save_directive);
++
++  EXPECT_FALSE(SupportHasSurfaceAnimationManager(support_.get()));
++  EXPECT_TRUE(HasAnimationManagerForToken(token));
++
++  OnSaveTransitionDirectiveProcessed(support_.get(), save_directive);
++
++  EXPECT_FALSE(SupportHasSurfaceAnimationManager(support_.get()));
++  EXPECT_TRUE(HasAnimationManagerForToken(token));
++}
++
++TEST_F(CompositorFrameSinkSupportTestBase,
++       OnSaveTransitionDirectiveProcessedCacheCollisionKeepsOldManager) {
++  blink::ViewTransitionToken token;
++  auto save_directive = CompositorFrameTransitionDirective::CreateSave(
++      token, /*maybe_cross_frame_sink=*/true, 1, {}, {}, false);
++
++  auto frame = MakeDefaultInteractiveCompositorFrame(kBeginFrameSourceId);
++  support_->SubmitCompositorFrame(local_surface_id_, std::move(frame));
++  Surface* surface = support_->GetLastCreatedSurfaceForTesting();
++  ASSERT_TRUE(surface);
++
++  ProcessCompositorFrameTransitionDirective(support_.get(), save_directive,
++                                            surface);
++  ASSERT_TRUE(SupportHasSurfaceAnimationManager(support_.get()));
++
++  auto test_context_provider = TestContextProvider::CreateRaster();
++  gpu::TestSharedImageInterface* sii =
++      test_context_provider->SharedImageInterface();
++  ReservedResourceIdTracker id_tracker;
++
++  std::unique_ptr<SurfaceAnimationManager> existing_manager =
++      SurfaceAnimationManager::CreateWithSave(
++          save_directive, surface, sii, &id_tracker, base::DoNothing(),
++          base::DoNothing());
++  ASSERT_TRUE(existing_manager);
++  SurfaceAnimationManager* existing_manager_raw = existing_manager.get();
++  manager_->CacheSurfaceAnimationManager(token, std::move(existing_manager));
++  ASSERT_TRUE(HasAnimationManagerForToken(token));
++
++  OnSaveTransitionDirectiveProcessed(support_.get(), save_directive);
++
++  EXPECT_FALSE(SupportHasSurfaceAnimationManager(support_.get()));
++  EXPECT_TRUE(HasAnimationManagerForToken(token));
++
++  std::unique_ptr<SurfaceAnimationManager> taken_manager =
++      manager_->TakeSurfaceAnimationManager(token);
++  EXPECT_EQ(existing_manager_raw, taken_manager.get());
++}

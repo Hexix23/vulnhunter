@@ -1,0 +1,23 @@
+Command:
+orb -m ubuntu -w /home/carlosgomez/chromium-engagement/src env ASAN_OPTIONS=detect_odr_violation=0 xvfb-run -a out/c001_asan/viz_unittests --gtest_filter='*AnimateThenReleaseClearsLostManager:*ReleaseThenAnimateClearsLostManager:*LaterReleaseClearsLostManager*' --single-process-tests
+
+Result:
+exit code 0
+
+Key output:
+[ RUN      ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedAnimateThenReleaseClearsLostManager
+[       OK ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedAnimateThenReleaseClearsLostManager (99 ms)
+[ RUN      ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedReleaseThenAnimateClearsLostManager
+[253997:253997:ERROR:components/viz/service/frame_sinks/frame_sink_manager_impl.cc:1342] SurfaceAnimationManager missing for |transition_token| : (F092910951FFF423D18670B1BFE51260)
+[       OK ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedReleaseThenAnimateClearsLostManager (4 ms)
+[ RUN      ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedLaterReleaseClearsLostManager
+[       OK ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedLaterReleaseClearsLostManager (2 ms)
+[  PASSED  ] 3 tests.
+
+Interpretation:
+- H10 Animate then Release in the activating frame clears the leaked global manager.
+- H11 Release then Animate in the activating frame also clears it; subsequent Animate logs missing manager.
+- H12 A later Release frame clears the H7/H8 cached manager.
+
+Impact narrowing:
+H8/H9 require Release to be delayed, omitted, or outpaced by many distinct tokens. Normal Release is an effective cleanup path when delivered.

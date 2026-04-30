@@ -1,0 +1,6 @@
+V8 is running with experimental features enabled. Stability and security will suffer.
+Pattern not supported by experimental engine: 0x396b0101e049 <String[33]: #^(?:[\\q{a|aa|aaa|aaaa|aaaaa}]+)+$>
+Pattern not supported by experimental engine: 0x396b0101e099 <String[52]: #^(?:[\\p{Emoji_Keycap_Sequence}\\q{1|11|111|1111}]+)+$>
+Pattern not supported by experimental engine: 0x396b0101e0f5 <String[44]: #^([\\p{Emoji_Keycap_Sequence}\\q{11|1}]+)(X)?$>
+Pattern not supported by experimental engine: 0x396b0101e20d <String[38]: #^([\\p{RGI_Emoji_Flag_Sequence}]+)(X)?$>
+H9 PASS

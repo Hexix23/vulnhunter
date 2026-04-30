@@ -1,0 +1,37 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0xc1100000000,0xd1100000000)
+before f=13 caller=16
+fvF=0x101fcdd oldSfi=0x101f7e5 gSfi=0x101f815
+after-corrupt f=13 caller=16
+
+
+#
+# Safely terminating process
+# The following harmless error was encountered: Check failed: function.shared(broker).equals( feedback_cell.shared_function_info(broker).value()).
+#
+#
+#
+#FailureMessage Object: 0x7ffffffc38f0
+==== C stack trace ===============================
+
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c20ece) [0x555557174ece]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2038b) [0x55555717438b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1357f) [0x55555716757f]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12d1469) [0x555556825469]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12d1077) [0x555556825077]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x12d1d2a) [0x555556825d2a]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1267dcd) [0x5555567bbdcd]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1267a9e) [0x5555567bba9e]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1267648) [0x5555567bb648]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x13785da) [0x5555568cc5da]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1349059) [0x55555689d059]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1346376) [0x55555689a376]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1345f86) [0x555556899f86]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x709c23) [0x555555c5dc23]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x703b7c) [0x555555c57b7c]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x70350d) [0x555555c5750d]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xc6e131) [0x5555561c2131]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xc6c194) [0x5555561c0194]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1ab7876) [0x55555700b876]
+
+EXIT:0

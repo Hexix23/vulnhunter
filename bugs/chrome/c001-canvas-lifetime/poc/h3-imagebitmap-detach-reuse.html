@@ -1,0 +1,39 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>C001 H3 ImageBitmap detach/reuse</title>
+<canvas id="src" width="1024" height="1024"></canvas>
+<canvas id="dst" width="1024" height="1024"></canvas>
+<pre id="out"></pre>
+<script>
+const out = document.getElementById("out");
+function say(x) { out.textContent += x + "\n"; }
+
+async function run() {
+  say("H3 start");
+  const src = document.getElementById("src");
+  const dst = document.getElementById("dst");
+  const sctx = src.getContext("2d");
+  const bctx = dst.getContext("bitmaprenderer");
+
+  let expectedThrows = 0;
+  for (let i = 0; i < 250; i++) {
+    src.width = 32 + (i % 97);
+    src.height = 32 + (i % 89);
+    sctx.fillStyle = i & 1 ? "black" : "white";
+    sctx.fillRect(0, 0, src.width, src.height);
+    const bitmap = await createImageBitmap(src);
+    bctx.transferFromImageBitmap(bitmap);
+    try {
+      bctx.transferFromImageBitmap(bitmap);
+    } catch (e) {
+      expectedThrows++;
+    }
+    dst.width = 16 + (i % 31);
+    dst.height = 16 + (i % 29);
+    if (window.gc) gc();
+  }
+  say("H3 done expectedThrows=" + expectedThrows);
+}
+
+run();
+</script>

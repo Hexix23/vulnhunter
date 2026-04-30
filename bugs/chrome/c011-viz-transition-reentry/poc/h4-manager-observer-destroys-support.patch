@@ -1,0 +1,55 @@
+diff --git a/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc b/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
+--- a/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
++++ b/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
+@@ -38,0 +39 @@
++#include "components/viz/service/frame_sinks/frame_sink_observer.h"
+@@ -128,0 +130,15 @@
++class DestroyOnViewTransitionSavedObserver : public FrameSinkObserver {
++ public:
++  explicit DestroyOnViewTransitionSavedObserver(
++      std::unique_ptr<CompositorFrameSinkSupport>* support)
++      : support_(support) {}
++
++  void OnViewTransitionSaved(
++      const blink::ViewTransitionToken& transition_token) override {
++    support_->reset();
++  }
++
++ private:
++  raw_ptr<std::unique_ptr<CompositorFrameSinkSupport>> support_;
++};
++
+@@ -2962,0 +2981,33 @@
++TEST_F(CompositorFrameSinkSupportTestBase,
++       OnSaveTransitionDirectiveProcessedManagerObserverDestroysSupport) {
++  manager_->RegisterFrameSinkId(kAnotherArbitraryFrameSinkId,
++                                true /* report_activation */);
++
++  FakeCompositorFrameSinkClient fake_client;
++  auto support = std::make_unique<CompositorFrameSinkSupport>(
++      &fake_client, manager_.get(), kAnotherArbitraryFrameSinkId, kIsRoot);
++  support->SetBeginFrameSource(&begin_frame_source_);
++
++  blink::ViewTransitionToken token;
++  auto save_directive = CompositorFrameTransitionDirective::CreateSave(
++      token, /*maybe_cross_frame_sink=*/true, 1, {}, {}, false);
++
++  auto frame = MakeDefaultInteractiveCompositorFrame(kBeginFrameSourceId);
++  support->SubmitCompositorFrame(local_surface_id_, std::move(frame));
++  SurfaceId surface_id(support->frame_sink_id(), local_surface_id_);
++  Surface* surface = manager_->surface_manager()->GetSurfaceForId(surface_id);
++  ASSERT_TRUE(surface);
++
++  ProcessCompositorFrameTransitionDirective(support.get(), save_directive,
++                                            surface);
++  ASSERT_TRUE(SupportHasSurfaceAnimationManager(support.get()));
++
++  DestroyOnViewTransitionSavedObserver observer(&support);
++  manager_->AddObserver(&observer);
++
++  CompositorFrameSinkSupport* raw_support = support.get();
++  OnSaveTransitionDirectiveProcessed(raw_support, save_directive);
++
++  manager_->RemoveObserver(&observer);
++}
++

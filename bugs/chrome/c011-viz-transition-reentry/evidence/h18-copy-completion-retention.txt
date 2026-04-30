@@ -1,0 +1,21 @@
+Command:
+orb -m ubuntu -w /home/carlosgomez/chromium-engagement/src env ASAN_OPTIONS=detect_odr_violation=0 xvfb-run -a out/c001_asan/viz_unittests --gtest_filter='*SharedElementLostAnimateRetainsManagerAfterCopyCompletion*' --single-process-tests
+
+Result:
+exit code 0
+
+Key output:
+[ RUN      ] CompositorFrameSinkSupportTestBase.SharedElementLostAnimateRetainsManagerAfterCopyCompletion
+[255896:255896:ERROR:components/viz/service/transitions/surface_animation_manager.cc:276] No SurfaceAnimationManager for token : 641984F60DA7FFFC3F2A8D33F165625D
+[       OK ] CompositorFrameSinkSupportTestBase.SharedElementLostAnimateRetainsManagerAfterCopyCompletion (153 ms)
+[  PASSED  ] 1 test.
+
+Assertions inside the test:
+- H14 product route leaves manager globally cached and shared image count == 1.
+- The pending CopyOutputRequest is taken and completed with a shared-image result.
+- After copy completion, source surface has no pending CopyOutputRequest.
+- The global manager still exists and shared image count remains 1.
+- Explicit `ClearSurfaceAnimationManager(token)` drops the global manager and releases the shared image.
+
+Interpretation:
+The resource retention is not only "pending copy request" retention. After the copy completes, the lost manager continues to hold the saved shared image until Release or explicit clear.

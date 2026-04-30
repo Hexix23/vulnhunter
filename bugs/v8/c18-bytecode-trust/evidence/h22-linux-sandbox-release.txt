@@ -1,0 +1,25 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x3acc00000000,0x3bcc00000000)
+start
+
+
+#
+# Safely terminating process
+# The following harmless error was encountered: Check failed: IsJSReceiver(*object).
+#
+#
+#
+#FailureMessage Object: 0x7ffffffc3260
+==== C stack trace ===============================
+
+    ./out/sandbox_release_linux/d8(+0x1c20ece) [0x555557174ece]
+    ./out/sandbox_release_linux/d8(+0x1c2038b) [0x55555717438b]
+    ./out/sandbox_release_linux/d8(+0x1c1357f) [0x55555716757f]
+    ./out/sandbox_release_linux/d8(+0x9fc3f6) [0x555555f503f6]
+    ./out/sandbox_release_linux/d8(+0x9f5705) [0x555555f49705]
+    ./out/sandbox_release_linux/d8(+0x9ee35d) [0x555555f4235d]
+    ./out/sandbox_release_linux/d8(+0x9f46d5) [0x555555f486d5]
+    ./out/sandbox_release_linux/d8(+0x6dfe22) [0x555555c33e22]
+    ./out/sandbox_release_linux/d8(+0x1ab77b6) [0x55555700b7b6]
+
+EXIT:0

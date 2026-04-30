@@ -1,0 +1,35 @@
+Command:
+
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 out/sandbox_release_linux/d8 --expose-memory-corruption-api --allow-natives-syntax --expose-gc --stress-compaction /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c21-sandbox-sink-audit/poc/h6-global-i64-forge-stale-ref.js
+
+Output:
+
+Received signal 11 SEGV_MAPERR 2ea000a0020b
+
+==== C stack trace ===============================
+
+out/sandbox_release_linux/d8(+0x1c20e0f)[0x555557174e0f]
+/lib/x86_64-linux-gnu/libc.so.6(+0x45330)[0x7fffff4d6330]
+out/sandbox_release_linux/d8(+0x1083079)[0x5555565d7079]
+out/sandbox_release_linux/d8(+0x106a543)[0x5555565be543]
+out/sandbox_release_linux/d8(+0x1060b57)[0x5555565b4b57]
+out/sandbox_release_linux/d8(+0x6bb811)[0x555555c0f811]
+out/sandbox_release_linux/d8(+0x6bb42a)[0x555555c0f42a]
+out/sandbox_release_linux/d8(+0x7d7989)[0x555555d2b989]
+out/sandbox_release_linux/d8(+0x7d76f5)[0x555555d2b6f5]
+out/sandbox_release_linux/d8(+0xb49ae5)[0x55555609dae5]
+out/sandbox_release_linux/d8(+0xb49036)[0x55555609d036]
+out/sandbox_release_linux/d8(+0x96841e)[0x555555ebc41e]
+out/sandbox_release_linux/d8(+0x9703c3)[0x555555ec43c3]
+out/sandbox_release_linux/d8(+0x1ab7876)[0x55555700b876]
+[end of stack trace]
+
+Symbolized frames:
+
+- `0x1083079` -> `v8::internal::wasm::WasmToJSObject(...)`
+- `0x106a543` -> `WasmObjectToJSReturnValue(...)`
+- `0x1060b57` -> `v8::internal::wasm::WebAssemblyGlobalGetValue(...)`, `src/wasm/wasm-js.cc:676`
+- `0x6bb811` -> `FunctionCallbackArguments::CallOrConstruct(...)`
+- `0x6bb42a` -> `Builtins::InvokeApiFunction(...)`, `src/builtins/builtins-api.cc:120`
+- `0x7d7989` -> `Invoke(...)`, `src/execution/execution.cc:319`
+- `0x7d76f5` -> `Execution::Call(...)`, `src/execution/execution.cc:565`

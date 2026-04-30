@@ -1,0 +1,41 @@
+diff --git a/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc b/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
+--- a/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
++++ b/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
+@@ -2869,6 +2869,36 @@ TEST_F(CompositorFrameSinkSupportTestBase,
+   // - Finally, we finish the cleanup for the original transition. If we were
+   //   still using an outdated reference to the storage, we would crash here.
+   OnSaveTransitionDirectiveProcessed(support_.get(), save_directive);
+ }
++
++TEST_F(CompositorFrameSinkSupportTestBase,
++       OnSaveTransitionDirectiveProcessedClientCallbackDestroysSupport) {
++  manager_->RegisterFrameSinkId(kAnotherArbitraryFrameSinkId,
++                                true /* report_activation */);
++  MockCompositorFrameSinkClient mock_client;
++  auto support = std::make_unique<CompositorFrameSinkSupport>(
++      &mock_client, manager_.get(), kAnotherArbitraryFrameSinkId, kIsRoot);
++  support->SetBeginFrameSource(&begin_frame_source_);
++
++  blink::ViewTransitionToken token;
++  auto save_directive = CompositorFrameTransitionDirective::CreateSave(
++      token, /*maybe_cross_frame_sink=*/true, 1, {}, {}, false);
++
++  auto frame = MakeDefaultInteractiveCompositorFrame(kBeginFrameSourceId);
++  support->SubmitCompositorFrame(local_surface_id_, std::move(frame));
++  SurfaceId surface_id(support->frame_sink_id(), local_surface_id_);
++  Surface* surface = manager_->surface_manager()->GetSurfaceForId(surface_id);
++  ASSERT_TRUE(surface);
++
++  ProcessCompositorFrameTransitionDirective(support.get(), save_directive,
++                                            surface);
++  ASSERT_TRUE(SupportHasSurfaceAnimationManager(support.get()));
++
++  EXPECT_CALL(mock_client, OnCompositorFrameTransitionDirectiveProcessed(1))
++      .WillOnce([&support](uint32_t) { support.reset(); });
++
++  CompositorFrameSinkSupport* raw_support = support.get();
++  OnSaveTransitionDirectiveProcessed(raw_support, save_directive);
++}
+ 
+ TEST_P(AckOnSurfaceActivationWhenInteractiveTest,
+        TreesInVizAcksCompositorFrames) {

@@ -1,0 +1,70 @@
+You are building the minimal threat model that will drive a vulnerability hunt.
+Do not write a mega audit prompt. Do not create agents, skills, or orchestration.
+The threat model is the scaffold.
+
+Start from prior disclosed CVEs and accepted bug classes. Then expand the attack
+surface only after the CVE-shaped surfaces are mapped.
+
+## Inputs
+
+- TARGET_ROOT: source tree to audit
+- CVE_RECON_PATH or advisory list: prior CVEs/GHSAs/security fixes for target
+- KNOWN_FINDINGS_PATH: bugs already filed; do NOT propose duplicates of these. The exact primitive/input/sink tuple of filed findings is exhausted. New candidates in the same CWE class are allowed only if they use a different reachable sink, primitive, or input channel.
+- OUTPUT_DIR: where to write `<date>-<target>-invariants.md` and `<date>-<target>-hunt-matrix.md`
+
+## What to do
+
+1. Build the CVE-derived model first. For each prior CVE/security fix, record:
+   CVE/advisory, bug class, affected component, attacker input, broken
+   invariant, security sink, fix commit/file, whether the fix looks targeted or
+   class-wide, sibling sinks, and bypass hypotheses.
+
+2. Extract invariants from the prior bug classes and fixes. For each relevant
+   validator, type check, bounds check, state transition, compiler assumption,
+   parser rule, or trusted-field consumer, write one line:
+   "ASSUMES X, PROMISES Y." Cite `file:line`. This is the invariants doc.
+
+3. For each invariant, ask: how do I make X false while keeping the call site
+   reachable? Use more than text matching: follow callers/callees, trace
+   dataflow, inspect type/state transitions, compare guard placement to sink
+   use, and look for mismatch between validated state and consumed state.
+
+4. Write Phase 1 candidates in known accepted bug classes first. Each candidate
+   must include `file:line`, prior CVE class, attacker-controlled input channel,
+   trust boundary, sink, guard expected to stop it, oracle, and reportability
+   bar.
+
+5. Then expand attack surface. Identify entry points, trust boundaries,
+   high-risk operations, and attacker-victim models:
+   HTTP/RPC/message/CLI/job inputs for frameworks, and JS/Wasm/RegExp/Temporal,
+   compiler tiers, GC, parser, bytecode, and sandbox boundaries for engines.
+
+6. Assign an impact class to each candidate:
+   `MEMORY_SAFETY`, `WRONG_CODE`, `SECURITY_LOGIC`, `SANDBOX_INVARIANT`, or
+   `NON_SECURITY`. Do not collapse everything into sandbox escape.
+
+7. Complete Phase 1 candidates first. After that, distribute the total candidate
+   set across multiple CWE/bug classes or engine impact classes when feasible.
+   If candidates bunch into one class after Phase 1, you anchored — re-do step 3
+   forcing under-represented classes.
+
+## Constraints
+
+- Keep the threat model compact and editable. It should be the context given to
+  Codex, not a giant repository report.
+- Cite `file:line` on every invariant/sink claim. No file:line, no entry.
+- Prefer source-grounded reasoning over keyword hits. `rg`/grep can locate code; they cannot justify a finding by themselves.
+- Append-only writes to disk. If a phase looks long, write what you have and stop.
+- Never dump raw tool output back into context. Summarize evidence and cite paths.
+- 5-25 candidates total. Quality over quantity.
+- Avoid duplicate variants of KNOWN_FINDINGS_PATH unless the new candidate has a different reachable sink, primitive, or input channel.
+- Include logic/spec/wrong-code candidates when the target has a stable oracle
+  such as a language spec, test suite, polyfill, interpreter tier, or older
+  implementation. These can be VRP-grade without being sandbox escapes.
+
+## Stop when
+
+Both files are written, Phase 1 known-CVE-class candidates exist, Phase 2
+expansion candidates exist when appropriate, candidates span multiple
+CWE/impact classes where feasible, and no candidate duplicates a known
+finding's exact primitive/input/sink tuple.

@@ -1,0 +1,20 @@
+Date era baseline: OK 1/1/1970 A, 1:00:00 AM
+Instant toLocaleString era: OK A
+PlainDate toLocaleString era: OK A
+PlainTime toLocaleString era: OK 2:46:00 PM
+DTF format PlainDate era: OK A
+DTF format PlainTime era: OK 2:46:00 PM
+DTF format Instant era: OK A
+DTF formatToParts PlainDate era: OK era=A
+DTF formatToParts PlainTime era: OK hour=2|literal=:|minute=46|literal=:|second=00|literal= |dayPeriod=PM
+DTF formatToParts Instant era: OK era=A
+DTF formatRange PlainDate era: OK A
+DTF formatRangeToParts PlainDate era: OK era=A
+ignore timezone PlainDateTime Apia: OK 12/30/11, 12:00 PM
+ignore timezone PlainDateTime LA gap: OK 3/8/26, 2:00 AM
+ignore timezone PlainTime LA gap: OK 2:00 AM
+ignore timezone formatToParts PlainDateTime LA gap: OK month=3|literal=/|day=8|literal=/|year=26|literal=, |hour=2|literal=:|minute=00|literal= |dayPeriod=AM
+state before Instant: OK 12/31/69, 4:00 PM
+state PlainDateTime: OK 3/8/26, 2:00 AM
+state after Instant: OK 12/31/69, 4:00 PM
+H12 DONE

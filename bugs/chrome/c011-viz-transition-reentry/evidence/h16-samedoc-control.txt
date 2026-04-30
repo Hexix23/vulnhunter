@@ -1,0 +1,13 @@
+Command:
+orb -m ubuntu -w /home/carlosgomez/chromium-engagement/src env ASAN_OPTIONS=detect_odr_violation=0 xvfb-run -a out/c001_asan/viz_unittests --gtest_filter='*SameDocumentPostedCompletionKeepsManagerLocal*' --single-process-tests
+
+Result:
+exit code 0
+
+Key output:
+[ RUN      ] CompositorFrameSinkSupportTestBase.SameDocumentPostedCompletionKeepsManagerLocal
+[       OK ] CompositorFrameSinkSupportTestBase.SameDocumentPostedCompletionKeepsManagerLocal (126 ms)
+[  PASSED  ] 1 test.
+
+Interpretation:
+Same-document posted completion does not reproduce H7/H8. Because the manager is not moved into FrameSinkManagerImpl global cache, the pending animate keeps/uses local manager state. The confirmed bug shape is cross-frame/cross-frame-sink movement.

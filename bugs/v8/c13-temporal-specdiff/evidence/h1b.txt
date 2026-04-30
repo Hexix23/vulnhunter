@@ -1,0 +1,8 @@
+ASAN and release produced identical output.
+
+PlainDate iso-then-gregory: OK 2020-01-01
+PlainDate same-dup: OK 2020-01-01[u-ca=gregory]
+PlainDateTime iso-then-gregory: OK 2020-01-01T12:34:56
+PlainDateTime same-dup: OK 2020-01-01T12:34:56[u-ca=gregory]
+ZonedDateTime iso-then-gregory: OK 2020-01-01T00:00:00+00:00[UTC]
+ZonedDateTime same-dup: OK 2020-01-01T00:00:00+00:00[UTC][u-ca=gregory]

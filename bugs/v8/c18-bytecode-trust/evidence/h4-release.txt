@@ -1,0 +1,36 @@
+bytecode 19,0,185 cp 1
+install
+
+
+#
+# Fatal error
+# Bytecode verification failed: Constant pool index out of bounds
+#
+#
+#
+#FailureMessage Object: 0x16b5dcb78
+==== C stack trace ===============================
+
+    0   d8                                  0x0000000105d7cadc v8::base::debug::StackTrace::StackTrace() + 28
+    1   d8                                  0x0000000105d814c4 v8::platform::(anonymous namespace)::PrintStackTrace() + 24
+    2   d8                                  0x0000000105d72ae0 V8_Fatal(char const*, ...) + 340
+    3   d8                                  0x0000000104ebb00c v8::internal::CodePointerTable::Sweep(v8::internal::ExternalEntityTable<v8::internal::CodePointerTableEntry, 134217728ul>::Space*, v8::internal::Counters*) + 0
+    4   d8                                  0x0000000104eba9e4 v8::internal::BytecodeVerifier::VerifyFull(v8::internal::IsolateForSandbox, v8::internal::Handle<v8::internal::BytecodeArray>, v8::internal::Zone*) + 1168
+    5   d8                                  0x0000000104eba518 v8::internal::BytecodeVerifier::Verify(v8::internal::IsolateForSandbox, v8::internal::Handle<v8::internal::BytecodeArray>, v8::internal::Zone*) + 56
+    6   d8                                  0x0000000104eb1310 v8::internal::Runtime_InstallBytecode(int, unsigned long*, v8::internal::Isolate*) + 968
+    7   ???                                 0x0000000177e7c040 0x0 + 6306644032
+    8   ???                                 0x0000000177f7e4b4 0x0 + 6307701940
+    9   ???                                 0x0000000177dce348 0x0 + 6305932104
+    10  ???                                 0x0000000177dcb344 0x0 + 6305919812
+    11  ???                                 0x0000000177dcb03c 0x0 + 6305919036
+    12  d8                                  0x00000001049bfc9c v8::internal::(anonymous namespace)::Invoke(v8::internal::Isolate*, v8::internal::(anonymous namespace)::InvokeParams const&) + 3296
+    13  d8                                  0x00000001049bff9c v8::internal::Execution::CallScript(v8::internal::Isolate*, v8::internal::DirectHandle<v8::internal::JSFunction>, v8::internal::DirectHandle<v8::internal::Object>, v8::internal::DirectHandle<v8::internal::Object>) + 164
+    14  d8                                  0x0000000104882358 v8::Script::Run(v8::Local<v8::Context>, v8::Local<v8::Data>) + 720
+    15  d8                                  0x0000000104834c60 v8::Shell::ExecuteString(v8::Isolate*, v8::Local<v8::String>, v8::Local<v8::String>, v8::Shell::ReportExceptions, v8::Global<v8::Value>*) + 1476
+    16  d8                                  0x000000010484e060 v8::SourceGroup::Execute(v8::Isolate*) + 424
+    17  d8                                  0x0000000104851c94 v8::Shell::RunMainIsolate(v8::Isolate*, bool) + 352
+    18  d8                                  0x0000000104851914 v8::Shell::RunMain(v8::Isolate*, bool) + 316
+    19  d8                                  0x0000000104852ea0 v8::Shell::Main(int, char**) + 2932
+    20  dyld                                0x00000001849bfda4 start + 6992
+
+EXIT:133

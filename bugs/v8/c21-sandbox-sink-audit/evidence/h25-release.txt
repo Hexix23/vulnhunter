@@ -1,0 +1,30 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x1d0300000000,0x1e0300000000)
+typed_raw=0x4e
+externref_raw=0x160a
+grow_old=1
+entry1_is_marker=true
+
+
+#
+# Safely terminating process
+# The following harmless error was encountered: Check failed: dispatch_table->table_type() == module_->canonical_type(table.type).
+#
+#
+#
+#FailureMessage Object: 0x7ffffffc3ec0
+==== C stack trace ===============================
+
+    out/sandbox_release_linux/d8(+0x1c20ece) [0x555557174ece]
+    out/sandbox_release_linux/d8(+0x1c2038b) [0x55555717438b]
+    out/sandbox_release_linux/d8(+0x1c1357f) [0x55555716757f]
+    out/sandbox_release_linux/d8(+0x10157fb) [0x5555565697fb]
+    out/sandbox_release_linux/d8(+0x1011cdc) [0x555556565cdc]
+    out/sandbox_release_linux/d8(+0x1010c2e) [0x555556564c2e]
+    out/sandbox_release_linux/d8(+0x100f41a) [0x55555656341a]
+    out/sandbox_release_linux/d8(+0x100f172) [0x555556563172]
+    out/sandbox_release_linux/d8(+0x104b818) [0x55555659f818]
+    out/sandbox_release_linux/d8(+0x1061323) [0x5555565b5323]
+    out/sandbox_release_linux/d8(+0x6bb811) [0x555555c0f811]
+    out/sandbox_release_linux/d8(+0x6bab6c) [0x555555c0eb6c]
+    out/sandbox_release_linux/d8(+0x1ab77b6) [0x55555700b7b6]

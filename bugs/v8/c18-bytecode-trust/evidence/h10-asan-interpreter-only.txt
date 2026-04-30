@@ -1,0 +1,87 @@
+baseline 10
+bytecode 35,0,0,212,11,249,116,249,3,1,2,185
+mutate-construct 6 2 -> 255
+install
+run
+abort: CSA_DCHECK failed: IsOffsetInBounds(offset, LoadFeedbackVectorLength(feedback_vector), FeedbackVector::kHeaderSize) [../../src/codegen/code-stub-assembler.cc:4259] [../../src/builtins/ic.tq:32] [../../src/interpreter/interpreter-generator.cc:1777]
+
+ * SmiFromIntPtr(offset): 1051
+ * feedback_vector: 0x7eb60102b20d <FeedbackVector[4]>
+Bytecode mismatch found for function: f bugs/v8/c18-bytecode-trust/poc/h10-construct-feedback-slot-oob-warm.js:112
+Original bytecode:
+Parameter count 2
+Register count 1
+Frame size 8
+  120 S> 0x7ffe010002c8 @    0 : 23 00 00          LdaGlobal [0:"C"], FBV[0]
+         0x7ffe010002cb @    3 : d4                Star0
+         0x7ffe010002cc @    4 : 0b f9             Ldar r0
+  127 E> 0x7ffe010002ce @    6 : 74 f9 03 01 ff    Construct r0, a0-a0, FBV[255]
+  136 S> 0x7ffe010002d3 @   11 : b9                Return
+Constant pool (size = 1)
+0x7ffe01000295: [TrustedFixedArray]
+ - map: 0x7eb600000605 <Map(TRUSTED_FIXED_ARRAY_TYPE)>
+ - length: 1
+           0: 0x7eb60000338d <String[1]: #C>
+Handler Table (size = 0)
+Source Position Table (size = 9)
+0x7ffe010002e9 <Other heap object (TRUSTED_BYTE_ARRAY_TYPE)>
+
+New bytecode:
+Parameter count 2
+Register count 1
+Frame size 8
+         0x7ffe01000330 @    0 : 23 00 00          LdaGlobal [0:"C"], FBV[0]
+         0x7ffe01000333 @    3 : d4                Star0
+         0x7ffe01000334 @    4 : 0b f9             Ldar r0
+         0x7ffe01000336 @    6 : 74 f9 03 01 02    Construct r0, a0-a0, FBV[2]
+         0x7ffe0100033b @   11 : b9                Return
+Constant pool (size = 1)
+0x7ffe010002fd: [TrustedFixedArray]
+ - map: 0x7eb600000605 <Map(TRUSTED_FIXED_ARRAY_TYPE)>
+ - length: 1
+           0: 0x7eb60000338d <String[1]: #C>
+Handler Table (size = 0)
+Source Position Table (size = 0)
+
+
+#
+# Fatal error in ../../src/interpreter/interpreter.cc, line 261
+# Bytecode mismatch at offset 10
+
+#
+#
+#
+#FailureMessage Object: 0x111fab040
+==== C stack trace ===============================
+
+    0   d8                                  0x000000010b1e021c v8::base::debug::StackTrace::StackTrace() + 60
+    1   d8                                  0x000000010b1f31d0 v8::platform::(anonymous namespace)::PrintStackTrace() + 252
+    2   d8                                  0x000000010b1b2a40 V8_Fatal(char const*, int, char const*, ...) + 524
+    3   d8                                  0x0000000105c2a450 void v8::internal::interpreter::InterpreterCompilationJob::CheckAndPrintBytecodeMismatch<v8::internal::Isolate>(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Script>, v8::internal::DirectHandle<v8::internal::BytecodeArray>) + 1160
+    4   d8                                  0x0000000105c26998 v8::internal::CompilationJob::Status v8::internal::interpreter::InterpreterCompilationJob::DoFinalizeJobImpl<v8::internal::Isolate>(v8::internal::DirectHandle<v8::internal::SharedFunctionInfo>, v8::internal::Isolate*) + 1904
+    5   d8                                  0x0000000105c260bc v8::internal::interpreter::InterpreterCompilationJob::FinalizeJobImpl(v8::internal::DirectHandle<v8::internal::SharedFunctionInfo>, v8::internal::Isolate*) + 620
+    6   d8                                  0x0000000104da988c v8::internal::UnoptimizedCompilationJob::FinalizeJob(v8::internal::DirectHandle<v8::internal::SharedFunctionInfo>, v8::internal::Isolate*) + 460
+    7   d8                                  0x0000000104dc234c v8::internal::Compiler::CollectSourcePositions(v8::internal::Isolate*, v8::internal::DirectHandle<v8::internal::SharedFunctionInfo>) + 2468
+    8   d8                                  0x0000000106308b44 v8::internal::SharedFunctionInfo::EnsureSourcePositionsAvailable(v8::internal::Isolate*, v8::internal::DirectHandle<v8::internal::SharedFunctionInfo>) + 276
+    9   d8                                  0x00000001051fe0d4 v8::internal::JavaScriptFrame::Print(v8::internal::StringStream*, v8::internal::StackFrame::PrintMode, int) const + 480
+    10  d8                                  0x000000010521b890 v8::internal::Isolate::PrintStack(v8::internal::StringStream*, v8::internal::Isolate::PrintStackMode) + 488
+    11  d8                                  0x000000010521c4dc v8::internal::StackTraceFailureMessage::StackTraceFailureMessage(v8::internal::Isolate*, v8::internal::StackTraceFailureMessage::StackTraceMode, unsigned long const*, unsigned long) + 544
+    12  d8                                  0x000000010521bbd0 v8::internal::Isolate::PushStackTraceAndDie(void*, void*, void*, void*, void*, void*) + 336
+    13  d8                                  0x0000000106897368 v8::internal::Runtime_AbortCSADcheck(int, unsigned long*, v8::internal::Isolate*) + 588
+    14  ???                                 0x0000000177b9c948 0x0 + 6303631688
+    15  ???                                 0x0000000177f08a64 0x0 + 6307220068
+    16  ???                                 0x000000017796df58 0x0 + 6301343576
+    17  ???                                 0x000000017796df58 0x0 + 6301343576
+    18  ???                                 0x00000001779675dc 0x0 + 6301316572
+    19  ???                                 0x00000001779672bc 0x0 + 6301315772
+    20  d8                                  0x00000001051d27d0 v8::internal::(anonymous namespace)::Invoke(v8::internal::Isolate*, v8::internal::(anonymous namespace)::InvokeParams const&) + 6824
+    21  d8                                  0x00000001051d5aa4 v8::internal::Execution::CallScript(v8::internal::Isolate*, v8::internal::DirectHandle<v8::internal::JSFunction>, v8::internal::DirectHandle<v8::internal::Object>, v8::internal::DirectHandle<v8::internal::Object>) + 800
+    22  d8                                  0x0000000104ae48dc v8::Script::Run(v8::Local<v8::Context>, v8::Local<v8::Data>) + 1664
+    23  d8                                  0x00000001049f4318 v8::Shell::ExecuteString(v8::Isolate*, v8::Local<v8::String>, v8::Local<v8::String>, v8::Shell::ReportExceptions, v8::Global<v8::Value>*) + 3080
+    24  d8                                  0x0000000104a29bb0 v8::SourceGroup::Execute(v8::Isolate*) + 868
+    25  d8                                  0x0000000104a34318 v8::Shell::RunMainIsolate(v8::Isolate*, bool) + 916
+    26  d8                                  0x0000000104a335bc v8::Shell::RunMain(v8::Isolate*, bool) + 748
+    27  d8                                  0x0000000104a3699c v8::Shell::Main(int, char**) + 5384
+    28  dyld                                0x00000001849bfda4 start + 6992
+
+EXIT:133

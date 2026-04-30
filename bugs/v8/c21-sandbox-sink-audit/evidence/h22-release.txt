@@ -1,0 +1,11 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x99700000000,0xa9700000000)
+before0=23
+before1_throw=RuntimeError:table index is out of bounds
+donor_handle=0x41aa00
+victim_handle=0x41ac00
+grow_old=1
+entry1_is_marker=true
+entry2_is_marker=true
+after1_throw=RuntimeError:table index is out of bounds
+after2_throw=RuntimeError:table index is out of bounds

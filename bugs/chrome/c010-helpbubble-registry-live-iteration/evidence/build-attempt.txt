@@ -1,0 +1,28 @@
+2026-04-29
+
+Temporary patch:
+bugs/chrome/c010-helpbubble-registry-live-iteration/poc/chromium-source-test.patch
+
+Applied cleanly in VM:
+/home/carlosgomez/chromium-engagement/src
+
+Attempt 1:
+  timeout 3600 /home/carlosgomez/depot_tools_linux/autoninja \
+    -C out/c001_asan components_unittests -j 6
+
+Result:
+  stopped manually after ~2.5 minutes. Target expanded to ~60k-70k pending
+  actions. No test execution reached.
+
+Attempt 2:
+  timeout 600 /home/carlosgomez/depot_tools_linux/autoninja \
+    -C out/c001_asan components/user_education/common:unit_tests -j 6
+
+Result:
+  stopped manually after ~1 minute. Even the source_set target expanded to
+  ~30k pending actions due broad Chromium deps. No test execution reached.
+
+Cleanup:
+  git apply -R poc/chromium-source-test.patch
+  git diff -- components/user_education/common/help_bubble/help_bubble_factory_registry_unittest.cc
+  produced no diff.

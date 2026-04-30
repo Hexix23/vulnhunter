@@ -1,0 +1,41 @@
+baseline 11
+bytecode 11,3,79,1,0,185
+mutate-arith 2 0 -> 255
+install
+run
+21
+
+
+#
+# Fatal error in ../../src/objects/shared-function-info-inl.h, line 689
+# Debug check failed: HasFeedbackMetadata(kAcquireLoad).
+#
+#
+#
+#FailureMessage Object: 0x122061840
+==== C stack trace ===============================
+
+    0   d8                                  0x00000001090ac21c v8::base::debug::StackTrace::StackTrace() + 60
+    1   d8                                  0x00000001090bf1d0 v8::platform::(anonymous namespace)::PrintStackTrace() + 252
+    2   d8                                  0x000000010907ea40 V8_Fatal(char const*, int, char const*, ...) + 524
+    3   d8                                  0x000000010907df9c v8::base::FatalOOM(v8::base::OOMType, char const*) + 0
+    4   d8                                  0x0000000103eee754 v8::internal::SharedFunctionInfo::feedback_metadata(v8::internal::PtrComprCageBase, v8::AcquireLoadTag) const + 504
+    5   d8                                  0x0000000103ee0944 v8::internal::FeedbackVector::GetKind(v8::internal::FeedbackSlot, v8::AcquireLoadTag) const + 152
+    6   d8                                  0x0000000103ee405c v8::internal::FeedbackNexus::FeedbackNexus(v8::internal::Handle<v8::internal::FeedbackVector>, v8::internal::FeedbackSlot, v8::internal::NexusConfig const&) + 152
+    7   d8                                  0x0000000104fdae68 v8::internal::maglev::MaglevGraphBuilder::FeedbackNexusForOperand(int) const + 436
+    8   d8                                  0x0000000104fdf474 v8::internal::maglev::ReduceResult v8::internal::maglev::MaglevGraphBuilder::VisitBinarySmiOperation<(Operation)0>() + 216
+    9   d8                                  0x0000000104fc23a8 v8::internal::maglev::MaglevGraphBuilder::VisitSingleBytecode() + 2948
+    10  d8                                  0x0000000104fea6ec v8::internal::maglev::MaglevGraphBuilder::BuildBody() + 876
+    11  d8                                  0x0000000105072224 v8::internal::maglev::MaglevGraphBuilder::Build() + 1912
+    12  d8                                  0x0000000104c23830 v8::internal::maglev::MaglevCompiler::Compile(v8::internal::LocalIsolate*, v8::internal::maglev::MaglevCompilationInfo*) + 1408
+    13  d8                                  0x0000000104f76a9c v8::internal::maglev::MaglevCompilationJob::ExecuteJobImpl(v8::internal::RuntimeCallStats*, v8::internal::LocalIsolate*) + 220
+    14  d8                                  0x0000000102c7653c v8::internal::OptimizedCompilationJob::ExecuteJob(v8::internal::RuntimeCallStats*, v8::internal::LocalIsolate*) + 248
+    15  d8                                  0x0000000104f7abbc v8::internal::maglev::MaglevConcurrentDispatcher::JobTask::Run(v8::JobDelegate*) + 1788
+    16  d8                                  0x00000001090aff1c v8::platform::DefaultJobWorker::Run() + 640
+    17  d8                                  0x00000001090c15b0 v8::platform::DefaultWorkerThreadsTaskRunner::WorkerThread::Run() + 584
+    18  d8                                  0x00000001090a9394 v8::base::ThreadEntry(void*) + 284
+    19  libclang_rt.asan_osx_dynamic.dylib  0x000000010e2d1874 __sanitizer_weak_hook_memcmp + 223060
+    20  libsystem_pthread.dylib             0x0000000184d7bc58 _pthread_start + 136
+    21  libsystem_pthread.dylib             0x0000000184d76c1c thread_start + 8
+
+EXIT:133

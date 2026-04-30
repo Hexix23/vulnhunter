@@ -1,0 +1,9 @@
+PlainDate unknown noncritical: OK 2020-01-01
+PlainDate unknown critical: THROW RangeError Temporal error: Unrecognized annoation is marked as critical.
+PlainDate duplicate unknown: OK 2020-01-01
+PlainDate duplicate critical unknown: THROW RangeError Temporal error: Unrecognized annoation is marked as critical.
+PlainDateTime unknown critical: THROW RangeError Temporal error: Unrecognized annoation is marked as critical.
+ZonedDateTime unknown critical: THROW RangeError Temporal error: Unrecognized annoation is marked as critical.
+ZonedDateTime duplicate noncritical tz anno: OK 2020-01-01T00:00:00+00:00[UTC]
+ZonedDateTime critical tz anno: THROW RangeError Temporal error: Unrecognized annoation is marked as critical.
+H5 DONE

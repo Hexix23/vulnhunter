@@ -1,0 +1,32 @@
+{
+  "malformedRequestTarget": {
+    "initialUrl": "http:///127.0.0.1:54639/ssr-entry",
+    "platformOrigin": "http://127.0.0.1:54639",
+    "rewrittenRelativeHttpClientUrl": "http://127.0.0.1:54639/internal-marker",
+    "fetch": {
+      "status": 200,
+      "body": "attacker-listener-ok"
+    }
+  },
+  "legacyHostHeaderPattern": {
+    "initialUrl": "http://victim.test@127.0.0.1:54639/legacy-entry",
+    "platformOrigin": "http://127.0.0.1:54639",
+    "rewrittenRelativeHttpClientUrl": "http://victim.test@127.0.0.1:54639/legacy-marker",
+    "fetch": {
+      "status": 200,
+      "body": "attacker-listener-ok"
+    }
+  },
+  "listenerHits": [
+    {
+      "method": "GET",
+      "url": "/internal-marker",
+      "host": "127.0.0.1:54639"
+    },
+    {
+      "method": "GET",
+      "url": "/legacy-marker",
+      "host": "127.0.0.1:54639"
+    }
+  ]
+}

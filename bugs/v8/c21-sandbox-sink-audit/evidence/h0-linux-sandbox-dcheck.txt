@@ -1,0 +1,16 @@
+Command:
+
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 out/sandbox_dcheck_linux/d8 --sandbox-testing --allow-natives-syntax /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c21-sandbox-sink-audit/poc/h0-read-global-raw-types.js
+
+Output:
+
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0xfa600000000,0x10a600000000)
+i64_mem=0x2e20
+externref_mem=0x160a
+DebugPrint: [WasmGlobalObject]
+ - buffer: <ByteArray[8]>
+ - type: i64 (raw=0x1710)
+DebugPrint: [WasmGlobalObject]
+ - buffer: <FixedArray[1]>
+ - type: externref (raw=0xb05)

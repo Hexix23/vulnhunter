@@ -1,0 +1,8 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x1c4d00000000,0x1d4d00000000)
+funcref_raw=0x4e
+externref_raw=0x160a
+# Ignoring debug check failure in ../../src/wasm/wasm-objects.cc, line 291: old_size == dispatch_table->length() (1 vs. 2)
+visible_direct=117
+victim_get1_is_visible=true
+call_indirect_entry1=37

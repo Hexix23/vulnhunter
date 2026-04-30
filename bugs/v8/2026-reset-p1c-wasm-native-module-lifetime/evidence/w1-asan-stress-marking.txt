@@ -1,0 +1,6 @@
+Error: illegal value for flag --stress-marking of type int
+Try --help for options
+Warning: unknown flag --stress-marking.
+Try --help for options
+Warning: unknown flag --stress-incremental-marking.
+Try --help for options

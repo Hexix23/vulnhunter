@@ -1,0 +1,5 @@
+start
+obj-to-string [object Object]
+done
+
+EXIT:0

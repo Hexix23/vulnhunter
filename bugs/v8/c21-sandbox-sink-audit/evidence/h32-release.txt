@@ -1,0 +1,5 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x310d00000000,0x320d00000000)
+before_mem0=0x32323232
+after_mut_call_mem0=0x32323232
+after_tierup_mem0=0x32323232

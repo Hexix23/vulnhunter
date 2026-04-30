@@ -1,0 +1,7 @@
+keycap property: OK
+keycap subtract exact: OK
+keycap intersection exact: OK
+flag union property: OK
+tag subtract black flag: OK
+rgi longest: "🏴󠁧󠁢󠁷󠁬󠁳󠁿" length=14
+H7 DONE

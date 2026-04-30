@@ -1,0 +1,7 @@
+base=2.5
+warm=8
+got=2.5
+maglev_after_warm=true
+maglev_after_got=false
+status=1
+OK

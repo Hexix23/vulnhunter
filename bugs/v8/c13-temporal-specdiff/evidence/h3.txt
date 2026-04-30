@@ -1,0 +1,8 @@
+ASAN and release produced identical output.
+
+DF string 1ns: OK 0:00:00.000000001
+Temporal.toLocaleString 1ns: OK 0:00:00.000000001
+DF object mixed-sign: THROW RangeError Temporal error: Duration was not valid.
+Temporal.from mixed-sign: THROW RangeError Temporal error: Duration was not valid.
+DF object huge edge: OK 0:00:9007199254740991.000000712
+DF string huge edge: OK 0:00:9007199254740991.000000712

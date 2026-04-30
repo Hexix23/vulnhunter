@@ -1,0 +1,57 @@
+start
+abort: Unexpected instance type encountered
+
+==== JS stack trace =========================================
+
+    0: ExitFrame [pc: 0x177e7c1ac]
+    1: StubFrame [pc: 0x177f7ba34]
+    2: /* anonymous */ [0x56c0101e485] [bugs/v8/c18-bytecode-trust/poc/h31-scopeinfo-direct-coercions.js:22] [bytecode=0x3c26010001a5 offset=203](this=0x056c01004929 <JSGlobalProxy>#0#)
+    3: InternalFrame [pc: 0x177dcb344]
+    4: EntryFrame [pc: 0x177dcb03c]
+
+==== Details ================================================
+
+[0]: ExitFrame [pc: 0x177e7c1ac]
+[1]: StubFrame [pc: 0x177f7ba34]
+[2]: /* anonymous */ [0x56c0101e485] [bugs/v8/c18-bytecode-trust/poc/h31-scopeinfo-direct-coercions.js:22] [bytecode=0x3c26010001a5 offset=203](this=0x056c01004929 <JSGlobalProxy>#0#) {
+  // heap-allocated locals
+  var bc = 0x056c01020219 <ContextCell[const=0x056c01020175 <Object map = 0x56c0101e991>]>#1#
+  var bytes = 0x056c0102026d <ContextCell[const=0x056c01020231 <Uint8Array map = 0x56c0100d541>]>#2#
+  var r = 0x056c010202a1 <ContextCell[const=0x056c0101e555 <ScopeInfo FUNCTION_SCOPE>]>#3#
+  var box = 0x056c010202e9 <ContextCell[const=0x056c010202d9 <Object map = 0x56c0101ea01>]>#4#
+  // expression stack (top to bottom)
+  [09] : 0x056c00000011 <undefined>
+  [08] : 0x056c00000011 <undefined>
+  [07] : 0x056c00000011 <undefined>
+  [06] : 0x056c010202d9 <Object map = 0x56c0101ea01>#5#
+  [05] : 0x056c0101e21d <String[6]: #typeof>
+  [04] : 0x056c01017f79 <JSFunction print (sfi = 0x56c01017f49)>#6#
+  [03] : 0x056c0101e4c5 <ScriptContext[6]>#7#
+  [02] : 1000
+  [01] : 4
+  [00] : 0x056c00000011 <undefined>
+--------- s o u r c e   c o d e ---------
+// C18 H31: direct JS type/coercion consumers for poisoned value.\x0avar C18_H31_GLOBAL = 13;\x0afunction f() {\x0a  return C18_H31_GLOBAL;\x0a}\x0a\x0afor (let i = 0; i < 1000; i++) f();\x0a\x0alet bc = %GetBytecode(f);\x0alet bytes = new Uint8Array(bc.bytecode);\x0afor (let i = 0; i < bytes.length; i++) {\x0a  if (bytes[i] === 0x...
+
+-----------------------------------------
+}
+
+[3]: InternalFrame [pc: 0x177dcb344]
+[4]: EntryFrame [pc: 0x177dcb03c]
+-- ObjectCacheKey --
+
+ #0# 0x56c01004929: 0x056c01004929 <JSGlobalProxy>
+ #1# 0x56c01020219: 0x056c01020219 <ContextCell[const=0x056c01020175 <Object map = 0x56c0101e991>]>
+ #2# 0x56c0102026d: 0x056c0102026d <ContextCell[const=0x056c01020231 <Uint8Array map = 0x56c0100d541>]>
+ #3# 0x56c010202a1: 0x056c010202a1 <ContextCell[const=0x056c0101e555 <ScopeInfo FUNCTION_SCOPE>]>
+ #4# 0x56c010202e9: 0x056c010202e9 <ContextCell[const=0x056c010202d9 <Object map = 0x56c0101ea01>]>
+ #5# 0x56c010202d9: 0x056c010202d9 <Object map = 0x56c0101ea01>
+                 v: 0x056c0101e555 <ScopeInfo FUNCTION_SCOPE>#8#
+ #6# 0x56c01017f79: 0x056c01017f79 <JSFunction print (sfi = 0x56c01017f49)>
+ #7# 0x56c0101e4c5: 0x056c0101e4c5 <ScriptContext[6]>
+ #8# 0x56c0101e555: 0x056c0101e555 <ScopeInfo FUNCTION_SCOPE>
+=====================
+
+/bin/bash: line 1: 96190 Trace/BPT trap: 5       /opt/homebrew/bin/gtimeout 20 /Users/carlosgomez/v8-engagement/v8/v8/out/release/d8 --allow-natives-syntax --expose-gc "$f"
+
+EXIT:133

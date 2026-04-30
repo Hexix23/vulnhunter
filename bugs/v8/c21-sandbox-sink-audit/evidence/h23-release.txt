@@ -1,0 +1,12 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x57500000000,0x67500000000)
+funcref_raw=0x124a
+externref_raw=0x160a
+donor_handle=0x41aa00
+victim_handle=0x41ac00
+grow_old=1
+entry1_is_marker=true
+entry2_is_marker=true
+new_after0=23
+new_after1=39
+new_import_or_call_throw=RuntimeError:null function

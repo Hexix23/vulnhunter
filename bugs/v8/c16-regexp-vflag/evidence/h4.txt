@@ -1,0 +1,21 @@
+ASan (bash /Users/carlosgomez/v8-engagement/scratch/repro.sh poc/h4.js)
+
+exact script short alias: OK \p{sc=Grek}/v
+exact script long alias: OK \p{Script=Greek}/v
+exact binary property of strings: OK \p{Basic_Emoji}/v
+loose property lowercase: THROW SyntaxError Invalid regular expression: /\p{script=Greek}/v: Invalid property name
+loose value lowercase: THROW SyntaxError Invalid regular expression: /\p{Script=greek}/v: Invalid property name
+loose property missing underscore: THROW SyntaxError Invalid regular expression: /\p{ScriptExtensions=Greek}/v: Invalid property name
+loose binary missing underscore: THROW SyntaxError Invalid regular expression: /\p{BasicEmoji}/v: Invalid property name
+loose binary lowercase: THROW SyntaxError Invalid regular expression: /\p{basic_emoji}/v: Invalid property name
+
+Release (/Users/carlosgomez/v8-engagement/v8/v8/out/release/d8 ... poc/h4.js)
+
+exact script short alias: OK \p{sc=Grek}/v
+exact script long alias: OK \p{Script=Greek}/v
+exact binary property of strings: OK \p{Basic_Emoji}/v
+loose property lowercase: THROW SyntaxError Invalid regular expression: /\p{script=Greek}/v: Invalid property name
+loose value lowercase: THROW SyntaxError Invalid regular expression: /\p{Script=greek}/v: Invalid property name
+loose property missing underscore: THROW SyntaxError Invalid regular expression: /\p{ScriptExtensions=Greek}/v: Invalid property name
+loose binary missing underscore: THROW SyntaxError Invalid regular expression: /\p{BasicEmoji}/v: Invalid property name
+loose binary lowercase: THROW SyntaxError Invalid regular expression: /\p{basic_emoji}/v: Invalid property name

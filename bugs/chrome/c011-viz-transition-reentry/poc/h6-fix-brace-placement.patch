@@ -1,0 +1,14 @@
+diff --git a/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc b/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
+--- a/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
++++ b/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
+@@ -3072,7 +3072,8 @@ TEST_F(CompositorFrameSinkSupportTestBase,
+ 
+   std::unique_ptr<SurfaceAnimationManager> taken_manager =
+       manager_->TakeSurfaceAnimationManager(token);
+-}
+   EXPECT_EQ(existing_manager_raw, taken_manager.get());
++}
++
+ TEST_P(AckOnSurfaceActivationWhenInteractiveTest,
+        TreesInVizAcksCompositorFrames) {
+   base::test::ScopedFeatureList scoped_feature_list;

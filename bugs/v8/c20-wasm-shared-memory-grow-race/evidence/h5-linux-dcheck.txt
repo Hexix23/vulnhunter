@@ -1,0 +1,23 @@
+Command:
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 out/dcheck_linux/d8 /mnt/mac/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c20-wasm-shared-memory-grow-race/poc/h5-worker-terminate-during-grow.js
+
+Exit:
+0
+
+Output:
+OK
+
+Repeat command:
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 bash -lc 'for i in $(seq 1 15); do out/dcheck_linux/d8 /mnt/mac/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c20-wasm-shared-memory-grow-race/poc/h5-worker-terminate-during-grow.js >/tmp/c20-h5.out 2>&1 || { echo FAIL-$i; cat /tmp/c20-h5.out; exit 1; }; done; echo OK-15'
+
+Repeat exit:
+0
+
+Repeat output:
+OK-15
+
+Note:
+An earlier draft had a false positive because worker code read `memory.buffer` before `memory.grow(0)`, allowing another thread to grow between the two reads. The final PoC reads `grow(0)` first, then `memory.buffer`.
+
+Interpretation:
+Terminating and replacing workers while shared memory grows did not produce a crash, DCHECK, stale visible buffer, or buffer length regression on Linux x64 dcheck.

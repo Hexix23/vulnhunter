@@ -1,0 +1,9 @@
+<main style="font-family: system-ui; padding: 1rem">
+  <h1>{{ title() }}</h1>
+  <section id="probe">
+    <pre id="request-url">request.url={{ probe().requestUrl }}</pre>
+    <pre id="probe-target">probe.target={{ probe().target }}</pre>
+    <pre id="probe-body">probe.body={{ probe().body ?? probe().error }}</pre>
+  </section>
+</main>
+<router-outlet />

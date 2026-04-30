@@ -1,0 +1,6 @@
+bytecode 51,3,0,0,185
+install
+run
+2
+
+EXIT:0

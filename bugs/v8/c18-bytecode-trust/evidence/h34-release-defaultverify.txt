@@ -1,0 +1,59 @@
+start
+Stacktrace:
+    ptr0=0x1ce60101e401
+    ptr1=0x0
+    ptr2=0x0
+    ptr3=0x0
+    ptr4=0x0
+    ptr5=0x0
+    failure_message_object=0x16eed4bd0
+
+==== JS stack trace =========================================
+
+    0: ExitFrame [pc: 0x157e7c1ac]
+    1: StubFrame [pc: 0x157ecab88]
+    2: String(aka String) [0x1ce60100d6a5](this=0x1ce600000011 <undefined>,0x1ce60101e401 <ScopeInfo FUNCTION_SCOPE>)
+    3: /* anonymous */ [0x1ce60101e331] [bugs/v8/c18-bytecode-trust/poc/h34-scopeinfo-string-only.js:21] [bytecode=0x2ae701000111 offset=205](this=0x1ce601004929 <JSGlobalProxy>)
+    4: InternalFrame [pc: 0x157dcb344]
+    5: EntryFrame [pc: 0x157dcb03c]
+
+==== Details ================================================
+
+[0]: ExitFrame [pc: 0x157e7c1ac]
+[1]: StubFrame [pc: 0x157ecab88]
+[2]: String(aka String) [0x1ce60100d6a5](this=0x1ce600000011 <undefined>,0x1ce60101e401 <ScopeInfo FUNCTION_SCOPE>) {
+// optimized frame
+--------- s o u r c e   c o d e ---------
+<No Source>
+-----------------------------------------
+}
+[3]: /* anonymous */ [0x1ce60101e331] [bugs/v8/c18-bytecode-trust/poc/h34-scopeinfo-string-only.js:21] [bytecode=0x2ae701000111 offset=205](this=0x1ce601004929 <JSGlobalProxy>) {
+  // heap-allocated locals
+  var bc = 0x1ce60101fe61 <ContextCell[const=0x1ce60101fdbd <Object map = 0x1ce60101e799>]>
+  var bytes = 0x1ce60101feb5 <ContextCell[const=0x1ce60101fe79 <Uint8Array map = 0x1ce60100d541>]>
+  var r = 0x1ce60101fee9 <ContextCell[const=0x1ce60101e401 <ScopeInfo FUNCTION_SCOPE>]>
+  var box = 0x1ce60101ff31 <ContextCell[const=0x1ce60101ff21 <Object map = 0x1ce60101e809>]>
+  // expression stack (top to bottom)
+  [09] : 0x1ce600000011 <undefined>
+  [08] : 0x1ce60101e401 <ScopeInfo FUNCTION_SCOPE>
+  [07] : 0x1ce600000011 <undefined>
+  [06] : 0x1ce60101e401 <ScopeInfo FUNCTION_SCOPE>
+  [05] : 0x1ce60100d6a5 <JSFunction String (sfi = 0x1ce6001acfad)>
+  [04] : 0x1ce60000573d <String[6]: #string>
+  [03] : 0x1ce601017f79 <JSFunction print (sfi = 0x1ce601017f49)>
+  [02] : 1000
+  [01] : 4
+  [00] : 0x1ce600000011 <undefined>
+--------- s o u r c e   c o d e ---------
+// C18 H34: isolated String() over poisoned property.\x0avar C18_H34_GLOBAL = 13;\x0afunction f() {\x0a  return C18_H34_GLOBAL;\x0a}\x0a\x0afor (let i = 0; i < 1000; i++) f();\x0a\x0alet bc = %GetBytecode(f);\x0alet bytes = new Uint8Array(bc.bytecode);\x0afor (let i = 0; i < bytes.length; i++) {\x0a  if (bytes[i] === 0x23) bytes[i ...
+
+-----------------------------------------
+}
+
+[4]: InternalFrame [pc: 0x157dcb344]
+[5]: EntryFrame [pc: 0x157dcb03c]
+=====================
+
+/bin/bash: line 1: 97698 Trace/BPT trap: 5       /opt/homebrew/bin/gtimeout 20 /Users/carlosgomez/v8-engagement/v8/v8/out/release/d8 --allow-natives-syntax --expose-gc "$f"
+
+EXIT:133

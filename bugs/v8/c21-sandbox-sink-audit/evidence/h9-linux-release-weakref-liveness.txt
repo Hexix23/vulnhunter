@@ -1,0 +1,32 @@
+Commands:
+
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 out/sandbox_release_linux/d8 --expose-memory-corruption-api --allow-natives-syntax --expose-gc --stress-compaction -e "var H9_KIND='<kind>'" /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c21-sandbox-sink-audit/poc/h9-global-forge-weakref-liveness.js
+
+Observed summary:
+
+- typedarray:
+  - `kind=typedarray`
+  - `before=3:2305:2307`
+  - `weak=3:2305:2307`
+  - then `SIGSEGV` in `WasmToJSObject(...)`
+- object:
+  - `kind=object`
+  - `before=weak-object:2305`
+  - `weak=weak-object:2305`
+  - `recovered=undefined:undefined`
+  - then fatal `unreachable code`
+- arraybuffer:
+  - `kind=arraybuffer`
+  - `before=128`
+  - `weak=128`
+  - recovered value is an `INTERNALIZED_TWO_BYTE_STRING_TYPE`
+  - aborts while observing `byteLength`
+
+Interpretation:
+
+- WeakRef staying live means the target object was not necessarily collected.
+- The forged numeric pointer still becomes stale because GC/compaction moves or
+  rewrites the true object location while the raw bytes in the `ByteArray` are
+  not updated as a tagged slot.
+- This narrows the primitive from "collection UAF only" to "untracked pointer
+  relocation stale pointer".

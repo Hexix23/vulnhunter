@@ -1,0 +1,1576 @@
+start VM: VM exited unexpectedly; logs:
+🌲 vmgr | time="04-24 15:08:39" level=info msg="startup phase begin" phase=verify_rosetta
+🌲 vmgr | time="04-24 15:08:39" level=info msg="startup phase complete" phase=verify_rosetta
+🌲 vmgr | time="04-24 15:08:39" level=info msg="startup phase begin" phase=migrate_state
+🌲 vmgr | time="04-24 15:08:39" level=info msg="startup phase complete" phase=migrate_state
+🌲 vmgr | time="04-24 15:08:39" level=info msg="startup phase begin" phase=initialize_data_image
+🌲 vmgr | time="04-24 15:08:39" level=info msg="data image already initialized"
+🌲 vmgr | time="04-24 15:08:39" level=info msg="startup phase complete" phase=initialize_data_image
+🌲 vmgr | time="04-24 15:08:39" level=info msg="startup phase begin" phase=lock_data_image
+🌲 vmgr | time="04-24 15:08:39" level=info msg="startup phase complete" phase=lock_data_image
+🌲 vmgr | time="04-24 15:08:39" level=info msg="startup phase begin" phase=create_swap_image
+🌲 vmgr | time="04-24 15:08:39" level=info msg="startup phase complete" phase=create_swap_image
+🌲 vmgr | time="04-24 15:08:40" level=info msg="startup phase begin" phase=parse_network_config
+🌲 vmgr | time="04-24 15:08:40" level=info msg="startup phase complete" phase=parse_network_config
+🌲 vmgr | time="04-24 15:08:40" level=info msg="startup phase begin" phase=create_vm
+🌲 vmgr | time="04-24 15:08:40" level=info msg="startup phase complete" phase=create_vm
+🌲 vmgr | time="04-24 15:08:40" level=info msg="startup phase begin" phase=start_net_services_early
+🌲 vmgr | time="04-24 15:08:40" level=info msg="startup phase complete" phase=start_net_services_early
+🌲 vmgr | time="04-24 15:08:40" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 15:08:40" level=info msg="startup phase begin" phase=start_net_services
+🌲 vmgr | time="04-24 15:08:40" level=info msg="forwarding SSH agent" sock=/var/run/com.apple.launchd.RFtqGdwYyy/Listeners
+🌲 vmgr | time="04-24 15:08:40" level=info msg="startup phase complete" phase=start_net_services
+🌲 vmgr | time="04-24 15:08:40" level=info msg="startup phase begin" phase=start_vmcontrol_background
+🌲 vmgr | time="04-24 15:08:40" level=info msg="startup phase complete" phase=start_vmcontrol_background
+🌲 vmgr | time="04-24 15:08:40" level=info msg="startup phase begin" phase=start_vm
+🌲 vmgr | time="04-24 15:08:40" level=info msg="startup phase complete" phase=start_vm
+🌲 vmgr | time="04-24 15:08:40" level=info msg="startup phase begin" phase=start_host_services
+🌲 vmgr | time="04-24 15:08:40" level=info msg="startup phase complete" phase=start_host_services
+🌲 vmgr | time="04-24 15:08:40" level=info msg="startup phase begin" phase=notify_gui_ready
+🌲 vmgr | time="04-24 15:08:40" level=info msg="reading user environment variables"
+🌲 vmgr | time="04-24 15:08:40" level=info msg="startup phase complete" phase=notify_gui_ready
+🌲 vmgr | time="04-24 15:08:40" level=info msg="startup phase begin" phase=vmcontrol_start_hook
+🌲 vmgr | time="04-24 15:08:40" level=info msg="startup phase complete" phase=vmcontrol_start_hook
+🐧 system |  [*] Booting OrbStack  (+0ms)
+🐧 system |   -  Kernel version: 6.19.13-orbstack-gbd1dc07b8cf4
+🐧 system |  [*] Network  (+4ms)
+🐧 system |  [*] Apply system settings  (+1ms)
+🐧 system |  [*] Late tasks  (+0ms)
+🐧 system |      [*] Emulation
+🐧 system |      [*] Data
+🐧 system |      [*] Memory
+🐧 system |   -  Using Rosetta
+👾 kernel | [    0.160740] BTRFS: device label user-data-fs devid 1 transid 52093 /dev/vdb1 (254:17) scanned by vinit (190)
+👾 kernel | [    0.162270] BTRFS info (device vdb1): first mount of filesystem 28c98342-d82c-4fdd-9313-1c1325c3b9e5
+👾 kernel | [    0.162352] BTRFS info (device vdb1): using crc32c (crc32c-lib) checksum algorithm
+👾 kernel | [    0.167606] BTRFS info (device vdb1): setting nodatasum
+👾 kernel | [    0.167640] BTRFS info (device vdb1): setting nodatacow
+👾 kernel | [    0.167667] BTRFS info (device vdb1): enabling ssd optimizations
+👾 kernel | [    0.167689] BTRFS info (device vdb1): turning on sync discard
+👾 kernel | [    0.167718] BTRFS info (device vdb1): enabling free space tree
+👾 kernel | [    0.174349] zram0: detected capacity change from 0 to 57503432
+🐧 system |  [*] Initialize data  (+32ms)
+🐧 system |  [*] Start services  (+0ms)
+🐧 system |  [*] Done!  (+1ms)
+🐧 system |   -  Total boot time: 41ms
+👾 kernel | [    0.207393] udevd[210]: starting version 3.2.14
+👾 kernel | [    0.210389] udevd[210]: starting eudev-3.2.14
+📦 scon | time="04-24 13:08:40" level=info msg=starting
+👾 kernel | [    0.262195] conbr0: port 1(eth1) entered blocking state
+👾 kernel | [    0.262222] conbr0: port 1(eth1) entered disabled state
+👾 kernel | [    0.262239] virtio_net virtio9 eth1: entered allmulticast mode
+👾 kernel | [    0.262278] virtio_net virtio9 eth1: entered promiscuous mode
+👾 kernel | [    0.262303] conbr0: port 1(eth1) entered blocking state
+👾 kernel | [    0.262314] conbr0: port 1(eth1) entered forwarding state
+👾 kernel | [    0.346413] Adding 28751712k swap on /dev/zram0.  Priority:32767 extents:1 across:28751712k SSDsc
+👾 kernel | [    0.347046] Adding 1048572k swap on /dev/vdc.  Priority:1 extents:1 across:1048572k Dsc
+📦 scon | time="04-24 13:08:41" level=info msg=started
+🌲 vmgr | time="04-24 15:08:41" level=info msg="service is ready" service=sconrpc-internal
+🌲 vmgr | time="04-24 15:08:41" level=info msg="service is ready" service=krpc
+🌲 vmgr | time="04-24 15:08:41" level=info msg="service is ready" service=sconrpc
+📦 scon | time="04-24 13:08:41" level=info msg="starting container" container=docker
+👾 kernel | [    0.562572] conbr0: port 2(vethb2monV) entered blocking state
+👾 kernel | [    0.562620] conbr0: port 2(vethb2monV) entered disabled state
+👾 kernel | [    0.562645] vethb2monV: entered allmulticast mode
+👾 kernel | [    0.562678] vethb2monV: entered promiscuous mode
+👾 kernel | [    0.562750] conbr0: port 2(vethb2monV) entered blocking state
+👾 kernel | [    0.562775] conbr0: port 2(vethb2monV) entered forwarding state
+👾 kernel | [    0.567238] conbr0: port 2(vethb2monV) entered disabled state
+👾 kernel | [    0.567721] eth0: renamed from vethfx1wGX
+👾 kernel | [    0.567948] conbr0: port 2(vethb2monV) entered blocking state
+👾 kernel | [    0.567974] conbr0: port 2(vethb2monV) entered forwarding state
+📦 scon | time="04-24 13:08:41" level=info msg="container started" container=docker
+📦 scon | time="04-24 13:08:41" level=info msg="add forward" container=docker spec="tcp:0.250.250.65:39945"
+📦 scon | time="04-24 13:08:41" level=error msg="failed to add forward" container=docker error="host: listen tcp4 0.250.250.65:39945: bind: can't assign requested address"
+📦 scon | time="04-24 13:08:41" level=info msg="add forward" container=docker spec="tcp:[fd07:b51a:cc66:f0::41]:39173"
+📦 scon | time="04-24 13:08:41" level=error msg="failed to add forward" container=docker error="host: listen tcp [fd07:b51a:cc66:f0::41]:39173: bind: can't assign requested address"
+👾 kernel | [    1.307350] NFSD: Using /var/lib/nfs/v4recovery as the NFSv4 state recovery directory
+👾 kernel | [    1.307384] NFSD: Using legacy client tracking operations.
+👾 kernel | [    1.307398] NFSD: starting 1-second grace period (net effffff9)
+🌲 vmgr | time="04-24 15:08:41" level=info msg="service is ready" service=nfs
+🌲 vmgr | time="04-24 15:08:41" level=info msg="Mounting NFS..."
+🌲 vmgr | time="04-24 15:08:41" level=info msg="NFS mounted"
+🌲 vmgr | time="04-24 15:08:42" level=info msg="setup done"
+👾 kernel | [ 1361.527176] ------------[ cut here ]------------
+👾 kernel | [ 1361.527202] nfsd: non-standard errno: -1858345344
+👾 kernel | [ 1361.527228] WARNING: fs/nfsd/vfs.c:114 at nfsd_readdir.cold+0x12c/0x150, CPU#0: nfsd/541
+👾 kernel | [ 1361.527244] Modules linked in:
+👾 kernel | [ 1361.527254] CPU: 0 UID: 0 PID: 541 Comm: nfsd Not tainted 6.19.13-orbstack-gbd1dc07b8cf4 #1 PREEMPTLAZY 
+👾 kernel | [ 1361.527267] Hardware name: orbstack,virt (DT)
+👾 kernel | [ 1361.527274] pstate: 61400005 (nZCv daif +PAN -UAO -TCO +DIT -SSBS BTYPE=--)
+👾 kernel | [ 1361.527282] pc : nfsd_readdir.cold+0x12c/0x150
+👾 kernel | [ 1361.527290] lr : nfsd_readdir.cold+0x12c/0x150
+👾 kernel | [ 1361.527298] sp : ffff0000995d7b70
+👾 kernel | [ 1361.527303] x29: ffff0000995d7bb0 x28: 0000000000000000 x27: 0000000000000000
+👾 kernel | [ 1361.527314] x26: ffffd7a27f7195f0 x25: 00000000000001f6 x24: ffff0000913be680
+👾 kernel | [ 1361.527324] x23: ffff0000a64d4028 x22: ffffd7a27f099db8 x21: ffff0000995d7c18
+👾 kernel | [ 1361.527333] x20: ffff0000a64d2758 x19: ffff000082ef2640 x18: ffffd7a2806ccf80
+👾 kernel | [ 1361.527343] x17: 0000000000000000 x16: 0000000000000000 x15: 0000000000000003
+👾 kernel | [ 1361.527353] x14: 0000000000000003 x13: ffffd7a28048fab8 x12: 0000000000000003
+👾 kernel | [ 1361.527367] x11: 00000000ffffefff x10: c0000000ffffefff x9 : c6eb4a8a1ae3d700
+👾 kernel | [ 1361.527377] x8 : c6eb4a8a1ae3d700 x7 : 3433383538312d20 x6 : 0000000034343335
+👾 kernel | [ 1361.527387] x5 : 0000000000000000 x4 : ffff0006fc676860 x3 : 0000000000000000
+👾 kernel | [ 1361.527396] x2 : 0000000000000000 x1 : ffff0000995d7930 x0 : 0000000000000025
+👾 kernel | [ 1361.527407] Call trace:
+👾 kernel | [ 1361.527411]  nfsd_readdir.cold+0x12c/0x150 (P)
+👾 kernel | [ 1361.527419]  nfsd4_encode_readdir+0xd0/0x1b0
+👾 kernel | [ 1361.527429]  nfsd4_encode_operation+0x1bc/0x270
+👾 kernel | [ 1361.527438]  nfsd4_proc_compound+0x254/0x478
+👾 kernel | [ 1361.527446]  nfsd_dispatch+0xb4/0x198
+👾 kernel | [ 1361.527453]  svc_process_common+0x220/0x318
+👾 kernel | [ 1361.527460]  svc_process+0xe4/0x158
+👾 kernel | [ 1361.527466]  svc_recv+0x364/0x808
+👾 kernel | [ 1361.527472]  nfsd+0x7c/0xa0
+👾 kernel | [ 1361.527477]  kthread.cold+0x9c/0x1a4
+👾 kernel | [ 1361.527483]  ret_from_fork+0x10/0x20
+👾 kernel | [ 1361.527490] ---[ end trace 0000000000000000 ]---
+👾 kernel | [ 6622.805984] docker0: port 1(veth27dfc8f) entered blocking state
+👾 kernel | [ 6622.806531] docker0: port 1(veth27dfc8f) entered disabled state
+👾 kernel | [ 6622.806559] veth27dfc8f: entered allmulticast mode
+👾 kernel | [ 6622.806618] veth27dfc8f: entered promiscuous mode
+👾 kernel | [ 6622.888849] docker0: port 2(veth82fcaf0) entered blocking state
+👾 kernel | [ 6622.888876] docker0: port 2(veth82fcaf0) entered disabled state
+👾 kernel | [ 6622.888893] veth82fcaf0: entered allmulticast mode
+👾 kernel | [ 6622.888921] veth82fcaf0: entered promiscuous mode
+👾 kernel | [ 6622.906486] eth0: renamed from veth55a4168
+👾 kernel | [ 6622.907280] docker0: port 1(veth27dfc8f) entered blocking state
+👾 kernel | [ 6622.907314] docker0: port 1(veth27dfc8f) entered forwarding state
+👾 kernel | [ 6622.973157] eth0: renamed from veth2c3b473
+👾 kernel | [ 6622.973459] docker0: port 2(veth82fcaf0) entered blocking state
+👾 kernel | [ 6622.973483] docker0: port 2(veth82fcaf0) entered forwarding state
+👾 kernel | [ 6623.595346] veth55a4168: renamed from eth0
+👾 kernel | [ 6623.599489] docker0: port 1(veth27dfc8f) entered disabled state
+👾 kernel | [ 6623.631787] docker0: port 1(veth27dfc8f) entered disabled state
+👾 kernel | [ 6623.632090] veth27dfc8f (unregistering): left allmulticast mode
+👾 kernel | [ 6623.632107] veth27dfc8f (unregistering): left promiscuous mode
+👾 kernel | [ 6623.632121] docker0: port 1(veth27dfc8f) entered disabled state
+👾 kernel | [ 6623.720235] docker0: port 1(vetha29306c) entered blocking state
+👾 kernel | [ 6623.720278] docker0: port 1(vetha29306c) entered disabled state
+👾 kernel | [ 6623.720300] vetha29306c: entered allmulticast mode
+👾 kernel | [ 6623.720343] vetha29306c: entered promiscuous mode
+👾 kernel | [ 6623.786785] eth0: renamed from vethe8d751a
+👾 kernel | [ 6623.787085] docker0: port 1(vetha29306c) entered blocking state
+👾 kernel | [ 6623.787108] docker0: port 1(vetha29306c) entered forwarding state
+👾 kernel | [ 6623.831429] docker0: port 1(vetha29306c) entered disabled state
+👾 kernel | [ 6623.831497] vethe8d751a: renamed from eth0
+👾 kernel | [ 6623.895881] docker0: port 1(vetha29306c) entered disabled state
+👾 kernel | [ 6623.896244] vetha29306c (unregistering): left allmulticast mode
+👾 kernel | [ 6623.896283] vetha29306c (unregistering): left promiscuous mode
+👾 kernel | [ 6623.896309] docker0: port 1(vetha29306c) entered disabled state
+👾 kernel | [ 6623.987632] docker0: port 1(vethbcd2131) entered blocking state
+👾 kernel | [ 6623.987667] docker0: port 1(vethbcd2131) entered disabled state
+👾 kernel | [ 6623.987688] vethbcd2131: entered allmulticast mode
+👾 kernel | [ 6623.987717] vethbcd2131: entered promiscuous mode
+👾 kernel | [ 6624.053431] eth0: renamed from vethc8ccec2
+👾 kernel | [ 6624.053848] docker0: port 1(vethbcd2131) entered blocking state
+👾 kernel | [ 6624.053902] docker0: port 1(vethbcd2131) entered forwarding state
+👾 kernel | [ 6624.172284] docker0: port 1(vethbcd2131) entered disabled state
+👾 kernel | [ 6624.172343] vethc8ccec2: renamed from eth0
+👾 kernel | [ 6624.195872] docker0: port 1(vethbcd2131) entered disabled state
+👾 kernel | [ 6624.196182] vethbcd2131 (unregistering): left allmulticast mode
+👾 kernel | [ 6624.196214] vethbcd2131 (unregistering): left promiscuous mode
+👾 kernel | [ 6624.196237] docker0: port 1(vethbcd2131) entered disabled state
+👾 kernel | [ 6625.095850] veth2c3b473: renamed from eth0
+👾 kernel | [ 6625.127124] docker0: port 2(veth82fcaf0) entered disabled state
+👾 kernel | [ 6625.271426] docker0: port 2(veth82fcaf0) entered disabled state
+👾 kernel | [ 6625.271799] veth82fcaf0 (unregistering): left allmulticast mode
+👾 kernel | [ 6625.271828] veth82fcaf0 (unregistering): left promiscuous mode
+👾 kernel | [ 6625.271848] docker0: port 2(veth82fcaf0) entered disabled state
+👾 kernel | [ 6625.606014] docker0: port 1(vethbe09927) entered blocking state
+👾 kernel | [ 6625.606037] docker0: port 1(vethbe09927) entered disabled state
+👾 kernel | [ 6625.606049] vethbe09927: entered allmulticast mode
+👾 kernel | [ 6625.606081] vethbe09927: entered promiscuous mode
+👾 kernel | [ 6625.649540] docker0: port 2(veth90cefec) entered blocking state
+👾 kernel | [ 6625.649566] docker0: port 2(veth90cefec) entered disabled state
+👾 kernel | [ 6625.649580] veth90cefec: entered allmulticast mode
+👾 kernel | [ 6625.649612] veth90cefec: entered promiscuous mode
+👾 kernel | [ 6625.695189] eth0: renamed from veth421f183
+👾 kernel | [ 6625.695738] docker0: port 1(vethbe09927) entered blocking state
+👾 kernel | [ 6625.695756] docker0: port 1(vethbe09927) entered forwarding state
+👾 kernel | [ 6625.786684] eth0: renamed from veth2df947c
+👾 kernel | [ 6625.787048] docker0: port 2(veth90cefec) entered blocking state
+👾 kernel | [ 6625.787076] docker0: port 2(veth90cefec) entered forwarding state
+🌲 vmgr | time="04-24 16:59:08" level=error msg="TCP forward [104.16.1.34:443] create endpoint failed: connection was refused"
+🌲 vmgr | time="04-24 16:59:08" level=error msg="TCP forward [104.16.1.34:443] create endpoint failed: connection was refused"
+👾 kernel | [ 6642.301331] docker0: port 1(vethbe09927) entered disabled state
+👾 kernel | [ 6642.301418] veth421f183: renamed from eth0
+👾 kernel | [ 6642.498829] veth2df947c: renamed from eth0
+👾 kernel | [ 6642.499558] docker0: port 2(veth90cefec) entered disabled state
+👾 kernel | [ 6642.810592] docker0: port 1(vethbe09927) entered disabled state
+👾 kernel | [ 6642.815367] vethbe09927 (unregistering): left allmulticast mode
+👾 kernel | [ 6642.815393] vethbe09927 (unregistering): left promiscuous mode
+👾 kernel | [ 6642.815408] docker0: port 1(vethbe09927) entered disabled state
+👾 kernel | [ 6642.903887] docker0: port 2(veth90cefec) entered disabled state
+👾 kernel | [ 6642.912320] veth90cefec (unregistering): left allmulticast mode
+👾 kernel | [ 6642.912347] veth90cefec (unregistering): left promiscuous mode
+👾 kernel | [ 6642.912362] docker0: port 2(veth90cefec) entered disabled state
+👾 kernel | [ 6646.178052] docker0: port 1(veth4e140de) entered blocking state
+👾 kernel | [ 6646.178112] docker0: port 1(veth4e140de) entered disabled state
+👾 kernel | [ 6646.178131] veth4e140de: entered allmulticast mode
+👾 kernel | [ 6646.178208] veth4e140de: entered promiscuous mode
+👾 kernel | [ 6646.233238] eth0: renamed from veth79cf316
+👾 kernel | [ 6646.233588] docker0: port 1(veth4e140de) entered blocking state
+👾 kernel | [ 6646.233611] docker0: port 1(veth4e140de) entered forwarding state
+👾 kernel | [ 6647.374416] docker0: port 1(veth4e140de) entered disabled state
+👾 kernel | [ 6647.374522] veth79cf316: renamed from eth0
+👾 kernel | [ 6647.404284] docker0: port 1(veth4e140de) entered disabled state
+👾 kernel | [ 6647.404717] veth4e140de (unregistering): left allmulticast mode
+👾 kernel | [ 6647.404753] veth4e140de (unregistering): left promiscuous mode
+👾 kernel | [ 6647.404771] docker0: port 1(veth4e140de) entered disabled state
+👾 kernel | [ 6647.432059] docker0: port 1(vethd4c7040) entered blocking state
+👾 kernel | [ 6647.432107] docker0: port 1(vethd4c7040) entered disabled state
+👾 kernel | [ 6647.432132] vethd4c7040: entered allmulticast mode
+👾 kernel | [ 6647.432185] vethd4c7040: entered promiscuous mode
+👾 kernel | [ 6647.477655] eth0: renamed from veth25bd704
+👾 kernel | [ 6647.477962] docker0: port 1(vethd4c7040) entered blocking state
+👾 kernel | [ 6647.477980] docker0: port 1(vethd4c7040) entered forwarding state
+👾 kernel | [ 6657.130194] docker0: port 1(vethd4c7040) entered disabled state
+👾 kernel | [ 6657.130266] veth25bd704: renamed from eth0
+👾 kernel | [ 6657.168565] docker0: port 1(vethd4c7040) entered disabled state
+👾 kernel | [ 6657.168894] vethd4c7040 (unregistering): left allmulticast mode
+👾 kernel | [ 6657.168914] vethd4c7040 (unregistering): left promiscuous mode
+👾 kernel | [ 6657.168940] docker0: port 1(vethd4c7040) entered disabled state
+👾 kernel | [ 6659.917898] docker0: port 1(veth1877643) entered blocking state
+👾 kernel | [ 6659.917927] docker0: port 1(veth1877643) entered disabled state
+👾 kernel | [ 6659.917966] veth1877643: entered allmulticast mode
+👾 kernel | [ 6659.918008] veth1877643: entered promiscuous mode
+👾 kernel | [ 6659.980957] eth0: renamed from veth239744c
+👾 kernel | [ 6659.981279] docker0: port 1(veth1877643) entered blocking state
+👾 kernel | [ 6659.981300] docker0: port 1(veth1877643) entered forwarding state
+👾 kernel | [ 6660.013834] docker0: port 1(veth1877643) entered disabled state
+👾 kernel | [ 6660.013879] veth239744c: renamed from eth0
+👾 kernel | [ 6660.051638] docker0: port 1(veth1877643) entered disabled state
+👾 kernel | [ 6660.052001] veth1877643 (unregistering): left allmulticast mode
+👾 kernel | [ 6660.052024] veth1877643 (unregistering): left promiscuous mode
+👾 kernel | [ 6660.052044] docker0: port 1(veth1877643) entered disabled state
+👾 kernel | [ 6660.099571] docker0: port 1(veth481ab3c) entered blocking state
+👾 kernel | [ 6660.099595] docker0: port 1(veth481ab3c) entered disabled state
+👾 kernel | [ 6660.099608] veth481ab3c: entered allmulticast mode
+👾 kernel | [ 6660.099644] veth481ab3c: entered promiscuous mode
+👾 kernel | [ 6660.154381] eth0: renamed from veth97a0101
+👾 kernel | [ 6660.154700] docker0: port 1(veth481ab3c) entered blocking state
+👾 kernel | [ 6660.154720] docker0: port 1(veth481ab3c) entered forwarding state
+👾 kernel | [ 6660.688749] docker0: port 1(veth481ab3c) entered disabled state
+👾 kernel | [ 6660.688798] veth97a0101: renamed from eth0
+👾 kernel | [ 6660.709841] docker0: port 1(veth481ab3c) entered disabled state
+👾 kernel | [ 6660.710214] veth481ab3c (unregistering): left allmulticast mode
+👾 kernel | [ 6660.710249] veth481ab3c (unregistering): left promiscuous mode
+👾 kernel | [ 6660.710282] docker0: port 1(veth481ab3c) entered disabled state
+👾 kernel | [ 6663.861585] br-3c38f7babd1e: port 1(veth0724ebc) entered blocking state
+👾 kernel | [ 6663.861616] br-3c38f7babd1e: port 1(veth0724ebc) entered disabled state
+👾 kernel | [ 6663.861632] veth0724ebc: entered allmulticast mode
+👾 kernel | [ 6663.861663] veth0724ebc: entered promiscuous mode
+👾 kernel | [ 6663.872451] br-3c38f7babd1e: port 2(veth9ba3dab) entered blocking state
+👾 kernel | [ 6663.872483] br-3c38f7babd1e: port 2(veth9ba3dab) entered disabled state
+👾 kernel | [ 6663.872528] veth9ba3dab: entered allmulticast mode
+👾 kernel | [ 6663.872565] veth9ba3dab: entered promiscuous mode
+👾 kernel | [ 6663.885394] eth0: renamed from veth9bb993a
+👾 kernel | [ 6663.885764] br-3c38f7babd1e: port 1(veth0724ebc) entered blocking state
+👾 kernel | [ 6663.885791] br-3c38f7babd1e: port 1(veth0724ebc) entered forwarding state
+👾 kernel | [ 6663.888317] eth0: renamed from veth9c982d7
+👾 kernel | [ 6663.888669] br-3c38f7babd1e: port 2(veth9ba3dab) entered blocking state
+👾 kernel | [ 6663.888708] br-3c38f7babd1e: port 2(veth9ba3dab) entered forwarding state
+🌸 agent:docker | time="04-24 16:59:44" level=info msg="adding network" config="{192.168.107.0/24 192.168.107.1 invalid Prefix invalid IP br-3c38f7babd1e}" name=aletheia-local-sso-lab_default
+📦 scon | time="04-24 14:59:44" level=info msg="add forward" container=docker spec="tcp:0.0.0.0:6379"
+📦 scon | time="04-24 14:59:44" level=info msg="add forward" container=docker spec="tcp:0.0.0.0:5432"
+📦 scon | time="04-24 14:59:44" level=info msg="add forward" container=docker spec="tcp:[::]:6379"
+📦 scon | time="04-24 14:59:44" level=info msg="add forward" container=docker spec="tcp:[::]:5432"
+👾 kernel | [ 6674.553732] br-3c38f7babd1e: port 3(veth000560e) entered blocking state
+👾 kernel | [ 6674.553776] br-3c38f7babd1e: port 3(veth000560e) entered disabled state
+👾 kernel | [ 6674.553795] veth000560e: entered allmulticast mode
+👾 kernel | [ 6674.553888] veth000560e: entered promiscuous mode
+👾 kernel | [ 6674.566769] eth0: renamed from veth8171708
+👾 kernel | [ 6674.567238] br-3c38f7babd1e: port 3(veth000560e) entered blocking state
+👾 kernel | [ 6674.567283] br-3c38f7babd1e: port 3(veth000560e) entered forwarding state
+📦 scon | time="04-24 14:59:55" level=info msg="add forward" container=docker spec="tcp:0.0.0.0:3000"
+📦 scon | time="04-24 14:59:55" level=info msg="add forward" container=docker spec="tcp:[::]:3000"
+👾 kernel | [ 6808.521894] docker0: port 1(veth4fc4571) entered blocking state
+👾 kernel | [ 6808.521923] docker0: port 1(veth4fc4571) entered disabled state
+👾 kernel | [ 6808.521964] veth4fc4571: entered allmulticast mode
+👾 kernel | [ 6808.522011] veth4fc4571: entered promiscuous mode
+👾 kernel | [ 6808.607906] docker0: port 2(veth08c52c9) entered blocking state
+👾 kernel | [ 6808.607946] docker0: port 2(veth08c52c9) entered disabled state
+👾 kernel | [ 6808.607965] veth08c52c9: entered allmulticast mode
+👾 kernel | [ 6808.608008] veth08c52c9: entered promiscuous mode
+👾 kernel | [ 6808.675111] eth0: renamed from vethce8d489
+👾 kernel | [ 6808.679289] eth0: renamed from veth60a743d
+👾 kernel | [ 6808.679746] docker0: port 1(veth4fc4571) entered blocking state
+👾 kernel | [ 6808.679783] docker0: port 1(veth4fc4571) entered forwarding state
+👾 kernel | [ 6808.679986] docker0: port 2(veth08c52c9) entered blocking state
+👾 kernel | [ 6808.680004] docker0: port 2(veth08c52c9) entered forwarding state
+👾 kernel | [ 6828.628197] veth60a743d: renamed from eth0
+👾 kernel | [ 6828.642956] docker0: port 2(veth08c52c9) entered disabled state
+👾 kernel | [ 6829.803779] docker0: port 1(veth4fc4571) entered disabled state
+👾 kernel | [ 6829.803861] vethce8d489: renamed from eth0
+👾 kernel | [ 6829.945630] docker0: port 2(veth08c52c9) entered disabled state
+👾 kernel | [ 6829.947333] veth08c52c9 (unregistering): left allmulticast mode
+👾 kernel | [ 6829.947379] veth08c52c9 (unregistering): left promiscuous mode
+👾 kernel | [ 6829.947407] docker0: port 2(veth08c52c9) entered disabled state
+👾 kernel | [ 6830.137949] docker0: port 1(veth4fc4571) entered disabled state
+👾 kernel | [ 6830.138388] veth4fc4571 (unregistering): left allmulticast mode
+👾 kernel | [ 6830.138431] veth4fc4571 (unregistering): left promiscuous mode
+👾 kernel | [ 6830.138473] docker0: port 1(veth4fc4571) entered disabled state
+👾 kernel | [ 6832.970538] docker0: port 1(veth15942f5) entered blocking state
+👾 kernel | [ 6832.970572] docker0: port 1(veth15942f5) entered disabled state
+👾 kernel | [ 6832.970583] veth15942f5: entered allmulticast mode
+👾 kernel | [ 6832.970624] veth15942f5: entered promiscuous mode
+👾 kernel | [ 6833.036023] eth0: renamed from veth4692661
+👾 kernel | [ 6833.036398] docker0: port 1(veth15942f5) entered blocking state
+👾 kernel | [ 6833.036414] docker0: port 1(veth15942f5) entered forwarding state
+👾 kernel | [ 6834.189910] docker0: port 1(veth15942f5) entered disabled state
+👾 kernel | [ 6834.189977] veth4692661: renamed from eth0
+👾 kernel | [ 6834.218958] docker0: port 1(veth15942f5) entered disabled state
+👾 kernel | [ 6834.219301] veth15942f5 (unregistering): left allmulticast mode
+👾 kernel | [ 6834.219337] veth15942f5 (unregistering): left promiscuous mode
+👾 kernel | [ 6834.219359] docker0: port 1(veth15942f5) entered disabled state
+👾 kernel | [ 6834.271760] docker0: port 1(veth36f2822) entered blocking state
+👾 kernel | [ 6834.271783] docker0: port 1(veth36f2822) entered disabled state
+👾 kernel | [ 6834.271794] veth36f2822: entered allmulticast mode
+👾 kernel | [ 6834.271833] veth36f2822: entered promiscuous mode
+👾 kernel | [ 6834.331078] eth0: renamed from veth6cd5f1c
+👾 kernel | [ 6834.331457] docker0: port 1(veth36f2822) entered blocking state
+👾 kernel | [ 6834.331474] docker0: port 1(veth36f2822) entered forwarding state
+👾 kernel | [ 6846.802299] docker0: port 1(veth36f2822) entered disabled state
+👾 kernel | [ 6846.802348] veth6cd5f1c: renamed from eth0
+👾 kernel | [ 6846.834926] docker0: port 1(veth36f2822) entered disabled state
+👾 kernel | [ 6846.835377] veth36f2822 (unregistering): left allmulticast mode
+👾 kernel | [ 6846.835401] veth36f2822 (unregistering): left promiscuous mode
+👾 kernel | [ 6846.835414] docker0: port 1(veth36f2822) entered disabled state
+👾 kernel | [ 6848.070553] docker0: port 1(veth9e86048) entered blocking state
+👾 kernel | [ 6848.070576] docker0: port 1(veth9e86048) entered disabled state
+👾 kernel | [ 6848.070587] veth9e86048: entered allmulticast mode
+👾 kernel | [ 6848.070627] veth9e86048: entered promiscuous mode
+👾 kernel | [ 6848.123996] eth0: renamed from veth8676c4f
+👾 kernel | [ 6848.124325] docker0: port 1(veth9e86048) entered blocking state
+👾 kernel | [ 6848.124342] docker0: port 1(veth9e86048) entered forwarding state
+👾 kernel | [ 6849.661218] docker0: port 1(veth9e86048) entered disabled state
+👾 kernel | [ 6849.661307] veth8676c4f: renamed from eth0
+👾 kernel | [ 6849.693091] docker0: port 1(veth9e86048) entered disabled state
+👾 kernel | [ 6849.693487] veth9e86048 (unregistering): left allmulticast mode
+👾 kernel | [ 6849.693512] veth9e86048 (unregistering): left promiscuous mode
+👾 kernel | [ 6849.693530] docker0: port 1(veth9e86048) entered disabled state
+👾 kernel | [ 6851.176887] docker0: port 1(vethc28d83c) entered blocking state
+👾 kernel | [ 6851.176923] docker0: port 1(vethc28d83c) entered disabled state
+👾 kernel | [ 6851.176938] vethc28d83c: entered allmulticast mode
+👾 kernel | [ 6851.177019] vethc28d83c: entered promiscuous mode
+👾 kernel | [ 6851.228662] eth0: renamed from veth3d5e6d9
+👾 kernel | [ 6851.229007] docker0: port 1(vethc28d83c) entered blocking state
+👾 kernel | [ 6851.229039] docker0: port 1(vethc28d83c) entered forwarding state
+👾 kernel | [ 6851.265820] docker0: port 1(vethc28d83c) entered disabled state
+👾 kernel | [ 6851.265887] veth3d5e6d9: renamed from eth0
+👾 kernel | [ 6851.290679] docker0: port 1(vethc28d83c) entered disabled state
+👾 kernel | [ 6851.291051] vethc28d83c (unregistering): left allmulticast mode
+👾 kernel | [ 6851.291065] vethc28d83c (unregistering): left promiscuous mode
+👾 kernel | [ 6851.291077] docker0: port 1(vethc28d83c) entered disabled state
+👾 kernel | [ 6851.338583] docker0: port 1(veth387505d) entered blocking state
+👾 kernel | [ 6851.338607] docker0: port 1(veth387505d) entered disabled state
+👾 kernel | [ 6851.338623] veth387505d: entered allmulticast mode
+👾 kernel | [ 6851.338652] veth387505d: entered promiscuous mode
+👾 kernel | [ 6851.390940] eth0: renamed from vethd1b17eb
+👾 kernel | [ 6851.391324] docker0: port 1(veth387505d) entered blocking state
+👾 kernel | [ 6851.391343] docker0: port 1(veth387505d) entered forwarding state
+👾 kernel | [ 6851.989940] docker0: port 1(veth387505d) entered disabled state
+👾 kernel | [ 6851.990008] vethd1b17eb: renamed from eth0
+👾 kernel | [ 6852.009272] docker0: port 1(veth387505d) entered disabled state
+👾 kernel | [ 6852.013801] veth387505d (unregistering): left allmulticast mode
+👾 kernel | [ 6852.013838] veth387505d (unregistering): left promiscuous mode
+👾 kernel | [ 6852.013857] docker0: port 1(veth387505d) entered disabled state
+👾 kernel | [ 6855.192701] br-3c38f7babd1e: port 2(veth9ba3dab) entered disabled state
+👾 kernel | [ 6855.192815] veth9c982d7: renamed from eth0
+📦 scon | time="04-24 15:02:55" level=info msg="remove forward" key="tcp:0.0.0.0:6379"
+📦 scon | time="04-24 15:02:55" level=info msg="remove forward" key="tcp:[::]:6379"
+👾 kernel | [ 6855.216154] br-3c38f7babd1e: port 2(veth9ba3dab) entered disabled state
+👾 kernel | [ 6855.216560] veth9ba3dab (unregistering): left allmulticast mode
+👾 kernel | [ 6855.216581] veth9ba3dab (unregistering): left promiscuous mode
+👾 kernel | [ 6855.216597] br-3c38f7babd1e: port 2(veth9ba3dab) entered disabled state
+👾 kernel | [ 6855.396120] br-3c38f7babd1e: port 1(veth0724ebc) entered disabled state
+👾 kernel | [ 6855.396196] veth9bb993a: renamed from eth0
+👾 kernel | [ 6855.423030] br-3c38f7babd1e: port 1(veth0724ebc) entered disabled state
+👾 kernel | [ 6855.423205] veth0724ebc (unregistering): left allmulticast mode
+👾 kernel | [ 6855.423225] veth0724ebc (unregistering): left promiscuous mode
+👾 kernel | [ 6855.423237] br-3c38f7babd1e: port 1(veth0724ebc) entered disabled state
+📦 scon | time="04-24 15:02:56" level=info msg="remove forward" key="tcp:0.0.0.0:5432"
+📦 scon | time="04-24 15:02:56" level=info msg="remove forward" key="tcp:[::]:5432"
+👾 kernel | [ 6855.572800] br-3c38f7babd1e: port 3(veth000560e) entered disabled state
+👾 kernel | [ 6855.572997] veth8171708: renamed from eth0
+📦 scon | time="04-24 15:02:56" level=info msg="remove forward" key="tcp:0.0.0.0:3000"
+📦 scon | time="04-24 15:02:56" level=info msg="remove forward" key="tcp:[::]:3000"
+👾 kernel | [ 6855.597729] br-3c38f7babd1e: port 3(veth000560e) entered disabled state
+👾 kernel | [ 6855.598172] veth000560e (unregistering): left allmulticast mode
+👾 kernel | [ 6855.598192] veth000560e (unregistering): left promiscuous mode
+👾 kernel | [ 6855.598210] br-3c38f7babd1e: port 3(veth000560e) entered disabled state
+🌸 agent:docker | time="04-24 17:02:56" level=info msg="removing network" config="{192.168.107.0/24 192.168.107.1 invalid Prefix invalid IP br-3c38f7babd1e}" name=aletheia-local-sso-lab_default
+👾 kernel | [ 6855.729812] br-945f581dfc05: port 1(vethea963c7) entered blocking state
+👾 kernel | [ 6855.729888] br-945f581dfc05: port 1(vethea963c7) entered disabled state
+👾 kernel | [ 6855.729916] vethea963c7: entered allmulticast mode
+👾 kernel | [ 6855.729949] vethea963c7: entered promiscuous mode
+👾 kernel | [ 6855.755667] br-945f581dfc05: port 2(vethb12732f) entered blocking state
+👾 kernel | [ 6855.755691] br-945f581dfc05: port 2(vethb12732f) entered disabled state
+👾 kernel | [ 6855.755705] vethb12732f: entered allmulticast mode
+👾 kernel | [ 6855.755734] vethb12732f: entered promiscuous mode
+👾 kernel | [ 6855.761108] eth0: renamed from veth20c0070
+👾 kernel | [ 6855.761616] br-945f581dfc05: port 1(vethea963c7) entered blocking state
+👾 kernel | [ 6855.761664] br-945f581dfc05: port 1(vethea963c7) entered forwarding state
+👾 kernel | [ 6855.766295] eth0: renamed from veth66912bf
+👾 kernel | [ 6855.766602] br-945f581dfc05: port 2(vethb12732f) entered blocking state
+👾 kernel | [ 6855.766621] br-945f581dfc05: port 2(vethb12732f) entered forwarding state
+📦 scon | time="04-24 15:02:56" level=info msg="add forward" container=docker spec="tcp:0.0.0.0:6380"
+📦 scon | time="04-24 15:02:56" level=info msg="add forward" container=docker spec="tcp:0.0.0.0:5433"
+📦 scon | time="04-24 15:02:56" level=info msg="add forward" container=docker spec="tcp:[::]:6380"
+📦 scon | time="04-24 15:02:56" level=info msg="add forward" container=docker spec="tcp:[::]:5433"
+🌸 agent:docker | time="04-24 17:02:56" level=info msg="adding network" config="{192.168.117.0/24 192.168.117.1 invalid Prefix invalid IP br-945f581dfc05}" name=aletheia-local-sso-lab_shieldguard-network
+👾 kernel | [ 6866.383560] br-945f581dfc05: port 3(veth31103aa) entered blocking state
+👾 kernel | [ 6866.383609] br-945f581dfc05: port 3(veth31103aa) entered disabled state
+👾 kernel | [ 6866.383628] veth31103aa: entered allmulticast mode
+👾 kernel | [ 6866.383660] veth31103aa: entered promiscuous mode
+👾 kernel | [ 6866.397734] eth0: renamed from veth0176518
+👾 kernel | [ 6866.398057] br-945f581dfc05: port 3(veth31103aa) entered blocking state
+👾 kernel | [ 6866.398102] br-945f581dfc05: port 3(veth31103aa) entered forwarding state
+📦 scon | time="04-24 15:03:07" level=info msg="add forward" container=docker spec="tcp:0.0.0.0:3001"
+📦 scon | time="04-24 15:03:07" level=info msg="add forward" container=docker spec="tcp:[::]:3001"
+👾 kernel | [ 7012.912838] br-945f581dfc05: port 3(veth31103aa) entered disabled state
+👾 kernel | [ 7012.912948] veth0176518: renamed from eth0
+📦 scon | time="04-24 15:05:33" level=info msg="remove forward" key="tcp:0.0.0.0:3001"
+📦 scon | time="04-24 15:05:33" level=info msg="remove forward" key="tcp:[::]:3001"
+👾 kernel | [ 7012.942218] br-945f581dfc05: port 3(veth31103aa) entered disabled state
+👾 kernel | [ 7012.942475] veth31103aa (unregistering): left allmulticast mode
+👾 kernel | [ 7012.942499] veth31103aa (unregistering): left promiscuous mode
+👾 kernel | [ 7012.942537] br-945f581dfc05: port 3(veth31103aa) entered disabled state
+👾 kernel | [ 7013.064985] br-945f581dfc05: port 1(vethea963c7) entered disabled state
+👾 kernel | [ 7013.065095] veth20c0070: renamed from eth0
+📦 scon | time="04-24 15:05:33" level=info msg="remove forward" key="tcp:0.0.0.0:6380"
+📦 scon | time="04-24 15:05:33" level=info msg="remove forward" key="tcp:[::]:6380"
+👾 kernel | [ 7013.094393] br-945f581dfc05: port 1(vethea963c7) entered disabled state
+👾 kernel | [ 7013.094845] vethea963c7 (unregistering): left allmulticast mode
+👾 kernel | [ 7013.094865] vethea963c7 (unregistering): left promiscuous mode
+👾 kernel | [ 7013.094920] br-945f581dfc05: port 1(vethea963c7) entered disabled state
+👾 kernel | [ 7013.135908] br-945f581dfc05: port 2(vethb12732f) entered disabled state
+👾 kernel | [ 7013.135981] veth66912bf: renamed from eth0
+📦 scon | time="04-24 15:05:33" level=info msg="remove forward" key="tcp:0.0.0.0:5433"
+📦 scon | time="04-24 15:05:33" level=info msg="remove forward" key="tcp:[::]:5433"
+👾 kernel | [ 7013.166491] br-945f581dfc05: port 2(vethb12732f) entered disabled state
+👾 kernel | [ 7013.166859] vethb12732f (unregistering): left allmulticast mode
+👾 kernel | [ 7013.166882] vethb12732f (unregistering): left promiscuous mode
+👾 kernel | [ 7013.166894] br-945f581dfc05: port 2(vethb12732f) entered disabled state
+🌸 agent:docker | time="04-24 17:05:33" level=info msg="removing network" config="{192.168.117.0/24 192.168.117.1 invalid Prefix invalid IP br-945f581dfc05}" name=aletheia-local-sso-lab_shieldguard-network
+👾 kernel | [ 7053.899320] br-e400ac35b1ce: port 1(veth9654b99) entered blocking state
+👾 kernel | [ 7053.899352] br-e400ac35b1ce: port 1(veth9654b99) entered disabled state
+👾 kernel | [ 7053.899374] veth9654b99: entered allmulticast mode
+👾 kernel | [ 7053.899420] veth9654b99: entered promiscuous mode
+👾 kernel | [ 7053.911330] br-e400ac35b1ce: port 2(veth2c55ca0) entered blocking state
+👾 kernel | [ 7053.911358] br-e400ac35b1ce: port 2(veth2c55ca0) entered disabled state
+👾 kernel | [ 7053.911372] veth2c55ca0: entered allmulticast mode
+👾 kernel | [ 7053.911453] veth2c55ca0: entered promiscuous mode
+👾 kernel | [ 7053.916778] eth0: renamed from veth121e6a4
+👾 kernel | [ 7053.917203] br-e400ac35b1ce: port 1(veth9654b99) entered blocking state
+👾 kernel | [ 7053.917224] br-e400ac35b1ce: port 1(veth9654b99) entered forwarding state
+👾 kernel | [ 7053.928173] eth0: renamed from veth43c3c68
+👾 kernel | [ 7053.928658] br-e400ac35b1ce: port 2(veth2c55ca0) entered blocking state
+👾 kernel | [ 7053.928680] br-e400ac35b1ce: port 2(veth2c55ca0) entered forwarding state
+🌸 agent:docker | time="04-24 17:06:14" level=info msg="adding network" config="{192.168.107.0/24 192.168.107.1 invalid Prefix invalid IP br-e400ac35b1ce}" name=chillboard-lab_default
+📦 scon | time="04-24 15:06:14" level=info msg="add forward" container=docker spec="tcp:0.0.0.0:6379"
+📦 scon | time="04-24 15:06:14" level=info msg="add forward" container=docker spec="tcp:0.0.0.0:5432"
+📦 scon | time="04-24 15:06:14" level=info msg="add forward" container=docker spec="tcp:[::]:6379"
+📦 scon | time="04-24 15:06:14" level=info msg="add forward" container=docker spec="tcp:[::]:5432"
+👾 kernel | [ 7064.547574] br-e400ac35b1ce: port 3(veth9653c6d) entered blocking state
+👾 kernel | [ 7064.547634] br-e400ac35b1ce: port 3(veth9653c6d) entered disabled state
+👾 kernel | [ 7064.547669] veth9653c6d: entered allmulticast mode
+👾 kernel | [ 7064.547715] veth9653c6d: entered promiscuous mode
+👾 kernel | [ 7064.560586] eth0: renamed from vethe7e8792
+👾 kernel | [ 7064.560864] br-e400ac35b1ce: port 3(veth9653c6d) entered blocking state
+👾 kernel | [ 7064.560879] br-e400ac35b1ce: port 3(veth9653c6d) entered forwarding state
+📦 scon | time="04-24 15:06:25" level=info msg="add forward" container=docker spec="tcp:0.0.0.0:3000"
+📦 scon | time="04-24 15:06:25" level=info msg="add forward" container=docker spec="tcp:[::]:3000"
+👾 kernel | [ 7171.116559] br-ce54d582b538: port 1(veth1b03aa1) entered blocking state
+👾 kernel | [ 7171.116593] br-ce54d582b538: port 1(veth1b03aa1) entered disabled state
+👾 kernel | [ 7171.116614] veth1b03aa1: entered allmulticast mode
+👾 kernel | [ 7171.116644] veth1b03aa1: entered promiscuous mode
+👾 kernel | [ 7171.126865] br-ce54d582b538: port 2(veth8cb228a) entered blocking state
+👾 kernel | [ 7171.126888] br-ce54d582b538: port 2(veth8cb228a) entered disabled state
+👾 kernel | [ 7171.126907] veth8cb228a: entered allmulticast mode
+👾 kernel | [ 7171.126942] veth8cb228a: entered promiscuous mode
+👾 kernel | [ 7171.133213] eth0: renamed from veth879c54f
+👾 kernel | [ 7171.133579] br-ce54d582b538: port 1(veth1b03aa1) entered blocking state
+👾 kernel | [ 7171.133596] br-ce54d582b538: port 1(veth1b03aa1) entered forwarding state
+👾 kernel | [ 7171.140981] eth0: renamed from vethcd7714d
+👾 kernel | [ 7171.141367] br-ce54d582b538: port 2(veth8cb228a) entered blocking state
+👾 kernel | [ 7171.141387] br-ce54d582b538: port 2(veth8cb228a) entered forwarding state
+🌸 agent:docker | time="04-24 17:08:11" level=info msg="adding network" config="{192.168.117.0/24 192.168.117.1 invalid Prefix invalid IP br-ce54d582b538}" name=aletheia-lab_shieldguard-network
+📦 scon | time="04-24 15:08:11" level=info msg="add forward" container=docker spec="tcp:0.0.0.0:6380"
+📦 scon | time="04-24 15:08:11" level=info msg="add forward" container=docker spec="tcp:0.0.0.0:5433"
+📦 scon | time="04-24 15:08:11" level=info msg="add forward" container=docker spec="tcp:[::]:6380"
+📦 scon | time="04-24 15:08:11" level=info msg="add forward" container=docker spec="tcp:[::]:5433"
+👾 kernel | [ 7181.764941] br-ce54d582b538: port 3(vethe13b498) entered blocking state
+👾 kernel | [ 7181.764981] br-ce54d582b538: port 3(vethe13b498) entered disabled state
+👾 kernel | [ 7181.765024] vethe13b498: entered allmulticast mode
+👾 kernel | [ 7181.765058] vethe13b498: entered promiscuous mode
+👾 kernel | [ 7181.776751] eth0: renamed from vethbfb1c60
+👾 kernel | [ 7181.777098] br-ce54d582b538: port 3(vethe13b498) entered blocking state
+👾 kernel | [ 7181.777116] br-ce54d582b538: port 3(vethe13b498) entered forwarding state
+📦 scon | time="04-24 15:08:22" level=info msg="add forward" container=docker spec="tcp:0.0.0.0:3001"
+📦 scon | time="04-24 15:08:22" level=info msg="add forward" container=docker spec="tcp:[::]:3001"
+👾 kernel | [ 7453.867229] br-e400ac35b1ce: port 3(veth9653c6d) entered disabled state
+👾 kernel | [ 7453.867298] vethe7e8792: renamed from eth0
+📦 scon | time="04-24 15:12:54" level=info msg="remove forward" key="tcp:0.0.0.0:3000"
+📦 scon | time="04-24 15:12:54" level=info msg="remove forward" key="tcp:[::]:3000"
+👾 kernel | [ 7453.895182] br-e400ac35b1ce: port 3(veth9653c6d) entered disabled state
+👾 kernel | [ 7453.895521] veth9653c6d (unregistering): left allmulticast mode
+👾 kernel | [ 7453.895535] veth9653c6d (unregistering): left promiscuous mode
+👾 kernel | [ 7453.895546] br-e400ac35b1ce: port 3(veth9653c6d) entered disabled state
+👾 kernel | [ 7453.978704] br-e400ac35b1ce: port 3(veth6991fe3) entered blocking state
+👾 kernel | [ 7453.978731] br-e400ac35b1ce: port 3(veth6991fe3) entered disabled state
+👾 kernel | [ 7453.978742] veth6991fe3: entered allmulticast mode
+👾 kernel | [ 7453.978766] veth6991fe3: entered promiscuous mode
+👾 kernel | [ 7453.993654] eth0: renamed from vethb2e1bdb
+👾 kernel | [ 7453.993947] br-e400ac35b1ce: port 3(veth6991fe3) entered blocking state
+👾 kernel | [ 7453.993965] br-e400ac35b1ce: port 3(veth6991fe3) entered forwarding state
+📦 scon | time="04-24 15:12:54" level=info msg="add forward" container=docker spec="tcp:0.0.0.0:3000"
+📦 scon | time="04-24 15:12:54" level=info msg="add forward" container=docker spec="tcp:[::]:3000"
+🌲 vmgr | time="04-24 17:12:54" level=error msg="host-tcp forward: dial failed" addr="{1 0.250.250.2 42003 }" error="connect tcp 0.250.250.2:42003: connection was refused"
+👾 kernel | [ 8430.111987] br-e400ac35b1ce: port 2(veth2c55ca0) entered disabled state
+👾 kernel | [ 8430.112101] veth43c3c68: renamed from eth0
+📦 scon | time="04-24 15:29:10" level=info msg="remove forward" key="tcp:0.0.0.0:6379"
+📦 scon | time="04-24 15:29:10" level=info msg="remove forward" key="tcp:[::]:6379"
+👾 kernel | [ 8430.143404] br-e400ac35b1ce: port 2(veth2c55ca0) entered disabled state
+👾 kernel | [ 8430.143757] veth2c55ca0 (unregistering): left allmulticast mode
+👾 kernel | [ 8430.143770] veth2c55ca0 (unregistering): left promiscuous mode
+👾 kernel | [ 8430.143781] br-e400ac35b1ce: port 2(veth2c55ca0) entered disabled state
+👾 kernel | [ 9685.305453] br-e400ac35b1ce: port 2(vethe6353f2) entered blocking state
+👾 kernel | [ 9685.305503] br-e400ac35b1ce: port 2(vethe6353f2) entered disabled state
+👾 kernel | [ 9685.305515] vethe6353f2: entered allmulticast mode
+👾 kernel | [ 9685.305547] vethe6353f2: entered promiscuous mode
+👾 kernel | [ 9685.322732] eth0: renamed from veth6a91f7d
+👾 kernel | [ 9685.323159] br-e400ac35b1ce: port 2(vethe6353f2) entered blocking state
+👾 kernel | [ 9685.323186] br-e400ac35b1ce: port 2(vethe6353f2) entered forwarding state
+📦 scon | time="04-24 15:50:06" level=info msg="add forward" container=docker spec="tcp:0.0.0.0:6379"
+📦 scon | time="04-24 15:50:06" level=info msg="add forward" container=docker spec="tcp:[::]:6379"
+👾 kernel | [10215.154627] br-e400ac35b1ce: port 2(vethe6353f2) entered disabled state
+👾 kernel | [10215.154706] veth6a91f7d: renamed from eth0
+📦 scon | time="04-24 15:58:55" level=info msg="remove forward" key="tcp:0.0.0.0:6379"
+📦 scon | time="04-24 15:58:55" level=info msg="remove forward" key="tcp:[::]:6379"
+👾 kernel | [10215.185213] br-e400ac35b1ce: port 2(vethe6353f2) entered disabled state
+👾 kernel | [10215.185581] vethe6353f2 (unregistering): left allmulticast mode
+👾 kernel | [10215.185599] vethe6353f2 (unregistering): left promiscuous mode
+👾 kernel | [10215.185653] br-e400ac35b1ce: port 2(vethe6353f2) entered disabled state
+👾 kernel | [10220.350322] br-e400ac35b1ce: port 2(vetheff0a81) entered blocking state
+👾 kernel | [10220.350350] br-e400ac35b1ce: port 2(vetheff0a81) entered disabled state
+👾 kernel | [10220.350370] vetheff0a81: entered allmulticast mode
+👾 kernel | [10220.350460] vetheff0a81: entered promiscuous mode
+👾 kernel | [10220.365109] eth0: renamed from vethd2397bd
+👾 kernel | [10220.365440] br-e400ac35b1ce: port 2(vetheff0a81) entered blocking state
+👾 kernel | [10220.365466] br-e400ac35b1ce: port 2(vetheff0a81) entered forwarding state
+📦 scon | time="04-24 15:59:01" level=info msg="add forward" container=docker spec="tcp:0.0.0.0:6379"
+📦 scon | time="04-24 15:59:01" level=info msg="add forward" container=docker spec="tcp:[::]:6379"
+👾 kernel | [10254.189614] br-ce54d582b538: port 2(veth8cb228a) entered disabled state
+👾 kernel | [10254.189793] vethcd7714d: renamed from eth0
+📦 scon | time="04-24 15:59:34" level=info msg="remove forward" key="tcp:0.0.0.0:6380"
+📦 scon | time="04-24 15:59:34" level=info msg="remove forward" key="tcp:[::]:6380"
+👾 kernel | [10254.216983] br-ce54d582b538: port 2(veth8cb228a) entered disabled state
+👾 kernel | [10254.217376] veth8cb228a (unregistering): left allmulticast mode
+👾 kernel | [10254.217392] veth8cb228a (unregistering): left promiscuous mode
+👾 kernel | [10254.217411] br-ce54d582b538: port 2(veth8cb228a) entered disabled state
+👾 kernel | [10259.377829] br-ce54d582b538: port 2(veth0d6105f) entered blocking state
+👾 kernel | [10259.377881] br-ce54d582b538: port 2(veth0d6105f) entered disabled state
+👾 kernel | [10259.377897] veth0d6105f: entered allmulticast mode
+👾 kernel | [10259.377925] veth0d6105f: entered promiscuous mode
+👾 kernel | [10259.393179] eth0: renamed from veth7c7b34f
+👾 kernel | [10259.393565] br-ce54d582b538: port 2(veth0d6105f) entered blocking state
+👾 kernel | [10259.393586] br-ce54d582b538: port 2(veth0d6105f) entered forwarding state
+📦 scon | time="04-24 15:59:40" level=info msg="add forward" container=docker spec="tcp:0.0.0.0:6380"
+📦 scon | time="04-24 15:59:40" level=info msg="add forward" container=docker spec="tcp:[::]:6380"
+👾 kernel | [14179.876882] docker0: port 1(veth6987b40) entered blocking state
+👾 kernel | [14179.876939] docker0: port 1(veth6987b40) entered disabled state
+👾 kernel | [14179.876957] veth6987b40: entered allmulticast mode
+👾 kernel | [14179.877030] veth6987b40: entered promiscuous mode
+👾 kernel | [14179.951844] docker0: port 2(veth6101dd5) entered blocking state
+👾 kernel | [14179.951876] docker0: port 2(veth6101dd5) entered disabled state
+👾 kernel | [14179.951902] veth6101dd5: entered allmulticast mode
+👾 kernel | [14179.951941] veth6101dd5: entered promiscuous mode
+👾 kernel | [14179.978134] eth0: renamed from vetha36c370
+👾 kernel | [14179.978577] docker0: port 1(veth6987b40) entered blocking state
+👾 kernel | [14179.978591] docker0: port 1(veth6987b40) entered forwarding state
+👾 kernel | [14180.026620] eth0: renamed from veth1a32b59
+👾 kernel | [14180.027005] docker0: port 2(veth6101dd5) entered blocking state
+👾 kernel | [14180.027022] docker0: port 2(veth6101dd5) entered forwarding state
+👾 kernel | [14181.378965] docker0: port 1(veth6987b40) entered disabled state
+👾 kernel | [14181.379027] vetha36c370: renamed from eth0
+👾 kernel | [14181.405978] docker0: port 1(veth6987b40) entered disabled state
+👾 kernel | [14181.406383] veth6987b40 (unregistering): left allmulticast mode
+👾 kernel | [14181.406410] veth6987b40 (unregistering): left promiscuous mode
+👾 kernel | [14181.406424] docker0: port 1(veth6987b40) entered disabled state
+👾 kernel | [14181.463001] docker0: port 2(veth6101dd5) entered disabled state
+👾 kernel | [14181.463047] veth1a32b59: renamed from eth0
+👾 kernel | [14181.496604] docker0: port 1(veth905b69c) entered blocking state
+👾 kernel | [14181.496625] docker0: port 1(veth905b69c) entered disabled state
+👾 kernel | [14181.496641] veth905b69c: entered allmulticast mode
+👾 kernel | [14181.496677] veth905b69c: entered promiscuous mode
+👾 kernel | [14181.505949] docker0: port 2(veth6101dd5) entered disabled state
+👾 kernel | [14181.506275] veth6101dd5 (unregistering): left allmulticast mode
+👾 kernel | [14181.506291] veth6101dd5 (unregistering): left promiscuous mode
+👾 kernel | [14181.506309] docker0: port 2(veth6101dd5) entered disabled state
+👾 kernel | [14181.550781] docker0: port 2(vethaa3278c) entered blocking state
+👾 kernel | [14181.550808] docker0: port 2(vethaa3278c) entered disabled state
+👾 kernel | [14181.550829] vethaa3278c: entered allmulticast mode
+👾 kernel | [14181.550871] vethaa3278c: entered promiscuous mode
+👾 kernel | [14181.575904] eth0: renamed from vethae66b1c
+👾 kernel | [14181.576222] docker0: port 1(veth905b69c) entered blocking state
+👾 kernel | [14181.576238] docker0: port 1(veth905b69c) entered forwarding state
+👾 kernel | [14181.630642] eth0: renamed from vethe536a7b
+👾 kernel | [14181.631014] docker0: port 2(vethaa3278c) entered blocking state
+👾 kernel | [14181.631038] docker0: port 2(vethaa3278c) entered forwarding state
+👾 kernel | [14192.478168] docker0: port 2(vethaa3278c) entered disabled state
+👾 kernel | [14192.478227] vethe536a7b: renamed from eth0
+👾 kernel | [14192.517909] docker0: port 2(vethaa3278c) entered disabled state
+👾 kernel | [14192.518274] vethaa3278c (unregistering): left allmulticast mode
+👾 kernel | [14192.518290] vethaa3278c (unregistering): left promiscuous mode
+👾 kernel | [14192.518302] docker0: port 2(vethaa3278c) entered disabled state
+👾 kernel | [14194.677320] docker0: port 1(veth905b69c) entered disabled state
+👾 kernel | [14194.677384] vethae66b1c: renamed from eth0
+👾 kernel | [14194.724223] docker0: port 1(veth905b69c) entered disabled state
+👾 kernel | [14194.724449] veth905b69c (unregistering): left allmulticast mode
+👾 kernel | [14194.724469] veth905b69c (unregistering): left promiscuous mode
+👾 kernel | [14194.724489] docker0: port 1(veth905b69c) entered disabled state
+👾 kernel | [14195.882902] docker0: port 1(veth041aca5) entered blocking state
+👾 kernel | [14195.882927] docker0: port 1(veth041aca5) entered disabled state
+👾 kernel | [14195.882949] veth041aca5: entered allmulticast mode
+👾 kernel | [14195.882985] veth041aca5: entered promiscuous mode
+👾 kernel | [14196.014815] eth0: renamed from veth9155fb6
+👾 kernel | [14196.015236] docker0: port 1(veth041aca5) entered blocking state
+👾 kernel | [14196.015265] docker0: port 1(veth041aca5) entered forwarding state
+👾 kernel | [14196.082539] veth9155fb6: renamed from eth0
+👾 kernel | [14196.082682] docker0: port 1(veth041aca5) entered disabled state
+👾 kernel | [14196.116991] docker0: port 1(veth041aca5) entered disabled state
+👾 kernel | [14196.117353] veth041aca5 (unregistering): left allmulticast mode
+👾 kernel | [14196.117367] veth041aca5 (unregistering): left promiscuous mode
+👾 kernel | [14196.117377] docker0: port 1(veth041aca5) entered disabled state
+👾 kernel | [14196.245550] docker0: port 1(vethda2043e) entered blocking state
+👾 kernel | [14196.245577] docker0: port 1(vethda2043e) entered disabled state
+👾 kernel | [14196.245592] vethda2043e: entered allmulticast mode
+👾 kernel | [14196.245619] vethda2043e: entered promiscuous mode
+👾 kernel | [14196.328726] eth0: renamed from veth0f7abbd
+👾 kernel | [14196.329072] docker0: port 1(vethda2043e) entered blocking state
+👾 kernel | [14196.329099] docker0: port 1(vethda2043e) entered forwarding state
+👾 kernel | [14196.923470] docker0: port 1(vethda2043e) entered disabled state
+👾 kernel | [14196.923557] veth0f7abbd: renamed from eth0
+👾 kernel | [14196.969221] docker0: port 1(vethda2043e) entered disabled state
+👾 kernel | [14196.969615] vethda2043e (unregistering): left allmulticast mode
+👾 kernel | [14196.969638] vethda2043e (unregistering): left promiscuous mode
+👾 kernel | [14196.969648] docker0: port 1(vethda2043e) entered disabled state
+👾 kernel | [14197.122440] docker0: port 1(vetha3b9767) entered blocking state
+👾 kernel | [14197.122477] docker0: port 1(vetha3b9767) entered disabled state
+👾 kernel | [14197.122493] vetha3b9767: entered allmulticast mode
+👾 kernel | [14197.122527] vetha3b9767: entered promiscuous mode
+👾 kernel | [14197.194256] eth0: renamed from vethf0d9182
+👾 kernel | [14197.196794] docker0: port 1(vetha3b9767) entered blocking state
+👾 kernel | [14197.196816] docker0: port 1(vetha3b9767) entered forwarding state
+👾 kernel | [14198.576520] docker0: port 1(vetha3b9767) entered disabled state
+👾 kernel | [14198.577383] vethf0d9182: renamed from eth0
+👾 kernel | [14198.640911] docker0: port 1(vetha3b9767) entered disabled state
+👾 kernel | [14198.642277] vetha3b9767 (unregistering): left allmulticast mode
+👾 kernel | [14198.642323] vetha3b9767 (unregistering): left promiscuous mode
+👾 kernel | [14198.642344] docker0: port 1(vetha3b9767) entered disabled state
+👾 kernel | [14200.244631] docker0: port 1(veth201a637) entered blocking state
+👾 kernel | [14200.244657] docker0: port 1(veth201a637) entered disabled state
+👾 kernel | [14200.244670] veth201a637: entered allmulticast mode
+👾 kernel | [14200.244723] veth201a637: entered promiscuous mode
+👾 kernel | [14200.307127] eth0: renamed from vethcbdce96
+👾 kernel | [14200.307607] docker0: port 1(veth201a637) entered blocking state
+👾 kernel | [14200.307645] docker0: port 1(veth201a637) entered forwarding state
+👾 kernel | [14200.340198] docker0: port 1(veth201a637) entered disabled state
+👾 kernel | [14200.340265] vethcbdce96: renamed from eth0
+👾 kernel | [14200.365607] docker0: port 1(veth201a637) entered disabled state
+👾 kernel | [14200.366119] veth201a637 (unregistering): left allmulticast mode
+👾 kernel | [14200.366148] veth201a637 (unregistering): left promiscuous mode
+👾 kernel | [14200.366162] docker0: port 1(veth201a637) entered disabled state
+👾 kernel | [14200.386697] docker0: port 1(veth89ca734) entered blocking state
+👾 kernel | [14200.386723] docker0: port 1(veth89ca734) entered disabled state
+👾 kernel | [14200.386741] veth89ca734: entered allmulticast mode
+👾 kernel | [14200.386777] veth89ca734: entered promiscuous mode
+👾 kernel | [14200.446924] eth0: renamed from veth90d29ba
+👾 kernel | [14200.449817] docker0: port 1(veth89ca734) entered blocking state
+👾 kernel | [14200.449839] docker0: port 1(veth89ca734) entered forwarding state
+👾 kernel | [14201.111981] docker0: port 1(veth89ca734) entered disabled state
+👾 kernel | [14201.112035] veth90d29ba: renamed from eth0
+👾 kernel | [14201.194173] docker0: port 1(veth89ca734) entered disabled state
+👾 kernel | [14201.194376] veth89ca734 (unregistering): left allmulticast mode
+👾 kernel | [14201.194401] veth89ca734 (unregistering): left promiscuous mode
+👾 kernel | [14201.194415] docker0: port 1(veth89ca734) entered disabled state
+📦 scon | time="04-24 17:05:23" level=info msg="remove forward" key="tcp:0.0.0.0:3000"
+📦 scon | time="04-24 17:05:23" level=info msg="remove forward" key="tcp:[::]:3000"
+👾 kernel | [14202.500512] vethb2e1bdb: renamed from eth0
+👾 kernel | [14202.501529] br-e400ac35b1ce: port 3(veth6991fe3) entered disabled state
+👾 kernel | [14202.530387] br-e400ac35b1ce: port 3(veth6991fe3) entered disabled state
+👾 kernel | [14202.530796] veth6991fe3 (unregistering): left allmulticast mode
+👾 kernel | [14202.530812] veth6991fe3 (unregistering): left promiscuous mode
+👾 kernel | [14202.530848] br-e400ac35b1ce: port 3(veth6991fe3) entered disabled state
+👾 kernel | [14203.208545] br-e400ac35b1ce: port 3(veth364a296) entered blocking state
+👾 kernel | [14203.208576] br-e400ac35b1ce: port 3(veth364a296) entered disabled state
+👾 kernel | [14203.208595] veth364a296: entered allmulticast mode
+👾 kernel | [14203.208629] veth364a296: entered promiscuous mode
+👾 kernel | [14203.243440] eth0: renamed from vethe4f4971
+👾 kernel | [14203.244490] br-e400ac35b1ce: port 3(veth364a296) entered blocking state
+👾 kernel | [14203.244517] br-e400ac35b1ce: port 3(veth364a296) entered forwarding state
+📦 scon | time="04-24 17:05:23" level=info msg="add forward" container=docker spec="tcp:0.0.0.0:3000"
+📦 scon | time="04-24 17:05:23" level=info msg="add forward" container=docker spec="tcp:[::]:3000"
+👾 kernel | [14204.398006] br-ce54d582b538: port 3(vethe13b498) entered disabled state
+👾 kernel | [14204.398081] vethbfb1c60: renamed from eth0
+📦 scon | time="04-24 17:05:25" level=info msg="remove forward" key="tcp:0.0.0.0:3001"
+📦 scon | time="04-24 17:05:25" level=info msg="remove forward" key="tcp:[::]:3001"
+👾 kernel | [14204.430779] br-ce54d582b538: port 3(vethe13b498) entered disabled state
+👾 kernel | [14204.431221] vethe13b498 (unregistering): left allmulticast mode
+👾 kernel | [14204.431240] vethe13b498 (unregistering): left promiscuous mode
+👾 kernel | [14204.431251] br-ce54d582b538: port 3(vethe13b498) entered disabled state
+👾 kernel | [14205.085711] br-ce54d582b538: port 3(veth4069570) entered blocking state
+👾 kernel | [14205.085742] br-ce54d582b538: port 3(veth4069570) entered disabled state
+👾 kernel | [14205.085761] veth4069570: entered allmulticast mode
+👾 kernel | [14205.085823] veth4069570: entered promiscuous mode
+👾 kernel | [14205.101238] eth0: renamed from veth2021fec
+👾 kernel | [14205.101661] br-ce54d582b538: port 3(veth4069570) entered blocking state
+👾 kernel | [14205.101686] br-ce54d582b538: port 3(veth4069570) entered forwarding state
+📦 scon | time="04-24 17:05:25" level=info msg="add forward" container=docker spec="tcp:0.0.0.0:3001"
+📦 scon | time="04-24 17:05:25" level=info msg="add forward" container=docker spec="tcp:[::]:3001"
+👾 kernel | [14749.917029] docker0: port 1(veth390ef59) entered blocking state
+👾 kernel | [14749.917098] docker0: port 1(veth390ef59) entered disabled state
+👾 kernel | [14749.917120] veth390ef59: entered allmulticast mode
+👾 kernel | [14749.917195] veth390ef59: entered promiscuous mode
+👾 kernel | [14750.027025] eth0: renamed from veth9d652d6
+👾 kernel | [14750.028364] docker0: port 1(veth390ef59) entered blocking state
+👾 kernel | [14750.028413] docker0: port 1(veth390ef59) entered forwarding state
+👾 kernel | [14751.524821] veth9d652d6: renamed from eth0
+👾 kernel | [14751.525343] docker0: port 1(veth390ef59) entered disabled state
+👾 kernel | [14751.569284] docker0: port 1(veth390ef59) entered disabled state
+👾 kernel | [14751.569642] veth390ef59 (unregistering): left allmulticast mode
+👾 kernel | [14751.569657] veth390ef59 (unregistering): left promiscuous mode
+👾 kernel | [14751.569666] docker0: port 1(veth390ef59) entered disabled state
+👾 kernel | [14751.633140] docker0: port 1(veth9f8e12f) entered blocking state
+👾 kernel | [14751.633167] docker0: port 1(veth9f8e12f) entered disabled state
+👾 kernel | [14751.633178] veth9f8e12f: entered allmulticast mode
+👾 kernel | [14751.633216] veth9f8e12f: entered promiscuous mode
+👾 kernel | [14751.695597] eth0: renamed from veth7bee52d
+👾 kernel | [14751.695918] docker0: port 1(veth9f8e12f) entered blocking state
+👾 kernel | [14751.695935] docker0: port 1(veth9f8e12f) entered forwarding state
+👾 kernel | [14763.798921] veth7bee52d: renamed from eth0
+👾 kernel | [14763.799150] docker0: port 1(veth9f8e12f) entered disabled state
+👾 kernel | [14763.839383] docker0: port 1(veth9f8e12f) entered disabled state
+👾 kernel | [14763.839728] veth9f8e12f (unregistering): left allmulticast mode
+👾 kernel | [14763.839747] veth9f8e12f (unregistering): left promiscuous mode
+👾 kernel | [14763.839761] docker0: port 1(veth9f8e12f) entered disabled state
+👾 kernel | [14765.046695] docker0: port 1(veth595f330) entered blocking state
+👾 kernel | [14765.046718] docker0: port 1(veth595f330) entered disabled state
+👾 kernel | [14765.046728] veth595f330: entered allmulticast mode
+👾 kernel | [14765.046755] veth595f330: entered promiscuous mode
+👾 kernel | [14765.102362] eth0: renamed from veth1356609
+👾 kernel | [14765.102729] docker0: port 1(veth595f330) entered blocking state
+👾 kernel | [14765.102744] docker0: port 1(veth595f330) entered forwarding state
+👾 kernel | [14766.228164] veth1356609: renamed from eth0
+👾 kernel | [14766.228310] docker0: port 1(veth595f330) entered disabled state
+👾 kernel | [14766.257012] docker0: port 1(veth595f330) entered disabled state
+👾 kernel | [14766.257403] veth595f330 (unregistering): left allmulticast mode
+👾 kernel | [14766.257423] veth595f330 (unregistering): left promiscuous mode
+👾 kernel | [14766.257435] docker0: port 1(veth595f330) entered disabled state
+👾 kernel | [14767.966673] docker0: port 1(veth8fd7667) entered blocking state
+👾 kernel | [14767.966698] docker0: port 1(veth8fd7667) entered disabled state
+👾 kernel | [14767.966712] veth8fd7667: entered allmulticast mode
+👾 kernel | [14767.966771] veth8fd7667: entered promiscuous mode
+👾 kernel | [14768.035750] eth0: renamed from veth20380a2
+👾 kernel | [14768.036050] docker0: port 1(veth8fd7667) entered blocking state
+👾 kernel | [14768.036064] docker0: port 1(veth8fd7667) entered forwarding state
+👾 kernel | [14768.083926] docker0: port 1(veth8fd7667) entered disabled state
+👾 kernel | [14768.083982] veth20380a2: renamed from eth0
+👾 kernel | [14768.114093] docker0: port 1(veth8fd7667) entered disabled state
+👾 kernel | [14768.114414] veth8fd7667 (unregistering): left allmulticast mode
+👾 kernel | [14768.114426] veth8fd7667 (unregistering): left promiscuous mode
+👾 kernel | [14768.114438] docker0: port 1(veth8fd7667) entered disabled state
+👾 kernel | [14768.164159] docker0: port 1(veth74dd491) entered blocking state
+👾 kernel | [14768.164189] docker0: port 1(veth74dd491) entered disabled state
+👾 kernel | [14768.164200] veth74dd491: entered allmulticast mode
+👾 kernel | [14768.164223] veth74dd491: entered promiscuous mode
+👾 kernel | [14768.219072] eth0: renamed from veth8103fb6
+👾 kernel | [14768.219373] docker0: port 1(veth74dd491) entered blocking state
+👾 kernel | [14768.219391] docker0: port 1(veth74dd491) entered forwarding state
+👾 kernel | [14768.809941] docker0: port 1(veth74dd491) entered disabled state
+👾 kernel | [14768.809999] veth8103fb6: renamed from eth0
+👾 kernel | [14768.856899] docker0: port 1(veth74dd491) entered disabled state
+👾 kernel | [14768.857241] veth74dd491 (unregistering): left allmulticast mode
+👾 kernel | [14768.857263] veth74dd491 (unregistering): left promiscuous mode
+👾 kernel | [14768.857283] docker0: port 1(veth74dd491) entered disabled state
+👾 kernel | [14771.928564] br-ce54d582b538: port 3(veth4069570) entered disabled state
+👾 kernel | [14771.928640] veth2021fec: renamed from eth0
+📦 scon | time="04-24 17:14:52" level=info msg="remove forward" key="tcp:0.0.0.0:3001"
+📦 scon | time="04-24 17:14:52" level=info msg="remove forward" key="tcp:[::]:3001"
+👾 kernel | [14771.960454] br-ce54d582b538: port 3(veth4069570) entered disabled state
+👾 kernel | [14771.960858] veth4069570 (unregistering): left allmulticast mode
+👾 kernel | [14771.960893] veth4069570 (unregistering): left promiscuous mode
+👾 kernel | [14771.960935] br-ce54d582b538: port 3(veth4069570) entered disabled state
+👾 kernel | [14772.584477] br-ce54d582b538: port 3(veth6303dd2) entered blocking state
+👾 kernel | [14772.584505] br-ce54d582b538: port 3(veth6303dd2) entered disabled state
+👾 kernel | [14772.584530] veth6303dd2: entered allmulticast mode
+👾 kernel | [14772.584560] veth6303dd2: entered promiscuous mode
+👾 kernel | [14772.607901] eth0: renamed from vethe0cdf02
+👾 kernel | [14772.608229] br-ce54d582b538: port 3(veth6303dd2) entered blocking state
+👾 kernel | [14772.608244] br-ce54d582b538: port 3(veth6303dd2) entered forwarding state
+📦 scon | time="04-24 17:14:53" level=info msg="add forward" container=docker spec="tcp:0.0.0.0:3001"
+📦 scon | time="04-24 17:14:53" level=info msg="add forward" container=docker spec="tcp:[::]:3001"
+👾 kernel | [14846.368839] br-e400ac35b1ce: port 2(vetheff0a81) entered disabled state
+👾 kernel | [14846.368909] vethd2397bd: renamed from eth0
+📦 scon | time="04-24 17:16:07" level=info msg="remove forward" key="tcp:0.0.0.0:6379"
+📦 scon | time="04-24 17:16:07" level=info msg="remove forward" key="tcp:[::]:6379"
+👾 kernel | [14846.396141] br-e400ac35b1ce: port 2(vetheff0a81) entered disabled state
+👾 kernel | [14846.396364] vetheff0a81 (unregistering): left allmulticast mode
+👾 kernel | [14846.396380] vetheff0a81 (unregistering): left promiscuous mode
+👾 kernel | [14846.396400] br-e400ac35b1ce: port 2(vetheff0a81) entered disabled state
+👾 kernel | [14846.568024] br-ce54d582b538: port 2(veth0d6105f) entered disabled state
+👾 kernel | [14846.568275] veth7c7b34f: renamed from eth0
+📦 scon | time="04-24 17:16:07" level=info msg="remove forward" key="tcp:0.0.0.0:6380"
+📦 scon | time="04-24 17:16:07" level=info msg="remove forward" key="tcp:[::]:6380"
+👾 kernel | [14846.594224] br-ce54d582b538: port 2(veth0d6105f) entered disabled state
+👾 kernel | [14846.594592] veth0d6105f (unregistering): left allmulticast mode
+👾 kernel | [14846.594605] veth0d6105f (unregistering): left promiscuous mode
+👾 kernel | [14846.594616] br-ce54d582b538: port 2(veth0d6105f) entered disabled state
+👾 kernel | [14846.777908] br-e400ac35b1ce: port 2(vethe043640) entered blocking state
+👾 kernel | [14846.777938] br-e400ac35b1ce: port 2(vethe043640) entered disabled state
+👾 kernel | [14846.777948] vethe043640: entered allmulticast mode
+👾 kernel | [14846.777972] vethe043640: entered promiscuous mode
+👾 kernel | [14846.790284] eth0: renamed from veth3b263cd
+👾 kernel | [14846.790573] br-e400ac35b1ce: port 2(vethe043640) entered blocking state
+👾 kernel | [14846.790585] br-e400ac35b1ce: port 2(vethe043640) entered forwarding state
+📦 scon | time="04-24 17:16:07" level=info msg="add forward" container=docker spec="tcp:0.0.0.0:6379"
+📦 scon | time="04-24 17:16:07" level=info msg="add forward" container=docker spec="tcp:[::]:6379"
+👾 kernel | [14846.912950] br-ce54d582b538: port 2(veth9db74fa) entered blocking state
+👾 kernel | [14846.912973] br-ce54d582b538: port 2(veth9db74fa) entered disabled state
+👾 kernel | [14846.912986] veth9db74fa: entered allmulticast mode
+👾 kernel | [14846.913013] veth9db74fa: entered promiscuous mode
+👾 kernel | [14846.925892] eth0: renamed from veth495d711
+👾 kernel | [14846.926155] br-ce54d582b538: port 2(veth9db74fa) entered blocking state
+👾 kernel | [14846.926192] br-ce54d582b538: port 2(veth9db74fa) entered forwarding state
+📦 scon | time="04-24 17:16:07" level=info msg="add forward" container=docker spec="tcp:0.0.0.0:6380"
+📦 scon | time="04-24 17:16:07" level=info msg="add forward" container=docker spec="tcp:[::]:6380"
+🌲 vmgr | time="04-24 19:18:43" level=info msg=sleep
+🌲 vmgr | time="04-24 19:34:48" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 19:34:51" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 19:51:30" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 19:51:33" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 20:09:06" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 20:09:09" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 20:27:22" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 20:27:25" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 20:45:30" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 20:45:33" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 21:02:08" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 21:02:11" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 21:11:10" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 21:11:12" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 21:19:43" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 21:19:46" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 21:35:46" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 21:35:49" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 21:39:35" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 21:39:38" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 21:58:10" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 21:58:13" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 22:13:46" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 22:13:49" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 22:20:44" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 22:20:47" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 22:38:35" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 22:38:38" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 22:56:00" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 22:56:03" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 23:13:37" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 23:13:40" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 23:21:44" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 23:21:47" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 23:37:46" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 23:37:49" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 23:50:41" level=info msg="using proxy: none"
+🌲 vmgr | time="04-24 23:50:44" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 00:07:15" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 00:07:18" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 00:22:45" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 00:22:48" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 00:41:03" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 00:41:06" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 00:58:16" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 00:58:19" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 01:09:16" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 01:09:18" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 01:23:45" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 01:23:48" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 01:39:37" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 01:39:40" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 01:56:08" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 01:56:10" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 02:12:30" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 02:12:33" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 02:24:45" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 02:24:48" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 02:41:19" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 02:41:22" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 02:58:57" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 02:59:00" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 03:09:16" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 03:09:19" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 03:26:56" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 03:26:59" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 03:42:59" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 03:43:02" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 03:58:41" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 03:58:44" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 04:15:20" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 04:15:23" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 04:32:48" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 04:32:51" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 04:48:59" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 04:49:02" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 05:06:01" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 05:06:04" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 05:23:41" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 05:23:44" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 05:40:17" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 05:40:20" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 05:58:00" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 05:58:03" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 06:13:51" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 06:13:54" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 06:17:14" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 06:17:17" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 06:35:45" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 06:35:48" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 06:53:18" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 06:53:21" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 07:09:29" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 07:09:31" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 07:25:13" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 07:25:16" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 07:42:40" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 07:42:43" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 08:00:39" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 08:00:42" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 08:03:41" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 08:03:44" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 08:18:14" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 08:18:17" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 08:35:15" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 08:35:18" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 08:52:24" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 08:52:27" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 09:08:29" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 09:08:32" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 09:19:14" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 09:19:17" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 09:37:41" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 09:37:44" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 09:54:19" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 09:54:22" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 10:11:30" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 10:11:33" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 10:20:15" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 10:20:18" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 10:37:07" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 10:37:10" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 10:55:16" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 10:55:19" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 11:12:29" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 11:12:31" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 11:21:16" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 11:21:19" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 11:38:39" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 11:38:42" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 11:54:53" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 11:54:55" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 12:11:37" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 12:11:40" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 12:22:17" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 12:22:20" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 12:40:46" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 12:40:49" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 12:56:26" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 12:56:29" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 13:11:30" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 13:11:33" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 13:23:18" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 13:23:21" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 13:40:30" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 13:40:33" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 13:56:07" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 13:56:10" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 14:12:12" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 14:12:15" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 14:24:18" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 14:24:21" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 14:40:21" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 14:40:24" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 14:56:12" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 14:56:15" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 15:13:46" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 15:13:49" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 15:25:19" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 15:25:21" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 15:41:32" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 15:41:35" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 15:59:31" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 15:59:34" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 16:16:42" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 16:16:45" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 16:26:19" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 16:26:22" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 16:44:50" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 16:44:53" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 17:00:10" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 17:00:13" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 17:16:00" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 17:16:02" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 17:27:20" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 17:27:22" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 17:43:32" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 17:43:34" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 17:59:18" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 17:59:21" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 18:16:26" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 18:16:29" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 18:28:20" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 18:28:23" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 18:44:42" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 18:44:45" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 19:02:34" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 19:02:37" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 19:18:43" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 19:18:46" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 19:29:20" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 19:29:23" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 19:45:42" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 19:45:45" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 20:01:45" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 20:01:48" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 20:17:14" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 20:17:17" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 20:30:21" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 20:30:24" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 20:46:53" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 20:46:55" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 21:03:25" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 21:03:28" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 21:10:41" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 21:10:43" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 21:15:36" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 21:15:39" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 21:31:22" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 21:31:25" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 21:48:04" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 21:48:07" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 22:00:04" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 22:00:07" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 22:16:22" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 22:16:25" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 22:32:23" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 22:32:26" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 22:33:09" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 22:33:10" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 22:50:23" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 22:50:26" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 23:08:23" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 23:08:26" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 23:26:06" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 23:26:09" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 23:33:23" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 23:33:26" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 23:50:03" level=info msg="using proxy: none"
+🌲 vmgr | time="04-25 23:50:06" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 00:06:09" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 00:06:12" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 00:22:12" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 00:22:15" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 00:29:42" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 00:29:45" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 00:34:23" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 00:34:26" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 00:51:11" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 00:51:14" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 01:07:06" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 01:07:09" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 01:23:04" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 01:23:07" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 01:35:24" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 01:35:26" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 01:52:45" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 01:52:47" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 02:09:54" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 02:09:57" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 02:27:11" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 02:27:14" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 02:44:04" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 02:44:07" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 02:59:07" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 02:59:10" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 03:16:54" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 03:16:57" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 03:33:44" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 03:33:47" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 03:50:37" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 03:50:40" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 04:06:11" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 04:06:14" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 04:22:01" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 04:22:04" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 04:37:18" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 04:37:20" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 04:52:38" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 04:52:41" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 05:10:21" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 05:10:24" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 05:28:03" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 05:28:06" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 05:30:22" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 05:30:25" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 05:48:50" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 05:48:53" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 06:05:37" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 06:05:40" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 06:23:58" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 06:24:01" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 06:41:54" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 06:41:56" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 06:59:55" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 06:59:58" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 07:17:48" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 07:17:51" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 07:31:23" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 07:31:26" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 07:48:28" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 07:48:31" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 08:04:29" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 08:04:32" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 08:20:25" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 08:20:28" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 08:32:23" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 08:32:26" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 08:42:42" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 08:42:45" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 09:00:00" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 09:00:03" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 09:18:42" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 09:18:45" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 09:31:19" level=info msg=wake
+🌲 vmgr | time="04-26 09:31:21" level=info msg="using proxy: none"
+🌲 vmgr | time="04-26 09:31:23" level=info msg="using proxy: none"
+👾 kernel | [53293.542089] docker0: port 1(vethc4fa355) entered blocking state
+👾 kernel | [53293.542334] docker0: port 1(vethc4fa355) entered disabled state
+👾 kernel | [53293.542357] vethc4fa355: entered allmulticast mode
+👾 kernel | [53293.542420] vethc4fa355: entered promiscuous mode
+👾 kernel | [53293.634409] eth0: renamed from veth41108c0
+👾 kernel | [53293.634913] docker0: port 1(vethc4fa355) entered blocking state
+👾 kernel | [53293.634937] docker0: port 1(vethc4fa355) entered forwarding state
+👾 kernel | [53296.067983] docker0: port 1(vethc4fa355) entered disabled state
+👾 kernel | [53296.068037] veth41108c0: renamed from eth0
+👾 kernel | [53296.098673] docker0: port 1(vethc4fa355) entered disabled state
+👾 kernel | [53296.099063] vethc4fa355 (unregistering): left allmulticast mode
+👾 kernel | [53296.099084] vethc4fa355 (unregistering): left promiscuous mode
+👾 kernel | [53296.099130] docker0: port 1(vethc4fa355) entered disabled state
+👾 kernel | [53296.146610] docker0: port 1(veth69390f6) entered blocking state
+👾 kernel | [53296.146635] docker0: port 1(veth69390f6) entered disabled state
+👾 kernel | [53296.146646] veth69390f6: entered allmulticast mode
+👾 kernel | [53296.146680] veth69390f6: entered promiscuous mode
+👾 kernel | [53296.207845] eth0: renamed from vethd77f5f1
+👾 kernel | [53296.208265] docker0: port 1(veth69390f6) entered blocking state
+👾 kernel | [53296.208281] docker0: port 1(veth69390f6) entered forwarding state
+👾 kernel | [53310.169879] docker0: port 1(veth69390f6) entered disabled state
+👾 kernel | [53310.169927] vethd77f5f1: renamed from eth0
+👾 kernel | [53310.252415] docker0: port 1(veth69390f6) entered disabled state
+👾 kernel | [53310.252746] veth69390f6 (unregistering): left allmulticast mode
+👾 kernel | [53310.252771] veth69390f6 (unregistering): left promiscuous mode
+👾 kernel | [53310.252783] docker0: port 1(veth69390f6) entered disabled state
+👾 kernel | [53311.696037] docker0: port 1(vethf5e0fa3) entered blocking state
+👾 kernel | [53311.696061] docker0: port 1(vethf5e0fa3) entered disabled state
+👾 kernel | [53311.696074] vethf5e0fa3: entered allmulticast mode
+👾 kernel | [53311.696101] vethf5e0fa3: entered promiscuous mode
+👾 kernel | [53311.761953] eth0: renamed from veth1aeb8e7
+👾 kernel | [53311.762334] docker0: port 1(vethf5e0fa3) entered blocking state
+👾 kernel | [53311.762351] docker0: port 1(vethf5e0fa3) entered forwarding state
+👾 kernel | [53313.321020] docker0: port 1(vethf5e0fa3) entered disabled state
+👾 kernel | [53313.321068] veth1aeb8e7: renamed from eth0
+👾 kernel | [53313.351979] docker0: port 1(vethf5e0fa3) entered disabled state
+👾 kernel | [53313.352324] vethf5e0fa3 (unregistering): left allmulticast mode
+👾 kernel | [53313.352340] vethf5e0fa3 (unregistering): left promiscuous mode
+👾 kernel | [53313.352352] docker0: port 1(vethf5e0fa3) entered disabled state
+👾 kernel | [53315.238833] docker0: port 1(veth906c210) entered blocking state
+👾 kernel | [53315.238869] docker0: port 1(veth906c210) entered disabled state
+👾 kernel | [53315.238906] veth906c210: entered allmulticast mode
+👾 kernel | [53315.238939] veth906c210: entered promiscuous mode
+👾 kernel | [53315.312304] eth0: renamed from veth57c854d
+👾 kernel | [53315.312667] docker0: port 1(veth906c210) entered blocking state
+👾 kernel | [53315.312693] docker0: port 1(veth906c210) entered forwarding state
+👾 kernel | [53315.361522] veth57c854d: renamed from eth0
+👾 kernel | [53315.361831] docker0: port 1(veth906c210) entered disabled state
+👾 kernel | [53315.393729] docker0: port 1(veth906c210) entered disabled state
+👾 kernel | [53315.394156] veth906c210 (unregistering): left allmulticast mode
+👾 kernel | [53315.394186] veth906c210 (unregistering): left promiscuous mode
+👾 kernel | [53315.394229] docker0: port 1(veth906c210) entered disabled state
+👾 kernel | [53315.495196] docker0: port 1(veth074434a) entered blocking state
+👾 kernel | [53315.495219] docker0: port 1(veth074434a) entered disabled state
+👾 kernel | [53315.495229] veth074434a: entered allmulticast mode
+👾 kernel | [53315.495270] veth074434a: entered promiscuous mode
+👾 kernel | [53315.560651] eth0: renamed from vethd077966
+👾 kernel | [53315.560964] docker0: port 1(veth074434a) entered blocking state
+👾 kernel | [53315.560980] docker0: port 1(veth074434a) entered forwarding state
+👾 kernel | [53316.198146] vethd077966: renamed from eth0
+👾 kernel | [53316.198336] docker0: port 1(veth074434a) entered disabled state
+👾 kernel | [53316.283540] docker0: port 1(veth074434a) entered disabled state
+👾 kernel | [53316.283911] veth074434a (unregistering): left allmulticast mode
+👾 kernel | [53316.283933] veth074434a (unregistering): left promiscuous mode
+👾 kernel | [53316.283994] docker0: port 1(veth074434a) entered disabled state
+👾 kernel | [53322.255925] br-ce54d582b538: port 3(veth6303dd2) entered disabled state
+👾 kernel | [53322.256010] vethe0cdf02: renamed from eth0
+📦 scon | time="04-26 17:04:58" level=info msg="remove forward" key="tcp:0.0.0.0:3001"
+📦 scon | time="04-26 17:04:58" level=info msg="remove forward" key="tcp:[::]:3001"
+👾 kernel | [53322.288886] br-ce54d582b538: port 3(veth6303dd2) entered disabled state
+👾 kernel | [53322.289306] veth6303dd2 (unregistering): left allmulticast mode
+👾 kernel | [53322.289326] veth6303dd2 (unregistering): left promiscuous mode
+👾 kernel | [53322.289341] br-ce54d582b538: port 3(veth6303dd2) entered disabled state
+👾 kernel | [53322.943337] br-ce54d582b538: port 3(veth0b67baa) entered blocking state
+👾 kernel | [53322.943365] br-ce54d582b538: port 3(veth0b67baa) entered disabled state
+👾 kernel | [53322.943376] veth0b67baa: entered allmulticast mode
+👾 kernel | [53322.943400] veth0b67baa: entered promiscuous mode
+👾 kernel | [53322.956290] eth0: renamed from vetha065766
+👾 kernel | [53322.956597] br-ce54d582b538: port 3(veth0b67baa) entered blocking state
+👾 kernel | [53322.956620] br-ce54d582b538: port 3(veth0b67baa) entered forwarding state
+📦 scon | time="04-26 17:04:58" level=info msg="add forward" container=docker spec="tcp:0.0.0.0:3001"
+📦 scon | time="04-26 17:04:58" level=info msg="add forward" container=docker spec="tcp:[::]:3001"
+👾 kernel | [55128.027316] docker0: port 1(veth3df84a2) entered blocking state
+👾 kernel | [55128.028593] docker0: port 1(veth3df84a2) entered disabled state
+👾 kernel | [55128.028642] veth3df84a2: entered allmulticast mode
+👾 kernel | [55128.028802] veth3df84a2: entered promiscuous mode
+👾 kernel | [55128.053301] docker0: port 2(veth6ffd3e4) entered blocking state
+👾 kernel | [55128.053334] docker0: port 2(veth6ffd3e4) entered disabled state
+👾 kernel | [55128.053349] veth6ffd3e4: entered allmulticast mode
+👾 kernel | [55128.053382] veth6ffd3e4: entered promiscuous mode
+👾 kernel | [55128.146724] eth0: renamed from veth37badcb
+👾 kernel | [55128.155859] eth0: renamed from veth54891ba
+👾 kernel | [55128.156271] docker0: port 2(veth6ffd3e4) entered blocking state
+👾 kernel | [55128.156299] docker0: port 2(veth6ffd3e4) entered forwarding state
+👾 kernel | [55128.156343] docker0: port 1(veth3df84a2) entered blocking state
+👾 kernel | [55128.156367] docker0: port 1(veth3df84a2) entered forwarding state
+👾 kernel | [55131.527364] docker0: port 2(veth6ffd3e4) entered disabled state
+👾 kernel | [55131.527450] veth54891ba: renamed from eth0
+👾 kernel | [55131.577954] docker0: port 2(veth6ffd3e4) entered disabled state
+👾 kernel | [55131.578626] veth6ffd3e4 (unregistering): left allmulticast mode
+👾 kernel | [55131.578658] veth6ffd3e4 (unregistering): left promiscuous mode
+👾 kernel | [55131.578674] docker0: port 2(veth6ffd3e4) entered disabled state
+👾 kernel | [55131.704615] docker0: port 2(vethdeef73f) entered blocking state
+👾 kernel | [55131.704643] docker0: port 2(vethdeef73f) entered disabled state
+👾 kernel | [55131.704660] vethdeef73f: entered allmulticast mode
+👾 kernel | [55131.704841] vethdeef73f: entered promiscuous mode
+👾 kernel | [55131.779031] docker0: port 1(veth3df84a2) entered disabled state
+👾 kernel | [55131.779239] veth37badcb: renamed from eth0
+👾 kernel | [55131.834941] docker0: port 1(veth3df84a2) entered disabled state
+👾 kernel | [55131.835336] veth3df84a2 (unregistering): left allmulticast mode
+👾 kernel | [55131.835355] veth3df84a2 (unregistering): left promiscuous mode
+👾 kernel | [55131.835365] docker0: port 1(veth3df84a2) entered disabled state
+👾 kernel | [55131.835971] eth0: renamed from vethe9eb0af
+👾 kernel | [55131.837007] docker0: port 2(vethdeef73f) entered blocking state
+👾 kernel | [55131.837026] docker0: port 2(vethdeef73f) entered forwarding state
+👾 kernel | [55131.974049] docker0: port 1(veth6712207) entered blocking state
+👾 kernel | [55131.974085] docker0: port 1(veth6712207) entered disabled state
+👾 kernel | [55131.974170] veth6712207: entered allmulticast mode
+👾 kernel | [55131.974315] veth6712207: entered promiscuous mode
+👾 kernel | [55132.067936] eth0: renamed from veth599f38d
+👾 kernel | [55132.068621] docker0: port 1(veth6712207) entered blocking state
+👾 kernel | [55132.068646] docker0: port 1(veth6712207) entered forwarding state
+👾 kernel | [55157.961945] vethe9eb0af: renamed from eth0
+👾 kernel | [55157.963901] docker0: port 2(vethdeef73f) entered disabled state
+👾 kernel | [55158.067180] docker0: port 2(vethdeef73f) entered disabled state
+👾 kernel | [55158.069260] vethdeef73f (unregistering): left allmulticast mode
+👾 kernel | [55158.069305] vethdeef73f (unregistering): left promiscuous mode
+👾 kernel | [55158.069325] docker0: port 2(vethdeef73f) entered disabled state
+👾 kernel | [55164.484572] docker0: port 2(veth3217820) entered blocking state
+👾 kernel | [55164.484608] docker0: port 2(veth3217820) entered disabled state
+👾 kernel | [55164.484632] veth3217820: entered allmulticast mode
+👾 kernel | [55164.484688] veth3217820: entered promiscuous mode
+👾 kernel | [55164.575159] eth0: renamed from veth3cb6678
+👾 kernel | [55164.575772] docker0: port 2(veth3217820) entered blocking state
+👾 kernel | [55164.575787] docker0: port 2(veth3217820) entered forwarding state
+👾 kernel | [55164.630620] veth3cb6678: renamed from eth0
+👾 kernel | [55164.630786] docker0: port 2(veth3217820) entered disabled state
+👾 kernel | [55164.665312] docker0: port 2(veth3217820) entered disabled state
+👾 kernel | [55164.665689] veth3217820 (unregistering): left allmulticast mode
+👾 kernel | [55164.665710] veth3217820 (unregistering): left promiscuous mode
+👾 kernel | [55164.665738] docker0: port 2(veth3217820) entered disabled state
+👾 kernel | [55164.729100] docker0: port 2(veth03621ff) entered blocking state
+👾 kernel | [55164.729135] docker0: port 2(veth03621ff) entered disabled state
+👾 kernel | [55164.729155] veth03621ff: entered allmulticast mode
+👾 kernel | [55164.729189] veth03621ff: entered promiscuous mode
+👾 kernel | [55164.803841] eth0: renamed from vethc3c61e5
+👾 kernel | [55164.806057] docker0: port 2(veth03621ff) entered blocking state
+👾 kernel | [55164.806086] docker0: port 2(veth03621ff) entered forwarding state
+👾 kernel | [55165.195125] veth599f38d: renamed from eth0
+👾 kernel | [55165.215235] docker0: port 1(veth6712207) entered disabled state
+👾 kernel | [55165.251053] docker0: port 1(veth6712207) entered disabled state
+👾 kernel | [55165.251688] veth6712207 (unregistering): left allmulticast mode
+👾 kernel | [55165.251707] veth6712207 (unregistering): left promiscuous mode
+👾 kernel | [55165.251723] docker0: port 1(veth6712207) entered disabled state
+👾 kernel | [55165.816951] vethc3c61e5: renamed from eth0
+👾 kernel | [55165.818664] docker0: port 2(veth03621ff) entered disabled state
+👾 kernel | [55165.840771] docker0: port 2(veth03621ff) entered disabled state
+👾 kernel | [55165.841294] veth03621ff (unregistering): left allmulticast mode
+👾 kernel | [55165.841311] veth03621ff (unregistering): left promiscuous mode
+👾 kernel | [55165.841321] docker0: port 2(veth03621ff) entered disabled state
+👾 kernel | [55169.000749] docker0: port 1(veth87ae4d2) entered blocking state
+👾 kernel | [55169.000798] docker0: port 1(veth87ae4d2) entered disabled state
+👾 kernel | [55169.000828] veth87ae4d2: entered allmulticast mode
+👾 kernel | [55169.000937] veth87ae4d2: entered promiscuous mode
+👾 kernel | [55169.085533] eth0: renamed from veth0d88d22
+👾 kernel | [55169.088468] docker0: port 1(veth87ae4d2) entered blocking state
+👾 kernel | [55169.088516] docker0: port 1(veth87ae4d2) entered forwarding state
+👾 kernel | [55171.730200] veth0d88d22: renamed from eth0
+👾 kernel | [55171.731523] docker0: port 1(veth87ae4d2) entered disabled state
+👾 kernel | [55171.989413] docker0: port 1(veth87ae4d2) entered disabled state
+👾 kernel | [55171.995019] veth87ae4d2 (unregistering): left allmulticast mode
+👾 kernel | [55171.995044] veth87ae4d2 (unregistering): left promiscuous mode
+👾 kernel | [55171.995056] docker0: port 1(veth87ae4d2) entered disabled state
+👾 kernel | [55180.509219] br-e400ac35b1ce: port 3(veth364a296) entered disabled state
+👾 kernel | [55180.509379] vethe4f4971: renamed from eth0
+📦 scon | time="04-26 17:35:56" level=info msg="remove forward" key="tcp:0.0.0.0:3000"
+📦 scon | time="04-26 17:35:56" level=info msg="remove forward" key="tcp:[::]:3000"
+👾 kernel | [55180.584383] br-e400ac35b1ce: port 3(veth364a296) entered disabled state
+👾 kernel | [55180.584861] veth364a296 (unregistering): left allmulticast mode
+👾 kernel | [55180.584917] veth364a296 (unregistering): left promiscuous mode
+👾 kernel | [55180.584939] br-e400ac35b1ce: port 3(veth364a296) entered disabled state
+👾 kernel | [55180.841872] docker0: port 1(veth4e3e742) entered blocking state
+👾 kernel | [55180.841899] docker0: port 1(veth4e3e742) entered disabled state
+👾 kernel | [55180.841914] veth4e3e742: entered allmulticast mode
+👾 kernel | [55180.841963] veth4e3e742: entered promiscuous mode
+👾 kernel | [55181.074739] eth0: renamed from veth216afd3
+👾 kernel | [55181.075863] docker0: port 1(veth4e3e742) entered blocking state
+👾 kernel | [55181.075895] docker0: port 1(veth4e3e742) entered forwarding state
+👾 kernel | [55181.116031] docker0: port 1(veth4e3e742) entered disabled state
+👾 kernel | [55181.116093] veth216afd3: renamed from eth0
+👾 kernel | [55181.168137] docker0: port 1(veth4e3e742) entered disabled state
+👾 kernel | [55181.168603] veth4e3e742 (unregistering): left allmulticast mode
+👾 kernel | [55181.168621] veth4e3e742 (unregistering): left promiscuous mode
+👾 kernel | [55181.168660] docker0: port 1(veth4e3e742) entered disabled state
+👾 kernel | [55181.251286] docker0: port 1(veth7528775) entered blocking state
+👾 kernel | [55181.251324] docker0: port 1(veth7528775) entered disabled state
+👾 kernel | [55181.251341] veth7528775: entered allmulticast mode
+👾 kernel | [55181.251390] veth7528775: entered promiscuous mode
+👾 kernel | [55181.298393] br-e400ac35b1ce: port 3(veth2589ede) entered blocking state
+👾 kernel | [55181.298430] br-e400ac35b1ce: port 3(veth2589ede) entered disabled state
+👾 kernel | [55181.298480] veth2589ede: entered allmulticast mode
+👾 kernel | [55181.298537] veth2589ede: entered promiscuous mode
+👾 kernel | [55181.415650] eth0: renamed from vethfb9c690
+👾 kernel | [55181.415893] eth0: renamed from vethca2f361
+👾 kernel | [55181.416311] docker0: port 1(veth7528775) entered blocking state
+👾 kernel | [55181.416332] docker0: port 1(veth7528775) entered forwarding state
+👾 kernel | [55181.416509] br-e400ac35b1ce: port 3(veth2589ede) entered blocking state
+👾 kernel | [55181.416544] br-e400ac35b1ce: port 3(veth2589ede) entered forwarding state
+🌸 agent:docker | time="04-26 19:35:57" level=info msg="adding network" config="{192.168.215.0/24 192.168.215.1 invalid Prefix invalid IP docker0}" name=bridge
+📦 scon | time="04-26 17:35:57" level=info msg="add forward" container=docker spec="tcp:0.0.0.0:3000"
+📦 scon | time="04-26 17:35:57" level=info msg="add forward" container=docker spec="tcp:[::]:3000"
+👾 kernel | [55182.482088] docker0: port 1(veth7528775) entered disabled state
+👾 kernel | [55182.482202] vethfb9c690: renamed from eth0
+👾 kernel | [55182.514907] docker0: port 1(veth7528775) entered disabled state
+👾 kernel | [55182.515316] veth7528775 (unregistering): left allmulticast mode
+👾 kernel | [55182.515332] veth7528775 (unregistering): left promiscuous mode
+👾 kernel | [55182.515344] docker0: port 1(veth7528775) entered disabled state
+🌸 agent:docker | time="04-26 19:36:06" level=info msg="removing network" config="{192.168.215.0/24 192.168.215.1 invalid Prefix invalid IP docker0}" name=bridge
+👾 kernel | [55190.783144] br-ce54d582b538: port 3(veth0b67baa) entered disabled state
+👾 kernel | [55190.783255] vetha065766: renamed from eth0
+📦 scon | time="04-26 17:36:06" level=info msg="remove forward" key="tcp:0.0.0.0:3001"
+📦 scon | time="04-26 17:36:06" level=info msg="remove forward" key="tcp:[::]:3001"
+👾 kernel | [55190.810469] br-ce54d582b538: port 3(veth0b67baa) entered disabled state
+👾 kernel | [55190.811008] veth0b67baa (unregistering): left allmulticast mode
+👾 kernel | [55190.811027] veth0b67baa (unregistering): left promiscuous mode
+👾 kernel | [55190.811049] br-ce54d582b538: port 3(veth0b67baa) entered disabled state
+👾 kernel | [55191.454195] br-ce54d582b538: port 3(veth654f491) entered blocking state
+👾 kernel | [55191.454237] br-ce54d582b538: port 3(veth654f491) entered disabled state
+👾 kernel | [55191.454258] veth654f491: entered allmulticast mode
+👾 kernel | [55191.454323] veth654f491: entered promiscuous mode
+👾 kernel | [55191.471837] eth0: renamed from vethd10af8e
+👾 kernel | [55191.472374] br-ce54d582b538: port 3(veth654f491) entered blocking state
+👾 kernel | [55191.472392] br-ce54d582b538: port 3(veth654f491) entered forwarding state
+📦 scon | time="04-26 17:36:07" level=info msg="add forward" container=docker spec="tcp:0.0.0.0:3001"
+📦 scon | time="04-26 17:36:07" level=info msg="add forward" container=docker spec="tcp:[::]:3001"
+👾 kernel | [55326.091690] docker0: port 1(vethaba0808) entered blocking state
+👾 kernel | [55326.091758] docker0: port 1(vethaba0808) entered disabled state
+👾 kernel | [55326.091779] vethaba0808: entered allmulticast mode
+👾 kernel | [55326.091857] vethaba0808: entered promiscuous mode
+👾 kernel | [55326.187365] eth0: renamed from veth62f3ca3
+👾 kernel | [55326.188338] docker0: port 1(vethaba0808) entered blocking state
+👾 kernel | [55326.188368] docker0: port 1(vethaba0808) entered forwarding state
+👾 kernel | [55328.907014] veth62f3ca3: renamed from eth0
+👾 kernel | [55328.908066] docker0: port 1(vethaba0808) entered disabled state
+👾 kernel | [55328.956898] docker0: port 1(vethaba0808) entered disabled state
+👾 kernel | [55328.957251] vethaba0808 (unregistering): left allmulticast mode
+👾 kernel | [55328.957272] vethaba0808 (unregistering): left promiscuous mode
+👾 kernel | [55328.957281] docker0: port 1(vethaba0808) entered disabled state
+👾 kernel | [55329.167972] docker0: port 1(vethd463213) entered blocking state
+👾 kernel | [55329.168001] docker0: port 1(vethd463213) entered disabled state
+👾 kernel | [55329.168016] vethd463213: entered allmulticast mode
+👾 kernel | [55329.168066] vethd463213: entered promiscuous mode
+👾 kernel | [55329.246231] eth0: renamed from veth42a0cc9
+👾 kernel | [55329.246773] docker0: port 1(vethd463213) entered blocking state
+👾 kernel | [55329.246794] docker0: port 1(vethd463213) entered forwarding state
+👾 kernel | [55345.469697] docker0: port 1(vethd463213) entered disabled state
+👾 kernel | [55345.469791] veth42a0cc9: renamed from eth0
+👾 kernel | [55345.526542] docker0: port 1(vethd463213) entered disabled state
+👾 kernel | [55345.527119] vethd463213 (unregistering): left allmulticast mode
+👾 kernel | [55345.527139] vethd463213 (unregistering): left promiscuous mode
+👾 kernel | [55345.527150] docker0: port 1(vethd463213) entered disabled state
+👾 kernel | [55347.509252] docker0: port 1(vethec51877) entered blocking state
+👾 kernel | [55347.509286] docker0: port 1(vethec51877) entered disabled state
+👾 kernel | [55347.509306] vethec51877: entered allmulticast mode
+👾 kernel | [55347.509350] vethec51877: entered promiscuous mode
+👾 kernel | [55347.573293] eth0: renamed from veth7703330
+👾 kernel | [55347.573812] docker0: port 1(vethec51877) entered blocking state
+👾 kernel | [55347.573834] docker0: port 1(vethec51877) entered forwarding state
+👾 kernel | [55348.765806] docker0: port 1(vethec51877) entered disabled state
+👾 kernel | [55348.765862] veth7703330: renamed from eth0
+👾 kernel | [55348.795433] docker0: port 1(vethec51877) entered disabled state
+👾 kernel | [55348.795830] vethec51877 (unregistering): left allmulticast mode
+👾 kernel | [55348.795851] vethec51877 (unregistering): left promiscuous mode
+👾 kernel | [55348.795897] docker0: port 1(vethec51877) entered disabled state
+👾 kernel | [55350.598925] docker0: port 1(vetha9d4bb3) entered blocking state
+👾 kernel | [55350.598955] docker0: port 1(vetha9d4bb3) entered disabled state
+👾 kernel | [55350.598968] vetha9d4bb3: entered allmulticast mode
+👾 kernel | [55350.598996] vetha9d4bb3: entered promiscuous mode
+👾 kernel | [55350.649551] eth0: renamed from veth35316cc
+👾 kernel | [55350.649923] docker0: port 1(vetha9d4bb3) entered blocking state
+👾 kernel | [55350.649940] docker0: port 1(vetha9d4bb3) entered forwarding state
+👾 kernel | [55350.687503] docker0: port 1(vetha9d4bb3) entered disabled state
+👾 kernel | [55350.687567] veth35316cc: renamed from eth0
+👾 kernel | [55350.719118] docker0: port 1(vetha9d4bb3) entered disabled state
+👾 kernel | [55350.719544] vetha9d4bb3 (unregistering): left allmulticast mode
+👾 kernel | [55350.719559] vetha9d4bb3 (unregistering): left promiscuous mode
+👾 kernel | [55350.719570] docker0: port 1(vetha9d4bb3) entered disabled state
+👾 kernel | [55350.781438] docker0: port 1(vethbd91ac4) entered blocking state
+👾 kernel | [55350.781472] docker0: port 1(vethbd91ac4) entered disabled state
+👾 kernel | [55350.781487] vethbd91ac4: entered allmulticast mode
+👾 kernel | [55350.781517] vethbd91ac4: entered promiscuous mode
+👾 kernel | [55350.854547] eth0: renamed from veth75d32c9
+👾 kernel | [55350.855039] docker0: port 1(vethbd91ac4) entered blocking state
+👾 kernel | [55350.855055] docker0: port 1(vethbd91ac4) entered forwarding state
+👾 kernel | [55351.537996] docker0: port 1(vethbd91ac4) entered disabled state
+👾 kernel | [55351.538074] veth75d32c9: renamed from eth0
+👾 kernel | [55351.554220] docker0: port 1(vethbd91ac4) entered disabled state
+👾 kernel | [55351.554615] vethbd91ac4 (unregistering): left allmulticast mode
+👾 kernel | [55351.554637] vethbd91ac4 (unregistering): left promiscuous mode
+👾 kernel | [55351.554650] docker0: port 1(vethbd91ac4) entered disabled state
+👾 kernel | [55355.058139] br-ce54d582b538: port 3(veth654f491) entered disabled state
+👾 kernel | [55355.058287] vethd10af8e: renamed from eth0
+📦 scon | time="04-26 17:38:51" level=info msg="remove forward" key="tcp:0.0.0.0:3001"
+📦 scon | time="04-26 17:38:51" level=info msg="remove forward" key="tcp:[::]:3001"
+👾 kernel | [55355.097331] br-ce54d582b538: port 3(veth654f491) entered disabled state
+👾 kernel | [55355.097797] veth654f491 (unregistering): left allmulticast mode
+👾 kernel | [55355.097822] veth654f491 (unregistering): left promiscuous mode
+👾 kernel | [55355.097849] br-ce54d582b538: port 3(veth654f491) entered disabled state
+👾 kernel | [55355.726698] br-ce54d582b538: port 3(veth56a63f8) entered blocking state
+👾 kernel | [55355.726729] br-ce54d582b538: port 3(veth56a63f8) entered disabled state
+👾 kernel | [55355.726741] veth56a63f8: entered allmulticast mode
+👾 kernel | [55355.726780] veth56a63f8: entered promiscuous mode
+👾 kernel | [55355.755142] eth0: renamed from vethebe4166
+👾 kernel | [55355.755518] br-ce54d582b538: port 3(veth56a63f8) entered blocking state
+👾 kernel | [55355.755539] br-ce54d582b538: port 3(veth56a63f8) entered forwarding state
+📦 scon | time="04-26 17:38:51" level=info msg="add forward" container=docker spec="tcp:0.0.0.0:3001"
+📦 scon | time="04-26 17:38:51" level=info msg="add forward" container=docker spec="tcp:[::]:3001"
+👾 kernel | [55465.425632] br-e400ac35b1ce: port 3(veth2589ede) entered disabled state
+👾 kernel | [55465.425754] vethca2f361: renamed from eth0
+📦 scon | time="04-26 17:40:41" level=info msg="remove forward" key="tcp:0.0.0.0:3000"
+📦 scon | time="04-26 17:40:41" level=info msg="remove forward" key="tcp:[::]:3000"
+👾 kernel | [55465.453588] br-e400ac35b1ce: port 3(veth2589ede) entered disabled state
+👾 kernel | [55465.454029] veth2589ede (unregistering): left allmulticast mode
+👾 kernel | [55465.454058] veth2589ede (unregistering): left promiscuous mode
+👾 kernel | [55465.454071] br-e400ac35b1ce: port 3(veth2589ede) entered disabled state
+👾 kernel | [55466.146112] br-e400ac35b1ce: port 3(veth8b1a4de) entered blocking state
+👾 kernel | [55466.146140] br-e400ac35b1ce: port 3(veth8b1a4de) entered disabled state
+👾 kernel | [55466.146160] veth8b1a4de: entered allmulticast mode
+👾 kernel | [55466.146200] veth8b1a4de: entered promiscuous mode
+👾 kernel | [55466.162190] eth0: renamed from veth9e3e47f
+👾 kernel | [55466.162614] br-e400ac35b1ce: port 3(veth8b1a4de) entered blocking state
+👾 kernel | [55466.162631] br-e400ac35b1ce: port 3(veth8b1a4de) entered forwarding state
+📦 scon | time="04-26 17:40:42" level=info msg="add forward" container=docker spec="tcp:0.0.0.0:3000"
+📦 scon | time="04-26 17:40:42" level=info msg="add forward" container=docker spec="tcp:[::]:3000"
+👾 kernel | [110494.378439] hrtimer: interrupt took 10477763 ns
+📦 scon | time="04-27 21:55:29" level=info msg="creating container" id=01KQ8F1DTZPPMY2S72GRNY8PHG name=ubuntu
+📦 scon | time="04-27 21:55:29" level=info msg="fetching image index"
+📦 scon | time="04-27 21:55:31" level=info msg="extracting rootfs" container=ubuntu
+📦 scon | time="04-27 21:55:34" level=info msg="applying templates"
+📦 scon | time="04-27 21:55:34" level=info msg="starting container" container=ubuntu
+👾 kernel | [157158.096319] conbr0: port 3(vethHKQwlQ) entered blocking state
+👾 kernel | [157158.096410] conbr0: port 3(vethHKQwlQ) entered disabled state
+👾 kernel | [157158.096435] vethHKQwlQ: entered allmulticast mode
+👾 kernel | [157158.096495] vethHKQwlQ: entered promiscuous mode
+👾 kernel | [157158.124101] eth0: renamed from vethtFYWrD
+👾 kernel | [157158.124562] conbr0: port 3(vethHKQwlQ) entered blocking state
+👾 kernel | [157158.124599] conbr0: port 3(vethHKQwlQ) entered forwarding state
+📦 scon | time="04-27 21:55:34" level=info msg="container started" container=ubuntu
+📦 scon | time="04-27 21:55:34" level=info msg="waiting for network before setup" container=ubuntu
+👾 kernel | [157160.360351] systemd-journald[116]: Collecting audit messages is disabled.
+📦 scon | time="04-27 21:55:39" level=info msg="network is up" container=ubuntu ips="[192.168.139.18 fd07:b51a:cc66:0:4421:8ff:fef7:255f]"
+📦 scon | time="04-27 21:55:39" level=info msg="running initial setup" groupname=carlosgomez uid=501 username=carlosgomez
+📦 scon | time="04-27 21:56:07" level=info msg="container created" container=ubuntu
+🌲 vmgr | time="04-28 07:19:03" level=info msg="using proxy: none"
+🌲 vmgr | time="04-28 07:37:46" level=info msg=sleep
+🌲 vmgr | time="04-28 09:59:32" level=info msg="using proxy: none"
+🌲 vmgr | time="04-28 09:59:39" level=info msg="using proxy: none"
+🌲 vmgr | time="04-28 10:00:36" level=info msg="using proxy: none"
+🌲 vmgr | time="04-28 10:31:45" level=info msg="using proxy: none"
+🌲 vmgr | time="04-28 10:38:40" level=info msg=wake
+📦 scon | time="04-28 08:46:56" level=info msg="add forward" container=ubuntu spec="tcp:127.0.0.1:34589"
+📦 scon | time="04-28 09:37:30" level=info msg="remove forward" key="tcp:127.0.0.1:34589"
+📦 scon | time="04-28 09:58:07" level=info msg="creating container" id=01KQ9RCKNYH2PB2EJCVCV9F4C3 name=angularvm
+📦 scon | time="04-28 09:58:07" level=info msg="fetching image index"
+📦 scon | time="04-28 09:58:10" level=info msg="extracting rootfs" container=angularvm
+📦 scon | time="04-28 09:58:12" level=info msg="applying templates"
+📦 scon | time="04-28 09:58:12" level=info msg="starting container" container=angularvm
+📦 scon | time="04-28 09:58:12" level=info msg="container started" container=angularvm
+📦 scon | time="04-28 09:58:12" level=info msg="waiting for network before setup" container=angularvm
+📦 scon | time="04-28 09:58:15" level=info msg="network is up" container=angularvm ips="[192.168.139.88 fd07:b51a:cc66:0:209b:cff:feaa:653a]"
+📦 scon | time="04-28 09:58:15" level=info msg="running initial setup" groupname=carlosgomez uid=501 username=carlosgomez
+📦 scon | time="04-28 09:58:21" level=info msg="container created" container=angularvm
+📦 scon | time="04-28 10:12:33" level=info msg="add forward" container=ubuntu spec="tcp:[::1]:38509"
+📦 scon | time="04-28 10:18:04" level=info msg="add forward" container=ubuntu spec="tcp:[::1]:37245"
+🌲 vmgr | time="04-28 12:29:10" level=info msg=sleep
+🌲 vmgr | time="04-28 12:34:24" level=info msg=wake
+📦 scon | time="04-28 11:50:08" level=info msg="add forward" container=ubuntu spec="tcp:[::1]:4201"
+📦 scon | time="04-28 11:52:53" level=info msg="add forward" container=ubuntu spec="tcp:0.0.0.0:4201"
+📦 scon | time="04-28 13:22:39" level=info msg="remove forward" key="tcp:[::1]:38509"
+🌲 vmgr | time="04-28 15:50:04" level=info msg=sleep
+🌲 vmgr | time="04-28 15:56:57" level=info msg="using proxy: none"
+🌲 vmgr | time="04-28 16:35:03" level=info msg="using proxy: none"
+🌲 vmgr | time="04-28 16:35:04" level=info msg="using proxy: none"
+🌲 vmgr | time="04-28 17:43:25" level=info msg="using proxy: none"
+🌲 vmgr | time="04-28 17:43:49" level=info msg=wake
+🌲 vmgr | time="04-28 20:48:09" level=info msg="using proxy: none"
+🌲 vmgr | time="04-28 20:48:11" level=info msg=sleep
+🌲 vmgr | time="04-28 20:52:23" level=info msg="using proxy: none"
+🌲 vmgr | time="04-28 20:52:35" level=info msg="using proxy: none"
+🌲 vmgr | time="04-28 20:52:35" level=info msg="using proxy: none"
+🌲 vmgr | time="04-28 20:53:55" level=info msg="using proxy: none"
+🌲 vmgr | time="04-28 21:13:26" level=info msg="using proxy: none"
+🌲 vmgr | time="04-29 09:59:37" level=info msg=wake
+📦 scon | time="04-29 08:51:37" level=info msg="remove forward" key="tcp:[::1]:37245"
+📦 scon | time="04-29 10:52:29" level=info msg="add forward" container=ubuntu spec="tcp:0.0.0.0:80"
+📦 scon | time="04-29 10:52:29" level=info msg="add forward" container=ubuntu spec="tcp:[::]:80"
+📦 scon | time="04-29 10:56:19" level=info msg="add forward" container=ubuntu spec="tcp:127.0.0.1:34817"
+📦 scon | time="04-29 11:04:32" level=info msg="remove forward" key="tcp:127.0.0.1:34817"
+📦 scon | time="04-29 11:05:14" level=info msg="add forward" container=ubuntu spec="tcp:127.0.0.1:42657"
+📦 scon | time="04-29 11:16:05" level=info msg="remove forward" key="tcp:127.0.0.1:42657"
+📦 scon | time="04-29 12:42:16" level=info msg="add forward" container=ubuntu spec="tcp:127.0.0.1:40709"
+📦 scon | time="04-29 12:43:05" level=info msg="remove forward" key="tcp:127.0.0.1:40709"
+📦 scon | time="04-29 12:44:58" level=info msg="add forward" container=ubuntu spec="tcp:127.0.0.1:42035"
+📦 scon | time="04-29 12:44:59" level=info msg="remove forward" key="tcp:127.0.0.1:42035"
+📦 scon | time="04-29 12:45:15" level=info msg="add forward" container=ubuntu spec="tcp:127.0.0.1:36147"
+📦 scon | time="04-29 12:48:37" level=info msg="remove forward" key="tcp:127.0.0.1:36147"
+📦 scon | time="04-29 12:58:42" level=info msg="add forward" container=ubuntu spec="tcp:127.0.0.1:43951"
+📦 scon | time="04-29 13:01:37" level=info msg="remove forward" key="tcp:127.0.0.1:43951"
+📦 scon | time="04-29 13:50:02" level=info msg="add forward" container=ubuntu spec="tcp:127.0.0.1:39715"
+📦 scon | time="04-29 13:53:00" level=info msg="remove forward" key="tcp:127.0.0.1:39715"
+📦 scon | time="04-29 13:53:14" level=info msg="add forward" container=ubuntu spec="tcp:127.0.0.1:37539"
+📦 scon | time="04-29 13:54:02" level=info msg="remove forward" key="tcp:127.0.0.1:37539"
+🌲 vmgr | time="04-29 17:37:28" level=info msg=sleep
+🌲 vmgr | time="04-29 17:37:58" level=info msg=wake
+🌲 vmgr | time="04-29 17:38:03" level=info msg=sleep
+🌲 vmgr | time="04-29 17:40:29" level=info msg="using proxy: none"
+🌲 vmgr | time="04-29 17:52:07" level=info msg="using proxy: none"
+🌲 vmgr | time="04-29 17:52:08" level=info msg="using proxy: none"
+🌲 vmgr | time="04-29 17:52:43" level=info msg=wake
+🌲 vmgr | time="04-29 18:00:19" level=info msg="using proxy: none"
+

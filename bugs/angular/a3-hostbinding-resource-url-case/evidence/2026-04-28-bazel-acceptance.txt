@@ -1,0 +1,50 @@
+Command:
+
+orb -m ubuntu -u root chroot --userspec=carlosgomez:carlosgomez /mnt/machines/angularvm /usr/bin/env HOME=/home/carlosgomez USER=carlosgomez LOGNAME=carlosgomez PATH=/usr/local/bin:/usr/bin:/bin:/opt/node-v22.22.2/bin pnpm --dir /home/carlosgomez/angular exec bazelisk test //packages/core/test/acceptance:acceptance --test_output=errors --test_filter='iframe src host bindings|downgrade ResourceUrl iframe src'
+
+Result:
+
+//packages/core/test/acceptance:acceptance PASSED in 10.5s
+
+Interpretation:
+
+The added control test confirms lowercase `<iframe>` host binding enforces ResourceURL.
+The added observed-behavior test confirms uppercase `<IFRAME>` host binding does not throw
+and sets `src="http://server"` from a plain string.
+
+Additional command:
+
+orb -m ubuntu -u root chroot --userspec=carlosgomez:carlosgomez /mnt/machines/angularvm /usr/bin/env HOME=/home/carlosgomez USER=carlosgomez LOGNAME=carlosgomez PATH=/usr/local/bin:/usr/bin:/bin:/opt/node-v22.22.2/bin pnpm --dir /home/carlosgomez/angular exec bazelisk test //packages/core/test/acceptance:acceptance --test_output=errors --test_filter='uppercase src host bindings'
+
+Additional result:
+
+//packages/core/test/acceptance:acceptance PASSED in 11.1s
+
+Interpretation:
+
+The same downgrade occurs when the element is lowercase but the host binding attribute spelling is
+uppercase: `host: {'[attr.SRC]': 'value'}` on `<iframe>`.
+
+Real app validation:
+
+Patched `dev-app` with:
+
+- `UnsafeFrameSrcDirective`: `host: {'[attr.src]': 'url'}`
+- app template: `<IFRAME id="poc-frame" [appUnsafeFrameSrc]="attackerFrameUrl"></IFRAME>`
+- app value: `http://attacker.example/poc-frame.html`
+
+Command:
+
+orb -m ubuntu -u root chroot --userspec=carlosgomez:carlosgomez /mnt/machines/angularvm /usr/bin/env HOME=/home/carlosgomez USER=carlosgomez LOGNAME=carlosgomez PATH=/usr/local/bin:/usr/bin:/bin:/opt/node-v22.22.2/bin pnpm --dir /home/carlosgomez/angular exec bazelisk test //dev-app:test --test_output=errors
+
+Result:
+
+//dev-app:test PASSED in 3.9s
+
+Command:
+
+orb -m ubuntu -u root chroot --userspec=carlosgomez:carlosgomez /mnt/machines/angularvm /usr/bin/env HOME=/home/carlosgomez USER=carlosgomez LOGNAME=carlosgomez PATH=/usr/local/bin:/usr/bin:/bin:/opt/node-v22.22.2/bin pnpm --dir /home/carlosgomez/angular exec bazelisk build //dev-app:build
+
+Result:
+
+//dev-app:build completed successfully.

@@ -1,0 +1,8 @@
+baseline 11
+bytecode 11,3,79,1,0,185
+mutate-arith 2 0 -> 255
+install
+run
+21
+
+EXIT:0

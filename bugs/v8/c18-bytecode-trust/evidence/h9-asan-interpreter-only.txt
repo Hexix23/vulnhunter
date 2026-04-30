@@ -1,0 +1,40 @@
+baseline 10
+bytecode 11,5,60,3,4,0,11,4,53,3,2,185
+mutate-setkeyed 2 0 -> 255
+install
+run
+
+
+#
+# Fatal error in ../../src/objects/shared-function-info-inl.h, line 679
+# Debug check failed: HasFeedbackMetadata().
+#
+#
+#
+#FailureMessage Object: 0x111fb2840
+==== C stack trace ===============================
+
+    0   d8                                  0x000000010b25421c v8::base::debug::StackTrace::StackTrace() + 60
+    1   d8                                  0x000000010b2671d0 v8::platform::(anonymous namespace)::PrintStackTrace() + 252
+    2   d8                                  0x000000010b226a40 V8_Fatal(char const*, int, char const*, ...) + 524
+    3   d8                                  0x000000010b225f9c v8::base::FatalOOM(v8::base::OOMType, char const*) + 0
+    4   d8                                  0x0000000105189c88 v8::internal::SharedFunctionInfo::feedback_metadata(v8::internal::PtrComprCageBase) const + 412
+    5   d8                                  0x0000000106088824 v8::internal::FeedbackVector::GetKind(v8::internal::FeedbackSlot) const + 152
+    6   d8                                  0x0000000105aa9970 v8::internal::Runtime_KeyedStoreIC_Miss(int, unsigned long*, v8::internal::Isolate*) + 1028
+    7   ???                                 0x0000000177b9c948 0x0 + 6303631688
+    8   ???                                 0x0000000177ed5c8c 0x0 + 6307011724
+    9   ???                                 0x000000017796df58 0x0 + 6301343576
+    10  ???                                 0x000000017796df58 0x0 + 6301343576
+    11  ???                                 0x00000001779675dc 0x0 + 6301316572
+    12  ???                                 0x00000001779672bc 0x0 + 6301315772
+    13  d8                                  0x00000001052467d0 v8::internal::(anonymous namespace)::Invoke(v8::internal::Isolate*, v8::internal::(anonymous namespace)::InvokeParams const&) + 6824
+    14  d8                                  0x0000000105249aa4 v8::internal::Execution::CallScript(v8::internal::Isolate*, v8::internal::DirectHandle<v8::internal::JSFunction>, v8::internal::DirectHandle<v8::internal::Object>, v8::internal::DirectHandle<v8::internal::Object>) + 800
+    15  d8                                  0x0000000104b588dc v8::Script::Run(v8::Local<v8::Context>, v8::Local<v8::Data>) + 1664
+    16  d8                                  0x0000000104a68318 v8::Shell::ExecuteString(v8::Isolate*, v8::Local<v8::String>, v8::Local<v8::String>, v8::Shell::ReportExceptions, v8::Global<v8::Value>*) + 3080
+    17  d8                                  0x0000000104a9dbb0 v8::SourceGroup::Execute(v8::Isolate*) + 868
+    18  d8                                  0x0000000104aa8318 v8::Shell::RunMainIsolate(v8::Isolate*, bool) + 916
+    19  d8                                  0x0000000104aa75bc v8::Shell::RunMain(v8::Isolate*, bool) + 748
+    20  d8                                  0x0000000104aaa99c v8::Shell::Main(int, char**) + 5384
+    21  dyld                                0x00000001849bfda4 start + 6992
+
+EXIT:133

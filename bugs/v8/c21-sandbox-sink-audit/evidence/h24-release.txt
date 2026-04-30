@@ -1,0 +1,7 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x3f6600000000,0x406600000000)
+before_drop=39
+entry1_was_marker=true
+weak_instance_alive=true
+weak_f1_alive=true
+after_gc=39

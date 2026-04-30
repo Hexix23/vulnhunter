@@ -1,0 +1,39 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>
+  #host {
+    position: absolute;
+    left: 40px;
+    top: 40px;
+    width: 180px;
+    height: 80px;
+    background: #ccc;
+    touch-action: none;
+  }
+  #host::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #fc6;
+    pointer-events: auto;
+  }
+  #host.gone::before {
+    content: none;
+  }
+</style>
+<div id="host"></div>
+<pre id="log"></pre>
+<script>
+const host = document.getElementById("host");
+const log = document.getElementById("log");
+function line(s) { log.textContent += s + "\n"; }
+for (const type of ["touchstart", "touchend", "pointerdown", "pointerup", "click"]) {
+  host.addEventListener(type, e => {
+    line(type + " target=" + e.target.id + " pseudo=" + (e.pseudoElement || ""));
+    if (type === "touchstart" || type === "pointerdown") {
+      host.classList.add("gone");
+      getComputedStyle(host).content;
+    }
+  }, {passive: false});
+}
+</script>

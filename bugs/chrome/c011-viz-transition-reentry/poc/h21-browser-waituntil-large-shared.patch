@@ -1,0 +1,119 @@
+diff --git a/content/browser/renderer_host/view_transition_browsertest.cc b/content/browser/renderer_host/view_transition_browsertest.cc
+--- a/content/browser/renderer_host/view_transition_browsertest.cc
++++ b/content/browser/renderer_host/view_transition_browsertest.cc
+@@ -582,5 +582,55 @@ IN_PROC_BROWSER_TEST_F(ViewTransitionProcessShutdownTest,
+   ASSERT_TRUE(static_cast<RenderWidgetHostViewBase*>(
+                   shell()->web_contents()->GetRenderWidgetHostView())
+                   ->HasViewTransitionResourcesForTesting());
+ }
++
++IN_PROC_BROWSER_TEST_F(ViewTransitionProcessShutdownTest,
++                       LargeSharedElementWaitUntilKeepsUnclaimedResources) {
++  DisableBackForwardCacheForTesting(
++      shell()->web_contents(),
++      BackForwardCache::DisableForTestingReason::TEST_REQUIRES_NO_CACHING);
++
++  auto* web_contents = shell()->web_contents();
++  shell()->ResizeWebContentForTests(gfx::Size(1024, 768));
++
++  GURL first_url(embedded_test_server()->GetURL(
++      "a.com", "/view_transitions/c011-large-vt-waituntil.html?first"));
++  ASSERT_TRUE(NavigateToURL(web_contents, first_url));
++  WaitForCopyableViewInWebContents(web_contents);
++
++  GURL second_url(embedded_test_server()->GetURL(
++      "a.com", "/view_transitions/c011-large-vt-waituntil.html?hold"));
++  TestNavigationManager navigation_manager(web_contents, second_url);
++  ASSERT_TRUE(ExecJs(web_contents, JsReplace("location.href = $1", second_url)));
++  ASSERT_TRUE(navigation_manager.WaitForNavigationFinished());
++  WaitForCopyableViewInWebContents(web_contents);
++
++  ASSERT_EQ(true, EvalJs(web_contents, "did_hold_transition"));
++  ASSERT_TRUE(static_cast<RenderWidgetHostViewBase*>(
++                  web_contents->GetRenderWidgetHostView())
++                  ->HasViewTransitionResourcesForTesting());
++
++  mojo::ScopedAllowSyncCallForTesting allow_sync;
++  bool has_resources = false;
++  GetHostFrameSinkManager()
++      ->GetFrameSinkManagerTestApi()
++      .HasUnclaimedViewTransitionResources(&has_resources);
++  EXPECT_TRUE(has_resources);
++
++  ASSERT_TRUE(ExecJs(web_contents, "releaseHeldTransition()"));
++  ASSERT_EQ(EvalJs(web_contents, JsReplace(R"(
++            new Promise(resolve => {
++              requestAnimationFrame(() => {
++                requestAnimationFrame(() => resolve("ok"));
++              });
++            }))")),
++            "ok");
++  base::RunLoop().RunUntilIdle();
++
++  has_resources = true;
++  GetHostFrameSinkManager()
++      ->GetFrameSinkManagerTestApi()
++      .HasUnclaimedViewTransitionResources(&has_resources);
++  EXPECT_FALSE(has_resources);
++}
+ }  // namespace content
+diff --git a/content/test/data/view_transitions/c011-large-vt-waituntil.html b/content/test/data/view_transitions/c011-large-vt-waituntil.html
+new file mode 100644
+--- /dev/null
++++ b/content/test/data/view_transitions/c011-large-vt-waituntil.html
+@@ -0,0 +1,52 @@
++<!DOCTYPE html>
++<html>
++<head>
++<style>
++  @view-transition {
++    navigation: auto;
++  }
++
++  html,
++  body {
++    margin: 0;
++    padding: 0;
++    width: 4096px;
++    height: 4096px;
++    overflow: hidden;
++    background: rgb(11, 31, 53);
++  }
++
++  #target {
++    width: 4096px;
++    height: 4096px;
++    contain: paint;
++    view-transition-name: c011-target;
++    background:
++        linear-gradient(90deg, rgba(255,255,255,.18) 1px, transparent 1px),
++        linear-gradient(0deg, rgba(255,255,255,.18) 1px, transparent 1px),
++        linear-gradient(135deg, #2fd8a6, #2348e8);
++    background-size: 64px 64px, 64px 64px, auto;
++  }
++
++  ::view-transition-old(c011-target),
++  ::view-transition-new(c011-target) {
++    animation-duration: 600s;
++  }
++</style>
++<script>
++  let releaseHeldTransition = () => {};
++  let did_hold_transition = false;
++
++  addEventListener('pagereveal', event => {
++    if (!event.viewTransition)
++      return;
++    if (!location.search.includes('hold'))
++      return;
++    did_hold_transition = true;
++    event.viewTransition.waitUntil(new Promise(resolve => {
++      releaseHeldTransition = resolve;
++    }));
++  });
++</script>
++</head>
++<body>
++  <div id="target"></div>
++</body>
++</html>

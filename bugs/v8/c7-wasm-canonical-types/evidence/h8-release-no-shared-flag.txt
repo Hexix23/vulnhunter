@@ -1,0 +1,8 @@
+/Users/carlosgomez/v8-engagement/v8/v8/test/mjsunit/wasm/wasm-module-builder.js:2610: CompileError: WebAssembly.Module(): unknown type form: 101, enable with --experimental-wasm-shared @+14
+    return new WebAssembly.Module(this.toBuffer(debug), options);
+           ^
+CompileError: WebAssembly.Module(): unknown type form: 101, enable with --experimental-wasm-shared @+14
+    at WasmModuleBuilder.toModule (/Users/carlosgomez/v8-engagement/v8/v8/test/mjsunit/wasm/wasm-module-builder.js:2610:12)
+    at WasmModuleBuilder.instantiate (/Users/carlosgomez/v8-engagement/v8/v8/test/mjsunit/wasm/wasm-module-builder.js:2599:23)
+    at bugs/v8/c7-wasm-canonical-types/poc/h8-shared-custom-descriptor-allocation.js:43:26
+

@@ -1,0 +1,40 @@
+Command:
+
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 out/sandbox_release_linux/d8 --expose-memory-corruption-api --allow-natives-syntax --expose-gc --stress-compaction /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c21-sandbox-sink-audit/poc/h3-global-bytearray-hidden-ref-gc.js
+
+Output:
+
+hidden-ref
+undefined
+undefined
+
+
+#
+# Fatal error
+# Check failed: isolate_ == isolate.
+#
+#
+#
+#FailureMessage Object: 0x7ffffffc43e0
+==== C stack trace ===============================
+
+    out/sandbox_release_linux/d8(+0x1c20ece) [0x555557174ece]
+    out/sandbox_release_linux/d8(+0x1c2038b) [0x55555717438b]
+    out/sandbox_release_linux/d8(+0x1c1357f) [0x55555716757f]
+    out/sandbox_release_linux/d8(+0x8428a6) [0x555555d968a6]
+    out/sandbox_release_linux/d8(+0x8e0136) [0x555555e34136]
+    out/sandbox_release_linux/d8(+0x8cefca) [0x555555e22fca]
+    out/sandbox_release_linux/d8(+0x8ceaf4) [0x555555e22af4]
+    out/sandbox_release_linux/d8(+0x8c5be7) [0x555555e19be7]
+    out/sandbox_release_linux/d8(+0x8c52a4) [0x555555e192a4]
+
+Symbolized frames:
+
+- `0x1c20ece` -> `v8::base::debug::StackTrace::StackTrace()`
+- `0x1c2038b` -> `v8::platform::PrintStackTrace()`
+- `0x1c1357f` -> `V8_Fatal(char const*, ...)`
+- `0x8428a6` -> `MarkingVisitorBase<ConcurrentMarkingVisitor>::ProcessStrongHeapObject<CompressedObjectSlot>(...)`, `src/execution/isolate.h:1192`
+- `0x8e0136` -> `MarkCompactCollector::ProcessMarkingWorklist<...>(...)`
+- `0x8cefca` -> `MarkCompactCollector::MarkTransitiveClosureFixpoint()`
+- `0x8ceaf4` -> `MarkCompactCollector::MarkLiveObjects()`
+- `0x8c5be7` -> `MarkCompactCollector::CollectGarbage()`

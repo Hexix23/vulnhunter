@@ -1,0 +1,6 @@
+bugs/v8/c7-wasm-canonical-types/poc/h9-minimal-raw.js:16: CompileError: WebAssembly.Module(): unknown type form: 101, enable with --experimental-wasm-shared @+14
+const instance = new WebAssembly.Instance(new WebAssembly.Module(bytes));
+                                          ^
+CompileError: WebAssembly.Module(): unknown type form: 101, enable with --experimental-wasm-shared @+14
+    at bugs/v8/c7-wasm-canonical-types/poc/h9-minimal-raw.js:16:43
+

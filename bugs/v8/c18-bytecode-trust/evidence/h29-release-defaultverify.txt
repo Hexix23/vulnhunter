@@ -1,0 +1,9 @@
+start
+before true
+deleted true
+overwritten 42
+frozen true
+sealed true true
+done
+
+EXIT:0

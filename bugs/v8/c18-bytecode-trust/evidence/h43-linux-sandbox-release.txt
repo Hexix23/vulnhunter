@@ -1,0 +1,8 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x8d600000000,0x9d600000000)
+preopt caller=100 f=99
+optimized caller=100 f=99
+after-B-write caller=124 f=123
+done
+
+EXIT:0

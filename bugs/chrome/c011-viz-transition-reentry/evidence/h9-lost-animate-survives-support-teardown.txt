@@ -1,0 +1,24 @@
+Command:
+orb -m ubuntu -w /home/carlosgomez/chromium-engagement/src env ASAN_OPTIONS=detect_odr_violation=0 xvfb-run -a out/c001_asan/viz_unittests --gtest_filter='*LostAnimateSurvivesSupportTeardown*' --single-process-tests
+
+Result:
+exit code 0
+
+Key output:
+Note: Google Test filter = *LostAnimateSurvivesSupportTeardown*
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from CompositorFrameSinkSupportTestBase
+[ RUN      ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedLostAnimateSurvivesSupportTeardown
+[       OK ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedLostAnimateSurvivesSupportTeardown (116 ms)
+[----------] 1 test from CompositorFrameSinkSupportTestBase (130 ms total)
+[==========] 1 test from 1 test suite ran. (139 ms total)
+[  PASSED  ] 1 test.
+
+Assertions inside the test:
+- H7 product route first leaves token X cached globally and absent locally;
+- `support_.reset()` destroys the originating CompositorFrameSinkSupport;
+- `FrameSinkManagerImpl::transition_token_to_animation_manager_` still contains token X;
+- global cache count remains 1 until explicit `ClearSurfaceAnimationManager(token X)`.
+
+Interpretation:
+The lost-animate manager is not owned by the originating support after H7. It survives support teardown/navigation-like destruction unless a Release or explicit manager clear occurs.

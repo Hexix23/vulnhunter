@@ -1,0 +1,77 @@
+diff --git a/packages/platform-server/test/integration_spec.ts b/packages/platform-server/test/integration_spec.ts
+index a40f4fd9ff..a8efc2f95d 100644
+--- a/packages/platform-server/test/integration_spec.ts
++++ b/packages/platform-server/test/integration_spec.ts
+@@ -31,6 +31,7 @@ import {
+   Inject,
+   inject,
+   Injectable,
++  InjectionToken,
+   Input,
+   makeStateKey,
+   mergeApplicationConfig,
+@@ -803,6 +804,64 @@ class HiddenModule {}
+           expect(platform.injector.get(PlatformState).renderToString()).toBe(expectedOutput);
+         });
+ 
++        it(`A13 probe: should isolate concurrent renderApplication platform providers (zoneless:${zoneless})`, async () => {
++          const REQUEST_SECRET = new InjectionToken<string>('A13_REQUEST_SECRET');
++
++          @Component({
++            standalone: true,
++            selector: 'app',
++            template: `secret={{ secret }} doc={{ docMarker }}`,
++          })
++          class A13RequestApp {
++            secret = inject(REQUEST_SECRET);
++            docMarker = inject(DOCUMENT).body.getAttribute('data-a13');
++          }
++
++          const bootstrap = getStandaloneBootstrapFn(A13RequestApp, [
++            {
++              provide: APP_INITIALIZER,
++              useValue: () => new Promise((resolve) => setTimeout(resolve, 10)),
++              multi: true,
++            },
++          ]);
++
++          const renderA = renderApplication(bootstrap, {
++            document: '<html><head></head><body data-a13="doc-A"><app></app></body></html>',
++            platformProviders: [{provide: REQUEST_SECRET, useValue: 'secret-A'}],
++          });
++          const renderB = renderApplication(bootstrap, {
++            document: '<html><head></head><body data-a13="doc-B"><app></app></body></html>',
++            platformProviders: [{provide: REQUEST_SECRET, useValue: 'secret-B'}],
++          });
++
++          const [outputA, outputB] = await Promise.all([renderA, renderB]);
++
++          expect(outputA).toContain('secret=secret-A doc=doc-A');
++          expect(outputA).not.toContain('secret-B');
++          expect(outputA).not.toContain('doc-B');
++          expect(outputB).toContain('secret=secret-B doc=doc-B');
++          expect(outputB).not.toContain('secret-A');
++          expect(outputB).not.toContain('doc-A');
++        });
++
++        it(`A13 probe: should fail closed when server bootstrap ignores BootstrapContext (zoneless:${zoneless})`, async () => {
++          @Component({
++            standalone: true,
++            selector: 'app',
++            template: 'legacy',
++          })
++          class A13LegacyApp {}
++
++          await expectAsync(
++            renderApplication(
++              (() => bootstrapApplication(A13LegacyApp, APP_CONFIG)) as (
++                context: BootstrapContext,
++              ) => Promise<ApplicationRef>,
++              {document: '<html><head></head><body><app></app></body></html>'},
++            ),
++          ).toBeRejectedWithError(/Missing Platform/);
++        });
++
+         // Run the set of tests with regular and standalone components.
+         [true, false].forEach((isStandalone: boolean) => {
+           it(`using ${isStandalone ? 'renderApplication' : 'renderModule'} should work (zoneless:${zoneless})`, async () => {

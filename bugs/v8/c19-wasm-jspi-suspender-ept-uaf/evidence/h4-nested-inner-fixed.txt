@@ -1,0 +1,18 @@
+Command:
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 out/sandbox_dcheck_linux/d8 --sandbox-testing --allow-natives-syntax --expose-gc /mnt/mac/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c19-wasm-jspi-suspender-ept-uaf/poc/h4-nested-inner-resume-after-terminate.js
+
+Exit:
+0
+
+Output:
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x213600000000,0x223600000000)
+[*] inner suspender: 0x41c200
+[*] outer suspender: 0x41be00
+[*] resolving inner -> outer resumes -> terminate
+[*] after nested terminate
+Caught harmless memory access violation (nullptr dereference). Exiting process...
+[*] manual second resume of inner suspender
+
+Interpretation:
+Nested inner-suspender stale-resume attempt did not expose a freed StackMemory pointer. Sandbox reports only harmless null access in the fixed build.

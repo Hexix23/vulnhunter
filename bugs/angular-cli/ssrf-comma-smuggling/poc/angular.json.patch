@@ -1,0 +1,11 @@
+--- angular.json.orig
++++ angular.json
+@@ -29,7 +29,7 @@
+             "server": "src/main.server.ts",
+             "outputMode": "server",
+             "security": {
+-              "allowedHosts": []
++              "allowedHosts": ["localhost"]
+             },
+             "ssr": {
+               "entry": "src/server.ts"

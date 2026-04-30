@@ -1,0 +1,379 @@
+
+--- SLOT 0 ---
+slot=0 baseline=13 type=number same=true
+13
+EXIT:0
+
+--- SLOT 1 ---
+slot=1 baseline=13 type=undefined same=false
+0x1d9f00000011 <undefined>
+EXIT:0
+
+--- SLOT 2 ---
+Received signal 10 BUS_ADRALN 0c46004003fe
+
+==== C stack trace ===============================
+
+0   d8                                  0x00000001022d4a28 _ZN2v84base5debug12_GLOBAL__N_122StackDumpSignalHandlerEiP9__siginfoPv + 1016
+1   libsystem_platform.dylib            0x0000000184d857a4 _sigtramp + 56
+2   ???                                 0x0000000177dce348 0x0 + 6305932104
+3   ???                                 0x0000000177dcb344 0x0 + 6305919812
+4   ???                                 0x0000000177dcb03c 0x0 + 6305919036
+5   d8                                  0x0000000100f17c9c _ZN2v88internal12_GLOBAL__N_16InvokeEPNS0_7IsolateERKNS1_12InvokeParamsE + 3296
+6   d8                                  0x0000000100f17f9c _ZN2v88internal9Execution10CallScriptEPNS0_7IsolateENS0_12DirectHandleINS0_10JSFunctionEEENS4_INS0_6ObjectEEES8_ + 164
+7   d8                                  0x0000000100dda358 _ZN2v86Script3RunENS_5LocalINS_7ContextEEENS1_INS_4DataEEE + 720
+8   d8                                  0x0000000100d8cc60 _ZN2v85Shell13ExecuteStringEPNS_7IsolateENS_5LocalINS_6StringEEES5_NS0_16ReportExceptionsEPNS_6GlobalINS_5ValueEEE + 1476
+9   d8                                  0x0000000100da6060 _ZN2v811SourceGroup7ExecuteEPNS_7IsolateE + 424
+10  d8                                  0x0000000100da9c94 _ZN2v85Shell14RunMainIsolateEPNS_7IsolateEb + 352
+11  d8                                  0x0000000100da9914 _ZN2v85Shell7RunMainEPNS_7IsolateEb + 316
+12  d8                                  0x0000000100daaea0 _ZN2v85Shell4MainEiPPc + 2932
+13  dyld                                0x00000001849bfda4 start + 6992
+[end of stack trace]
+EXIT:138
+
+--- SLOT 3 ---
+Received signal 10 BUS_ADRALN 1ccafff6fffe
+
+==== C stack trace ===============================
+
+0   d8                                  0x0000000101e18a28 _ZN2v84base5debug12_GLOBAL__N_122StackDumpSignalHandlerEiP9__siginfoPv + 1016
+1   libsystem_platform.dylib            0x0000000184d857a4 _sigtramp + 56
+2   ???                                 0x0000000177dce348 0x0 + 6305932104
+3   ???                                 0x0000000177dce348 0x0 + 6305932104
+4   ???                                 0x0000000177dcb344 0x0 + 6305919812
+5   ???                                 0x0000000177dcb03c 0x0 + 6305919036
+6   d8                                  0x0000000100a5bc9c _ZN2v88internal12_GLOBAL__N_16InvokeEPNS0_7IsolateERKNS1_12InvokeParamsE + 3296
+7   d8                                  0x0000000100a5bf9c _ZN2v88internal9Execution10CallScriptEPNS0_7IsolateENS0_12DirectHandleINS0_10JSFunctionEEENS4_INS0_6ObjectEEES8_ + 164
+8   d8                                  0x000000010091e358 _ZN2v86Script3RunENS_5LocalINS_7ContextEEENS1_INS_4DataEEE + 720
+9   d8                                  0x00000001008d0c60 _ZN2v85Shell13ExecuteStringEPNS_7IsolateENS_5LocalINS_6StringEEES5_NS0_16ReportExceptionsEPNS_6GlobalINS_5ValueEEE + 1476
+10  d8                                  0x00000001008ea060 _ZN2v811SourceGroup7ExecuteEPNS_7IsolateE + 424
+11  d8                                  0x00000001008edc94 _ZN2v85Shell14RunMainIsolateEPNS_7IsolateEb + 352
+12  d8                                  0x00000001008ed914 _ZN2v85Shell7RunMainEPNS_7IsolateEb + 316
+13  d8                                  0x00000001008eeea0 _ZN2v85Shell4MainEiPPc + 2932
+14  dyld                                0x00000001849bfda4 start + 6992
+[end of stack trace]
+EXIT:138
+
+--- SLOT 4 ---
+abort: Unexpected instance type encountered
+
+==== JS stack trace =========================================
+
+    0: ExitFrame [pc: 0x177e7c1ac]
+    1: StubFrame [pc: 0x177f7ba34]
+    2: /* anonymous */ [0x29500101e1f9] [bugs/v8/c18-bytecode-trust/poc/h18-global-load-feedback-slot-matrix.js:31] [bytecode=0x129a010000e5 offset=247](this=0x295001004929 <JSGlobalProxy>#0#)
+    3: InternalFrame [pc: 0x177dcb344]
+    4: EntryFrame [pc: 0x177dcb03c]
+
+==== Details ================================================
+
+[0]: ExitFrame [pc: 0x177e7c1ac]
+[1]: StubFrame [pc: 0x177f7ba34]
+[2]: /* anonymous */ [0x29500101e1f9] [bugs/v8/c18-bytecode-trust/poc/h18-global-load-feedback-slot-matrix.js:31] [bytecode=0x129a010000e5 offset=247](this=0x295001004929 <JSGlobalProxy>#0#) {
+  // heap-allocated locals
+  var targetSlot = 0x29500104b66d <ContextCell[smi=4]>#1#
+  var baseline = 0x29500104b685 <ContextCell[const=13]>#2#
+  var bc = 0x29500104b945 <ContextCell[const=0x29500104b721 <Object map = 0x29500101e6b1>]>#3#
+  var bytes = 0x29500104b999 <ContextCell[const=0x29500104b95d <Uint8Array map = 0x29500100d541>]>#4#
+  var r = 0x29500104b9e5 <ContextCell[const=0x29500101e2fd <ScopeInfo FUNCTION_SCOPE>]>#5#
+  var same = 0x29500104b9fd <ContextCell[const=0x295000000055 <false>]>#6#
+  var type = 0x29500002fffd <the_hole_value>
+  // expression stack (top to bottom)
+  [07] : 0x295000000011 <undefined>
+  [06] : 0x295000000011 <undefined>
+  [05] : 0x29500000329d <String[1]: #4>
+  [04] : 0x29500104b721 <Object map = 0x29500101e6b1>#7#
+  [03] : 0x29500101e2fd <ScopeInfo FUNCTION_SCOPE>#8#
+  [02] : 1000
+  [01] : 4
+  [00] : 0x295000000011 <undefined>
+--------- s o u r c e   c o d e ---------
+// C18 H18: parameterized LdaGlobal feedback slot matrix.\x0a// Usage: d8 ... h18-global-load-feedback-slot-matrix.js -- <slot>\x0alet targetSlot = 255;\x0atry {\x0a  if (typeof arguments !== "undefined" && arguments.length > 0) {\x0a    targetSlot = Number(arguments[0]);\x0a  }\x0a} catch (_) {}\x0a\x0avar C18_GLOBAL_MATRIX ...
+
+-----------------------------------------
+}
+
+[3]: InternalFrame [pc: 0x177dcb344]
+[4]: EntryFrame [pc: 0x177dcb03c]
+-- ObjectCacheKey --
+
+ #0# 0x295001004929: 0x295001004929 <JSGlobalProxy>
+ #1# 0x29500104b66d: 0x29500104b66d <ContextCell[smi=4]>
+ #2# 0x29500104b685: 0x29500104b685 <ContextCell[const=13]>
+ #3# 0x29500104b945: 0x29500104b945 <ContextCell[const=0x29500104b721 <Object map = 0x29500101e6b1>]>
+ #4# 0x29500104b999: 0x29500104b999 <ContextCell[const=0x29500104b95d <Uint8Array map = 0x29500100d541>]>
+ #5# 0x29500104b9e5: 0x29500104b9e5 <ContextCell[const=0x29500101e2fd <ScopeInfo FUNCTION_SCOPE>]>
+ #6# 0x29500104b9fd: 0x29500104b9fd <ContextCell[const=0x295000000055 <false>]>
+ #7# 0x29500104b721: 0x29500104b721 <Object map = 0x29500101e6b1>
+          bytecode: 0x29500104b69d <ArrayBuffer map = 0x295001010e79>#9#
+     constant_pool: 0x29500104b6dd <JSArray[1]>#10#
+     handler_table: 0x29500104b6ed <ArrayBuffer map = 0x295001010e79>#11#
+        frame_size: 0
+   parameter_count: 1
+     max_arguments: 0
+incoming_new_target_or_generator_register: 0x29500104b939 <HeapNumber 2147483647.0>
+ #8# 0x29500101e2fd: 0x29500101e2fd <ScopeInfo FUNCTION_SCOPE>
+ #9# 0x29500104b69d: 0x29500104b69d <ArrayBuffer map = 0x295001010e79>
+ #10# 0x29500104b6dd: 0x29500104b6dd <JSArray[1]>
+                 0: 0x29500101df5d <String[17]: #C18_GLOBAL_MATRIX>
+ #11# 0x29500104b6ed: 0x29500104b6ed <ArrayBuffer map = 0x295001010e79>
+=====================
+
+EXIT:133
+
+--- SLOT 5 ---
+abort: Unexpected instance type encountered
+
+==== JS stack trace =========================================
+
+    0: ExitFrame [pc: 0x177e7c1ac]
+    1: StubFrame [pc: 0x177f7ba34]
+    2: /* anonymous */ [0x15800101e1f9] [bugs/v8/c18-bytecode-trust/poc/h18-global-load-feedback-slot-matrix.js:31] [bytecode=0xe8b010000e5 offset=247](this=0x158001004929 <JSGlobalProxy>#0#)
+    3: InternalFrame [pc: 0x177dcb344]
+    4: EntryFrame [pc: 0x177dcb03c]
+
+==== Details ================================================
+
+[0]: ExitFrame [pc: 0x177e7c1ac]
+[1]: StubFrame [pc: 0x177f7ba34]
+[2]: /* anonymous */ [0x15800101e1f9] [bugs/v8/c18-bytecode-trust/poc/h18-global-load-feedback-slot-matrix.js:31] [bytecode=0xe8b010000e5 offset=247](this=0x158001004929 <JSGlobalProxy>#0#) {
+  // heap-allocated locals
+  var targetSlot = 0x15800104b66d <ContextCell[smi=5]>#1#
+  var baseline = 0x15800104b685 <ContextCell[const=13]>#2#
+  var bc = 0x15800104b945 <ContextCell[const=0x15800104b721 <Object map = 0x15800101e6b1>]>#3#
+  var bytes = 0x15800104b999 <ContextCell[const=0x15800104b95d <Uint8Array map = 0x15800100d541>]>#4#
+  var r = 0x15800104b9e5 <ContextCell[const=0x15800101e0d9 <ScopeInfo SCRIPT_SCOPE>]>#5#
+  var same = 0x15800104b9fd <ContextCell[const=0x158000000055 <false>]>#6#
+  var type = 0x15800002fffd <the_hole_value>
+  // expression stack (top to bottom)
+  [07] : 0x158000000011 <undefined>
+  [06] : 0x158000000011 <undefined>
+  [05] : 0x1580000032ad <String[1]: #5>
+  [04] : 0x15800104b721 <Object map = 0x15800101e6b1>#7#
+  [03] : 0x15800101e0d9 <ScopeInfo SCRIPT_SCOPE>#8#
+  [02] : 1000
+  [01] : 4
+  [00] : 0x158000000011 <undefined>
+--------- s o u r c e   c o d e ---------
+// C18 H18: parameterized LdaGlobal feedback slot matrix.\x0a// Usage: d8 ... h18-global-load-feedback-slot-matrix.js -- <slot>\x0alet targetSlot = 255;\x0atry {\x0a  if (typeof arguments !== "undefined" && arguments.length > 0) {\x0a    targetSlot = Number(arguments[0]);\x0a  }\x0a} catch (_) {}\x0a\x0avar C18_GLOBAL_MATRIX ...
+
+-----------------------------------------
+}
+
+[3]: InternalFrame [pc: 0x177dcb344]
+[4]: EntryFrame [pc: 0x177dcb03c]
+-- ObjectCacheKey --
+
+ #0# 0x158001004929: 0x158001004929 <JSGlobalProxy>
+ #1# 0x15800104b66d: 0x15800104b66d <ContextCell[smi=5]>
+ #2# 0x15800104b685: 0x15800104b685 <ContextCell[const=13]>
+ #3# 0x15800104b945: 0x15800104b945 <ContextCell[const=0x15800104b721 <Object map = 0x15800101e6b1>]>
+ #4# 0x15800104b999: 0x15800104b999 <ContextCell[const=0x15800104b95d <Uint8Array map = 0x15800100d541>]>
+ #5# 0x15800104b9e5: 0x15800104b9e5 <ContextCell[const=0x15800101e0d9 <ScopeInfo SCRIPT_SCOPE>]>
+ #6# 0x15800104b9fd: 0x15800104b9fd <ContextCell[const=0x158000000055 <false>]>
+ #7# 0x15800104b721: 0x15800104b721 <Object map = 0x15800101e6b1>
+          bytecode: 0x15800104b69d <ArrayBuffer map = 0x158001010e79>#9#
+     constant_pool: 0x15800104b6dd <JSArray[1]>#10#
+     handler_table: 0x15800104b6ed <ArrayBuffer map = 0x158001010e79>#11#
+        frame_size: 0
+   parameter_count: 1
+     max_arguments: 0
+incoming_new_target_or_generator_register: 0x15800104b939 <HeapNumber 2147483647.0>
+ #8# 0x15800101e0d9: 0x15800101e0d9 <ScopeInfo SCRIPT_SCOPE>
+ #9# 0x15800104b69d: 0x15800104b69d <ArrayBuffer map = 0x158001010e79>
+ #10# 0x15800104b6dd: 0x15800104b6dd <JSArray[1]>
+                 0: 0x15800101df5d <String[17]: #C18_GLOBAL_MATRIX>
+ #11# 0x15800104b6ed: 0x15800104b6ed <ArrayBuffer map = 0x158001010e79>
+=====================
+
+EXIT:133
+
+--- SLOT 6 ---
+slot=6 baseline=13 type=string same=false
+0x065900005a29 <String[9]: #undefined>
+EXIT:0
+
+--- SLOT 7 ---
+slot=7 baseline=13 type=string same=false
+0x19df00005a29 <String[9]: #undefined>
+EXIT:0
+
+--- SLOT 8 ---
+slot=8 baseline=13 type=string same=false
+0x3e5600005a29 <String[9]: #undefined>
+EXIT:0
+
+--- SLOT 9 ---
+slot=9 baseline=13 type=string same=false
+0x12f300005a29 <String[9]: #undefined>
+EXIT:0
+
+--- SLOT 10 ---
+slot=10 baseline=13 type=string same=false
+0x21db00005a29 <String[9]: #undefined>
+EXIT:0
+
+--- SLOT 15 ---
+slot=15 baseline=13 type=string same=false
+0x163700005a29 <String[9]: #undefined>
+EXIT:0
+
+--- SLOT 16 ---
+slot=16 baseline=13 type=string same=false
+0x065a00005a29 <String[9]: #undefined>
+EXIT:0
+
+--- SLOT 31 ---
+slot=31 baseline=13 type=string same=false
+0x05b900005a29 <String[9]: #undefined>
+EXIT:0
+
+--- SLOT 32 ---
+slot=32 baseline=13 type=string same=false
+0x175300005a29 <String[9]: #undefined>
+EXIT:0
+
+--- SLOT 63 ---
+slot=63 baseline=13 type=number same=false
+632448
+EXIT:0
+
+--- SLOT 64 ---
+Received signal 10 BUS_ADRALN 18e3fff6fffe
+
+==== C stack trace ===============================
+
+0   d8                                  0x00000001043aca28 _ZN2v84base5debug12_GLOBAL__N_122StackDumpSignalHandlerEiP9__siginfoPv + 1016
+1   libsystem_platform.dylib            0x0000000184d857a4 _sigtramp + 56
+2   ???                                 0x0000000177dce348 0x0 + 6305932104
+3   ???                                 0x0000000177dce348 0x0 + 6305932104
+4   ???                                 0x0000000177dcb344 0x0 + 6305919812
+5   ???                                 0x0000000177dcb03c 0x0 + 6305919036
+6   d8                                  0x0000000102fefc9c _ZN2v88internal12_GLOBAL__N_16InvokeEPNS0_7IsolateERKNS1_12InvokeParamsE + 3296
+7   d8                                  0x0000000102feff9c _ZN2v88internal9Execution10CallScriptEPNS0_7IsolateENS0_12DirectHandleINS0_10JSFunctionEEENS4_INS0_6ObjectEEES8_ + 164
+8   d8                                  0x0000000102eb2358 _ZN2v86Script3RunENS_5LocalINS_7ContextEEENS1_INS_4DataEEE + 720
+9   d8                                  0x0000000102e64c60 _ZN2v85Shell13ExecuteStringEPNS_7IsolateENS_5LocalINS_6StringEEES5_NS0_16ReportExceptionsEPNS_6GlobalINS_5ValueEEE + 1476
+10  d8                                  0x0000000102e7e060 _ZN2v811SourceGroup7ExecuteEPNS_7IsolateE + 424
+11  d8                                  0x0000000102e81c94 _ZN2v85Shell14RunMainIsolateEPNS_7IsolateEb + 352
+12  d8                                  0x0000000102e81914 _ZN2v85Shell7RunMainEPNS_7IsolateEb + 316
+13  d8                                  0x0000000102e82ea0 _ZN2v85Shell4MainEiPPc + 2932
+14  dyld                                0x00000001849bfda4 start + 6992
+[end of stack trace]
+EXIT:138
+
+--- SLOT 127 ---
+Received signal 10 BUS_ADRALN 20eb0a0007fe
+
+==== C stack trace ===============================
+
+0   d8                                  0x0000000103b08a28 _ZN2v84base5debug12_GLOBAL__N_122StackDumpSignalHandlerEiP9__siginfoPv + 1016
+1   libsystem_platform.dylib            0x0000000184d857a4 _sigtramp + 56
+2   ???                                 0x0000000177dce348 0x0 + 6305932104
+3   ???                                 0x0000000177dcb344 0x0 + 6305919812
+4   ???                                 0x0000000177dcb03c 0x0 + 6305919036
+5   d8                                  0x000000010274bc9c _ZN2v88internal12_GLOBAL__N_16InvokeEPNS0_7IsolateERKNS1_12InvokeParamsE + 3296
+6   d8                                  0x000000010274bf9c _ZN2v88internal9Execution10CallScriptEPNS0_7IsolateENS0_12DirectHandleINS0_10JSFunctionEEENS4_INS0_6ObjectEEES8_ + 164
+7   d8                                  0x000000010260e358 _ZN2v86Script3RunENS_5LocalINS_7ContextEEENS1_INS_4DataEEE + 720
+8   d8                                  0x00000001025c0c60 _ZN2v85Shell13ExecuteStringEPNS_7IsolateENS_5LocalINS_6StringEEES5_NS0_16ReportExceptionsEPNS_6GlobalINS_5ValueEEE + 1476
+9   d8                                  0x00000001025da060 _ZN2v811SourceGroup7ExecuteEPNS_7IsolateE + 424
+10  d8                                  0x00000001025ddc94 _ZN2v85Shell14RunMainIsolateEPNS_7IsolateEb + 352
+11  d8                                  0x00000001025dd914 _ZN2v85Shell7RunMainEPNS_7IsolateEb + 316
+12  d8                                  0x00000001025deea0 _ZN2v85Shell4MainEiPPc + 2932
+13  dyld                                0x00000001849bfda4 start + 6992
+[end of stack trace]
+EXIT:138
+
+--- SLOT 128 ---
+slot=128 baseline=13 type=string same=false
+[weak cleared]
+EXIT:0
+
+--- SLOT 191 ---
+Received signal 10 BUS_ADRALN 36770d00042c
+
+==== C stack trace ===============================
+
+0   d8                                  0x0000000101ed8a28 _ZN2v84base5debug12_GLOBAL__N_122StackDumpSignalHandlerEiP9__siginfoPv + 1016
+1   libsystem_platform.dylib            0x0000000184d857a4 _sigtramp + 56
+2   ???                                 0x0000000177dce348 0x0 + 6305932104
+3   ???                                 0x0000000177dce348 0x0 + 6305932104
+4   ???                                 0x0000000177dcb344 0x0 + 6305919812
+5   ???                                 0x0000000177dcb03c 0x0 + 6305919036
+6   d8                                  0x0000000100b1bc9c _ZN2v88internal12_GLOBAL__N_16InvokeEPNS0_7IsolateERKNS1_12InvokeParamsE + 3296
+7   d8                                  0x0000000100b1bf9c _ZN2v88internal9Execution10CallScriptEPNS0_7IsolateENS0_12DirectHandleINS0_10JSFunctionEEENS4_INS0_6ObjectEEES8_ + 164
+8   d8                                  0x00000001009de358 _ZN2v86Script3RunENS_5LocalINS_7ContextEEENS1_INS_4DataEEE + 720
+9   d8                                  0x0000000100990c60 _ZN2v85Shell13ExecuteStringEPNS_7IsolateENS_5LocalINS_6StringEEES5_NS0_16ReportExceptionsEPNS_6GlobalINS_5ValueEEE + 1476
+10  d8                                  0x00000001009aa060 _ZN2v811SourceGroup7ExecuteEPNS_7IsolateE + 424
+11  d8                                  0x00000001009adc94 _ZN2v85Shell14RunMainIsolateEPNS_7IsolateEb + 352
+12  d8                                  0x00000001009ad914 _ZN2v85Shell7RunMainEPNS_7IsolateEb + 316
+13  d8                                  0x00000001009aeea0 _ZN2v85Shell4MainEiPPc + 2932
+14  dyld                                0x00000001849bfda4 start + 6992
+[end of stack trace]
+EXIT:138
+
+--- SLOT 255 ---
+abort: Unexpected instance type encountered
+
+==== JS stack trace =========================================
+
+    0: ExitFrame [pc: 0x177e7c1ac]
+    1: StubFrame [pc: 0x177f7ba34]
+    2: /* anonymous */ [0xd740101e1f9] [bugs/v8/c18-bytecode-trust/poc/h18-global-load-feedback-slot-matrix.js:31] [bytecode=0xd02010000e5 offset=247](this=0x0d7401004929 <JSGlobalProxy>#0#)
+    3: InternalFrame [pc: 0x177dcb344]
+    4: EntryFrame [pc: 0x177dcb03c]
+
+==== Details ================================================
+
+[0]: ExitFrame [pc: 0x177e7c1ac]
+[1]: StubFrame [pc: 0x177f7ba34]
+[2]: /* anonymous */ [0xd740101e1f9] [bugs/v8/c18-bytecode-trust/poc/h18-global-load-feedback-slot-matrix.js:31] [bytecode=0xd02010000e5 offset=247](this=0x0d7401004929 <JSGlobalProxy>#0#) {
+  // heap-allocated locals
+  var targetSlot = 0x0d740104b67d <ContextCell[const=255]>#1#
+  var baseline = 0x0d740104b695 <ContextCell[const=13]>#2#
+  var bc = 0x0d740104b955 <ContextCell[const=0x0d740104b731 <Object map = 0xd740101e6b1>]>#3#
+  var bytes = 0x0d740104b9a9 <ContextCell[const=0x0d740104b96d <Uint8Array map = 0xd740100d541>]>#4#
+  var r = 0x0d740104b9f5 <ContextCell[const=0x0d7400006179 <ScopeInfo SCRIPT_SCOPE>]>#5#
+  var same = 0x0d740104ba0d <ContextCell[const=0x0d7400000055 <false>]>#6#
+  var type = 0x0d740002fffd <the_hole_value>
+  // expression stack (top to bottom)
+  [07] : 0x0d7400000011 <undefined>
+  [06] : 0x0d7400000011 <undefined>
+  [05] : 0x0d740104a669 <String[3]: "255">
+  [04] : 0x0d740104b731 <Object map = 0xd740101e6b1>#7#
+  [03] : 0x0d7400006179 <ScopeInfo SCRIPT_SCOPE>#8#
+  [02] : 1000
+  [01] : 4
+  [00] : 0x0d7400000011 <undefined>
+--------- s o u r c e   c o d e ---------
+// C18 H18: parameterized LdaGlobal feedback slot matrix.\x0a// Usage: d8 ... h18-global-load-feedback-slot-matrix.js -- <slot>\x0alet targetSlot = 255;\x0atry {\x0a  if (typeof arguments !== "undefined" && arguments.length > 0) {\x0a    targetSlot = Number(arguments[0]);\x0a  }\x0a} catch (_) {}\x0a\x0avar C18_GLOBAL_MATRIX ...
+
+-----------------------------------------
+}
+
+[3]: InternalFrame [pc: 0x177dcb344]
+[4]: EntryFrame [pc: 0x177dcb03c]
+-- ObjectCacheKey --
+
+ #0# 0xd7401004929: 0x0d7401004929 <JSGlobalProxy>
+ #1# 0xd740104b67d: 0x0d740104b67d <ContextCell[const=255]>
+ #2# 0xd740104b695: 0x0d740104b695 <ContextCell[const=13]>
+ #3# 0xd740104b955: 0x0d740104b955 <ContextCell[const=0x0d740104b731 <Object map = 0xd740101e6b1>]>
+ #4# 0xd740104b9a9: 0x0d740104b9a9 <ContextCell[const=0x0d740104b96d <Uint8Array map = 0xd740100d541>]>
+ #5# 0xd740104b9f5: 0x0d740104b9f5 <ContextCell[const=0x0d7400006179 <ScopeInfo SCRIPT_SCOPE>]>
+ #6# 0xd740104ba0d: 0x0d740104ba0d <ContextCell[const=0x0d7400000055 <false>]>
+ #7# 0xd740104b731: 0x0d740104b731 <Object map = 0xd740101e6b1>
+          bytecode: 0x0d740104b6ad <ArrayBuffer map = 0xd7401010e79>#9#
+     constant_pool: 0x0d740104b6ed <JSArray[1]>#10#
+     handler_table: 0x0d740104b6fd <ArrayBuffer map = 0xd7401010e79>#11#
+        frame_size: 0
+   parameter_count: 1
+     max_arguments: 0
+incoming_new_target_or_generator_register: 0x0d740104b949 <HeapNumber 2147483647.0>
+ #8# 0xd7400006179: 0x0d7400006179 <ScopeInfo SCRIPT_SCOPE>
+ #9# 0xd740104b6ad: 0x0d740104b6ad <ArrayBuffer map = 0xd7401010e79>
+ #10# 0xd740104b6ed: 0x0d740104b6ed <JSArray[1]>
+                 0: 0x0d740101df5d <String[17]: #C18_GLOBAL_MATRIX>
+ #11# 0xd740104b6fd: 0x0d740104b6fd <ArrayBuffer map = 0xd7401010e79>
+=====================
+
+EXIT:133

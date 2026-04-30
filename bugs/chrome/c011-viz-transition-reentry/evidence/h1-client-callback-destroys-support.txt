@@ -1,0 +1,44 @@
+Command:
+
+orb -m ubuntu -w /home/carlosgomez/chromium-engagement/src \
+  env ASAN_OPTIONS=detect_odr_violation=0 \
+  xvfb-run -a out/c001_asan/viz_unittests \
+  --gtest_filter='*OnSaveTransitionDirectiveProcessedClientCallbackDestroysSupport*' \
+  --single-process-tests
+
+Result:
+
+AddressSanitizer: heap-use-after-free
+
+Key stack:
+
+READ of size 8 at freed `CompositorFrameSinkSupport`.
+
+  #0 viz::CompositorFrameSinkSupport::OnSaveTransitionDirectiveProcessed(...)
+     base/allocator/partition_allocator/src/partition_alloc/pointers/raw_ptr.h:1012
+  #1 CompositorFrameSinkSupportTestBase_OnSaveTransitionDirectiveProcessedClientCallbackDestroysSupport_Test::TestBody()
+     components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc:320
+
+Freed by:
+
+  #1 testing::internal::FunctionMocker<void (unsigned int)>::InvokeWith(...)
+  #2 viz::MockCompositorFrameSinkClient::OnCompositorFrameTransitionDirectiveProcessed(unsigned int)
+  #3 viz::CompositorFrameSinkSupport::OnSaveTransitionDirectiveProcessed(...)
+     components/viz/service/frame_sinks/compositor_frame_sink_support.cc:1703
+
+Allocated by:
+
+  #1 CompositorFrameSinkSupportTestBase_OnSaveTransitionDirectiveProcessedClientCallbackDestroysSupport_Test::TestBody()
+
+Interpretation:
+
+The function calls `client_->OnCompositorFrameTransitionDirectiveProcessed()`,
+then resumes and dereferences `this` / raw_ptr-backed members. A synchronous
+client callback that destroys the support produces UAF.
+
+Caveat:
+
+This is a local mock-client sink proof. Product reachability still needs a real
+path where client notification, Mojo disconnect, or reentry can synchronously
+destroy the support before the function resumes.
+

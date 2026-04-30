@@ -1,0 +1,98 @@
+diff --git a/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc b/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
+--- a/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
++++ b/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
+@@ -3478,6 +3478,94 @@ TEST_F(CompositorFrameSinkSupportTestBase,
+                                                         token_x));
+ }
+ 
++TEST_F(CompositorFrameSinkSupportTestBase,
++       RepeatedSharedElementLostAnimateGrowsCacheAndPendingCopies) {
++  uint32_t parent_sequence = local_surface_id_.parent_sequence_number();
++  std::vector<raw_ptr<Surface, VectorExperimental>> saved_surfaces;
++
++  constexpr int kIterations = 4;
++  for (int i = 0; i < kIterations; ++i) {
++    gfx::Rect rect(0, 0, 100, 100);
++    gfx::Transform transform;
++    blink::ViewTransitionToken token;
++    ViewTransitionElementResourceId resource_id(token, 1, false);
++
++    auto root_render_pass = CompositorRenderPass::Create();
++    CompositorRenderPassId root_id{1};
++    root_render_pass->SetNew(root_id, rect, rect, transform);
++    SharedQuadState* shared_quad_state =
++        root_render_pass->CreateAndAppendSharedQuadState();
++    auto* vt_quad =
++        root_render_pass->CreateAndAppendDrawQuad<SharedElementDrawQuad>();
++    vt_quad->SetNew(shared_quad_state, rect, rect, resource_id);
++
++    auto orphan_render_pass = CompositorRenderPass::Create();
++    CompositorRenderPassId orphan_id{2};
++    orphan_render_pass->SetNew(orphan_id, rect, rect, transform);
++    shared_quad_state = orphan_render_pass->CreateAndAppendSharedQuadState();
++    auto* solid_quad =
++        orphan_render_pass->CreateAndAppendDrawQuad<SolidColorDrawQuad>();
++    solid_quad->SetNew(shared_quad_state, rect, rect, SkColors::kBlue, false);
++
++    CompositorRenderPassList render_passes;
++    render_passes.push_back(std::move(orphan_render_pass));
++    render_passes.push_back(std::move(root_render_pass));
++    CompositorFrame save_frame = MakeCompositorFrame(std::move(render_passes));
++    save_frame.metadata.has_shared_element_resources = true;
++
++    LocalSurfaceId save_local_surface_id(++parent_sequence,
++                                         local_surface_id_.embed_token());
++    support_->SubmitCompositorFrame(save_local_surface_id,
++                                    std::move(save_frame));
++    SurfaceId save_surface_id(support_->frame_sink_id(),
++                              save_local_surface_id);
++    Surface* save_surface =
++        manager_->surface_manager()->GetSurfaceForId(save_surface_id);
++    ASSERT_TRUE(save_surface);
++
++    CompositorFrameTransitionDirective::SharedElement shared_element;
++    shared_element.render_pass_id = orphan_id;
++    shared_element.view_transition_element_resource_id = resource_id;
++    auto save_directive = CompositorFrameTransitionDirective::CreateSave(
++        token, /*maybe_cross_frame_sink=*/true, 100 + i, {shared_element}, {},
++        /*delay_layer_tree_view_deletion=*/true);
++    ProcessCompositorFrameTransitionDirective(support_.get(), save_directive,
++                                              save_surface);
++    ASSERT_TRUE(save_surface->HasCopyOutputRequests());
++
++    LocalSurfaceId animate_local_surface_id(++parent_sequence,
++                                            local_surface_id_.embed_token());
++    CompositorFrame animate_frame =
++        MakeDefaultInteractiveCompositorFrame(kBeginFrameSourceId);
++    animate_frame.metadata.has_shared_element_resources = true;
++    animate_frame.metadata.transition_directives.push_back(
++        CompositorFrameTransitionDirective::CreateAnimate(
++            token, /*maybe_cross_frame_sink=*/true, 200 + i,
++            /*delay_layer_tree_view_deletion=*/true));
++    support_->SubmitCompositorFrame(animate_local_surface_id,
++                                    std::move(animate_frame));
++
++    SurfaceId animate_surface_id(support_->frame_sink_id(),
++                                 animate_local_surface_id);
++    Surface* animate_surface =
++        manager_->surface_manager()->GetSurfaceForId(animate_surface_id);
++    ASSERT_TRUE(animate_surface);
++    ASSERT_TRUE(animate_surface->HasPendingFrame());
++
++    base::RunLoop().RunUntilIdle();
++
++    EXPECT_FALSE(animate_surface->HasPendingFrame());
++    EXPECT_TRUE(save_surface->HasCopyOutputRequests());
++    EXPECT_TRUE(HasAnimationManagerForToken(token));
++    EXPECT_EQ(static_cast<size_t>(i + 1), CachedAnimationManagerCount());
++    saved_surfaces.push_back(save_surface);
++  }
++
++  for (Surface* surface : saved_surfaces) {
++    EXPECT_TRUE(surface->HasCopyOutputRequests());
++  }
++}
++
+ TEST_P(AckOnSurfaceActivationWhenInteractiveTest,
+        TreesInVizAcksCompositorFrames) {
+   base::test::ScopedFeatureList scoped_feature_list;

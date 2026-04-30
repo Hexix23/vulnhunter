@@ -1,0 +1,8 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x1b5600000000,0x1c5600000000)
+after-corrupt f=99 g=99
+after-writes f=1234 A=44 g=1234
+reads_cross_realm_B true
+done
+
+EXIT:0

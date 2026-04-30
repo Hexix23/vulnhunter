@@ -1,0 +1,6 @@
+RAW HEADERS: {
+  ":method": "GET",
+  ":path": "/",
+  ":authority": "custom.authority.example:9999",
+  ":scheme": "http"
+}

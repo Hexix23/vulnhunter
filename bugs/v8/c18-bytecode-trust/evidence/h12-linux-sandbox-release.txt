@@ -1,0 +1,10 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x1ab500000000,0x1bb500000000)
+baseline 13
+bytecode 11,4,53,3,0,185
+mutate-getkeyed 2 0 -> 255
+install
+run
+Caught harmless memory access violation (safe region). Exiting process...
+
+EXIT:0

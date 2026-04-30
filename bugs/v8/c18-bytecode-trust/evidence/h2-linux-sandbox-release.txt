@@ -1,0 +1,8 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x174300000000,0x184300000000)
+bytecode 145,0,1,28,249,16,39,2,13,13,39,2,141,1,0,2,185
+install
+run
+Caught harmless signal (SIGTRAP). Exiting process...
+
+EXIT:0

@@ -1,0 +1,4 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x19a300000000,0x1aa300000000)
+baseline=7
+after_throw=RuntimeError:function signature mismatch

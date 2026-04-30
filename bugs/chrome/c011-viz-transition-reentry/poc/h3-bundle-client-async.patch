@@ -1,0 +1,81 @@
+diff --git a/components/viz/service/frame_sinks/compositor_frame_sink_support.h b/components/viz/service/frame_sinks/compositor_frame_sink_support.h
+--- a/components/viz/service/frame_sinks/compositor_frame_sink_support.h
++++ b/components/viz/service/frame_sinks/compositor_frame_sink_support.h
+@@ -288,0 +289,11 @@
++  void ProcessCompositorFrameTransitionDirectiveForTesting(
++      const CompositorFrameTransitionDirective& directive,
++      Surface* surface) {
++    ProcessCompositorFrameTransitionDirective(directive, surface);
++  }
++
++  void OnSaveTransitionDirectiveProcessedForTesting(
++      const CompositorFrameTransitionDirective& directive) {
++    OnSaveTransitionDirectiveProcessed(directive);
++  }
++
+diff --git a/components/viz/service/frame_sinks/frame_sink_bundle_impl_unittest.cc b/components/viz/service/frame_sinks/frame_sink_bundle_impl_unittest.cc
+--- a/components/viz/service/frame_sinks/frame_sink_bundle_impl_unittest.cc
++++ b/components/viz/service/frame_sinks/frame_sink_bundle_impl_unittest.cc
+@@ -11,0 +12 @@
++#include "base/functional/callback.h"
+@@ -25,0 +27 @@
++#include "components/viz/common/quads/compositor_frame_transition_directive.h"
+@@ -30,0 +33 @@
++#include "components/viz/service/frame_sinks/compositor_frame_sink_support.h"
+@@ -168,0 +172,5 @@
++  void SetOnTransitionDirectiveProcessedForTesting(
++      base::RepeatingClosure callback) {
++    on_transition_directive_processed_ = std::move(callback);
++  }
++
+@@ -210 +218,6 @@
+-      uint32_t sequence_id) override {}
++      uint32_t sequence_id) override {
++    if (on_transition_directive_processed_) {
++      on_transition_directive_processed_.Run();
++    }
++    NotifyOnMessage();
++  }
+@@ -222,0 +236 @@
++  base::RepeatingClosure on_transition_directive_processed_;
+@@ -276,0 +291 @@
++  void FlushClientReceiverForTesting() { client_receiver_.FlushForTesting(); }
+@@ -367,0 +383,38 @@
++TEST_F(FrameSinkBundleImplTest,
++       OnSaveTransitionDirectiveProcessedBundleClientIsAsync) {
++  auto frame_a =
++      std::make_unique<TestFrameSink>(manager(), kSubFrameA, kMainFrame,
++                                      kBundleId);
++  CompositorFrameSinkSupport* support = manager().GetFrameSinkForId(kSubFrameA);
++  ASSERT_TRUE(support);
++
++  blink::ViewTransitionToken token;
++  auto save_directive = CompositorFrameTransitionDirective::CreateSave(
++      token, /*maybe_cross_frame_sink=*/true, 1, {}, {}, false);
++
++  support->SubmitCompositorFrame(kSurfaceA,
++                                 MakeDefaultCompositorFrame(kBeginFrameSourceId));
++  SurfaceId surface_id(kSubFrameA, kSurfaceA);
++  Surface* surface = manager().surface_manager()->GetSurfaceForId(surface_id);
++  ASSERT_TRUE(surface);
++
++  support->ProcessCompositorFrameTransitionDirectiveForTesting(save_directive,
++                                                               surface);
++
++  test_client().SetOnTransitionDirectiveProcessedForTesting(
++      base::BindLambdaForTesting([&]() { frame_a.reset(); }));
++
++  support->OnSaveTransitionDirectiveProcessedForTesting(save_directive);
++
++  // Product bundled path calls BundleClientProxy synchronously, but the proxy
++  // only sends over a mojo::Remote<FrameSinkBundleClient>. The receiver should
++  // not run before OnSaveTransitionDirectiveProcessed() returns.
++  EXPECT_TRUE(frame_a);
++  EXPECT_NE(nullptr, manager().GetFrameSinkForId(kSubFrameA));
++
++  FlushClientReceiverForTesting();
++
++  EXPECT_FALSE(frame_a);
++  EXPECT_EQ(nullptr, manager().GetFrameSinkForId(kSubFrameA));
++}
++

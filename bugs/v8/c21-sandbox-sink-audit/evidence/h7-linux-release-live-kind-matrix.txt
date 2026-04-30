@@ -1,0 +1,12 @@
+Command:
+
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 out/sandbox_release_linux/d8 --expose-memory-corruption-api --allow-natives-syntax /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c21-sandbox-sink-audit/poc/h7-global-forge-live-kind-matrix.js
+
+Output:
+
+object:same=true:obs=obj
+array:same=true:obs=true:3:22
+function:same=true:obs=function:77
+arraybuffer:same=true:obs=16
+typedarray:same=true:obs=3:9
+stringobject:same=true:obs=abc:3

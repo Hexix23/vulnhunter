@@ -1,0 +1,13 @@
+string conflict offset=reject: THROW RangeError Temporal error: Offsets could not be determined without disambiguation
+string conflict offset=prefer: OK 2020-01-01T00:00:00+00:00[UTC] epoch=1577836800000000000
+string conflict offset=use: OK 2020-01-01T04:00:00+00:00[UTC] epoch=1577851200000000000
+string conflict offset=ignore: OK 2020-01-01T00:00:00+00:00[UTC] epoch=1577836800000000000
+object conflict offset=reject: THROW RangeError Temporal error: Offsets could not be determined without disambiguation
+object conflict offset=prefer: OK 2020-01-01T00:00:00+00:00[UTC] epoch=1577836800000000000
+object conflict offset=use: OK 2020-01-01T04:00:00+00:00[UTC] epoch=1577851200000000000
+object conflict offset=ignore: OK 2020-01-01T00:00:00+00:00[UTC] epoch=1577836800000000000
+gap disambiguation=compatible: OK 2021-03-14T03:30:00-04:00[America/New_York] epoch=1615707000000000000
+gap disambiguation=earlier: OK 2021-03-14T01:30:00-05:00[America/New_York] epoch=1615703400000000000
+gap disambiguation=later: OK 2021-03-14T03:30:00-04:00[America/New_York] epoch=1615707000000000000
+gap disambiguation=reject: THROW RangeError Temporal error: Rejecting ambiguous time zones.
+H6 DONE

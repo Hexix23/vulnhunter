@@ -1,0 +1,24 @@
+diff --git a/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc b/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
+--- a/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
++++ b/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
+@@ -338,6 +338,12 @@ class CompositorFrameSinkSupportTestBase : public testing::Test {
+     return manager_->transition_token_to_animation_manager_.size();
+   }
+ 
++  size_t SharedImageCount() const {
++    return static_cast<gpu::TestSharedImageInterface*>(
++               shared_image_interface_provider_.GetSharedImageInterface())
++        ->shared_image_count();
++  }
++
+   void ProcessCompositorFrameTransitionDirective(
+       CompositorFrameSinkSupport* support,
+       const CompositorFrameTransitionDirective& directive,
+@@ -3563,6 +3568,7 @@ TEST_F(CompositorFrameSinkSupportTestBase,
+     EXPECT_TRUE(save_surface->HasCopyOutputRequests());
+     EXPECT_TRUE(HasAnimationManagerForToken(token));
+     EXPECT_EQ(static_cast<size_t>(i + 1), CachedAnimationManagerCount());
++    EXPECT_EQ(static_cast<size_t>(i + 1), SharedImageCount());
+     saved_surfaces.push_back(save_surface);
+   }
+ 

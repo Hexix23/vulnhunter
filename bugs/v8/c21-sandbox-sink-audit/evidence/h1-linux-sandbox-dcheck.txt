@@ -1,0 +1,31 @@
+Command:
+
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 out/sandbox_dcheck_linux/d8 --sandbox-testing --allow-natives-syntax -e "d8.file.execute('test/mjsunit/wasm/wasm-module-builder.js'); let b=new WasmModuleBuilder(); b.addGlobal(kWasmI64,true,false,[kExprI64Const,0]).exportAs('n'); b.addGlobal(kWasmExternRef,true,false,[kExprRefNull,kExternRefCode]).exportAs('r'); let i=b.instantiate(); %DebugPrint(i.exports.n); %DebugPrint(i.exports.r);"
+
+Relevant output:
+
+DebugPrint: [WasmGlobalObject]
+ - buffer: <ByteArray[8]>
+ - type: i64 (raw=0x1710)
+
+DebugPrint: [WasmGlobalObject]
+ - buffer: <FixedArray[1]>
+ - type: externref (raw=0xb05)
+
+Command:
+
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 out/sandbox_dcheck_linux/d8 --sandbox-testing --allow-natives-syntax bugs/v8/c21-sandbox-sink-audit/poc/h1-global-rawtype-i64-to-externref.js
+
+Observed output:
+
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+before=0
+# Ignoring debug check failure in ../../src/objects/tagged-field-inl.h, line 197: HAS_SMI_TAG(tagged_value)
+# Ignoring debug check failure in ../../src/objects/tagged-field-inl.h, line 197: HAS_SMI_TAG(tagged_value)
+# Ignoring debug check failure in ../../src/wasm/wasm-objects-inl.h, line 131: unsafe_type().is_ref()
+# Ignoring debug check failure in ../../src/objects/tagged-field-inl.h, line 197: HAS_SMI_TAG(tagged_value)
+# Ignoring debug check failure in ../../src/objects/tagged-field-inl.h, line 197: HAS_SMI_TAG(tagged_value)
+# Ignoring debug check failure in ../../src/wasm/value-type.h, line 501: !is_sentinel()
+# Ignoring debug check failure in ../../src/wasm/value-type.h, line 419: is_numeric()
+# Ignoring debug check failure in ../../src/wasm/value-type.h, line 316: raw >= kNumberOfGenericKinds (5 vs. 22)
+Caught harmless signal (SIGILL caused by ud1). Exiting process...

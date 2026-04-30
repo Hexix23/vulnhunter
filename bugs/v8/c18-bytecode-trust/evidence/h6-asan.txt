@@ -1,0 +1,124 @@
+baseline 11
+bytecode 51,3,0,0,212,13,1,209,106,249,3,4,246,2,185
+mutate-call 8 2 -> 255
+install
+run
+abort: CSA_DCHECK failed: IsOffsetInBounds(offset, LoadFeedbackVectorLength(feedback_vector), FeedbackVector::kHeaderSize) [../../src/codegen/code-stub-assembler.cc:4259] [../../src/builtins/ic.tq:13] [../../src/interpreter/interpreter-generator.cc:1632]
+
+ * SmiFromIntPtr(offset): 1051
+ * feedback_vector: 0x7e920102b131 <FeedbackVector[4]>
+Bytecode mismatch found for function: f bugs/v8/c18-bytecode-trust/poc/h6-call-feedback-slot-oob-warm.js:151
+Original bytecode:
+Parameter count 3
+Register count 4
+Frame size 32
+  171 S> 0x7fda010002fc @    0 : 33 03 00 00       GetNamedProperty a0, [0:"m"], FBV[0]
+         0x7fda01000300 @    4 : d4                Star0
+         0x7fda01000301 @    5 : 0d 01             LdaSmi [1]
+         0x7fda01000303 @    7 : d1                Star3
+  171 E> 0x7fda01000304 @    8 : 6a f9 03 04 f6 ff CallProperty2 r0, a0, a1, r3, FBV[255]
+  179 S> 0x7fda0100030a @   14 : b9                Return
+Constant pool (size = 1)
+0x7fda010002c9: [TrustedFixedArray]
+ - map: 0x7e9200000605 <Map(TRUSTED_FIXED_ARRAY_TYPE)>
+ - length: 1
+           0: 0x7e920000362d <String[1]: #m>
+Handler Table (size = 0)
+Source Position Table (size = 9)
+0x7fda01000321 <Other heap object (TRUSTED_BYTE_ARRAY_TYPE)>
+
+New bytecode:
+Parameter count 3
+Register count 4
+Frame size 32
+         0x7fda01000368 @    0 : 33 03 00 00       GetNamedProperty a0, [0:"m"], FBV[0]
+         0x7fda0100036c @    4 : d4                Star0
+         0x7fda0100036d @    5 : 0d 01             LdaSmi [1]
+         0x7fda0100036f @    7 : d1                Star3
+         0x7fda01000370 @    8 : 6a f9 03 04 f6 02 CallProperty2 r0, a0, a1, r3, FBV[2]
+         0x7fda01000376 @   14 : b9                Return
+Constant pool (size = 1)
+0x7fda01000335: [TrustedFixedArray]
+ - map: 0x7e9200000605 <Map(TRUSTED_FIXED_ARRAY_TYPE)>
+ - length: 1
+           0: 0x7e920000362d <String[1]: #m>
+Handler Table (size = 0)
+Source Position Table (size = 0)
+
+
+#
+# Fatal error in ../../src/interpreter/interpreter.cc, line 261
+# Bytecode mismatch at offset 13
+
+#
+#
+#
+#FailureMessage Object: 0x10f7cc840
+==== C stack trace ===============================
+
+
+
+#
+# Fatal error in ../../src/objects/shared-function-info-inl.h, line 689
+# Debug check failed: HasFeedbackMetadata(kAcquireLoad).
+#
+#
+#
+#FailureMessage Object: 0x120ee1440
+==== C stack trace ===============================
+
+    0   d8                                  0x0000000108a9c21c v8::base::debug::StackTrace::StackTrace() + 60
+    0   d8                                  0x0000000108a9c21c v8::base::debug::StackTrace::StackTrace() + 60
+        1   d8                                  0x0000000108aaf1d0 v8::platform::(anonymous namespace)::PrintStackTrace() + 252
+1   d8                                  0x0000000108aaf1d0 v8::platform::(anonymous namespace)::PrintStackTrace() + 252
+    2   d8                                  0x0000000108a6ea40 V8_Fatal(char const*, int, char const*, ...) + 524
+    2   d8                                  0x0000000108a6ea40 V8_Fatal(char const*, int, char const*, ...) + 524
+    3   d8                                  0x00000001034e6450 void v8::internal::interpreter::InterpreterCompilationJob::CheckAndPrintBytecodeMismatch<v8::internal::Isolate>(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Script>, v8::internal::DirectHandle<v8::internal::BytecodeArray>) + 1160
+    3   d8                                  0x0000000108a6df9c v8::base::FatalOOM(v8::base::OOMType, char const*) + 0
+    4   d8                                  0x00000001034e2998 v8::internal::CompilationJob::Status v8::internal::interpreter::InterpreterCompilationJob::DoFinalizeJobImpl<v8::internal::Isolate>(v8::internal::DirectHandle<v8::internal::SharedFunctionInfo>, v8::internal::Isolate*) + 1904
+    4   d8                                  0x00000001038de754 v8::internal::SharedFunctionInfo::feedback_metadata(v8::internal::PtrComprCageBase, v8::AcquireLoadTag) const + 504
+    5   d8                                  0x00000001034e20bc v8::internal::interpreter::InterpreterCompilationJob::FinalizeJobImpl(v8::internal::DirectHandle<v8::internal::SharedFunctionInfo>, v8::internal::Isolate*) + 620
+    5   d8                                  0x00000001038d0944 v8::internal::FeedbackVector::GetKind(v8::internal::FeedbackSlot, v8::AcquireLoadTag) const + 152    6   d8                                  0x000000010266588c v8::internal::UnoptimizedCompilationJob::FinalizeJob(v8::internal::DirectHandle<v8::internal::SharedFunctionInfo>, v8::internal::Isolate*) + 460
+
+    7   d8                                  0x000000010267e34c v8::internal::Compiler::CollectSourcePositions(v8::internal::Isolate*, v8::internal::DirectHandle<v8::internal::SharedFunctionInfo>) + 2468
+    6   d8                                  0x00000001038d405c v8::internal::FeedbackNexus::FeedbackNexus(v8::internal::Handle<v8::internal::FeedbackVector>, v8::internal::FeedbackSlot, v8::internal::NexusConfig const&) + 152
+    8   d8                                  0x0000000103bc4b44 v8::internal::SharedFunctionInfo::EnsureSourcePositionsAvailable(v8::internal::Isolate*, v8::internal::DirectHandle<v8::internal::SharedFunctionInfo>) + 276
+    7   d8                                  0x0000000105f144f0 v8::internal::compiler::JSHeapBroker::ReadFeedbackForPropertyAccess(v8::internal::compiler::FeedbackSource const&, v8::internal::compiler::AccessMode, v8::internal::compiler::OptionalRef<v8::internal::compiler::NameRef>, bool) + 476
+    9   d8                                  0x0000000102aba0d4 v8::internal::JavaScriptFrame::Print(v8::internal::StringStream*, v8::internal::StackFrame::PrintMode, int) const + 480
+    8   d8                                  0x0000000105f1bad8 v8::internal::compiler::JSHeapBroker::GetFeedbackForPropertyAccess(v8::internal::compiler::FeedbackSource const&, v8::internal::compiler::AccessMode, v8::internal::compiler::OptionalRef<v8::internal::compiler::NameRef>, bool) + 196
+    10  d8                                  0x0000000102ad7890 v8::internal::Isolate::PrintStack(v8::internal::StringStream*, v8::internal::Isolate::PrintStackMode) + 488
+    9   d8                                  0x00000001049b39d8 _ZN2v88internal6maglev18MaglevGraphBuilder25TryBuildLoadNamedPropertyIRZNS2_25TryBuildLoadNamedPropertyEPNS1_9ValueNodeENS0_8compiler7NameRefERNS6_14FeedbackSourceEE3$_0EENS1_17MaybeReduceResultES5_S5_S7_S9_OT_ + 384
+    11  d8                                  0x0000000102ad84dc v8::internal::StackTraceFailureMessage::StackTraceFailureMessage(v8::internal::Isolate*, v8::internal::StackTraceFailureMessage::StackTraceMode, unsigned long const*, unsigned long) + 544
+        12  d8                                  0x0000000102ad7bd0 v8::internal::Isolate::PushStackTraceAndDie(void*, void*, void*, void*, void*, void*) + 336
+10  d8                                  0x00000001049b5210 v8::internal::maglev::MaglevGraphBuilder::VisitGetNamedProperty() + 520
+    13  d8                                  0x0000000104153368 v8::internal::Runtime_AbortCSADcheck(int, unsigned long*, v8::internal::Isolate*) + 588
+    14  ???                                 0x0000000177b9c948 0x0 + 6303631688
+    15  ???                                 0x0000000177efee68 0x0 + 6307180136
+    16  ???                                 0x000000017796df58 0x0 + 6301343576
+    11  d8                                  0x00000001049b1dd8 v8::internal::maglev::MaglevGraphBuilder::VisitSingleBytecode() + 1460
+        12  d8                                  0x00000001049da6ec v8::internal::maglev::MaglevGraphBuilder::BuildBody() + 876
+17  ???                                 0x000000017796df58 0x0 + 6301343576    13  d8                                  0x0000000104a62224 v8::internal::maglev::MaglevGraphBuilder::Build() + 1912
+    18  ???                                 0x00000001779675dc 0x0 + 6301316572
+    19  ???                                 0x00000001779672bc 0x0 + 6301315772
+
+    20  d8                                  0x0000000102a8e7d0 v8::internal::(anonymous namespace)::Invoke(v8::internal::Isolate*, v8::internal::(anonymous namespace)::InvokeParams const&) + 6824
+    14  d8                                  0x0000000104613830 v8::internal::maglev::MaglevCompiler::Compile(v8::internal::LocalIsolate*, v8::internal::maglev::MaglevCompilationInfo*) + 1408
+    21  d8                                  0x0000000102a91aa4 v8::internal::Execution::CallScript(v8::internal::Isolate*, v8::internal::DirectHandle<v8::internal::JSFunction>, v8::internal::DirectHandle<v8::internal::Object>, v8::internal::DirectHandle<v8::internal::Object>) + 800
+    15  d8                                  0x0000000104966a9c v8::internal::maglev::MaglevCompilationJob::ExecuteJobImpl(v8::internal::RuntimeCallStats*, v8::internal::LocalIsolate*) + 220
+        16  d8                                  0x000000010266653c v8::internal::OptimizedCompilationJob::ExecuteJob(v8::internal::RuntimeCallStats*, v8::internal::LocalIsolate*) + 248
+22  d8                                  0x00000001023a08dc v8::Script::Run(v8::Local<v8::Context>, v8::Local<v8::Data>) + 1664    17  d8                                  0x000000010496abbc v8::internal::maglev::MaglevConcurrentDispatcher::JobTask::Run(v8::JobDelegate*) + 1788
+
+    18  d8                                  0x0000000108a9ff1c v8::platform::DefaultJobWorker::Run() + 640
+    23  d8                                  0x00000001022b0318 v8::Shell::ExecuteString(v8::Isolate*, v8::Local<v8::String>, v8::Local<v8::String>, v8::Shell::ReportExceptions, v8::Global<v8::Value>*) + 3080
+    19  d8                                  0x0000000108ab15b0 v8::platform::DefaultWorkerThreadsTaskRunner::WorkerThread::Run() + 584
+        20  d8                                  0x0000000108a99394 v8::base::ThreadEntry(void*) + 284
+24  d8                                  0x00000001022e5bb0 v8::SourceGroup::Execute(v8::Isolate*) + 868
+    21  libclang_rt.asan_osx_dynamic.dylib  0x000000010dd65874 __sanitizer_weak_hook_memcmp + 223060
+    25  d8                                  0x00000001022f0318 v8::Shell::RunMainIsolate(v8::Isolate*, bool) + 916
+        26  d8                                  0x00000001022ef5bc v8::Shell::RunMain(v8::Isolate*, bool) + 748
+22  libsystem_pthread.dylib             0x0000000184d7bc58 _pthread_start + 136    27  d8                                  0x00000001022f299c v8::Shell::Main(int, char**) + 5384
+
+    23  libsystem_pthread.dylib             0x0000000184d76c1c thread_start + 8
+    28  dyld                                0x00000001849bfda4 start + 6992
+
+EXIT:133

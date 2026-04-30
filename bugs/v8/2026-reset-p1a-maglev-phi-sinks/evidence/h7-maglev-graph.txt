@@ -1,0 +1,135 @@
+V8 is running with experimental features enabled. Stability and security will suffer.
+Concurrent maglev has been disabled for tracing.
+Compiling 0x0bb50101e1ed <JSFunction f (sfi = 0xbb50101e109)> with Maglev
+----- Bytecode array -----
+Parameter count 2
+Register count 4
+Frame size 32
+         0x2e850100017c @    0 : 0b 03             Ldar a0
+         0x2e850100017e @    2 : a6 08             JumpIfToBooleanFalse [8] (0x2e8501000186 @ 10)
+         0x2e8501000180 @    4 : 19 02             LdaImmutableCurrentContextSlot [2]
+         0x2e8501000182 @    6 : ba 00             ThrowReferenceErrorIfHole [0:"H0"]
+         0x2e8501000184 @    8 : 98 06             Jump [6] (0x2e850100018a @ 14)
+         0x2e8501000186 @   10 : 19 03             LdaImmutableCurrentContextSlot [3]
+         0x2e8501000188 @   12 : ba 01             ThrowReferenceErrorIfHole [1:"H1"]
+         0x2e850100018a @   14 : d4                Star0
+         0x2e850100018b @   15 : 4f 01 00          AddSmi [1], FBV[0]
+         0x2e850100018e @   18 : 0b 03             Ldar a0
+         0x2e8501000190 @   20 : a6 08             JumpIfToBooleanFalse [8] (0x2e8501000198 @ 28)
+         0x2e8501000192 @   22 : 19 04             LdaImmutableCurrentContextSlot [4]
+         0x2e8501000194 @   24 : ba 02             ThrowReferenceErrorIfHole [2:"object_value"]
+         0x2e8501000196 @   26 : 98 04             Jump [4] (0x2e850100019a @ 30)
+         0x2e8501000198 @   28 : 0b f9             Ldar r0
+         0x2e850100019a @   30 : d3                Star1
+         0x2e850100019b @   31 : 19 05             LdaImmutableCurrentContextSlot [5]
+         0x2e850100019d @   33 : ba 03             ThrowReferenceErrorIfHole [3:"arr"]
+         0x2e850100019f @   35 : d2                Star2
+         0x2e85010001a0 @   36 : 0c                LdaZero
+         0x2e85010001a1 @   37 : d1                Star3
+         0x2e85010001a2 @   38 : 0b f8             Ldar r1
+         0x2e85010001a4 @   40 : 3c f7 f6 01       SetKeyedProperty r2, r3, FBV[1]
+         0x2e85010001a8 @   44 : 0e                LdaUndefined
+         0x2e85010001a9 @   45 : b9                Return
+Constant pool (size = 4)
+Handler Table (size = 0)
+Source Position Table (size = 0)
+0x0bb50101e305 <FeedbackVector[3]>
+----- After register allocation -----
+Graph
+
+  [0m   [0m1/35: Constant(0x0bb50101e1ad <FeedbackCell[one closure]>) → v-1, live range: [1-34]
+  [0m    [0m2/3: Constant(0x0bb50101e1ed <JSFunction f (sfi = 0xbb50101e109)>) → v-1, live range: [2-30]
+  [0m    [0m3/4: Constant(0x0bb50101e1cd <ScriptContext[6]>) → v-1, live range: [3-30]
+  [0m   [0m4/18: Constant(0x0bb50104b589 <Object map = 0xbb50101e249>) → v-1, live range: [4-20]
+  [0m   [0m5/22: Constant(0x0bb50104b599 <JSArray[1]>) → v-1, live range: [5-31]
+  [0m    [0m6/5: RootConstant(undefined_value) → v-1, live range: [6-35]
+  [0m   [0m7/23: SmiConstant(0) → v-1, live range: [7-30]
+  [0m   [0m8/30: Int32Constant(0) → v-1, live range: [8-33]
+  [0m   [0m9/39: Float64Constant(7) → v-1, live range: [9-17]
+  [0m  [0m10/38: Float64Constant(42) → v-1, live range: [10-16]
+   [0mBlock b0
+  [0m[1;34m0x0bb50101e109 <SharedFunctionInfo f> (0x0bb50104a65d <String[83]: "bugs/v8/2026-reset-p1a-maglev-phi-sinks/poc/h7-min-fixed-array-store-assert-type.js">:7:10)
+[m  [0m[0;34m   0 : 0b 03             Ldar a0
+[m  [0m   [0m11/1: InitialValue(<this>) → [stack:-6|t], live range: [11-30]
+  [0m   [0m12/2: InitialValue(a0) → [stack:-7|t], live range: [12-30]
+  [0m   [0m13/6: FunctionEntryStackCheck
+  [0m         ↳ lazy @-1 (3 live vars)
+  [0m   [0m14/7: Jump b1
+  [0m      ↓
+   [0mBlock b1
+  [0m     [0m41: GapMove([stack:-7|t] → [x0|R|t])
+  [0m[1;34m0x0bb50101e109 <SharedFunctionInfo f> (0x0bb50104a65d <String[83]: "bugs/v8/2026-reset-p1a-maglev-phi-sinks/poc/h7-min-fixed-array-store-assert-type.js">:0:0)
+[m  [0m[0;34m   2 : a6 08             JumpIfToBooleanFalse [8]
+[m[0;31m╭────[0m15/8: BranchIfToBooleanTrue [v12/n2:[x0|R|t]] b2 b3
+[0;31m│ [0m      ↓
+[0;31m│  [0mBlock b2
+[0;31m│ [0m[0;34m   8 : 98 06             Jump [6]
+[m[0;31m│[0;32m╭──[0m16/10: Jump b4
+[0;31m│[0;32m│[0m         with gap moves:
+[0;31m│[0;32m│[0m           - v10/n38:[constant:v-1] → 13: φᶠ <accumulator> [v0|R|f64]
+[0;31m│[0;32m│[0m         with register merges:
+[0;31m│[0;32m│[0m
+[0;31m╰─►[0mBlock b3
+ [0;32m│[0m[0;34m  14 : d4                Star0
+[m [0;32m│[0m  [0m17/12: Jump b4
+ [0;32m│[0m      │  with gap moves:
+ [0;32m│[0m      │    - v9/n39:[constant:v-1] → 13: φᶠ <accumulator> [v0|R|f64]
+ [0;32m│[0m      │  with register merges:
+ [0;32m│[0m      ▼
+ [0;32m╰►[0mBlock b4
+  [0m  [0m18/13: φᶠ <accumulator> (n38, n39) → [v0|R|f64], live range: [18-21]
+  [0m[0;34m  20 : a6 08             JumpIfToBooleanFalse [8]
+[m[0;31m╭───[0m19/17: BranchIfToBooleanTrue [v12/n2:[x0|R|t]] b5 b6
+[0;31m│ [0m      ↓
+[0;31m│  [0mBlock b5
+[0;31m│ [0m[0;34m  26 : 98 04             Jump [4]
+[m[0;31m│[0;32m╭──[0m20/19: Jump b7
+[0;31m│[0;32m│[0m         with gap moves:
+[0;31m│[0;32m│[0m           - v4/n18:[constant:v-1] → 21: φᵀ <accumulator> [x1|R|t]
+[0;31m│[0;32m│[0m         with register merges:
+[0;31m│[0;32m│[0m
+[0;31m╰─►[0mBlock b6
+ [0;32m│[0m  [0m21/40: Float64ToTagged[kCanonicalizeSmi] [v18/n13:[v0|R|f64]] → [x1|R|t], live range: [21-22]
+ [0;32m│[0m[0;34m  30 : d3                Star1
+[m [0;32m│[0m  [0m22/20: Jump b7
+ [0;32m│[0m      │  with gap moves:
+ [0;32m│[0m      │    - v21/n40:[x1|R|t] → 21: φᵀ <accumulator> [x1|R|t]
+ [0;32m│[0m      │  with register merges:
+ [0;32m│[0m      ▼
+ [0;32m╰►[0mBlock b7
+  [0m  [0m23/21: φᵀ <accumulator> (n18, n40) (decompressed) → [x1|R|t] (spilled: [stack:0|t]), live range: [23-33]
+  [0m     [0m42: ConstantGapMove(n22 → [x0|R|t])
+  [0m[0;34m  40 : 3c f7 f6 01       SetKeyedProperty r2, r3, FBV[1]
+[m  [0m  [0m24/24: 🐢 CheckMaglevType(JSArray, allow_widening_smi_to_int32 = 1) [v5/n22:[x0|R|t]]
+  [0m     [0m43: ConstantGapMove(n22 → [x0|R|t])
+  [0m         ↱ eager @40 (6 live vars)
+  [0m  [0m25/25: CheckMaps(0x0bb50100d161 <Map[16](PACKED_ELEMENTS)>, no heapobj check) [v5/n22:[x0|R|t]]
+  [0m  [0m26/26: LoadTaggedField(0x8, decompressed) [v5/n22:[x0|R|t]] → [x1|R|t] (spilled: [stack:2|t]), live range: [26-31]
+  [0m  [0m27/27: LoadTaggedField(0xc: 0x0bb500000e19 <String[6]: #length>, decompressed, Smi) [v5/n22:[x0|R|t]] → [x2|R|t] (spilled: [stack:1|t]), live range: [27-29]
+  [0m     [0m44: GapMove([x2|R|t] → [x0|R|t])
+  [0m  [0m28/28: 🐢 CheckMaglevType(Smi, allow_widening_smi_to_int32 = 1) [v27/n27:[x0|R|t]]
+  [0m     [0m45: GapMove([stack:1|t] → [x0|R|t])
+  [0m  [0m29/29: UnsafeSmiUntag [v27/n27:[x0|R|t]] → [x0|R|w32], live range: [29-30]
+  [0m     [0m46: ConstantGapMove(n30 → [x1|R|w32])
+  [0m         ↱ eager @40 (6 live vars)
+  [0m  [0m30/31: CheckInt32Condition[UnsignedLessThan, OutOfBounds] [v8/n30:[x1|R|w32], v29/n29:[x0|R|w32]]
+  [0m     [0m47: GapMove([stack:2|t] → [x0|R|t])
+  [0m     [0m48: ConstantGapMove(n22 → [x2|R|t])
+  [0m  [0m31/32: EnsureWritableFastElements [v26/n26:[x0|R|t], v5/n22:[x2|R|t]] → [x0|R|t] (spilled: [stack:3|t]), live range: [31-33]
+  [0m     [0m49: GapMove([x0|R|t] → [x2|R|t])
+  [0m     [0m50: GapMove([stack:0|t] → [x0|R|t])
+  [0m  [0m32/33: 🐢 CheckMaglevType(HeapNumber|OtherJSReceiver|, allow_widening_smi_to_int32 = 1) [v23/n21:[x0|R|t]]
+  [0m     [0m51: GapMove([stack:3|t] → [x0|R|t])
+  [0m     [0m52: ConstantGapMove(n30 → [x2|R|w32])
+  [0m     [0m53: GapMove([stack:0|t] → [x3|R|t])
+  [0m  [0m33/34: StoreFixedArrayElementWithWriteBarrier [v31/n32:[x0|R|t], v8/n30:[x2|R|w32], v23/n21:[x3|R|t]]
+  [0m     [0m54: ConstantGapMove(n35 → [x0|R|t])
+  [0m[0;34m  45 : b9                Return
+[m  [0m  [0m34/36: ReduceInterruptBudgetForReturn(45) [v1/n35:[x0|R|t]]
+  [0m     [0m55: ConstantGapMove(n5 → [x0|R|t])
+  [0m  [0m35/37: Return [v6/n5:[x0|R|t]]
+  [0m
+CheckMaglevType failed
+7
+Expected type: : 262146
+Actual type: : 1

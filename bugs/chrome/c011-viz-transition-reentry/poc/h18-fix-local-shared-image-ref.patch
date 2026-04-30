@@ -1,0 +1,13 @@
+diff --git a/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc b/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
+--- a/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
++++ b/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
+@@ -3685,6 +3685,9 @@ TEST_F(CompositorFrameSinkSupportTestBase,
+   EXPECT_EQ(1u, CachedAnimationManagerCount());
+   EXPECT_EQ(1u, SharedImageCount());
+ 
++  request.reset();
++  shared_image.reset();
++
+   manager_->ClearSurfaceAnimationManager(token_x);
+   EXPECT_FALSE(HasAnimationManagerForToken(token_x));
+   EXPECT_EQ(0u, CachedAnimationManagerCount());

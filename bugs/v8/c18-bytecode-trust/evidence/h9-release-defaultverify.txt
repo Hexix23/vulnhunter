@@ -1,0 +1,28 @@
+baseline 10
+bytecode 11,5,60,3,4,0,11,4,53,3,2,185
+mutate-setkeyed 2 0 -> 255
+install
+run
+Received signal 10 BUS_ADRALN 27b6ffffffff
+
+==== C stack trace ===============================
+
+0   d8                                  0x0000000103b34a28 _ZN2v84base5debug12_GLOBAL__N_122StackDumpSignalHandlerEiP9__siginfoPv + 1016
+1   libsystem_platform.dylib            0x0000000184d857a4 _sigtramp + 56
+2   ???                                 0x0000000177f72abc 0x0 + 6307654332
+3   ???                                 0x0000000177dce348 0x0 + 6305932104
+4   ???                                 0x0000000177dce348 0x0 + 6305932104
+5   ???                                 0x0000000177dcb344 0x0 + 6305919812
+6   ???                                 0x0000000177dcb03c 0x0 + 6305919036
+7   d8                                  0x0000000102777c9c _ZN2v88internal12_GLOBAL__N_16InvokeEPNS0_7IsolateERKNS1_12InvokeParamsE + 3296
+8   d8                                  0x0000000102777f9c _ZN2v88internal9Execution10CallScriptEPNS0_7IsolateENS0_12DirectHandleINS0_10JSFunctionEEENS4_INS0_6ObjectEEES8_ + 164
+9   d8                                  0x000000010263a358 _ZN2v86Script3RunENS_5LocalINS_7ContextEEENS1_INS_4DataEEE + 720
+10  d8                                  0x00000001025ecc60 _ZN2v85Shell13ExecuteStringEPNS_7IsolateENS_5LocalINS_6StringEEES5_NS0_16ReportExceptionsEPNS_6GlobalINS_5ValueEEE + 1476
+11  d8                                  0x0000000102606060 _ZN2v811SourceGroup7ExecuteEPNS_7IsolateE + 424
+12  d8                                  0x0000000102609c94 _ZN2v85Shell14RunMainIsolateEPNS_7IsolateEb + 352
+13  d8                                  0x0000000102609914 _ZN2v85Shell7RunMainEPNS_7IsolateEb + 316
+14  d8                                  0x000000010260aea0 _ZN2v85Shell4MainEiPPc + 2932
+15  dyld                                0x00000001849bfda4 start + 6992
+[end of stack trace]
+
+EXIT:138

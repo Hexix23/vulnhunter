@@ -1,0 +1,20 @@
+Command:
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 out/sandbox_dcheck_linux/d8 --sandbox-testing --allow-natives-syntax --expose-gc /mnt/mac/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c19-wasm-jspi-suspender-ept-uaf/poc/h3-nested-suspender-terminate.js
+
+Exit:
+0
+
+Output:
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x369500000000,0x379500000000)
+[*] inner suspender: 0x41c200
+[*] outer suspender: 0x41be00
+[*] resolving inner -> outer resumes -> terminate
+[*] after nested terminate
+[*] inner handle: 0x41c200
+[*] outer handle: 0x41be00
+[*] manual second resume of outer suspender
+Caught harmless memory access violation (nullptr dereference). Exiting process...
+
+Interpretation:
+Nested suspender chain with termination clears the outer suspender stack pointer. Manual second outer resume reaches null, not freed StackMemory.

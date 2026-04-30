@@ -1,0 +1,9 @@
+/Users/carlosgomez/v8-engagement/v8/v8/test/mjsunit/wasm/wasm-module-builder.js:2610: CompileError: WebAssembly.Module(): invalid heap type 'exact', enable with --experimental-wasm-custom-descriptors @+20
+    return new WebAssembly.Module(this.toBuffer(debug), options);
+           ^
+CompileError: WebAssembly.Module(): invalid heap type 'exact', enable with --experimental-wasm-custom-descriptors @+20
+    at WasmModuleBuilder.toModule (/Users/carlosgomez/v8-engagement/v8/v8/test/mjsunit/wasm/wasm-module-builder.js:2610:12)
+    at WasmModuleBuilder.instantiate (/Users/carlosgomez/v8-engagement/v8/v8/test/mjsunit/wasm/wasm-module-builder.js:2599:23)
+    at exportingExactBaseParam (bugs/v8/c7-wasm-canonical-types/poc/h14-exactness-link.js:25:18)
+    at bugs/v8/c7-wasm-canonical-types/poc/h14-exactness-link.js:39:11
+

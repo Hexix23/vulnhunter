@@ -1,0 +1,59 @@
+start
+Stacktrace:
+    ptr0=0x35850101e409
+    ptr1=0x0
+    ptr2=0x0
+    ptr3=0x0
+    ptr4=0x0
+    ptr5=0x0
+    failure_message_object=0x16b69cb40
+
+==== JS stack trace =========================================
+
+    0: ExitFrame [pc: 0x177e7c1ac]
+    1: StubFrame [pc: 0x177ea560c]
+    2: join [0x35850100cd11](this=0x35850101ff01 <JSArray[3]>,0x35850000371d <String[1]: #|>)
+    3: /* anonymous */ [0x35850101e339] [bugs/v8/c18-bytecode-trust/poc/h32-scopeinfo-array-join-only.js:21] [bytecode=0x2eb40100010d offset=206](this=0x358501004929 <JSGlobalProxy>)
+    4: InternalFrame [pc: 0x177dcb344]
+    5: EntryFrame [pc: 0x177dcb03c]
+
+==== Details ================================================
+
+[0]: ExitFrame [pc: 0x177e7c1ac]
+[1]: StubFrame [pc: 0x177ea560c]
+[2]: join [0x35850100cd11](this=0x35850101ff01 <JSArray[3]>,0x35850000371d <String[1]: #|>) {
+// optimized frame
+--------- s o u r c e   c o d e ---------
+<No Source>
+-----------------------------------------
+}
+[3]: /* anonymous */ [0x35850101e339] [bugs/v8/c18-bytecode-trust/poc/h32-scopeinfo-array-join-only.js:21] [bytecode=0x2eb40100010d offset=206](this=0x358501004929 <JSGlobalProxy>) {
+  // heap-allocated locals
+  var bc = 0x35850101fe4d <ContextCell[const=0x35850101fda9 <Object map = 0x35850101e799>]>
+  var bytes = 0x35850101fea1 <ContextCell[const=0x35850101fe65 <Uint8Array map = 0x35850100d541>]>
+  var r = 0x35850101fed5 <ContextCell[const=0x35850101e409 <ScopeInfo FUNCTION_SCOPE>]>
+  var arr = 0x35850101ff25 <ContextCell[const=0x35850101ff01 <JSArray[3]>]>
+  // expression stack (top to bottom)
+  [09] : 0x35850101ff01 <JSArray[3]>
+  [08] : 0x35850000371d <String[1]: #|>
+  [07] : 0x35850000371d <String[1]: #|>
+  [06] : 0x35850101ff01 <JSArray[3]>
+  [05] : 0x35850100cd11 <JSFunction join (sfi = 0x3585001ac8ed)>
+  [04] : 0x3585001a0fe5 <String[4]: #join>
+  [03] : 0x358501017f79 <JSFunction print (sfi = 0x358501017f49)>
+  [02] : 1000
+  [01] : 4
+  [00] : 0x358500000011 <undefined>
+--------- s o u r c e   c o d e ---------
+// C18 H32: isolated Array.prototype.join over poisoned element.\x0avar C18_H32_GLOBAL = 13;\x0afunction f() {\x0a  return C18_H32_GLOBAL;\x0a}\x0a\x0afor (let i = 0; i < 1000; i++) f();\x0a\x0alet bc = %GetBytecode(f);\x0alet bytes = new Uint8Array(bc.bytecode);\x0afor (let i = 0; i < bytes.length; i++) {\x0a  if (bytes[i] === 0x2...
+
+-----------------------------------------
+}
+
+[4]: InternalFrame [pc: 0x177dcb344]
+[5]: EntryFrame [pc: 0x177dcb03c]
+=====================
+
+/bin/bash: line 1:  2321 Trace/BPT trap: 5       /opt/homebrew/bin/gtimeout 20 /Users/carlosgomez/v8-engagement/v8/v8/out/release/d8 --allow-natives-syntax --expose-gc --verify-bytecode-full "$f"
+
+EXIT:133

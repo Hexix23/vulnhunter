@@ -1,0 +1,43 @@
+V8 is running with experimental features enabled. Stability and security will suffer.
+
+
+#
+# Fatal error
+# unimplemented code
+#
+#
+#
+#FailureMessage Object: 0x16b41fee8
+==== C stack trace ===============================
+
+    0   d8                                  0x0000000105f38adc v8::base::debug::StackTrace::StackTrace() + 28
+    1   d8                                  0x0000000105f3d4c4 v8::platform::(anonymous namespace)::PrintStackTrace() + 24
+    2   d8                                  0x0000000105f2eae0 V8_Fatal(char const*, ...) + 340
+    3   d8                                  0x000000010539b934 v8::internal::wasm::ConstantExpressionInterface::StringConst(v8::internal::wasm::WasmFullDecoder<v8::internal::wasm::Decoder::FullValidationTag, v8::internal::wasm::ConstantExpressionInterface, (v8::internal::wasm::DecodingMode)1>*, v8::internal::wasm::StringConstImmediate const&, v8::internal::wasm::ConstantExpressionInterface::Value*) + 0
+    4   d8                                  0x00000001053a10b8 v8::internal::wasm::WasmFullDecoder<v8::internal::wasm::Decoder::FullValidationTag, v8::internal::wasm::ConstantExpressionInterface, (v8::internal::wasm::DecodingMode)1>::DecodeGCOpcode(v8::internal::wasm::WasmOpcode, unsigned int) + 4100
+    5   d8                                  0x000000010539cd54 v8::internal::wasm::WasmFullDecoder<v8::internal::wasm::Decoder::FullValidationTag, v8::internal::wasm::ConstantExpressionInterface, (v8::internal::wasm::DecodingMode)1>::DecodeFunctionBody() + 404
+    6   d8                                  0x000000010539cab8 v8::internal::wasm::EvaluateConstantExpression(v8::internal::Zone*, v8::internal::wasm::ConstantExpression, v8::internal::wasm::ValueType, v8::internal::wasm::WasmModule const*, v8::internal::Isolate*, v8::internal::DirectHandle<v8::internal::WasmTrustedInstanceData>, v8::internal::DirectHandle<v8::internal::WasmTrustedInstanceData>) + 712
+    7   d8                                  0x00000001053e8078 v8::internal::wasm::InstanceBuilder::InitGlobals() + 180
+    8   d8                                  0x00000001053e7174 v8::internal::wasm::InstanceBuilder::Build_Phase1(v8::internal::DisallowJavascriptExecution const&) + 2900
+    9   d8                                  0x00000001053e5b20 v8::internal::wasm::InstanceBuilder::Build() + 336
+    10  d8                                  0x00000001053e5884 v8::internal::wasm::InstantiateToInstanceObject(v8::internal::Isolate*, v8::internal::wasm::ErrorThrower*, v8::internal::DirectHandle<v8::internal::WasmModuleObject>, v8::internal::MaybeDirectHandle<v8::internal::JSReceiver>, v8::internal::MaybeDirectHandle<v8::internal::JSArrayBuffer>) + 156
+    11  d8                                  0x000000010541f6d0 v8::internal::wasm::WasmEngine::SyncInstantiate(v8::internal::Isolate*, v8::internal::wasm::ErrorThrower*, v8::internal::DirectHandle<v8::internal::WasmModuleObject>, v8::internal::MaybeDirectHandle<v8::internal::JSReceiver>, v8::internal::MaybeDirectHandle<v8::internal::JSArrayBuffer>) + 296
+    12  d8                                  0x000000010543177c v8::internal::wasm::WebAssemblyInstance(v8::FunctionCallbackInfo<v8::Value> const&) + 500
+    13  d8                                  0x0000000104a7aae4 v8::internal::FunctionCallbackArguments::CallOrConstruct(v8::internal::Isolate*, v8::internal::Tagged<v8::internal::FunctionTemplateInfo>, bool) + 356
+    14  d8                                  0x0000000104a79d8c v8::internal::Builtin_HandleApiConstruct(int, unsigned long*, v8::internal::Isolate*) + 796
+    15  ???                                 0x0000000177e7c0ec 0x0 + 6306644204
+    16  ???                                 0x0000000177dced44 0x0 + 6305934660
+    17  ???                                 0x0000000177f7ef94 0x0 + 6307704724
+    18  ???                                 0x0000000177dce348 0x0 + 6305932104
+    19  ???                                 0x0000000177dce348 0x0 + 6305932104
+    20  ???                                 0x0000000177dcb344 0x0 + 6305919812
+    21  ???                                 0x0000000177dcb03c 0x0 + 6305919036
+    22  d8                                  0x0000000104b7bc9c v8::internal::(anonymous namespace)::Invoke(v8::internal::Isolate*, v8::internal::(anonymous namespace)::InvokeParams const&) + 3296
+    23  d8                                  0x0000000104b7bf9c v8::internal::Execution::CallScript(v8::internal::Isolate*, v8::internal::DirectHandle<v8::internal::JSFunction>, v8::internal::DirectHandle<v8::internal::Object>, v8::internal::DirectHandle<v8::internal::Object>) + 164
+    24  d8                                  0x0000000104a3e358 v8::Script::Run(v8::Local<v8::Context>, v8::Local<v8::Data>) + 720
+    25  d8                                  0x00000001049f0c60 v8::Shell::ExecuteString(v8::Isolate*, v8::Local<v8::String>, v8::Local<v8::String>, v8::Shell::ReportExceptions, v8::Global<v8::Value>*) + 1476
+    26  d8                                  0x0000000104a0a060 v8::SourceGroup::Execute(v8::Isolate*) + 424
+    27  d8                                  0x0000000104a0dc94 v8::Shell::RunMainIsolate(v8::Isolate*, bool) + 352
+    28  d8                                  0x0000000104a0d914 v8::Shell::RunMain(v8::Isolate*, bool) + 316
+    29  d8                                  0x0000000104a0eea0 v8::Shell::Main(int, char**) + 2932
+    30  dyld                                0x00000001849bfda4 start + 6992

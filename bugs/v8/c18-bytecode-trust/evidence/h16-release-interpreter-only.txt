@@ -1,0 +1,8 @@
+baseline true
+bytecode 11,4,121,3,1,0,185
+mutate-embedded 2 1 0 -> 255 255
+install
+run
+true
+
+EXIT:0

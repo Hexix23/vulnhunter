@@ -1,0 +1,62 @@
+H13 command:
+
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 out/sandbox_release_linux/d8 --expose-memory-corruption-api --allow-natives-syntax --expose-gc /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c21-sandbox-sink-audit/poc/h13-arraybuffer-extension-handle-transplant.js
+
+H13 output:
+
+a_ext=0xa00c0
+b_ext=0xa0100
+before=16:16:17:66
+transfer_ok=16:66
+after_b=16:66
+post_gc_b=16:66
+
+H14 command:
+
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 out/sandbox_release_linux/d8 --expose-memory-corruption-api --allow-natives-syntax --expose-gc /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c21-sandbox-sink-audit/poc/h14-arraybuffer-extension-alias-transfer.js
+
+H14 output:
+
+after_first_transfer=16:66:67:16:66:67
+alias_after_write=153:153
+b_second_transfer=0:16:66:153
+post_gc_ok
+
+H15 command:
+
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 out/sandbox_release_linux/d8 --expose-memory-corruption-api --allow-natives-syntax --expose-gc /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c21-sandbox-sink-audit/poc/h15-arraybuffer-extension-alias-lifecycle.js
+
+H15 output:
+
+after_second=16:16:66:153:66:153
+alias_t2_to_t1=0:85
+alias_t1_to_t2=102:0
+post_gc=66:153:0:102:66:153:85:0
+
+H16 commands:
+
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 out/sandbox_release_linux/d8 --expose-memory-corruption-api --allow-natives-syntax --expose-gc -e "var H16_MODE='<mode>'" /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c21-sandbox-sink-audit/poc/h16-arraybuffer-extension-invalid-handle.js
+
+H16 output summary:
+
+- `plus4`: `transfer=16:65`, `done`
+- `zero`: `transfer=16:65`, `done`
+- `xor`: `transfer=16:65`, `done`
+- `ffff`: `Received signal 11 SEGV_MAPERR 7ffba1be3ff8`
+
+H16 ffff symbolized frames:
+
+- `JSArrayBuffer::GetBackingStore() const`
+- `ArrayBufferTransfer(...)`, `src/builtins/builtins-arraybuffer.cc:743`
+- `Builtin_ArrayBufferPrototypeTransfer(...)`
+
+Interpretation:
+
+- Same-tag `JSArrayBuffer.extension` handle transplant creates a transient
+  backing-store alias visible to JS.
+- A second transfer separates the stores; no immediate UAF survived H15.
+- Several corrupted extension handles still let `transfer()` proceed, likely
+  because the raw `backing_store` field is also authoritative for normal fixed
+  buffers.
+- Extreme invalid handle crashes in `GetBackingStore()`, but no sandbox escape
+  primitive yet.

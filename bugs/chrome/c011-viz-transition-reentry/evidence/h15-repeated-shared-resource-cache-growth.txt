@@ -1,0 +1,25 @@
+Command:
+orb -m ubuntu -w /home/carlosgomez/chromium-engagement/src env ASAN_OPTIONS=detect_odr_violation=0 xvfb-run -a out/c001_asan/viz_unittests --gtest_filter='*RepeatedSharedElementLostAnimateGrowsCacheAndPendingCopies*' --single-process-tests
+
+Result:
+exit code 0
+
+Key output:
+[ RUN      ] CompositorFrameSinkSupportTestBase.RepeatedSharedElementLostAnimateGrowsCacheAndPendingCopies
+[254533:254533:ERROR:components/viz/service/transitions/surface_animation_manager.cc:276] No SurfaceAnimationManager for token : 98029C06948F0A9E8FD8178ABDA722A5
+[254533:254533:ERROR:components/viz/service/transitions/surface_animation_manager.cc:276] No SurfaceAnimationManager for token : EA2295CF004CB97CC5FE8DEB02DF62F2
+[254533:254533:ERROR:components/viz/service/transitions/surface_animation_manager.cc:276] No SurfaceAnimationManager for token : 417B6669B6D02F35BC9093ACAA90AE93
+[254533:254533:ERROR:components/viz/service/transitions/surface_animation_manager.cc:276] No SurfaceAnimationManager for token : 1F38B76A579B8F123BEAA1CFA9249547
+[       OK ] CompositorFrameSinkSupportTestBase.RepeatedSharedElementLostAnimateGrowsCacheAndPendingCopies (147 ms)
+[  PASSED  ] 1 test.
+
+Assertions inside the test:
+- each iteration uses real posted save completion;
+- each save frame has a shared-element render pass and pending CopyOutputRequest;
+- each pending animate activates and loses local manager lookup;
+- global cache count grows by one per token;
+- TestSharedImageInterface shared image count grows by one per token;
+- all saved source surfaces still report pending copy requests.
+
+Interpretation:
+This is the strongest current impact primitive: renderer-controlled repeated cross-frame view-transition saves can accumulate both global SurfaceAnimationManager entries and pending CopyOutputRequest state when Release is not delivered fast enough.

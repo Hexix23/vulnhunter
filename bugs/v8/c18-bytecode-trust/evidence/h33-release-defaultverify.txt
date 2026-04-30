@@ -1,0 +1,52 @@
+start
+abort: Unexpected instance type encountered
+
+==== JS stack trace =========================================
+
+    0: ExitFrame [pc: 0x177e7c1ac]
+    1: StubFrame [pc: 0x177f7ba34]
+    2: /* anonymous */ [0x1aaa0101e345] [bugs/v8/c18-bytecode-trust/poc/h33-scopeinfo-typeof-only.js:21] [bytecode=0x3eac0100010d offset=200](this=0x1aaa01004929 <JSGlobalProxy>#0#)
+    3: InternalFrame [pc: 0x177dcb344]
+    4: EntryFrame [pc: 0x177dcb03c]
+
+==== Details ================================================
+
+[0]: ExitFrame [pc: 0x177e7c1ac]
+[1]: StubFrame [pc: 0x177f7ba34]
+[2]: /* anonymous */ [0x1aaa0101e345] [bugs/v8/c18-bytecode-trust/poc/h33-scopeinfo-typeof-only.js:21] [bytecode=0x3eac0100010d offset=200](this=0x1aaa01004929 <JSGlobalProxy>#0#) {
+  // heap-allocated locals
+  var bc = 0x1aaa0101fe65 <ContextCell[const=0x1aaa0101fdc1 <Object map = 0x1aaa0101e7a1>]>#1#
+  var bytes = 0x1aaa0101feb9 <ContextCell[const=0x1aaa0101fe7d <Uint8Array map = 0x1aaa0100d541>]>#2#
+  var r = 0x1aaa0101feed <ContextCell[const=0x1aaa0101e415 <ScopeInfo FUNCTION_SCOPE>]>#3#
+  var box = 0x1aaa0101ff35 <ContextCell[const=0x1aaa0101ff25 <Object map = 0x1aaa0101e811>]>#4#
+  // expression stack (top to bottom)
+  [05] : 0x1aaa0101ff25 <Object map = 0x1aaa0101e811>#5#
+  [04] : 0x1aaa0101e21d <String[6]: #typeof>
+  [03] : 0x1aaa01017f79 <JSFunction print (sfi = 0x1aaa01017f49)>#6#
+  [02] : 1000
+  [01] : 4
+  [00] : 0x1aaa00000011 <undefined>
+--------- s o u r c e   c o d e ---------
+// C18 H33: isolated typeof over poisoned property.\x0avar C18_H33_GLOBAL = 13;\x0afunction f() {\x0a  return C18_H33_GLOBAL;\x0a}\x0a\x0afor (let i = 0; i < 1000; i++) f();\x0a\x0alet bc = %GetBytecode(f);\x0alet bytes = new Uint8Array(bc.bytecode);\x0afor (let i = 0; i < bytes.length; i++) {\x0a  if (bytes[i] === 0x23) bytes[i + ...
+
+-----------------------------------------
+}
+
+[3]: InternalFrame [pc: 0x177dcb344]
+[4]: EntryFrame [pc: 0x177dcb03c]
+-- ObjectCacheKey --
+
+ #0# 0x1aaa01004929: 0x1aaa01004929 <JSGlobalProxy>
+ #1# 0x1aaa0101fe65: 0x1aaa0101fe65 <ContextCell[const=0x1aaa0101fdc1 <Object map = 0x1aaa0101e7a1>]>
+ #2# 0x1aaa0101feb9: 0x1aaa0101feb9 <ContextCell[const=0x1aaa0101fe7d <Uint8Array map = 0x1aaa0100d541>]>
+ #3# 0x1aaa0101feed: 0x1aaa0101feed <ContextCell[const=0x1aaa0101e415 <ScopeInfo FUNCTION_SCOPE>]>
+ #4# 0x1aaa0101ff35: 0x1aaa0101ff35 <ContextCell[const=0x1aaa0101ff25 <Object map = 0x1aaa0101e811>]>
+ #5# 0x1aaa0101ff25: 0x1aaa0101ff25 <Object map = 0x1aaa0101e811>
+                 v: 0x1aaa0101e415 <ScopeInfo FUNCTION_SCOPE>#7#
+ #6# 0x1aaa01017f79: 0x1aaa01017f79 <JSFunction print (sfi = 0x1aaa01017f49)>
+ #7# 0x1aaa0101e415: 0x1aaa0101e415 <ScopeInfo FUNCTION_SCOPE>
+=====================
+
+/bin/bash: line 1: 97692 Trace/BPT trap: 5       /opt/homebrew/bin/gtimeout 20 /Users/carlosgomez/v8-engagement/v8/v8/out/release/d8 --allow-natives-syntax --expose-gc "$f"
+
+EXIT:133

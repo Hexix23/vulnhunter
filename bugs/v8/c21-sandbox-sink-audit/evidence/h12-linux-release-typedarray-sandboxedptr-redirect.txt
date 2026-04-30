@@ -1,0 +1,20 @@
+Command:
+
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 out/sandbox_release_linux/d8 --expose-memory-corruption-api --allow-natives-syntax /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c21-sandbox-sink-audit/poc/h12-typedarray-sandboxedptr-redirect.js
+
+Output:
+
+before_va0=17
+before_vb0=66
+b_backing=0x28a000004010
+va_external_before=0x28a000004000
+after_va0=66
+after_vb1=153
+
+Interpretation:
+
+- `JSTypedArray.external_pointer` and `JSArrayBuffer.backing_store` can be
+  redirected to another in-sandbox backing store by copying the encoded
+  SandboxedPtr.
+- This yields reliable in-sandbox RW but does not cross the sandbox boundary by
+  itself because the decoded address remains `Sandbox.base + offset`.

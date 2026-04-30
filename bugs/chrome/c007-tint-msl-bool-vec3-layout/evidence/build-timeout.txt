@@ -1,0 +1,20 @@
+Command:
+orb -m ubuntu -w /home/carlosgomez/chromium-engagement/src timeout 180 /home/carlosgomez/depot_tools_linux/autoninja -C out/c001_asan third_party/dawn/src/tint/lang/msl/writer/raise:unittests -j 4
+
+Result:
+timeout exit 124.
+
+Relevant output:
+- target exists: //third_party/dawn/src/tint/lang/msl/writer/raise:unittests
+- build started in offline mode
+- initial build graph: Ready 1684 Pending 5717
+- after ~180s: 266/1565 completed
+
+Post-check:
+orb -m ubuntu pgrep -af "autoninja|siso|ninja -C out/c001_asan|ninja --offline -C out/c001_asan"
+returned no processes.
+
+Interpretation:
+The focused Tint target is valid but ASAN Chromium checkout still has too much
+unbuilt dependency surface for quick confirmation. Need longer build window or
+standalone Dawn/Tint build.

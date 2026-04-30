@@ -1,0 +1,17 @@
+Command:
+
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 out/sandbox_dcheck_linux/d8 --sandbox-testing --allow-natives-syntax --expose-gc /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c21-sandbox-sink-audit/poc/h4-global-hidden-ref-reuse.js
+
+Output:
+
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x50300000000,0x60300000000)
+initial=dead
+# Ignoring debug check failure in ../../src/objects/instance-type-inl.h, line 267: LAST_TYPE >= value (WASM_VALUE_OBJECT_TYPE (2169) vs. [unknown instance type -4162] (61374))
+# Ignoring debug check failure in ../../src/objects/instance-type-inl.h, line 267: LAST_TYPE >= value (WASM_VALUE_OBJECT_TYPE (2169) vs. [unknown instance type -4162] (61374))
+# Ignoring debug check failure in ../../src/objects/instance-type-inl.h, line 267: LAST_TYPE >= value (WASM_VALUE_OBJECT_TYPE (2169) vs. [unknown instance type -4162] (61374))
+# Ignoring debug check failure in ../../src/objects/instance-type-inl.h, line 267: LAST_TYPE >= value (WASM_VALUE_OBJECT_TYPE (2169) vs. [unknown instance type -4162] (61374))
+# Ignoring debug check failure in ../../src/objects/instance-type-inl.h, line 267: LAST_TYPE >= value (WASM_VALUE_OBJECT_TYPE (2169) vs. [unknown instance type -4162] (61374))
+# Ignoring debug check failure in ../../src/objects/instance-type-inl.h, line 267: LAST_TYPE >= value (WASM_VALUE_OBJECT_TYPE (2169) vs. [unknown instance type -4162] (61374))
+# Ignoring debug check failure in ../../src/objects/objects-inl.h, line 1812: !result implies !map->has_named_interceptor() && !map->is_access_check_needed()
+Caught harmless memory access violation (inside sandbox). Exiting process...

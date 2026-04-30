@@ -1,0 +1,15 @@
+ASan (bash /Users/carlosgomez/v8-engagement/scratch/repro.sh poc/h2.js)
+
+raw pair member: true
+escaped codepoint member: true
+escaped surrogate pair member: true
+raw pair longest match: 𐐀𐐨
+escaped pair longest match: 𐐀𐐨
+
+Release (/Users/carlosgomez/v8-engagement/v8/v8/out/release/d8 ... poc/h2.js)
+
+raw pair member: true
+escaped codepoint member: true
+escaped surrogate pair member: true
+raw pair longest match: 𐐀𐐨
+escaped pair longest match: 𐐀𐐨

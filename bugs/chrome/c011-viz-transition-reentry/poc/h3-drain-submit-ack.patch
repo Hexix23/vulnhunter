@@ -1,0 +1,9 @@
+diff --git a/components/viz/service/frame_sinks/frame_sink_bundle_impl_unittest.cc b/components/viz/service/frame_sinks/frame_sink_bundle_impl_unittest.cc
+--- a/components/viz/service/frame_sinks/frame_sink_bundle_impl_unittest.cc
++++ b/components/viz/service/frame_sinks/frame_sink_bundle_impl_unittest.cc
+@@ -399,0 +400,5 @@
++  std::vector<mojom::BundledReturnedResourcesPtr> acks;
++  std::vector<mojom::BeginFrameInfoPtr> begin_frames;
++  test_client().WaitForNextFlush(&acks, &begin_frames, nullptr);
++  ASSERT_THAT(acks, ElementsAre(ForSink(kSubFrameA)));
++

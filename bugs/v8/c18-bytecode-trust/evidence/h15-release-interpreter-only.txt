@@ -1,0 +1,8 @@
+baseline 1001
+bytecode 51,3,0,0,91,2,211,58,3,0,3,11,248,185
+mutate-inc 4 2 -> 255
+install
+run
+1002
+
+EXIT:0

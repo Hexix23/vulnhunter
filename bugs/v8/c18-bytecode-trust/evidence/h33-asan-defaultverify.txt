@@ -1,0 +1,34 @@
+
+
+#
+# Fatal error in ../../src/ic/ic.cc, line 2170
+# Debug check failed: Holder<To> v8::internal::TrustedCast(Holder<From>, SourceLocation) [To = v8::internal::Union<v8::internal::Smi, v8::internal::HeapNumber, v8::internal::BigInt, v8::internal::String, v8::internal::Symbol, v8::internal::Boolean, v8::internal::Null, v8::internal::Undefined, v8::internal::JSReceiver>, From = v8::internal::Object, Holder = v8::internal::DirectHandle].
+#
+#
+#
+#FailureMessage Object: 0x10e532840
+==== C stack trace ===============================
+
+    0   d8                                  0x00000001077b021c v8::base::debug::StackTrace::StackTrace() + 60
+    1   d8                                  0x00000001077c31d0 v8::platform::(anonymous namespace)::PrintStackTrace() + 252
+    2   d8                                  0x0000000107782a40 V8_Fatal(char const*, int, char const*, ...) + 524
+    3   d8                                  0x0000000107781f9c v8::base::FatalOOM(v8::base::OOMType, char const*) + 0
+    4   d8                                  0x0000000101ff00ac v8::internal::StoreIC::Store(v8::internal::Handle<v8::internal::Union<v8::internal::Smi, v8::internal::HeapNumber, v8::internal::BigInt, v8::internal::String, v8::internal::Symbol, v8::internal::Boolean, v8::internal::Null, v8::internal::Undefined, v8::internal::JSReceiver>>, v8::internal::Handle<v8::internal::Name>, v8::internal::DirectHandle<v8::internal::Object>, v8::internal::StoreOrigin) + 4296
+    5   d8                                  0x0000000102002750 v8::internal::Runtime_DefineNamedOwnIC_Miss(int, unsigned long*, v8::internal::Isolate*) + 2276
+    6   ???                                 0x0000000157b9c948 0x0 + 5766760776
+    7   ???                                 0x0000000157ed5b9c 0x0 + 5770140572
+    8   ???                                 0x000000015796df58 0x0 + 5764472664
+    9   ???                                 0x00000001579675dc 0x0 + 5764445660
+    10  ???                                 0x00000001579672bc 0x0 + 5764444860
+    11  d8                                  0x00000001017a27d0 v8::internal::(anonymous namespace)::Invoke(v8::internal::Isolate*, v8::internal::(anonymous namespace)::InvokeParams const&) + 6824
+    12  d8                                  0x00000001017a5aa4 v8::internal::Execution::CallScript(v8::internal::Isolate*, v8::internal::DirectHandle<v8::internal::JSFunction>, v8::internal::DirectHandle<v8::internal::Object>, v8::internal::DirectHandle<v8::internal::Object>) + 800
+    13  d8                                  0x00000001010b48dc v8::Script::Run(v8::Local<v8::Context>, v8::Local<v8::Data>) + 1664
+    14  d8                                  0x0000000100fc4318 v8::Shell::ExecuteString(v8::Isolate*, v8::Local<v8::String>, v8::Local<v8::String>, v8::Shell::ReportExceptions, v8::Global<v8::Value>*) + 3080
+    15  d8                                  0x0000000100ff9bb0 v8::SourceGroup::Execute(v8::Isolate*) + 868
+    16  d8                                  0x0000000101004318 v8::Shell::RunMainIsolate(v8::Isolate*, bool) + 916
+    17  d8                                  0x00000001010035bc v8::Shell::RunMain(v8::Isolate*, bool) + 748
+    18  d8                                  0x000000010100699c v8::Shell::Main(int, char**) + 5384
+    19  dyld                                0x00000001849bfda4 start + 6992
+/bin/bash: line 1: 98257 Trace/BPT trap: 5       /opt/homebrew/bin/gtimeout 20 /Users/carlosgomez/v8-engagement/v8/v8/out/asan/d8 --allow-natives-syntax --expose-gc "$f"
+
+EXIT:133

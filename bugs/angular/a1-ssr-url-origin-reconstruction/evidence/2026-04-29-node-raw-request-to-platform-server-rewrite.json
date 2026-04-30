@@ -1,0 +1,27 @@
+{
+  "sentRawRequestTarget": "http:///127.0.0.1:54744/ssr-entry",
+  "victimPort": 54745,
+  "attackerPort": 54744,
+  "victimResponseStatusLine": "HTTP/1.1 200 OK",
+  "victimEvents": [
+    {
+      "nodeReqUrl": "http:///127.0.0.1:54744/ssr-entry",
+      "platformLocation": {
+        "href": "http://127.0.0.1:54744/ssr-entry",
+        "protocol": "http:",
+        "hostname": "127.0.0.1",
+        "port": "54744",
+        "baseHref": ""
+      },
+      "rewrittenUrl": "http://127.0.0.1:54744/internal-marker",
+      "outboundStatus": 200
+    }
+  ],
+  "attackerHits": [
+    {
+      "method": "GET",
+      "url": "/internal-marker",
+      "host": "127.0.0.1:54744"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+start
+
+
+#
+# Fatal error
+# Check failed: IsJSReceiver(*object).
+#
+#
+#
+#FailureMessage Object: 0x16b4a7948
+==== C stack trace ===============================
+
+    0   d8                                  0x0000000105eb0adc v8::base::debug::StackTrace::StackTrace() + 28
+    1   d8                                  0x0000000105eb54c4 v8::platform::(anonymous namespace)::PrintStackTrace() + 24
+    2   d8                                  0x0000000105ea6ae0 V8_Fatal(char const*, ...) + 340
+    3   d8                                  0x0000000104d05d78 bool v8::internal::JsonStringifier::TrySerializeSimplePropertyKey<unsigned char>(v8::internal::Tagged<v8::internal::String>, v8::internal::PerThreadAssertScopeEmpty<false, (v8::internal::PerThreadAssertType)1, (v8::internal::PerThreadAssertType)2> const&) + 0
+    4   d8                                  0x0000000104cfe694 v8::internal::JsonStringifier::Result v8::internal::JsonStringifier::Serialize_<false>(v8::internal::Handle<v8::internal::Union<v8::internal::Smi, v8::internal::HeapNumber, v8::internal::BigInt, v8::internal::String, v8::internal::Symbol, v8::internal::Boolean, v8::internal::Null, v8::internal::Undefined, v8::internal::JSReceiver>>, bool, v8::internal::Handle<v8::internal::Object>) + 3160
+    5   d8                                  0x0000000104cf6f6c v8::internal::JsonStringifier::Stringify(v8::internal::Handle<v8::internal::Union<v8::internal::Smi, v8::internal::HeapNumber, v8::internal::BigInt, v8::internal::String, v8::internal::Symbol, v8::internal::Boolean, v8::internal::Null, v8::internal::Undefined, v8::internal::JSReceiver>>, v8::internal::Handle<v8::internal::Union<v8::internal::Smi, v8::internal::HeapNumber, v8::internal::BigInt, v8::internal::String, v8::internal::Symbol, v8::internal::Boolean, v8::internal::Null, v8::internal::Undefined, v8::internal::JSReceiver>>, v8::internal::Handle<v8::internal::Object>) + 96
+    6   d8                                  0x0000000104cfd9b8 v8::internal::JsonStringify(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Union<v8::internal::Smi, v8::internal::HeapNumber, v8::internal::BigInt, v8::internal::String, v8::internal::Symbol, v8::internal::Boolean, v8::internal::Null, v8::internal::Undefined, v8::internal::JSReceiver>>, v8::internal::Handle<v8::internal::Union<v8::internal::Smi, v8::internal::HeapNumber, v8::internal::BigInt, v8::internal::String, v8::internal::Symbol, v8::internal::Boolean, v8::internal::Null, v8::internal::Undefined, v8::internal::JSReceiver>>, v8::internal::Handle<v8::internal::Object>) + 2100
+    7   d8                                  0x0000000104a18a18 v8::internal::Builtin_JsonStringify(int, unsigned long*, v8::internal::Isolate*) + 96
+    8   ???                                 0x0000000177e7c0ec 0x0 + 6306644204
+    9   ???                                 0x0000000177dce348 0x0 + 6305932104
+    10  ???                                 0x0000000177dcb344 0x0 + 6305919812
+    11  ???                                 0x0000000177dcb03c 0x0 + 6305919036
+    12  d8                                  0x0000000104af3c9c v8::internal::(anonymous namespace)::Invoke(v8::internal::Isolate*, v8::internal::(anonymous namespace)::InvokeParams const&) + 3296
+    13  d8                                  0x0000000104af3f9c v8::internal::Execution::CallScript(v8::internal::Isolate*, v8::internal::DirectHandle<v8::internal::JSFunction>, v8::internal::DirectHandle<v8::internal::Object>, v8::internal::DirectHandle<v8::internal::Object>) + 164
+    14  d8                                  0x00000001049b6358 v8::Script::Run(v8::Local<v8::Context>, v8::Local<v8::Data>) + 720
+    15  d8                                  0x0000000104968c60 v8::Shell::ExecuteString(v8::Isolate*, v8::Local<v8::String>, v8::Local<v8::String>, v8::Shell::ReportExceptions, v8::Global<v8::Value>*) + 1476
+    16  d8                                  0x0000000104982060 v8::SourceGroup::Execute(v8::Isolate*) + 424
+    17  d8                                  0x0000000104985c94 v8::Shell::RunMainIsolate(v8::Isolate*, bool) + 352
+    18  d8                                  0x0000000104985914 v8::Shell::RunMain(v8::Isolate*, bool) + 316
+    19  d8                                  0x0000000104986ea0 v8::Shell::Main(int, char**) + 2932
+    20  dyld                                0x00000001849bfda4 start + 6992
+
+EXIT:133

@@ -1,0 +1,53 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x1f2600000000,0x202600000000)
+start
+abort: Unexpected instance type encountered
+
+==== JS stack trace =========================================
+
+    0: ExitFrame [pc: 0x55555700b876]
+    1: StubFrame [pc: 0x555557119c4a]
+    2: /* anonymous */ [0x1f260101f459] [bugs/v8/c18-bytecode-trust/poc/h33-scopeinfo-typeof-only.js:21] [bytecode=0x34850100010d offset=200](this=0x1f2601004929 <JSGlobalProxy>#0#)
+    3: InternalFrame [pc: 0x555556f5369c]
+    4: EntryFrame [pc: 0x555556f533eb]
+
+==== Details ================================================
+
+[0]: ExitFrame [pc: 0x55555700b876]
+[1]: StubFrame [pc: 0x555557119c4a]
+[2]: /* anonymous */ [0x1f260101f459] [bugs/v8/c18-bytecode-trust/poc/h33-scopeinfo-typeof-only.js:21] [bytecode=0x34850100010d offset=200](this=0x1f2601004929 <JSGlobalProxy>#0#) {
+  // heap-allocated locals
+  var bc = 0x1f2601020ef9 <ContextCell[const=0x1f2601020e55 <Object map = 0x1f260101f8b5>]>#1#
+  var bytes = 0x1f2601020f4d <ContextCell[const=0x1f2601020f11 <Uint8Array map = 0x1f260100d541>]>#2#
+  var r = 0x1f2601020f81 <ContextCell[const=0x1f260101f529 <ScopeInfo FUNCTION_SCOPE>]>#3#
+  var box = 0x1f2601020fc9 <ContextCell[const=0x1f2601020fb9 <Object map = 0x1f260101f925>]>#4#
+  // expression stack (top to bottom)
+  [05] : 0x1f2601020fb9 <Object map = 0x1f260101f925>#5#
+  [04] : 0x1f260101f331 <String[6]: #typeof>
+  [03] : 0x1f2601017f79 <JSFunction print (sfi = 0x1f2601017f49)>#6#
+  [02] : 1000
+  [01] : 4
+  [00] : 0x1f2600000011 <undefined>
+--------- s o u r c e   c o d e ---------
+// C18 H33: isolated typeof over poisoned property.\x0avar C18_H33_GLOBAL = 13;\x0afunction f() {\x0a  return C18_H33_GLOBAL;\x0a}\x0a\x0afor (let i = 0; i < 1000; i++) f();\x0a\x0alet bc = %GetBytecode(f);\x0alet bytes = new Uint8Array(bc.bytecode);\x0afor (let i = 0; i < bytes.length; i++) {\x0a  if (bytes[i] === 0x23) bytes[i + ...
+
+-----------------------------------------
+}
+
+[3]: InternalFrame [pc: 0x555556f5369c]
+[4]: EntryFrame [pc: 0x555556f533eb]
+-- ObjectCacheKey --
+
+ #0# 0x1f2601004929: 0x1f2601004929 <JSGlobalProxy>
+ #1# 0x1f2601020ef9: 0x1f2601020ef9 <ContextCell[const=0x1f2601020e55 <Object map = 0x1f260101f8b5>]>
+ #2# 0x1f2601020f4d: 0x1f2601020f4d <ContextCell[const=0x1f2601020f11 <Uint8Array map = 0x1f260100d541>]>
+ #3# 0x1f2601020f81: 0x1f2601020f81 <ContextCell[const=0x1f260101f529 <ScopeInfo FUNCTION_SCOPE>]>
+ #4# 0x1f2601020fc9: 0x1f2601020fc9 <ContextCell[const=0x1f2601020fb9 <Object map = 0x1f260101f925>]>
+ #5# 0x1f2601020fb9: 0x1f2601020fb9 <Object map = 0x1f260101f925>
+                 v: 0x1f260101f529 <ScopeInfo FUNCTION_SCOPE>#7#
+ #6# 0x1f2601017f79: 0x1f2601017f79 <JSFunction print (sfi = 0x1f2601017f49)>
+ #7# 0x1f260101f529: 0x1f260101f529 <ScopeInfo FUNCTION_SCOPE>
+=====================
+
+
+EXIT:0

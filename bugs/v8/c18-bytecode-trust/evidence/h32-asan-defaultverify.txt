@@ -1,0 +1,72 @@
+start
+abort: CSA_DCHECK failed: Torque assert 'Is<A>(o)' failed [src/builtins/cast.tq:963] [../../src/builtins/base.tq:654]
+
+
+
+#
+# Fatal error in ../../src/objects/shared-function-info-inl.h, line 689
+# Debug check failed: HasFeedbackMetadata(kAcquireLoad).
+#
+#
+#
+#FailureMessage Object: 0x1222a1440
+==== C stack trace ===============================
+
+Stacktrace:
+    ptr0=0x10810026b5d1
+    ptr1=0x608000002420
+    ptr2=0x0
+    ptr3=0x0
+    ptr4=0x0
+    ptr5=0x0
+    failure_message_object=0x111d90020
+
+==== JS stack trace =========================================
+
+    0: ExitFrame [pc: 0x177b9c948]
+    1: StubFrame [pc: 0x177c1e18c]
+    2: join [0x108101019a6d](this=0x10810102cc5d <JSArray[3]>,0x10810000371d <String[1]: #|>)
+    3: /* anonymous */ [0x10810102b095] [bugs/v8/c18-bytecode-trust/poc/h32-scopeinfo-array-join-only.js:21] [bytecode=0x7efc0100010d offset=206](this=0x108101011685 <JSGlobalProxy>)
+    4: InternalFrame [pc: 0x1779675dc]
+    5: EntryFrame [pc: 0x1779672bc]
+
+==== Details ================================================
+
+[0]: ExitFrame [pc: 0x177b9c948]
+[1]: StubFrame [pc: 0x177c1e18c]
+[2]: join [0x108101019a6d](this=0x10810102cc5d <JSArray[3]>,0x10810000371d <String[1]: #|>) {
+// optimized frame
+--------- s o u r c e   c o d e ---------
+<No Source>
+-----------------------------------------
+}
+[3]: /* anonymous */ [0x10810102b095] [bugs/v8/c18-bytecode-trust/poc/h32-scopeinfo-array-join-only.js:21] [bytecode=0x7efc0100010d offset=206](this=0x108101011685 <JSGlobalProxy>) {
+  // heap-allocated locals
+  var bc = 0x10810102cba9 <ContextCell[const=0x10810102cb05 <Object map = 0x10810102b4f5>]>
+  var bytes = 0x10810102cbfd <ContextCell[const=0x10810102cbc1 <Uint8Array map = 0x10810101a29d>]>
+  var r = 0x10810102cc31 <ContextCell[const=0x10810102b165 <ScopeInfo FUNCTION_SCOPE>]>
+  var arr = 0x10810102cc81 <ContextCell[const=0x10810102cc5d <JSArray[3]>]>
+  // expression stack (top to bottom)
+  [09] : 0x10810102cc5d <JSArray[3]>
+  [08] : 0x10810000371d <String[1]: #|>
+  [07] : 0x10810000371d <String[1]: #|>
+  [06] : 0x10810102cc5d <JSArray[3]>
+  [05] : 0x108101019a6d <JSFunction join (sfi = 0x108100476981)>
+  [04] : 0x108100294865 <String[4]: #join>
+  [03] : 0x108101024cd5 <JSFunction print (sfi = 0x108101024ca5)>
+  [02] : 1000
+  [01] : 4
+  [00] : 0x108100000011 <undefined>
+--------- s o u r c e   c o d e ---------
+// C18 H32: isolated Array.prototype.join over poisoned element.\x0avar C18_H32_GLOBAL = 13;\x0afunction f() {\x0a  return C18_H32_GLOBAL;\x0a}\x0a\x0afor (let i = 0; i < 1000; i++) f();\x0a\x0alet bc = %GetBytecode(f);\x0alet bytes = new Uint8Array(bc.bytecode);\x0afor (let i = 0; i < bytes.length; i++) {\x0a  if (bytes[i] === 0x2...
+
+-----------------------------------------
+}
+
+[4]: InternalFrame [pc: 0x1779675dc]
+[5]: EntryFrame [pc: 0x1779672bc]
+=====================
+
+/bin/bash: line 1: 98251 Trace/BPT trap: 5       /opt/homebrew/bin/gtimeout 20 /Users/carlosgomez/v8-engagement/v8/v8/out/asan/d8 --allow-natives-syntax --expose-gc "$f"
+
+EXIT:133

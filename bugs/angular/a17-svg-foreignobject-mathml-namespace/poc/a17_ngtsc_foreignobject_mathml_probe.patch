@@ -1,0 +1,50 @@
+diff --git a/packages/compiler-cli/test/ngtsc/ngtsc_spec.ts b/packages/compiler-cli/test/ngtsc/ngtsc_spec.ts
+index 5afd2bb601..04879da3ab 100644
+--- a/packages/compiler-cli/test/ngtsc/ngtsc_spec.ts
++++ b/packages/compiler-cli/test/ngtsc/ngtsc_spec.ts
+@@ -8676,6 +8676,45 @@ runInEachFileSystem((os: string) => {
+         );
+       });
+ 
++      it('A17 probe: should preserve sanitizers across SVG foreignObject and MathML namespace transitions', () => {
++        env.write(
++          'test.ts',
++          `
++            import {Component} from '@angular/core';
++
++            @Component({
++              selector: 'test-cmp',
++              template: \`
++                <svg>
++                  <foreignObject>
++                    <a [attr.href]="url">link</a>
++                    <iframe [attr.srcdoc]="html"></iframe>
++                    <iframe [attr.sandbox]="policy"></iframe>
++                    <div [attr.style]="style"></div>
++                    <form [attr.action]="url"></form>
++                  </foreignObject>
++                </svg>
++                <math>
++                  <semantics [attr.href]="url" [attr.xlink:href]="url"></semantics>
++                  <maction [attr.actiontype]="actiontype" [attr.href]="url"></maction>
++                </math>
++              \`,
++            })
++            export class TestCmp {
++              url = 'javascript:alert(1)';
++              html = '<script>alert(1)</script>';
++              policy = 'allow-scripts';
++              style = 'background-image:url(javascript:alert(1))';
++              actiontype = 'statusline';
++            }
++          `,
++        );
++
++        env.driveMain();
++
++        throw new Error(env.getContents('test.js'));
++      });
++
+       it('should not generate sanitizers for URL properties in hostBindings fn in Component', () => {
+         env.write(
+           `test.ts`,

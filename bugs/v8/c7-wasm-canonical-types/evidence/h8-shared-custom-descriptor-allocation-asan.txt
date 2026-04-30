@@ -1,0 +1,44 @@
+V8 is running with experimental features enabled. Stability and security will suffer.
+
+
+#
+# Fatal error in ../../src/wasm/constant-expression-interface.cc, line 209
+# unimplemented code
+#
+#
+#
+#FailureMessage Object: 0x10dd63440
+==== C stack trace ===============================
+
+    0   d8                                  0x0000000106f7421c v8::base::debug::StackTrace::StackTrace() + 60
+    1   d8                                  0x0000000106f871d0 v8::platform::(anonymous namespace)::PrintStackTrace() + 252
+    2   d8                                  0x0000000106f46a40 V8_Fatal(char const*, int, char const*, ...) + 524
+    3   d8                                  0x0000000103853d8c v8::internal::wasm::ConstantExpressionInterface::StructNew(v8::internal::wasm::WasmFullDecoder<v8::internal::wasm::Decoder::FullValidationTag, v8::internal::wasm::ConstantExpressionInterface, (v8::internal::wasm::DecodingMode)1>*, v8::internal::wasm::StructIndexImmediate const&, v8::internal::wasm::ConstantExpressionInterface::Value const&, v8::internal::wasm::ConstantExpressionInterface::Value const*, v8::internal::wasm::ConstantExpressionInterface::Value*) + 4364
+    4   d8                                  0x000000010386eea4 v8::internal::wasm::WasmFullDecoder<v8::internal::wasm::Decoder::FullValidationTag, v8::internal::wasm::ConstantExpressionInterface, (v8::internal::wasm::DecodingMode)1>::DecodeGCOpcode(v8::internal::wasm::WasmOpcode, unsigned int) + 6360
+    5   d8                                  0x0000000103863888 v8::internal::wasm::WasmFullDecoder<v8::internal::wasm::Decoder::FullValidationTag, v8::internal::wasm::ConstantExpressionInterface, (v8::internal::wasm::DecodingMode)1>::DecodeGC(v8::internal::wasm::WasmFullDecoder<v8::internal::wasm::Decoder::FullValidationTag, v8::internal::wasm::ConstantExpressionInterface, (v8::internal::wasm::DecodingMode)1>*, v8::internal::wasm::WasmOpcode) + 360
+    6   d8                                  0x000000010385a274 v8::internal::wasm::WasmFullDecoder<v8::internal::wasm::Decoder::FullValidationTag, v8::internal::wasm::ConstantExpressionInterface, (v8::internal::wasm::DecodingMode)1>::DecodeFunctionBody() + 1980
+    7   d8                                  0x0000000103858f94 v8::internal::wasm::EvaluateConstantExpression(v8::internal::Zone*, v8::internal::wasm::ConstantExpression, v8::internal::wasm::ValueType, v8::internal::wasm::WasmModule const*, v8::internal::Isolate*, v8::internal::DirectHandle<v8::internal::WasmTrustedInstanceData>, v8::internal::DirectHandle<v8::internal::WasmTrustedInstanceData>) + 848
+    8   d8                                  0x000000010398c534 v8::internal::wasm::InstanceBuilder::InitGlobals() + 652
+    9   d8                                  0x0000000103985f00 v8::internal::wasm::InstanceBuilder::Build_Phase1(v8::internal::DisallowJavascriptExecution const&) + 8128
+    10  d8                                  0x0000000103981b90 v8::internal::wasm::InstanceBuilder::Build() + 784
+    11  d8                                  0x00000001039812d4 v8::internal::wasm::InstantiateToInstanceObject(v8::internal::Isolate*, v8::internal::wasm::ErrorThrower*, v8::internal::DirectHandle<v8::internal::WasmModuleObject>, v8::internal::MaybeDirectHandle<v8::internal::JSReceiver>, v8::internal::MaybeDirectHandle<v8::internal::JSArrayBuffer>) + 308
+    12  d8                                  0x0000000103a40b58 v8::internal::wasm::WasmEngine::SyncInstantiate(v8::internal::Isolate*, v8::internal::wasm::ErrorThrower*, v8::internal::DirectHandle<v8::internal::WasmModuleObject>, v8::internal::MaybeDirectHandle<v8::internal::JSReceiver>, v8::internal::MaybeDirectHandle<v8::internal::JSArrayBuffer>) + 628
+    13  d8                                  0x0000000103a8f4f4 v8::internal::wasm::WebAssemblyInstance(v8::FunctionCallbackInfo<v8::Value> const&) + 708
+    14  d8                                  0x0000000100a1e544 v8::internal::FunctionCallbackArguments::CallOrConstruct(v8::internal::Isolate*, v8::internal::Tagged<v8::internal::FunctionTemplateInfo>, bool) + 644
+    15  d8                                  0x0000000100a1bc54 v8::internal::Builtin_HandleApiConstruct(int, unsigned long*, v8::internal::Isolate*) + 1964
+    16  ???                                 0x0000000157b9c848 0x0 + 5766760520
+    17  ???                                 0x000000015796ecf0 0x0 + 5764476144
+    18  ???                                 0x0000000157f08914 0x0 + 5770348820
+    19  ???                                 0x000000015796df58 0x0 + 5764472664
+    20  ???                                 0x000000015796df58 0x0 + 5764472664
+    21  ???                                 0x00000001579675dc 0x0 + 5764445660
+    22  ???                                 0x00000001579672bc 0x0 + 5764444860
+    23  d8                                  0x0000000100f667d0 v8::internal::(anonymous namespace)::Invoke(v8::internal::Isolate*, v8::internal::(anonymous namespace)::InvokeParams const&) + 6824
+    24  d8                                  0x0000000100f69aa4 v8::internal::Execution::CallScript(v8::internal::Isolate*, v8::internal::DirectHandle<v8::internal::JSFunction>, v8::internal::DirectHandle<v8::internal::Object>, v8::internal::DirectHandle<v8::internal::Object>) + 800
+    25  d8                                  0x00000001008788dc v8::Script::Run(v8::Local<v8::Context>, v8::Local<v8::Data>) + 1664
+    26  d8                                  0x0000000100788318 v8::Shell::ExecuteString(v8::Isolate*, v8::Local<v8::String>, v8::Local<v8::String>, v8::Shell::ReportExceptions, v8::Global<v8::Value>*) + 3080
+    27  d8                                  0x00000001007bdbb0 v8::SourceGroup::Execute(v8::Isolate*) + 868
+    28  d8                                  0x00000001007c8318 v8::Shell::RunMainIsolate(v8::Isolate*, bool) + 916
+    29  d8                                  0x00000001007c75bc v8::Shell::RunMain(v8::Isolate*, bool) + 748
+    30  d8                                  0x00000001007ca99c v8::Shell::Main(int, char**) + 5384
+    31  dyld                                0x00000001849bfda4 start + 6992

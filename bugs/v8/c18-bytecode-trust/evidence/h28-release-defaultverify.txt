@@ -1,0 +1,7 @@
+start
+map-value true
+set-has true
+weakmap-throw TypeError:Invalid value used as weak map key
+done
+
+EXIT:0

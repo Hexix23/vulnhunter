@@ -1,0 +1,10 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x26b700000000,0x27b700000000)
+before f=13 caller=16
+fvF=0x102ca1d oldSfi=0x102c525 gSfi=0x102c555
+after-corrupt f=13 caller=16
+# Ignoring debug check failure in ../../src/compiler/js-heap-broker.cc, line 588: nexus.kind() == FeedbackSlotKind::kLoadGlobalInsideTypeof || nexus.kind() == FeedbackSlotKind::kLoadGlobalNotInsideTypeof || nexus.kind() == FeedbackSlotKind::kStoreGlobalSloppy || nexus.kind() == FeedbackSlotKind::kStoreGlobalStrict
+# Ignoring debug check failure in ../../src/objects/tagged-impl-inl.h, line 49: ((static_cast<i::Tagged_t>(ptr_) & ::i::kSmiTagMask) == ::i::kSmiTag)
+Caught harmless signal (SIGTRAP). Exiting process...
+
+EXIT:0

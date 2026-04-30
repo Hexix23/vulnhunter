@@ -1,0 +1,8 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x3ae300000000,0x3be300000000)
+funcref_raw=0x4e
+externref_raw=0x160a
+visible_funcref_tagged=0x10393f5
+entry1_raw=0x10393f5
+call_ref_entry1=117
+call_indirect_entry1=37

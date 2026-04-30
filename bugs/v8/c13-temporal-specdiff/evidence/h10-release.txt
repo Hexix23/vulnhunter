@@ -1,0 +1,11 @@
+PlainTime dup calendar: OK 12:34:56
+PlainTime critical calendar: OK 12:34:56
+PlainTime unknown critical: THROW RangeError Temporal error: Unrecognized annoation is marked as critical.
+Instant dup calendar: OK 2020-01-01T00:00:00Z
+Instant unknown critical: THROW RangeError Temporal error: Unrecognized annoation is marked as critical.
+Duration dup calendar: THROW RangeError Temporal error: Unexpected character found after parsing was completed.
+Duration unknown critical: THROW RangeError Temporal error: Unexpected character found after parsing was completed.
+ZDT duplicate timezone brackets: THROW RangeError Temporal error: Invalid annotation key leading character.
+ZDT critical timezone bracket: OK 2020-01-01T00:00:00+00:00[UTC]
+ZDT timezone then calendar then timezone: THROW RangeError Temporal error: Invalid annotation key leading character.
+H10 DONE

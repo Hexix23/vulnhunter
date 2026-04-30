@@ -1,0 +1,11 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0xfeb700000000,0xffb700000000)
+before f=13 g=99
+fvF=0x102c859 fSlot0=0x102c71b
+fvG=0x102c8c1 gSlot0=0x102c72f
+after f=99 g=99
+f_is_A false
+f_is_B true
+done
+
+EXIT:0

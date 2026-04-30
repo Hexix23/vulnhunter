@@ -1,0 +1,9 @@
+start
+keys v,ok
+values-len 2
+entries-len 2
+descriptor true true
+has-own true
+done
+
+EXIT:0

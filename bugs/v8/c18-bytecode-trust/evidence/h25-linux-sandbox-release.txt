@@ -1,0 +1,23 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x3b7300000000,0x3c7300000000)
+start
+
+
+#
+# Safely terminating process
+# The following harmless error was encountered: unreachable code
+#
+#
+#
+#FailureMessage Object: 0x7ffffffc4330
+==== C stack trace ===============================
+
+    ./out/sandbox_release_linux/d8(+0x1c20ece) [0x555557174ece]
+    ./out/sandbox_release_linux/d8(+0x1c2038b) [0x55555717438b]
+    ./out/sandbox_release_linux/d8(+0x1c1357f) [0x55555716757f]
+    ./out/sandbox_release_linux/d8(+0x7d506b) [0x555555d2906b]
+    ./out/sandbox_release_linux/d8(+0xaad933) [0x555556001933]
+    ./out/sandbox_release_linux/d8(+0x9712c3) [0x555555ec52c3]
+    ./out/sandbox_release_linux/d8(+0x1ab7876) [0x55555700b876]
+
+EXIT:0

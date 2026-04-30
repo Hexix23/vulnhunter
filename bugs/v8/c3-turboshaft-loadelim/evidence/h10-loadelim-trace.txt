@@ -1,0 +1,807 @@
+V8 is running with developer-only features enabled. Stability and security will suffer.
+
+old MERGE B0
+new MERGE B0
+╭── o0:     Parameter()[0]
+╰─> n0:     Parameter()[0]
+
+╭── o4:     Load *(#o0 + 24) [tagged base, Uint64, Word64, offset: 24]
+╰─> n1:     Load *(#n0 + 24) [tagged base, Uint64, Word64, offset: 24]
+
+╭── o6:     Load *(#o0) [tagged base, TaggedPointer, Tagged]
+╰─> n2:     Load *(#n0) [tagged base, TaggedPointer, Tagged]
+
+╭── o7:     Load *(#o6 + 8) [tagged base, immutable, Uint16, Word32, offset: 8]
+╰─> n3:     Load *(#n2 + 8) [tagged base, immutable, Uint16, Word32, offset: 8]
+
+╭── o8:     Constant()[word32: 192]
+╰─> n4:     Constant()[word32: 192]
+
+╭── o9:     Comparison(#o7, #o8)[Equal, Word32]
+╰─> n5:     Comparison(#n3, #n4)[Equal, Word32]
+
+╭── o10:    Branch(#o9)[B2, B1, True]
+╰─> n6:     Branch(#n5)[<invalid block>, <invalid block>, True]
+
+
+
+old BLOCK B1 <- B0
+new BLOCK B1 <- B0
+╭── o12:    Constant()[tagged index: 76]
+╰─> n8:     Constant()[tagged index: 76]
+
+╭── o13:    Constant()[smi: 0]
+╰─> n9:     Constant()[smi: 0]
+
+╭── o14:    LoadRootRegister()
+╰─> n10:    LoadRootRegister()
+
+╭── o15:    Load *(#o14 + 50296) [raw, Uint64, Word64, offset: 50296]
+╰─> n11:    Load *(#n10 + 50296) [raw, Uint64, Word64, offset: 50296]
+
+╭── o16:    Constant()[external: 0x1029b2478 <Abort.entry>]
+╰─> n12:    Constant()[external: 0x1029b2478 <Abort.entry>]
+
+╭── o17:    Constant()[word32: 1]
+╰─> n13:    Constant()[word32: 1]
+
+╭── o18:    Call(#o15, #o12, #o16, #o17, #o13)[Code:Abort:r1s1i5f0]
+╭── o21:    DidntThrow(#o18)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n14:    Call(#n11, #n8, #n12, #n13, #n9)[Code:Abort:r1s1i5f0]
+╰─> n17:    DidntThrow(#n14)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o23:    Unreachable()
+╰─> n19:    Unreachable()
+
+
+
+old BLOCK B2 <- B0
+new BLOCK B2 <- B0
+
+Inlining MERGE B3 <- B2
+╭── o25:    WasmStackCheck()[function-entry]
+╰─> n20:    WasmStackCheck()[function-entry]
+
+╭── o26:    Constant()[word32: 0]
+╰─> n21:    Constant()[word32: 0]
+
+╭── o27:    Constant()[word32: 305419896]
+╰─> n22:    Constant()[word32: 305419896]
+
+╭── o28:    Change(#o26)[ZeroExtend, NoAssumption, Word32, Word64]
+╰─> n23:    Constant()[word64: 0]
+
+╭── o29:    Store *(#o4 + #o28) = #o27 [raw, Uint32, NoWriteBarrier]
+╰─> n24:    Store *(#n1) = #n22 [raw, Uint32, NoWriteBarrier]
+
+╭── o31:    Load *(#o0 + 12) [tagged base, immutable, ProtectedPointer, Tagged, offset: 12]
+╰─> n26:    Load *(#n0 + 12) [tagged base, immutable, ProtectedPointer, Tagged, offset: 12]
+
+╭── o32:    Load *(#o31 + 12) [tagged base, Uint32, Word32, offset: 12]
+╰─> n27:    Load *(#n26 + 12) [tagged base, Uint32, Word32, offset: 12]
+
+╭── o33:    Load *(#o31 + 16) [tagged base, ProtectedPointer, Tagged, offset: 16]
+╰─> n28:    Load *(#n26 + 16) [tagged base, ProtectedPointer, Tagged, offset: 16]
+
+╭── o34:    Call(#o32, #o33)[WasmFunctionIndirect:wasm-call:r0s0i2f0]
+╭── o36:    DidntThrow(#o34)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n29:    Call(#n27, #n28)[WasmFunctionIndirect:wasm-call:r0s0i2f0]
+╰─> n31:    DidntThrow(#n29)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o38:    Load *(#o0 + 24) [tagged base, Uint64, Word64, offset: 24]
+╰─> n33:    Load *(#n0 + 24) [tagged base, Uint64, Word64, offset: 24]
+
+╭── o39:    Load *(#o0 + 32) [tagged base, Uint64, Word64, offset: 32]
+╰─> n34:    Load *(#n0 + 32) [tagged base, Uint64, Word64, offset: 32]
+
+╭── o40:    Constant()[word32: 20000]
+╰─> n35:    Constant()[word32: 20000]
+
+╭── o41:    Goto()[B4, 0]
+│   n36:    Goto()[B3, 0]
+│   n37:    Phi(#n35, #n65)[Word32]
+│   n38:    Comparison(#n37, #n21)[Equal, Word32]
+│   n39:    Branch(#n37)[B4, B6, None]
+│   n41:    Constant()[word32: 1]
+│   n42:    Constant()[word32: -1]
+│   n43:    WordBinop(#n37, #n42)[Add, Word32]
+│   n44:    Goto()[B5, 0]
+│   n45:    Comparison(#n43, #n21)[Equal, Word32]
+│   n46:    Branch(#n43)[B8, B7, None]
+│   n48:    Goto()[<invalid block>, 0]
+│   n49:    Goto()[<invalid block>, 0]
+│   n50:    Constant()[word32: 1]
+│   n51:    Constant()[word32: -1]
+│   n52:    WordBinop(#n43, #n51)[Add, Word32]
+│   n53:    Goto()[B9, 0]
+│   n54:    Comparison(#n52, #n21)[Equal, Word32]
+│   n55:    Branch(#n52)[B11, B10, None]
+│   n57:    Goto()[<invalid block>, 0]
+│   n58:    WordBinop(#n52, #n51)[Add, Word32]
+│   n59:    Goto()[B12, 0]
+│   n60:    WasmStackCheck()[loop]
+│   n61:    Comparison(#n58, #n21)[Equal, Word32]
+│   n62:    Branch(#n58)[B14, B13, None]
+│   n64:    Goto()[<invalid block>, 0]
+│   n65:    WordBinop(#n58, #n51)[Add, Word32]
+│   n66:    Goto()[B3, 1]
+
+
+old MERGE B3 <- B2
+new MERGE B15
+╰─> unreachable
+
+
+old LOOP B4 <- B3, B6
+new LOOP B15
+╰─> unreachable
+
+
+old BLOCK B5 <- B4
+new MERGE B15
+╰─> unreachable
+
+
+old MERGE B6 <- B5
+new MERGE B15
+╰─> unreachable
+
+
+old BLOCK B7 <- B4
+new MERGE B15 <- B6, B7, B10, B13
+╭── o54:    Constant()[word32: 0]
+╰─> #n21
+
+╭── o55:    Change(#o54)[ZeroExtend, NoAssumption, Word32, Word64]
+╰─> #n23
+
+╭── o56:    Load *(#o43 + #o55) [raw, Int32, Word32]
+╰─> n70:    Load *(#n33) [raw, Int32, Word32]
+
+╭── o58:    Constant()[word32: 0]
+╰─> #n21
+
+╭── o59:    Return(#o58, #o56)[0]
+╰─> n71:    Return(#n21, #n70)[0]
+
+
+
+old MERGE B0
+new MERGE B0
+╭── o0:     Parameter()[0]
+╰─> n0:     Parameter()[0]
+
+╭── o1:     Load *(#o0 + 24) [tagged base, Uint64, Word64, offset: 24]
+╰─> n1:     Load *(#n0 + 24) [tagged base, Uint64, Word64, offset: 24]
+
+╭── o2:     Load *(#o0) [tagged base, TaggedPointer, Tagged]
+╰─> n2:     Load *(#n0) [tagged base, TaggedPointer, Tagged]
+
+╭── o3:     Load *(#o2 + 8) [tagged base, immutable, Uint16, Word32, offset: 8]
+╰─> n3:     Load *(#n2 + 8) [tagged base, immutable, Uint16, Word32, offset: 8]
+
+╭── o4:     Constant()[word32: 192]
+╰─> n4:     Constant()[word32: 192]
+
+╭── o5:     Comparison(#o3, #o4)[Equal, Word32]
+╰─> n5:     Comparison(#n3, #n4)[Equal, Word32]
+
+╭── o6:     Branch(#o5)[B2, B1, True]
+╰─> n6:     Branch(#n5)[<invalid block>, <invalid block>, True]
+
+
+
+old BLOCK B1 <- B0
+new BLOCK B1 <- B0
+╭── o8:     Constant()[tagged index: 76]
+╰─> n8:     Constant()[tagged index: 76]
+
+╭── o9:     Constant()[smi: 0]
+╰─> n9:     Constant()[smi: 0]
+
+╭── o10:    LoadRootRegister()
+╰─> n10:    LoadRootRegister()
+
+╭── o11:    Load *(#o10 + 50296) [raw, Uint64, Word64, offset: 50296]
+╰─> n11:    Load *(#n10 + 50296) [raw, Uint64, Word64, offset: 50296]
+
+╭── o12:    Constant()[external: 0x1029b2478 <Abort.entry>]
+╰─> n12:    Constant()[external: 0x1029b2478 <Abort.entry>]
+
+╭── o13:    Constant()[word32: 1]
+╰─> n13:    Constant()[word32: 1]
+
+╭── o14:    Call(#o11, #o8, #o12, #o13, #o9)[Code:Abort:r1s1i5f0]
+╭── o17:    DidntThrow(#o14)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n14:    Call(#n11, #n8, #n12, #n13, #n9)[Code:Abort:r1s1i5f0]
+╰─> n17:    DidntThrow(#n14)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o19:    Unreachable()
+╰─> n19:    Unreachable()
+
+
+
+old BLOCK B2 <- B0
+new BLOCK B2 <- B0
+╭── o20:    WasmStackCheck()[function-entry]
+╰─> n20:    WasmStackCheck()[function-entry]
+
+╭── o21:    Constant()[word32: 0]
+╰─> n21:    Constant()[word32: 0]
+
+╭── o22:    Constant()[word32: 305419896]
+╰─> n22:    Constant()[word32: 305419896]
+
+╭── o24:    Store *(#o1) = #o22 [raw, Uint32, NoWriteBarrier]
+╰─> n23:    Store *(#n1) = #n22 [raw, Uint32, NoWriteBarrier]
+
+╭── o26:    Load *(#o0 + 12) [tagged base, immutable, ProtectedPointer, Tagged, offset: 12]
+╰─> n25:    Load *(#n0 + 12) [tagged base, immutable, ProtectedPointer, Tagged, offset: 12]
+
+╭── o27:    Load *(#o26 + 12) [tagged base, Uint32, Word32, offset: 12]
+╰─> n26:    Load *(#n25 + 12) [tagged base, Uint32, Word32, offset: 12]
+
+╭── o28:    Load *(#o26 + 16) [tagged base, ProtectedPointer, Tagged, offset: 16]
+╰─> n27:    Load *(#n25 + 16) [tagged base, ProtectedPointer, Tagged, offset: 16]
+
+╭── o29:    Call(#o27, #o28)[WasmFunctionIndirect:wasm-call:r0s0i2f0]
+╭── o31:    DidntThrow(#o29)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n28:    Call(#n26, #n27)[WasmFunctionIndirect:wasm-call:r0s0i2f0]
+╰─> n30:    DidntThrow(#n28)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o33:    Load *(#o0 + 24) [tagged base, Uint64, Word64, offset: 24]
+╰─> n32:    Load *(#n0 + 24) [tagged base, Uint64, Word64, offset: 24]
+
+╭── o35:    Constant()[word32: 20000]
+╰─> n33:    Constant()[word32: 20000]
+
+╭── o36:    Goto()[B3, 0]
+│   n34:    Goto()[<invalid block>, 0]
+
+
+
+old LOOP B3 <- B2, B14
+new LOOP B3 <- B2
+╭── o37:    Phi(#o35, #o65)[Word32]
+╰─> n35:    PendingLoopPhi(#n33)[Word32]
+
+╭── o38:    Comparison(#o37, #o21)[Equal, Word32]
+╰─> n36:    Comparison(#n35, #n21)[Equal, Word32]
+
+╭── o39:    Branch(#o37)[B4, B6, None]
+╰─> n37:    Branch(#n35)[<invalid block>, <invalid block>, None]
+
+
+
+old BLOCK B4 <- B3
+new BLOCK B4 <- B3
+╭── o42:    Constant()[word32: -1]
+╰─> n39:    Constant()[word32: -1]
+
+╭── o43:    WordBinop(#o37, #o42)[Add, Word32]
+╰─> n40:    WordBinop(#n35, #n39)[Add, Word32]
+
+
+Inlining MERGE B5 <- B4
+╭── o45:    Comparison(#o43, #o21)[Equal, Word32]
+╰─> n41:    Comparison(#n40, #n21)[Equal, Word32]
+
+╭── o46:    Branch(#o43)[B8, B7, None]
+╰─> n42:    Branch(#n40)[<invalid block>, <invalid block>, None]
+
+
+old MERGE B5 <- B4
+new MERGE B5
+╰─> unreachable
+
+
+old BLOCK B7 <- B5
+new BLOCK B5 <- B4
+╭── o49:    Goto()[B15, 0]
+│   n44:    Goto()[<invalid block>, 0]
+
+
+
+old BLOCK B8 <- B5
+new BLOCK B6 <- B4
+╭── o51:    Constant()[word32: -1]
+╰─> n45:    Constant()[word32: -1]
+
+╭── o52:    WordBinop(#o43, #o51)[Add, Word32]
+╰─> n46:    WordBinop(#n40, #n45)[Add, Word32]
+
+
+Inlining MERGE B9 <- B8
+╭── o54:    Comparison(#o52, #o21)[Equal, Word32]
+╰─> n47:    Comparison(#n46, #n21)[Equal, Word32]
+
+╭── o55:    Branch(#o52)[B11, B10, None]
+╰─> n48:    Branch(#n46)[<invalid block>, <invalid block>, None]
+
+
+old MERGE B9 <- B8
+new MERGE B7
+╰─> unreachable
+
+
+old BLOCK B10 <- B9
+new BLOCK B7 <- B6
+╭── o57:    Goto()[B15, 0]
+│   n50:    Goto()[<invalid block>, 0]
+
+
+
+old BLOCK B11 <- B9
+new BLOCK B8 <- B6
+╭── o58:    WordBinop(#o52, #o51)[Add, Word32]
+╰─> n51:    WordBinop(#n46, #n45)[Add, Word32]
+
+
+Inlining MERGE B12 <- B11
+╭── o60:    WasmStackCheck()[loop]
+╰─> n52:    WasmStackCheck()[loop]
+
+╭── o61:    Comparison(#o58, #o21)[Equal, Word32]
+╰─> n53:    Comparison(#n51, #n21)[Equal, Word32]
+
+╭── o62:    Branch(#o58)[B14, B13, None]
+╰─> n54:    Branch(#n51)[<invalid block>, <invalid block>, None]
+
+
+old MERGE B12 <- B11
+new MERGE B9
+╰─> unreachable
+
+
+old BLOCK B13 <- B12
+new BLOCK B9 <- B8
+╭── o64:    Goto()[B15, 0]
+│   n56:    Goto()[<invalid block>, 0]
+
+
+
+old BLOCK B14 <- B12
+new BLOCK B10 <- B8
+╭── o65:    WordBinop(#o58, #o51)[Add, Word32]
+╰─> n57:    WordBinop(#n51, #n45)[Add, Word32]
+
+╭── o66:    Goto()[B3, 1]
+│   n58:    Goto()[B3, 1]
+
+
+
+old BLOCK B6 <- B3
+new BLOCK B11 <- B3
+╭── o48:    Goto()[B15, 0]
+│   n59:    Goto()[<invalid block>, 0]
+
+
+
+old MERGE B15 <- B6, B7, B10, B13
+new MERGE B12 <- B5, B7, B9, B11
+╭── o70:    Load *(#o33) [raw, Int32, Word32]
+╰─> n60:    Load *(#n32) [raw, Int32, Word32]
+
+╭── o71:    Return(#o21, #o70)[0]
+╰─> n61:    Return(#n21, #n60)[0]
+
+
+
+old MERGE B0
+new MERGE B0
+╭── o0:     Parameter()[0]
+╰─> n0:     Parameter()[0]
+
+╭── o1:     Load *(#o0 + 24) [tagged base, Uint64, Word64, offset: 24]
+╰─> n1:     Load *(#n0 + 24) [tagged base, Uint64, Word64, offset: 24]
+
+╭── o2:     Load *(#o0) [tagged base, TaggedPointer, Tagged]
+╰─> n2:     Load *(#n0) [tagged base, TaggedPointer, Tagged]
+
+╭── o3:     Load *(#o2 + 8) [tagged base, immutable, Uint16, Word32, offset: 8]
+╰─> n3:     Load *(#n2 + 8) [tagged base, immutable, Uint16, Word32, offset: 8]
+
+╭── o4:     Constant()[word32: 192]
+╰─> n4:     Constant()[word32: 192]
+
+╭── o5:     Comparison(#o3, #o4)[Equal, Word32]
+╰─> n5:     Comparison(#n3, #n4)[Equal, Word32]
+
+╭── o6:     Branch(#o5)[B2, B1, True]
+╰─> n6:     Branch(#n5)[<invalid block>, <invalid block>, True]
+
+
+
+old BLOCK B1 <- B0
+new BLOCK B1 <- B0
+╭── o8:     Constant()[tagged index: 76]
+╰─> n8:     Constant()[tagged index: 76]
+
+╭── o9:     Constant()[smi: 0]
+╰─> n9:     Constant()[smi: 0]
+
+╭── o10:    LoadRootRegister()
+╰─> n10:    LoadRootRegister()
+
+╭── o11:    Load *(#o10 + 50296) [raw, Uint64, Word64, offset: 50296]
+╰─> n11:    Load *(#n10 + 50296) [raw, Uint64, Word64, offset: 50296]
+
+╭── o12:    Constant()[external: 0x1029b2478 <Abort.entry>]
+╰─> n12:    Constant()[external: 0x1029b2478 <Abort.entry>]
+
+╭── o13:    Constant()[word32: 1]
+╰─> n13:    Constant()[word32: 1]
+
+╭── o14:    Call(#o11, #o8, #o12, #o13, #o9)[Code:Abort:r1s1i5f0]
+╭── o17:    DidntThrow(#o14)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n14:    Call(#n11, #n8, #n12, #n13, #n9)[Code:Abort:r1s1i5f0]
+╰─> n17:    DidntThrow(#n14)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o19:    Unreachable()
+╰─> n19:    Unreachable()
+
+
+
+old BLOCK B2 <- B0
+new BLOCK B2 <- B0
+╭── o20:    WasmStackCheck()[function-entry]
+╰─> n20:    WasmStackCheck()[function-entry]
+
+╭── o21:    Constant()[word32: 0]
+╰─> n21:    Constant()[word32: 0]
+
+╭── o22:    Constant()[word32: 305419896]
+╰─> n22:    Constant()[word32: 305419896]
+
+╭── o23:    Store *(#o1) = #o22 [raw, Uint32, NoWriteBarrier]
+╰─> n23:    Store *(#n1) = #n22 [raw, Uint32, NoWriteBarrier]
+
+╭── o25:    Load *(#o0 + 12) [tagged base, immutable, ProtectedPointer, Tagged, offset: 12]
+╰─> n25:    Load *(#n0 + 12) [tagged base, immutable, ProtectedPointer, Tagged, offset: 12]
+
+╭── o26:    Load *(#o25 + 12) [tagged base, Uint32, Word32, offset: 12]
+╰─> n26:    Load *(#n25 + 12) [tagged base, Uint32, Word32, offset: 12]
+
+╭── o27:    Load *(#o25 + 16) [tagged base, ProtectedPointer, Tagged, offset: 16]
+╰─> n27:    Load *(#n25 + 16) [tagged base, ProtectedPointer, Tagged, offset: 16]
+
+╭── o28:    Call(#o26, #o27)[WasmFunctionIndirect:wasm-call:r0s0i2f0]
+╭── o30:    DidntThrow(#o28)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n28:    Call(#n26, #n27)[WasmFunctionIndirect:wasm-call:r0s0i2f0]
+╰─> n30:    DidntThrow(#n28)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o32:    Load *(#o0 + 24) [tagged base, Uint64, Word64, offset: 24]
+╰─> n32:    Load *(#n0 + 24) [tagged base, Uint64, Word64, offset: 24]
+
+╭── o33:    Constant()[word32: 20000]
+╰─> n33:    Constant()[word32: 20000]
+
+╭── o34:    Goto()[B3, 0]
+│   n34:    Goto()[<invalid block>, 0]
+
+
+
+old LOOP B3 <- B2, B10
+new LOOP B3 <- B2
+╭── o35:    Phi(#o33, #o57)[Word32]
+╰─> n35:    PendingLoopPhi(#n33)[Word32]
+
+╭── o37:    Branch(#o35)[B4, B11, None]
+╰─> n36:    Branch(#n35)[<invalid block>, <invalid block>, None]
+
+
+
+old BLOCK B4 <- B3
+new BLOCK B4 <- B3
+╭── o39:    Constant()[word32: -1]
+╰─> n38:    Constant()[word32: -1]
+
+╭── o40:    WordBinop(#o35, #o39)[Add, Word32]
+╰─> n39:    WordBinop(#n35, #n38)[Add, Word32]
+
+╭── o42:    Branch(#o40)[B6, B5, None]
+╰─> n40:    Branch(#n39)[<invalid block>, <invalid block>, None]
+
+
+
+old BLOCK B5 <- B4
+new BLOCK B5 <- B4
+╭── o44:    Goto()[B12, 0]
+│   n42:    Load *(#n32) [raw, Int32, Word32]
+│   n43:    Return(#n21, #n42)[0]
+
+
+
+old BLOCK B6 <- B4
+new BLOCK B6 <- B4
+╭── o45:    Constant()[word32: -1]
+╰─> #n38
+
+╭── o46:    WordBinop(#o40, #o45)[Add, Word32]
+╰─> n44:    WordBinop(#n39, #n38)[Add, Word32]
+
+╭── o48:    Branch(#o46)[B8, B7, None]
+╰─> n45:    Branch(#n44)[<invalid block>, <invalid block>, None]
+
+
+
+old BLOCK B7 <- B6
+new BLOCK B7 <- B6
+╭── o50:    Goto()[B12, 0]
+│   n47:    Load *(#n32) [raw, Int32, Word32]
+│   n48:    Return(#n21, #n47)[0]
+
+
+
+old BLOCK B8 <- B6
+new BLOCK B8 <- B6
+╭── o51:    WordBinop(#o46, #o45)[Add, Word32]
+╰─> n49:    WordBinop(#n44, #n38)[Add, Word32]
+
+╭── o52:    WasmStackCheck()[loop]
+╰─> n50:    WasmStackCheck()[loop]
+
+╭── o54:    Branch(#o51)[B10, B9, None]
+╰─> n51:    Branch(#n49)[<invalid block>, <invalid block>, None]
+
+
+
+old BLOCK B9 <- B8
+new BLOCK B9 <- B8
+╭── o56:    Goto()[B12, 0]
+│   n53:    Load *(#n32) [raw, Int32, Word32]
+│   n54:    Return(#n21, #n53)[0]
+
+
+
+old BLOCK B10 <- B8
+new BLOCK B10 <- B8
+╭── o57:    WordBinop(#o51, #o45)[Add, Word32]
+╰─> n55:    WordBinop(#n49, #n38)[Add, Word32]
+
+╭── o58:    Goto()[B3, 1]
+│   n56:    Goto()[B3, 1]
+
+
+
+old BLOCK B11 <- B3
+new BLOCK B11 <- B3
+╭── o59:    Goto()[B12, 0]
+│   n57:    Load *(#n32) [raw, Int32, Word32]
+│   n58:    Return(#n21, #n57)[0]
+
+
+
+old MERGE B12 <- B5, B7, B9, B11
+new MERGE B12
+╰─> unreachable
+
+
+old MERGE B0
+new MERGE B0
+╭── o0:     Parameter()[0]
+╰─> n0:     Parameter()[0]
+
+╭── o1:     Load *(#o0 + 24) [tagged base, Uint64, Word64, offset: 24]
+│   n1:     TaggedBitcast(#n0)[Tagged, Word64, HeapObject]
+│   n2:     Constant()[word64: 23]
+╰─> n3:     Load *(#n1 + #n2) [raw, Uint64, Word64]
+
+╭── o2:     Load *(#o0) [tagged base, TaggedPointer, Tagged]
+│   n5:     TaggedBitcast(#n0)[Tagged, Word64, HeapObject]
+│   n6:     Constant()[word64: -1]
+╰─> n7:     Load *(#n5 + #n6) [raw, TaggedPointer, Tagged]
+
+╭── o3:     Load *(#o2 + 8) [tagged base, immutable, Uint16, Word32, offset: 8]
+│   n8:     TaggedBitcast(#n7)[Tagged, Word64, HeapObject]
+│   n9:     Constant()[word64: 7]
+╰─> n10:    Load *(#n8 + #n9) [raw, immutable, Uint16, Word32]
+
+╭── o4:     Constant()[word32: 192]
+╰─> n12:    Constant()[word32: 192]
+
+╭── o5:     Comparison(#o3, #o4)[Equal, Word32]
+╰─> n13:    Comparison(#n10, #n12)[Equal, Word32]
+
+╭── o6:     Branch(#o5)[B2, B1, True]
+╰─> n14:    Branch(#n13)[<invalid block>, <invalid block>, True]
+
+
+
+old BLOCK B1 <- B0
+new BLOCK B1 <- B0
+╭── o8:     Constant()[tagged index: 76]
+╰─> n16:    Constant()[tagged index: 76]
+
+╭── o9:     Constant()[smi: 0]
+╰─> n17:    Constant()[smi: 0]
+
+╭── o10:    LoadRootRegister()
+╰─> n18:    LoadRootRegister()
+
+╭── o11:    Load *(#o10 + 50296) [raw, Uint64, Word64, offset: 50296]
+│   n19:    Constant()[word64: 50296]
+╰─> n20:    Load *(#n18 + #n19) [raw, Uint64, Word64]
+
+╭── o12:    Constant()[external: 0x1029b2478 <Abort.entry>]
+╰─> n21:    Constant()[external: 0x1029b2478 <Abort.entry>]
+
+╭── o13:    Constant()[word32: 1]
+╰─> n22:    Constant()[word32: 1]
+
+╭── o14:    Call(#o11, #o8, #o12, #o13, #o9)[Code:Abort:r1s1i5f0]
+╭── o17:    DidntThrow(#o14)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n23:    Call(#n20, #n16, #n21, #n22, #n17)[Code:Abort:r1s1i5f0]
+╰─> n26:    DidntThrow(#n23)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o19:    Unreachable()
+╰─> n28:    Unreachable()
+
+
+
+old BLOCK B2 <- B0
+new BLOCK B2 <- B0
+╭── o20:    WasmStackCheck()[function-entry]
+│   n29:    LoadRootRegister()
+│   n30:    Constant()[word64: -224]
+│   n31:    Load *(#n29 + #n30) [raw, Uint64, Word64]
+│   n33:    StackPointerGreaterThan(#n31)[Wasm]
+│   n34:    Branch(#n33)[B4, B3, True]
+new BLOCK B3 <- B2
+│   n36:    Constant()[relocatable wasm stub call: WasmStackGuard (0x590)]
+│   n37:    Call(#n36)[WasmFunction:NoContext Descriptor:r1s0i1f0]
+│   n39:    DidntThrow(#n37)[🁤🁤 🁪🁪 🁤🁪 🁤 i a, 0]
+│   n41:    Goto()[B5, 0]
+new BLOCK B4 <- B2
+│   n42:    Goto()[B5, 0]
+new MERGE B5 <- B3, B4
+
+╭── o21:    Constant()[word32: 0]
+╰─> n43:    Constant()[word32: 0]
+
+╭── o22:    Constant()[word32: 305419896]
+╰─> n44:    Constant()[word32: 305419896]
+
+╭── o23:    Store *(#o1) = #o22 [raw, Uint32, NoWriteBarrier]
+│   n45:    Constant()[word64: 0]
+╰─> n46:    Store *(#n3 + #n45) = #n44 [raw, Uint32, NoWriteBarrier]
+
+╭── o25:    Load *(#o0 + 12) [tagged base, immutable, ProtectedPointer, Tagged, offset: 12]
+│   n48:    TaggedBitcast(#n0)[Tagged, Word64, HeapObject]
+│   n49:    Constant()[word64: 11]
+╰─> n50:    Load *(#n48 + #n49) [raw, immutable, ProtectedPointer, Tagged]
+
+╭── o26:    Load *(#o25 + 12) [tagged base, Uint32, Word32, offset: 12]
+│   n51:    TaggedBitcast(#n50)[Tagged, Word64, HeapObject]
+╰─> n52:    Load *(#n51 + #n49) [raw, Uint32, Word32]
+
+╭── o27:    Load *(#o25 + 16) [tagged base, ProtectedPointer, Tagged, offset: 16]
+│   n54:    TaggedBitcast(#n50)[Tagged, Word64, HeapObject]
+│   n55:    Constant()[word64: 15]
+╰─> n56:    Load *(#n54 + #n55) [raw, ProtectedPointer, Tagged]
+
+╭── o28:    Call(#o26, #o27)[WasmFunctionIndirect:wasm-call:r0s0i2f0]
+╭── o30:    DidntThrow(#o28)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+│   n57:    Call(#n52, #n56)[WasmFunctionIndirect:wasm-call:r0s0i2f0]
+╰─> n59:    DidntThrow(#n57)[🁫🁫 🁫🁫 🁤🁪 🁫 i a, 0]
+
+╭── o32:    Load *(#o0 + 24) [tagged base, Uint64, Word64, offset: 24]
+│   n61:    TaggedBitcast(#n0)[Tagged, Word64, HeapObject]
+╰─> n62:    Load *(#n61 + #n2) [raw, Uint64, Word64]
+
+╭── o33:    Constant()[word32: 20000]
+╰─> n64:    Constant()[word32: 20000]
+
+╭── o34:    Goto()[B3, 0]
+│   n65:    Goto()[<invalid block>, 0]
+
+
+
+old LOOP B3 <- B2, B10
+new LOOP B6 <- B5
+╭── o35:    Phi(#o33, #o55)[Word32]
+╰─> n66:    PendingLoopPhi(#n64)[Word32]
+
+╭── o36:    Branch(#o35)[B4, B11, None]
+╰─> n67:    Branch(#n66)[<invalid block>, <invalid block>, None]
+
+
+
+old BLOCK B4 <- B3
+new BLOCK B7 <- B6
+╭── o38:    Constant()[word32: -1]
+╰─> n69:    Constant()[word32: -1]
+
+╭── o39:    WordBinop(#o35, #o38)[Add, Word32]
+╰─> n70:    WordBinop(#n66, #n69)[Add, Word32]
+
+╭── o40:    Branch(#o39)[B6, B5, None]
+╰─> n71:    Branch(#n70)[<invalid block>, <invalid block>, None]
+
+
+
+old BLOCK B5 <- B4
+new BLOCK B8 <- B7
+╭── o42:    Load *(#o32) [raw, Int32, Word32]
+╰─> n73:    Load *(#n62 + #n45) [raw, Int32, Word32]
+
+╭── o43:    Return(#o21, #o42)[0]
+╰─> n74:    Return(#n43, #n73)[0]
+
+
+
+old BLOCK B6 <- B4
+new BLOCK B9 <- B7
+╭── o44:    WordBinop(#o39, #o38)[Add, Word32]
+╰─> n75:    WordBinop(#n70, #n69)[Add, Word32]
+
+╭── o45:    Branch(#o44)[B8, B7, None]
+╰─> n76:    Branch(#n75)[<invalid block>, <invalid block>, None]
+
+
+
+old BLOCK B7 <- B6
+new BLOCK B10 <- B9
+╭── o47:    Load *(#o32) [raw, Int32, Word32]
+╰─> n78:    Load *(#n62 + #n45) [raw, Int32, Word32]
+
+╭── o48:    Return(#o21, #o47)[0]
+╰─> n80:    Return(#n43, #n78)[0]
+
+
+
+old BLOCK B8 <- B6
+new BLOCK B11 <- B9
+╭── o49:    WordBinop(#o44, #o38)[Add, Word32]
+╰─> n81:    WordBinop(#n75, #n69)[Add, Word32]
+
+╭── o50:    WasmStackCheck()[loop]
+│   n82:    Constant()[word64: -207]
+│   n83:    Load *(#n29 + #n82) [raw, Uint8, Word32]
+│   n84:    Comparison(#n83, #n43)[Equal, Word32]
+│   n85:    Branch(#n84)[B13, B12, True]
+new BLOCK B12 <- B11
+│   n87:    Constant()[relocatable wasm stub call: WasmStackGuardLoop (0x591)]
+│   n88:    Call(#n87)[WasmFunction:NoContext Descriptor:r1s0i1f0]
+│   n90:    DidntThrow(#n88)[🁤🁤 🁪🁪 🁤🁪 🁣 i a, 0]
+│   n92:    Goto()[B14, 0]
+new BLOCK B13 <- B11
+│   n93:    Goto()[B14, 0]
+new MERGE B14 <- B12, B13
+
+╭── o51:    Branch(#o49)[B10, B9, None]
+╰─> n94:    Branch(#n81)[<invalid block>, <invalid block>, None]
+
+
+
+old BLOCK B9 <- B8
+new BLOCK B15 <- B14
+╭── o53:    Load *(#o32) [raw, Int32, Word32]
+╰─> n96:    Load *(#n62 + #n45) [raw, Int32, Word32]
+
+╭── o54:    Return(#o21, #o53)[0]
+╰─> n98:    Return(#n43, #n96)[0]
+
+
+
+old BLOCK B10 <- B8
+new BLOCK B16 <- B14
+╭── o55:    WordBinop(#o49, #o38)[Add, Word32]
+╰─> n99:    WordBinop(#n81, #n69)[Add, Word32]
+
+╭── o56:    Goto()[B3, 1]
+│   n100:   Goto()[B6, 1]
+
+
+
+old BLOCK B11 <- B3
+new BLOCK B17 <- B6
+╭── o57:    Load *(#o32) [raw, Int32, Word32]
+╰─> n101:   Load *(#n62 + #n45) [raw, Int32, Word32]
+
+╭── o58:    Return(#o21, #o57)[0]
+╰─> n102:   Return(#n43, #n101)[0]
+
+
+[12441:0x633000004000]       71 ms: Mark-Compact 0.5 (1.8) -> 0.4 (1.5) MB, pooled: 0.2 MB, 5.87 / 0.00 ms (average mu = 0.913, current mu = 0.913) testing; GC in old space requested
+OK

@@ -1,0 +1,17 @@
+Duration.from 9007199254740991: OK PT9007199254740991S
+DF long string 9007199254740991: OK 9,007,199,254,740,991 seconds
+DF digital string 9007199254740991: OK 0:00:9007199254740991
+toLocaleString long 9007199254740991: OK 9,007,199,254,740,991 seconds
+Duration.from 9007199254740992: THROW RangeError Temporal error: Duration was not valid.
+DF long string 9007199254740992: THROW RangeError Temporal error: Duration was not valid.
+DF digital string 9007199254740992: THROW RangeError Temporal error: Duration was not valid.
+toLocaleString long 9007199254740992: THROW RangeError Temporal error: Duration was not valid.
+Duration.from 9007199254740993: THROW RangeError Temporal error: Duration was not valid.
+DF long string 9007199254740993: THROW RangeError Temporal error: Duration was not valid.
+DF digital string 9007199254740993: THROW RangeError Temporal error: Duration was not valid.
+toLocaleString long 9007199254740993: THROW RangeError Temporal error: Duration was not valid.
+Duration.from 9223372036854775807: THROW RangeError Temporal error: Duration was not valid.
+DF long string 9223372036854775807: THROW RangeError Temporal error: Duration was not valid.
+DF digital string 9223372036854775807: THROW RangeError Temporal error: Duration was not valid.
+toLocaleString long 9223372036854775807: THROW RangeError Temporal error: Duration was not valid.
+H9 DONE

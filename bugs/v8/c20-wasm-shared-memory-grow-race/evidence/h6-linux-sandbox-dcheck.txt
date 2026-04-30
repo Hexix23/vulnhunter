@@ -1,0 +1,25 @@
+Command:
+
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 out/dcheck_linux/d8 /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c20-wasm-shared-memory-grow-race/poc/h6-stackguard-atomic-sink-after-grow.js
+
+Output:
+
+OK
+
+Command:
+
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 out/sandbox_dcheck_linux/d8 --sandbox-testing /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c20-wasm-shared-memory-grow-race/poc/h6-stackguard-atomic-sink-after-grow.js
+
+Output:
+
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x10ff00000000,0x11ff00000000)
+OK
+
+Command:
+
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 bash -lc 'for i in $(seq 1 50); do out/sandbox_dcheck_linux/d8 --sandbox-testing /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c20-wasm-shared-memory-grow-race/poc/h6-stackguard-atomic-sink-after-grow.js >/tmp/h6.out || exit 1; tail -n 1 /tmp/h6.out | grep -qx OK || { cat /tmp/h6.out; exit 2; }; done; echo OK-50'
+
+Output:
+
+OK-50

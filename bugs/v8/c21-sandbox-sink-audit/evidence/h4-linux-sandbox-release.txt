@@ -1,0 +1,10 @@
+Command:
+
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 out/sandbox_release_linux/d8 --sandbox-testing --allow-natives-syntax --expose-gc /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c21-sandbox-sink-audit/poc/h4-global-hidden-ref-reuse.js
+
+Output:
+
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x223600000000,0x233600000000)
+initial=dead
+Caught harmless memory access violation (inside sandbox). Exiting process...

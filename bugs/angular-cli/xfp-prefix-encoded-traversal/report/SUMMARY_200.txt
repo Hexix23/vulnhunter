@@ -1,0 +1,1 @@
+@angular/ssr 21.2.8: X-Forwarded-Prefix INVALID_PREFIX_REGEX rejects literal ../ but not %2e%2e. Browser normalizes Location on redirect → attacker-chosen in-origin path via canonical redirectTo route.

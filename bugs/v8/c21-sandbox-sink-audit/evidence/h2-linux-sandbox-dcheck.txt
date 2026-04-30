@@ -1,0 +1,37 @@
+Command:
+
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 out/sandbox_dcheck_linux/d8 --sandbox-testing --allow-natives-syntax /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c21-sandbox-sink-audit/poc/h2-global-rawtype-i64-set-externref.js
+
+Output:
+
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x2a7500000000,0x2b7500000000)
+before=0
+# Ignoring debug check failure in ../../src/objects/tagged-field-inl.h, line 197: HAS_SMI_TAG(tagged_value)
+# Ignoring debug check failure in ../../src/wasm/wasm-objects.cc, line 3449: expected.is_ref()
+
+
+#
+# Safely terminating process due to error in ../../src/wasm/wasm-objects.cc, line 3666
+# The following harmless error was encountered: unreachable code
+#
+#
+#
+#FailureMessage Object: 0x7ffffffc3be0
+==== C stack trace ===============================
+
+    out/sandbox_dcheck_linux/d8(+0x368669e) [0x555558bda69e]
+    out/sandbox_dcheck_linux/d8(+0x3685b5b) [0x555558bd9b5b]
+    out/sandbox_dcheck_linux/d8(+0x366eb43) [0x555558bc2b43]
+    out/sandbox_dcheck_linux/d8(+0x1d8ad0e) [0x5555572ded0e]
+    out/sandbox_dcheck_linux/d8(+0x1d4d489) [0x5555572a1489]
+    out/sandbox_dcheck_linux/d8(+0xa9adab) [0x555555feedab]
+    out/sandbox_dcheck_linux/d8(+0xa99fdc) [0x555555fedfdc]
+    out/sandbox_dcheck_linux/d8(+0xcefc7c) [0x555556243c7c]
+    out/sandbox_dcheck_linux/d8(+0xcedc68) [0x555556241c68]
+    out/sandbox_dcheck_linux/d8(+0x13a219a) [0x5555568f619a]
+    out/sandbox_dcheck_linux/d8(+0x13a5ab6) [0x5555568f9ab6]
+    out/sandbox_dcheck_linux/d8(+0x139e928) [0x5555568f2928]
+    out/sandbox_dcheck_linux/d8(+0x103978f) [0x55555658d78f]
+    out/sandbox_dcheck_linux/d8(+0x10421ca) [0x5555565961ca]
+    out/sandbox_dcheck_linux/d8(+0x31dd07d) [0x55555873107d]

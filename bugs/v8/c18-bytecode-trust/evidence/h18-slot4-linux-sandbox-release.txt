@@ -1,0 +1,68 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x20000000000,0x30000000000)
+abort: Unexpected instance type encountered
+
+==== JS stack trace =========================================
+
+    0: ExitFrame [pc: 0x55555700b876]
+    1: StubFrame [pc: 0x555557119c4a]
+    2: /* anonymous */ [0x2000101f30d] [/mnt/mac/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c18-bytecode-trust/poc/h18-global-load-feedback-slot-matrix.js:31] [bytecode=0x3c6e010000e5 offset=247](this=0x020001004929 <JSGlobalProxy>#0#)
+    3: InternalFrame [pc: 0x555556f5369c]
+    4: EntryFrame [pc: 0x555556f533eb]
+
+==== Details ================================================
+
+[0]: ExitFrame [pc: 0x55555700b876]
+[1]: StubFrame [pc: 0x555557119c4a]
+[2]: /* anonymous */ [0x2000101f30d] [/mnt/mac/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c18-bytecode-trust/poc/h18-global-load-feedback-slot-matrix.js:31] [bytecode=0x3c6e010000e5 offset=247](this=0x020001004929 <JSGlobalProxy>#0#) {
+  // heap-allocated locals
+  var targetSlot = 0x02000104c8d9 <ContextCell[smi=4]>#1#
+  var baseline = 0x02000104c8f1 <ContextCell[const=13]>#2#
+  var bc = 0x02000104cbb1 <ContextCell[const=0x02000104c98d <Object map = 0x2000101f7c5>]>#3#
+  var bytes = 0x02000104cc05 <ContextCell[const=0x02000104cbc9 <Uint8Array map = 0x2000100d541>]>#4#
+  var r = 0x02000104cc51 <ContextCell[const=0x02000101f411 <ScopeInfo FUNCTION_SCOPE>]>#5#
+  var same = 0x02000104cc69 <ContextCell[const=0x020000000055 <false>]>#6#
+  var type = 0x02000002fffd <the_hole_value>
+  // expression stack (top to bottom)
+  [07] : 0x020000000011 <undefined>
+  [06] : 0x020000000011 <undefined>
+  [05] : 0x02000000329d <String[1]: #4>
+  [04] : 0x02000104c98d <Object map = 0x2000101f7c5>#7#
+  [03] : 0x02000101f411 <ScopeInfo FUNCTION_SCOPE>#8#
+  [02] : 1000
+  [01] : 4
+  [00] : 0x020000000011 <undefined>
+--------- s o u r c e   c o d e ---------
+// C18 H18: parameterized LdaGlobal feedback slot matrix.\x0a// Usage: d8 ... h18-global-load-feedback-slot-matrix.js -- <slot>\x0alet targetSlot = 255;\x0atry {\x0a  if (typeof arguments !== "undefined" && arguments.length > 0) {\x0a    targetSlot = Number(arguments[0]);\x0a  }\x0a} catch (_) {}\x0a\x0avar C18_GLOBAL_MATRIX ...
+
+-----------------------------------------
+}
+
+[3]: InternalFrame [pc: 0x555556f5369c]
+[4]: EntryFrame [pc: 0x555556f533eb]
+-- ObjectCacheKey --
+
+ #0# 0x20001004929: 0x020001004929 <JSGlobalProxy>
+ #1# 0x2000104c8d9: 0x02000104c8d9 <ContextCell[smi=4]>
+ #2# 0x2000104c8f1: 0x02000104c8f1 <ContextCell[const=13]>
+ #3# 0x2000104cbb1: 0x02000104cbb1 <ContextCell[const=0x02000104c98d <Object map = 0x2000101f7c5>]>
+ #4# 0x2000104cc05: 0x02000104cc05 <ContextCell[const=0x02000104cbc9 <Uint8Array map = 0x2000100d541>]>
+ #5# 0x2000104cc51: 0x02000104cc51 <ContextCell[const=0x02000101f411 <ScopeInfo FUNCTION_SCOPE>]>
+ #6# 0x2000104cc69: 0x02000104cc69 <ContextCell[const=0x020000000055 <false>]>
+ #7# 0x2000104c98d: 0x02000104c98d <Object map = 0x2000101f7c5>
+          bytecode: 0x02000104c909 <ArrayBuffer map = 0x20001010e79>#9#
+     constant_pool: 0x02000104c949 <JSArray[1]>#10#
+     handler_table: 0x02000104c959 <ArrayBuffer map = 0x20001010e79>#11#
+        frame_size: 0
+   parameter_count: 1
+     max_arguments: 0
+incoming_new_target_or_generator_register: 0x02000104cba5 <HeapNumber 2147483647.0>
+ #8# 0x2000101f411: 0x02000101f411 <ScopeInfo FUNCTION_SCOPE>
+ #9# 0x2000104c909: 0x02000104c909 <ArrayBuffer map = 0x20001010e79>
+ #10# 0x2000104c949: 0x02000104c949 <JSArray[1]>
+                 0: 0x02000101f071 <String[17]: #C18_GLOBAL_MATRIX>
+ #11# 0x2000104c959: 0x02000104c959 <ArrayBuffer map = 0x20001010e79>
+=====================
+
+
+EXIT:0

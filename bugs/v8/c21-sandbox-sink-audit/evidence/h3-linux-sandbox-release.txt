@@ -1,0 +1,10 @@
+Command:
+
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 out/sandbox_release_linux/d8 --sandbox-testing --allow-natives-syntax --expose-gc --stress-compaction /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c21-sandbox-sink-audit/poc/h3-global-bytearray-hidden-ref-gc.js
+
+Output:
+
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x126f00000000,0x136f00000000)
+hidden-ref
+Caught harmless memory access violation (inside sandbox). Exiting process...

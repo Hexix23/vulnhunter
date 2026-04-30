@@ -1,0 +1,33 @@
+Commands:
+
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 out/sandbox_release_linux/d8 --expose-memory-corruption-api --allow-natives-syntax --expose-gc --stress-compaction -e "var H8_KIND='<kind>'" /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c21-sandbox-sink-audit/poc/h8-global-forge-stale-kind-case.js
+
+Observed summary:
+
+- object:
+  - `kind=object`
+  - `before=stale-object:257`
+  - `after=undefined:undefined`
+  - then fatal `unreachable code`
+- array:
+  - `kind=array`
+  - `before=true:4:2`
+  - recovered value shown as `<FreeSpace[184]>`
+  - process aborts while observing array-like value
+- function:
+  - `kind=function`
+  - `before=function:514`
+  - recovered value shown as `<Other heap object (FILLER_TYPE)>`
+  - aborts: `Unexpected instance type encountered`
+- arraybuffer:
+  - `kind=arraybuffer`
+  - `before=64`
+  - `after=undefined`
+- typedarray:
+  - `kind=typedarray`
+  - `before=2:771`
+  - `after=2:771`
+- stringobject:
+  - `kind=stringobject`
+  - `before=stale-string:12`
+  - `after=THREW:TypeError:value.valueOf is not a function`

@@ -1,0 +1,489 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x4ec00000000,0x5ec00000000)
+dest=0 src=0 old=0x101f9f3 srcval=0x101fa07 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0xfeb700000000,0xffb700000000)
+Caught harmless memory access violation (inside sandbox). Exiting process...
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0xfeb700000000,0xffb700000000)
+dest=0 src=2 old=0x101f9f3 srcval=0x655 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x13ed00000000,0x14ed00000000)
+Caught harmless memory access violation (inside sandbox). Exiting process...
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x1b800000000,0x2b800000000)
+dest=0 src=4 old=0x101f9f3 srcval=0x101f743 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x234c00000000,0x244c00000000)
+dest=0 src=5 old=0x101f9f3 srcval=0x101f773 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x3ccb00000000,0x3dcb00000000)
+dest=0 src=6 old=0x101f9f3 srcval=0x3 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x3a1600000000,0x3b1600000000)
+dest=0 src=7 old=0x101f9f3 srcval=0x11 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0xeec00000000,0xfec00000000)
+dest=0 src=8 old=0x101f9f3 srcval=0x11 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x248b00000000,0x258b00000000)
+dest=1 src=0 old=0xe95 srcval=0x101fa07 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x246500000000,0x256500000000)
+dest=1 src=1 old=0xe95 srcval=0xe95 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x30ff00000000,0x31ff00000000)
+dest=1 src=2 old=0xe95 srcval=0x655 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x3ee600000000,0x3fe600000000)
+dest=1 src=3 old=0xe95 srcval=0x40 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x29b300000000,0x2ab300000000)
+dest=1 src=4 old=0xe95 srcval=0x101f743 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x192200000000,0x1a2200000000)
+dest=1 src=5 old=0xe95 srcval=0x101f773 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x1f5400000000,0x205400000000)
+dest=1 src=6 old=0xe95 srcval=0x3 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x76a00000000,0x86a00000000)
+dest=1 src=7 old=0xe95 srcval=0x11 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x3cda00000000,0x3dda00000000)
+dest=1 src=8 old=0xe95 srcval=0x11 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x30b000000000,0x31b000000000)
+dest=2 src=0 old=0x821 srcval=0x101fa07 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x3f8b00000000,0x408b00000000)
+dest=2 src=1 old=0x821 srcval=0xe95 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x3e9f00000000,0x3f9f00000000)
+dest=2 src=2 old=0x821 srcval=0x655 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x195000000000,0x1a5000000000)
+dest=2 src=3 old=0x821 srcval=0x40 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x3e00000000,0x13e00000000)
+dest=2 src=4 old=0x821 srcval=0x101f743 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x120900000000,0x130900000000)
+dest=2 src=5 old=0x821 srcval=0x101f773 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x2fc00000000,0x3fc00000000)
+dest=2 src=6 old=0x821 srcval=0x3 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x34fc00000000,0x35fc00000000)
+dest=2 src=7 old=0x821 srcval=0x11 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x1eec00000000,0x1fec00000000)
+dest=2 src=8 old=0x821 srcval=0x11 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x365e00000000,0x375e00000000)
+dest=3 src=0 old=0x404171c4 srcval=0x101fa07 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0xea400000000,0xfa400000000)
+dest=3 src=1 old=0x404171c4 srcval=0xe95 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x271c00000000,0x281c00000000)
+dest=3 src=2 old=0x404171c4 srcval=0x655 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x1f8900000000,0x208900000000)
+dest=3 src=3 old=0x404171c4 srcval=0x40 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x230700000000,0x240700000000)
+dest=3 src=4 old=0x404171c4 srcval=0x101f743 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x218f00000000,0x228f00000000)
+dest=3 src=5 old=0x404171c4 srcval=0x101f773 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0xfeb700000000,0xffb700000000)
+dest=3 src=6 old=0x404171c4 srcval=0x3 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x30bd00000000,0x31bd00000000)
+dest=3 src=7 old=0x404171c4 srcval=0x11 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x9fb00000000,0xafb00000000)
+dest=3 src=8 old=0x404171c4 srcval=0x11 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0xbd000000000,0xcd000000000)
+dest=4 src=0 old=0x2 srcval=0x101fa07 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x23d800000000,0x24d800000000)
+dest=4 src=1 old=0x2 srcval=0xe95 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x2f3000000000,0x303000000000)
+dest=4 src=2 old=0x2 srcval=0x655 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x99e00000000,0xa9e00000000)
+dest=4 src=3 old=0x2 srcval=0x40 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0xfeb700000000,0xffb700000000)
+dest=4 src=4 old=0x2 srcval=0x101f743 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x194800000000,0x1a4800000000)
+dest=4 src=5 old=0x2 srcval=0x101f773 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x12b00000000,0x22b00000000)
+dest=4 src=6 old=0x2 srcval=0x3 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x84100000000,0x94100000000)
+dest=4 src=7 old=0x2 srcval=0x11 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x1aed00000000,0x1bed00000000)
+dest=4 src=8 old=0x2 srcval=0x11 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x3ba200000000,0x3ca200000000)
+dest=5 src=0 old=0x0 srcval=0x101fa07 A=777 B=99 A777=true B777=false
+Caught harmless memory access violation (inside sandbox). Exiting process...
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x220500000000,0x230500000000)
+dest=5 src=1 old=0x0 srcval=0xe95 A=777 B=99 A777=true B777=false
+
+
+#
+# Safely terminating process
+# The following harmless error was encountered: Check failed: IsScopeInfo().
+#
+#
+#
+#FailureMessage Object: 0x7ffff94809c0
+==== C stack trace ===============================
+
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c20ece) [0x555557174ece]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2038b) [0x55555717438b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1357f) [0x55555716757f]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x127a4a7) [0x5555567ce4a7]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x127252f) [0x5555567c652f]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdd742a) [0x55555632b42a]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xe09fb1) [0x55555635dfb1]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xd96464) [0x5555562ea464]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdada04) [0x555556301a04]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x6fa11b) [0x555555c4e11b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdaf3a4) [0x5555563033a4]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2224b) [0x55555717624b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c25564) [0x555557179564]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1e088) [0x555557172088]
+    /lib/x86_64-linux-gnu/libc.so.6(+0x9caa4) [0x7fffff52daa4]
+    /lib/x86_64-linux-gnu/libc.so.6(__clone+0x44) [0x7fffff5baa64]
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x2fb900000000,0x30b900000000)
+dest=5 src=2 old=0x0 srcval=0x655 A=777 B=99 A777=true B777=false
+
+
+#
+# Safely terminating process
+# The following harmless error was encountered: Check failed: IsScopeInfo().
+#
+#
+#
+#FailureMessage Object: 0x7ffffa4829c0
+==== C stack trace ===============================
+
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c20ece) [0x555557174ece]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2038b) [0x55555717438b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1357f) [0x55555716757f]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x127a4a7) [0x5555567ce4a7]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x127252f) [0x5555567c652f]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdd742a) [0x55555632b42a]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xe09fb1) [0x55555635dfb1]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xd96464) [0x5555562ea464]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdada04) [0x555556301a04]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x6fa11b) [0x555555c4e11b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdaf3a4) [0x5555563033a4]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2224b) [0x55555717624b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c25564) [0x555557179564]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1e088) [0x555557172088]
+    /lib/x86_64-linux-gnu/libc.so.6(+0x9caa4) [0x7fffff52daa4]
+    /lib/x86_64-linux-gnu/libc.so.6(__clone+0x44) [0x7fffff5baa64]
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x97700000000,0xa7700000000)
+dest=5 src=3 old=0x0 srcval=0x40 A=777 B=99 A777=true B777=false
+
+
+#
+# Safely terminating process
+# The following harmless error was encountered: Check failed: IsScopeInfo().
+#
+#
+#
+#FailureMessage Object: 0x7ffff8c7f9c0
+==== C stack trace ===============================
+
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c20ece) [0x555557174ece]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2038b) [0x55555717438b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1357f) [0x55555716757f]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x127a4a7) [0x5555567ce4a7]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x127252f) [0x5555567c652f]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdd742a) [0x55555632b42a]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xe09fb1) [0x55555635dfb1]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xd96464) [0x5555562ea464]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdada04) [0x555556301a04]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x6fa11b) [0x555555c4e11b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdaf3a4) [0x5555563033a4]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2224b) [0x55555717624b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c25564) [0x555557179564]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1e088) [0x555557172088]
+    /lib/x86_64-linux-gnu/libc.so.6(+0x9caa4) [0x7fffff52daa4]
+    /lib/x86_64-linux-gnu/libc.so.6(__clone+0x44) [0x7fffff5baa64]
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x105d00000000,0x115d00000000)
+dest=5 src=4 old=0x0 srcval=0x101f743 A=777 B=99 A777=true B777=false
+Caught harmless memory access violation (inside sandbox). Exiting process...
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0xb2b00000000,0xc2b00000000)
+dest=5 src=5 old=0x0 srcval=0x101f773 A=777 B=99 A777=true B777=false
+Caught harmless memory access violation (inside sandbox). Exiting process...
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0xa2c00000000,0xb2c00000000)
+dest=5 src=6 old=0x0 srcval=0x3 A=777 B=99 A777=true B777=false
+
+
+#
+# Safely terminating process
+# The following harmless error was encountered: Check failed: IsScopeInfo().
+#
+#
+#
+#FailureMessage Object: 0x7ffff747c9c0
+==== C stack trace ===============================
+
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c20ece) [0x555557174ece]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2038b) [0x55555717438b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1357f) [0x55555716757f]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x127a4a7) [0x5555567ce4a7]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x127252f) [0x5555567c652f]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdd742a) [0x55555632b42a]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xe09fb1) [0x55555635dfb1]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xd96464) [0x5555562ea464]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdada04) [0x555556301a04]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x6fa11b) [0x555555c4e11b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdaf3a4) [0x5555563033a4]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2224b) [0x55555717624b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c25564) [0x555557179564]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1e088) [0x555557172088]
+    /lib/x86_64-linux-gnu/libc.so.6(+0x9caa4) [0x7fffff52daa4]
+    /lib/x86_64-linux-gnu/libc.so.6(__clone+0x44) [0x7fffff5baa64]
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x243400000000,0x253400000000)
+dest=5 src=7 old=0x0 srcval=0x11 A=777 B=99 A777=true B777=false
+
+
+#
+# Safely terminating process
+# The following harmless error was encountered: Check failed: IsScopeInfo().
+#
+#
+#
+#FailureMessage Object: 0x7ffffac839c0
+==== C stack trace ===============================
+
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c20ece) [0x555557174ece]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2038b) [0x55555717438b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1357f) [0x55555716757f]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x127a4a7) [0x5555567ce4a7]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x127252f) [0x5555567c652f]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdd742a) [0x55555632b42a]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xe09fb1) [0x55555635dfb1]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xd96464) [0x5555562ea464]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdada04) [0x555556301a04]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x6fa11b) [0x555555c4e11b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdaf3a4) [0x5555563033a4]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2224b) [0x55555717624b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c25564) [0x555557179564]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1e088) [0x555557172088]
+    /lib/x86_64-linux-gnu/libc.so.6(+0x9caa4) [0x7fffff52daa4]
+    /lib/x86_64-linux-gnu/libc.so.6(__clone+0x44) [0x7fffff5baa64]
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x73000000000,0x83000000000)
+dest=5 src=8 old=0x0 srcval=0x11 A=777 B=99 A777=true B777=false
+
+
+#
+# Safely terminating process
+# The following harmless error was encountered: Check failed: IsScopeInfo().
+#
+#
+#
+#FailureMessage Object: 0x7ffffac839c0
+==== C stack trace ===============================
+
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c20ece) [0x555557174ece]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2038b) [0x55555717438b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1357f) [0x55555716757f]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x127a4a7) [0x5555567ce4a7]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x127252f) [0x5555567c652f]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdd742a) [0x55555632b42a]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xe09fb1) [0x55555635dfb1]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xd96464) [0x5555562ea464]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdada04) [0x555556301a04]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x6fa11b) [0x555555c4e11b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0xdaf3a4) [0x5555563033a4]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c2224b) [0x55555717624b]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c25564) [0x555557179564]
+    /home/carlosgomez/v8-linux/v8/out/sandbox_release_linux/d8(+0x1c1e088) [0x555557172088]
+    /lib/x86_64-linux-gnu/libc.so.6(+0x9caa4) [0x7fffff52daa4]
+    /lib/x86_64-linux-gnu/libc.so.6(__clone+0x44) [0x7fffff5baa64]
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x36f900000000,0x37f900000000)
+dest=6 src=0 old=0xa82 srcval=0x101fa07 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x3b7b00000000,0x3c7b00000000)
+dest=6 src=1 old=0xa82 srcval=0xe95 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0xce500000000,0xde500000000)
+dest=6 src=2 old=0xa82 srcval=0x655 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x237100000000,0x247100000000)
+dest=6 src=3 old=0xa82 srcval=0x40 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x17af00000000,0x18af00000000)
+dest=6 src=4 old=0xa82 srcval=0x101f743 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x3ba900000000,0x3ca900000000)
+dest=6 src=5 old=0xa82 srcval=0x101f773 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0xfeb700000000,0xffb700000000)
+dest=6 src=6 old=0xa82 srcval=0x3 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x243200000000,0x253200000000)
+dest=6 src=7 old=0xa82 srcval=0x11 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x316300000000,0x326300000000)
+dest=6 src=8 old=0xa82 srcval=0x11 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x230000000000,0x240000000000)
+dest=7 src=0 old=0xab2 srcval=0x101fa07 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x10a900000000,0x11a900000000)
+dest=7 src=1 old=0xab2 srcval=0xe95 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x34a000000000,0x35a000000000)
+dest=7 src=2 old=0xab2 srcval=0x655 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x34de00000000,0x35de00000000)
+dest=7 src=3 old=0xab2 srcval=0x40 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x299700000000,0x2a9700000000)
+dest=7 src=4 old=0xab2 srcval=0x101f743 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x36e00000000,0x46e00000000)
+dest=7 src=5 old=0xab2 srcval=0x101f773 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x173300000000,0x183300000000)
+dest=7 src=6 old=0xab2 srcval=0x3 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x161900000000,0x171900000000)
+dest=7 src=7 old=0xab2 srcval=0x11 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x2b1100000000,0x2c1100000000)
+dest=7 src=8 old=0xab2 srcval=0x11 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x235900000000,0x245900000000)
+dest=8 src=0 old=0x101f4d1 srcval=0x101fa07 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x70f00000000,0x80f00000000)
+dest=8 src=1 old=0x101f4d1 srcval=0xe95 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x19c700000000,0x1ac700000000)
+dest=8 src=2 old=0x101f4d1 srcval=0x655 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0xbce00000000,0xcce00000000)
+dest=8 src=3 old=0x101f4d1 srcval=0x40 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x383800000000,0x393800000000)
+dest=8 src=4 old=0x101f4d1 srcval=0x101f743 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x1b9600000000,0x1c9600000000)
+dest=8 src=5 old=0x101f4d1 srcval=0x101f773 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x238800000000,0x248800000000)
+dest=8 src=6 old=0x101f4d1 srcval=0x3 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x2f500000000,0x3f500000000)
+dest=8 src=7 old=0x101f4d1 srcval=0x11 A=777 B=99 A777=true B777=false
+EXIT:0
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x3a5800000000,0x3b5800000000)
+dest=8 src=8 old=0x101f4d1 srcval=0x11 A=777 B=99 A777=true B777=false
+EXIT:0

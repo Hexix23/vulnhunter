@@ -1,0 +1,25 @@
+Command:
+
+orb -m ubuntu -w /home/carlosgomez/chromium-engagement/src \
+  env ASAN_OPTIONS=detect_odr_violation=0 \
+  xvfb-run -a out/c001_asan/viz_unittests \
+  --gtest_filter='SurfaceTest.RentrantSurfaceActivationGroups' \
+  --single-process-tests
+
+Result:
+
+PASS
+
+Relevant output:
+
+  [ RUN      ] SurfaceTest.RentrantSurfaceActivationGroups
+  [       OK ] SurfaceTest.RentrantSurfaceActivationGroups (92 ms)
+  [  PASSED  ] 1 test.
+
+Interpretation:
+
+The public CVE regression is present in this checkout and passes with the fix.
+The fixed sink is `SurfaceManager::InvalidateFrameSinkId()`, which now copies
+`frame_sink_id_to_allocation_groups_[frame_sink_id]` before calling
+`SurfaceAllocationGroup::WillNotRegisterNewSurfaces()`.
+

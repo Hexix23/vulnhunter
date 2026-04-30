@@ -1,0 +1,60 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x28fd00000000,0x29fd00000000)
+start
+Stacktrace:
+    ptr0=0x28fd0101f51d
+    ptr1=(nil)
+    ptr2=(nil)
+    ptr3=(nil)
+    ptr4=(nil)
+    ptr5=(nil)
+    failure_message_object=0x7ffffffbc438
+
+==== JS stack trace =========================================
+
+    0: ExitFrame [pc: 0x55555700b876]
+    1: StubFrame [pc: 0x555557036da5]
+    2: join [0x28fd0100cd11](this=0x28fd01020f95 <JSArray[3]>,0x28fd0000371d <String[1]: #|>)
+    3: /* anonymous */ [0x28fd0101f44d] [bugs/v8/c18-bytecode-trust/poc/h32-scopeinfo-array-join-only.js:21] [bytecode=0x137d0100010d offset=206](this=0x28fd01004929 <JSGlobalProxy>)
+    4: InternalFrame [pc: 0x555556f5369c]
+    5: EntryFrame [pc: 0x555556f533eb]
+
+==== Details ================================================
+
+[0]: ExitFrame [pc: 0x55555700b876]
+[1]: StubFrame [pc: 0x555557036da5]
+[2]: join [0x28fd0100cd11](this=0x28fd01020f95 <JSArray[3]>,0x28fd0000371d <String[1]: #|>) {
+// optimized frame
+--------- s o u r c e   c o d e ---------
+<No Source>
+-----------------------------------------
+}
+[3]: /* anonymous */ [0x28fd0101f44d] [bugs/v8/c18-bytecode-trust/poc/h32-scopeinfo-array-join-only.js:21] [bytecode=0x137d0100010d offset=206](this=0x28fd01004929 <JSGlobalProxy>) {
+  // heap-allocated locals
+  var bc = 0x28fd01020ee1 <ContextCell[const=0x28fd01020e3d <Object map = 0x28fd0101f8ad>]>
+  var bytes = 0x28fd01020f35 <ContextCell[const=0x28fd01020ef9 <Uint8Array map = 0x28fd0100d541>]>
+  var r = 0x28fd01020f69 <ContextCell[const=0x28fd0101f51d <ScopeInfo FUNCTION_SCOPE>]>
+  var arr = 0x28fd01020fb9 <ContextCell[const=0x28fd01020f95 <JSArray[3]>]>
+  // expression stack (top to bottom)
+  [09] : 0x28fd01020f95 <JSArray[3]>
+  [08] : 0x28fd0000371d <String[1]: #|>
+  [07] : 0x28fd0000371d <String[1]: #|>
+  [06] : 0x28fd01020f95 <JSArray[3]>
+  [05] : 0x28fd0100cd11 <JSFunction join (sfi = 0x28fd001ac8ed)>
+  [04] : 0x28fd001a0fe5 <String[4]: #join>
+  [03] : 0x28fd01017f79 <JSFunction print (sfi = 0x28fd01017f49)>
+  [02] : 1000
+  [01] : 4
+  [00] : 0x28fd00000011 <undefined>
+--------- s o u r c e   c o d e ---------
+// C18 H32: isolated Array.prototype.join over poisoned element.\x0avar C18_H32_GLOBAL = 13;\x0afunction f() {\x0a  return C18_H32_GLOBAL;\x0a}\x0a\x0afor (let i = 0; i < 1000; i++) f();\x0a\x0alet bc = %GetBytecode(f);\x0alet bytes = new Uint8Array(bc.bytecode);\x0afor (let i = 0; i < bytes.length; i++) {\x0a  if (bytes[i] === 0x2...
+
+-----------------------------------------
+}
+
+[4]: InternalFrame [pc: 0x555556f5369c]
+[5]: EntryFrame [pc: 0x555556f533eb]
+=====================
+
+
+EXIT:0

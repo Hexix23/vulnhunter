@@ -1,0 +1,34 @@
+start
+
+
+#
+# Fatal error
+# unreachable code
+#
+#
+#
+#FailureMessage Object: 0x16ee00b98
+==== C stack trace ===============================
+
+    0   d8                                  0x0000000102558adc v8::base::debug::StackTrace::StackTrace() + 28
+    1   d8                                  0x000000010255d4c4 v8::platform::(anonymous namespace)::PrintStackTrace() + 24
+    2   d8                                  0x000000010254eae0 V8_Fatal(char const*, ...) + 340
+    3   d8                                  0x00000001014a437c v8::internal::FeedbackNexus::GetFirstMap() const + 0
+    4   d8                                  0x00000001014a43cc v8::internal::FeedbackNexus::ic_state() const + 24
+    5   d8                                  0x00000001013289e4 v8::internal::Runtime_LoadGlobalIC_Miss(int, unsigned long*, v8::internal::Isolate*) + 292
+    6   ???                                 0x0000000177e7c1ac 0x0 + 6306644396
+    7   ???                                 0x0000000170000d20 0x0 + 6174018848
+    8   ???                                 0x0000000177dce348 0x0 + 6305932104
+    9   ???                                 0x0000000177dcb344 0x0 + 6305919812
+    10  ???                                 0x0000000177dcb03c 0x0 + 6305919036
+    11  d8                                  0x000000010119bc9c v8::internal::(anonymous namespace)::Invoke(v8::internal::Isolate*, v8::internal::(anonymous namespace)::InvokeParams const&) + 3296
+    12  d8                                  0x000000010119bf9c v8::internal::Execution::CallScript(v8::internal::Isolate*, v8::internal::DirectHandle<v8::internal::JSFunction>, v8::internal::DirectHandle<v8::internal::Object>, v8::internal::DirectHandle<v8::internal::Object>) + 164
+    13  d8                                  0x000000010105e358 v8::Script::Run(v8::Local<v8::Context>, v8::Local<v8::Data>) + 720
+    14  d8                                  0x0000000101010c60 v8::Shell::ExecuteString(v8::Isolate*, v8::Local<v8::String>, v8::Local<v8::String>, v8::Shell::ReportExceptions, v8::Global<v8::Value>*) + 1476
+    15  d8                                  0x000000010102a060 v8::SourceGroup::Execute(v8::Isolate*) + 424
+    16  d8                                  0x000000010102dc94 v8::Shell::RunMainIsolate(v8::Isolate*, bool) + 352
+    17  d8                                  0x000000010102d914 v8::Shell::RunMain(v8::Isolate*, bool) + 316
+    18  d8                                  0x000000010102eea0 v8::Shell::Main(int, char**) + 2932
+    19  dyld                                0x00000001849bfda4 start + 6992
+
+EXIT:133

@@ -1,0 +1,31 @@
+Command:
+
+orb -m ubuntu -w /home/carlosgomez/chromium-engagement/src env ASAN_OPTIONS=detect_odr_violation=0 xvfb-run -a out/c001_asan/viz_unittests --gtest_filter='*OnSaveTransitionDirectiveProcessedManagerObserverDestroysSupport*' --single-process-tests
+
+Result:
+
+Note: Google Test filter = *OnSaveTransitionDirectiveProcessedManagerObserverDestroysSupport*
+[ RUN      ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedManagerObserverDestroysSupport
+[FATAL:base/observer_list.h:192] Check failed: !check_reentrancy || reentrancy != ObserverListReentrancyPolicy::kDisallowReentrancy || list_.IsOnlyRemainingNode().
+
+Symbolized core frames:
+
+base::ObserverList<viz::FrameSinkObserver>::Iter<true>::Iter(...)
+  base/observer_list.h:189
+viz::FrameSinkManagerImpl::UnregisterCompositorFrameSinkSupport(...)
+  base/observer_list.h:303
+viz::CompositorFrameSinkSupport::~CompositorFrameSinkSupport()
+  components/viz/service/frame_sinks/compositor_frame_sink_support.cc:182
+viz::FrameSinkManagerImpl::CacheSurfaceAnimationManager(...)
+  components/viz/service/frame_sinks/frame_sink_manager_impl.cc:1333
+viz::CompositorFrameSinkSupport::OnSaveTransitionDirectiveProcessed(...)
+  components/viz/service/frame_sinks/compositor_frame_sink_support.cc:1712
+
+Interpretation:
+
+Synthetic `FrameSinkObserver::OnViewTransitionSaved()` that destroys the support
+trips a release CHECK during nested `FrameSinkManagerImpl` observer iteration.
+This confirms `CacheSurfaceAnimationManager()` is a synchronous callback sink
+after the public CVE fix. Product reachability is not confirmed: current product
+override for `OnViewTransitionSaved()` is `Surface::OnViewTransitionSaved()`,
+which activates pending frames and was the original iterator-invalidation route.

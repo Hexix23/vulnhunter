@@ -1,0 +1,9 @@
+baseline 13
+call
+returned
+stored
+gc1-ok
+loaded
+gc2-ok
+
+EXIT:0

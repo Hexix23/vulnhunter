@@ -1,0 +1,1 @@
+@angular/ssr 21.2.8 SSRF: HTTP/2 :authority pseudo-header bypasses HOST_HEADERS_TO_VALIDATE char-class check; createRequestUrl uses it as raw hostname fallback. Reaches internal ports via handle(Http2ServerRequest).

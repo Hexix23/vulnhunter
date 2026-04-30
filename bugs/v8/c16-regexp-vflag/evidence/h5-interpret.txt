@@ -1,0 +1,8 @@
+union mixed: OK
+subtract range keeps string: OK
+subtract string keeps range: OK
+intersection range: OK
+intersection string: OK
+longest mixed: "ab"
+longest after subtract range: "ab"
+H5 DONE

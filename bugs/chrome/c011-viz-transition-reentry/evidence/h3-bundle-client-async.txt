@@ -1,0 +1,23 @@
+Command:
+
+orb -m ubuntu -w /home/carlosgomez/chromium-engagement/src env ASAN_OPTIONS=detect_odr_violation=0 xvfb-run -a out/c001_asan/viz_unittests --gtest_filter='*OnSaveTransitionDirectiveProcessedBundleClientIsAsync*' --single-process-tests
+
+Result:
+
+Note: Google Test filter = *OnSaveTransitionDirectiveProcessedBundleClientIsAsync*
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from FrameSinkBundleImplTest
+[ RUN      ] FrameSinkBundleImplTest.OnSaveTransitionDirectiveProcessedBundleClientIsAsync
+[       OK ] FrameSinkBundleImplTest.OnSaveTransitionDirectiveProcessedBundleClientIsAsync (289 ms)
+[----------] 1 test from FrameSinkBundleImplTest (305 ms total)
+[==========] 1 test from 1 test suite ran. (312 ms total)
+[  PASSED  ] 1 test.
+
+Interpretation:
+
+Bundled product path calls `BundleClientProxy` synchronously, but the proxy sends
+`OnCompositorFrameTransitionDirectiveProcessed` over
+`mojo::Remote<mojom::FrameSinkBundleClient>`. Receiver callback did not run until
+`client_receiver_.FlushForTesting()`, after
+`CompositorFrameSinkSupport::OnSaveTransitionDirectiveProcessed()` returned.
+So bundled client destruction is not a synchronous reachability path for H1.

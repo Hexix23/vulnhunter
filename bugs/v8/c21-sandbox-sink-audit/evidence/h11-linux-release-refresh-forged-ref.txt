@@ -1,0 +1,12 @@
+Command:
+
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 out/sandbox_release_linux/d8 --expose-memory-corruption-api --allow-natives-syntax --expose-gc /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c21-sandbox-sink-audit/poc/h11-refresh-forged-ref-after-relocation.js
+
+Output:
+
+old=0x1077331
+new=0x10a4bfd
+moved=true
+same=true
+rec=4:43690:56797
+write=305419896:305419896

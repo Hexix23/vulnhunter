@@ -1,0 +1,44 @@
+baseline 13
+bytecode 35,0,0,185
+mutate-ldaglobal 0 0 -> 255
+install
+run
+abort: CSA_DCHECK failed: IsWeakOrCleared(maybe_weak_ref) [../../src/ic/accessor-assembler.cc:3958]
+
+
+
+#
+# Fatal error in ../../src/execution/frames.h, line 214
+# Debug check failed: IsTypeMarker(marker).
+#
+#
+#
+#FailureMessage Object: 0x1101c5840
+==== C stack trace ===============================
+
+    0   d8                                  0x000000010952021c v8::base::debug::StackTrace::StackTrace() + 60
+    1   d8                                  0x00000001095331d0 v8::platform::(anonymous namespace)::PrintStackTrace() + 252
+    2   d8                                  0x00000001094f2a40 V8_Fatal(char const*, int, char const*, ...) + 524
+    3   d8                                  0x00000001094f1f9c v8::base::FatalOOM(v8::base::OOMType, char const*) + 0
+    4   d8                                  0x000000010351f6c8 v8::internal::StackFrameIterator::ComputeStackFrameType(v8::internal::StackFrame::State*) const + 1028
+    5   d8                                  0x00000001035190f8 v8::internal::StackFrameIterator::Advance() + 552
+    6   d8                                  0x000000010355b898 v8::internal::Isolate::PrintStack(v8::internal::StringStream*, v8::internal::Isolate::PrintStackMode) + 496
+    7   d8                                  0x000000010355c4dc v8::internal::StackTraceFailureMessage::StackTraceFailureMessage(v8::internal::Isolate*, v8::internal::StackTraceFailureMessage::StackTraceMode, unsigned long const*, unsigned long) + 544
+    8   d8                                  0x000000010355bbd0 v8::internal::Isolate::PushStackTraceAndDie(void*, void*, void*, void*, void*, void*) + 336
+    9   d8                                  0x0000000104bd7368 v8::internal::Runtime_AbortCSADcheck(int, unsigned long*, v8::internal::Isolate*) + 588
+    10  ???                                 0x0000000177b9c948 0x0 + 6303631688
+    11  ???                                 0x0000000177ebead0 0x0 + 6306917072
+    12  ???                                 0x000000017796df58 0x0 + 6301343576
+    13  ???                                 0x00000001779675dc 0x0 + 6301316572
+    14  ???                                 0x00000001779672bc 0x0 + 6301315772
+    15  d8                                  0x00000001035127d0 v8::internal::(anonymous namespace)::Invoke(v8::internal::Isolate*, v8::internal::(anonymous namespace)::InvokeParams const&) + 6824
+    16  d8                                  0x0000000103515aa4 v8::internal::Execution::CallScript(v8::internal::Isolate*, v8::internal::DirectHandle<v8::internal::JSFunction>, v8::internal::DirectHandle<v8::internal::Object>, v8::internal::DirectHandle<v8::internal::Object>) + 800
+    17  d8                                  0x0000000102e248dc v8::Script::Run(v8::Local<v8::Context>, v8::Local<v8::Data>) + 1664
+    18  d8                                  0x0000000102d34318 v8::Shell::ExecuteString(v8::Isolate*, v8::Local<v8::String>, v8::Local<v8::String>, v8::Shell::ReportExceptions, v8::Global<v8::Value>*) + 3080
+    19  d8                                  0x0000000102d69bb0 v8::SourceGroup::Execute(v8::Isolate*) + 868
+    20  d8                                  0x0000000102d74318 v8::Shell::RunMainIsolate(v8::Isolate*, bool) + 916
+    21  d8                                  0x0000000102d735bc v8::Shell::RunMain(v8::Isolate*, bool) + 748
+    22  d8                                  0x0000000102d7699c v8::Shell::Main(int, char**) + 5384
+    23  dyld                                0x00000001849bfda4 start + 6992
+
+EXIT:133

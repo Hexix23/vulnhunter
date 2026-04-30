@@ -1,0 +1,59 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>C001 H2 offscreen placeholder transfer</title>
+<canvas id="placeholder" width="512" height="512"></canvas>
+<canvas id="sink" width="512" height="512"></canvas>
+<pre id="out"></pre>
+<script>
+const out = document.getElementById("out");
+function say(x) { out.textContent += x + "\n"; }
+
+const workerSource = `
+let canvas;
+onmessage = async e => {
+  if (e.data.canvas) {
+    canvas = e.data.canvas;
+    return;
+  }
+  const ctx = canvas.getContext("2d");
+  for (let i = 0; i < 200; i++) {
+    canvas.width = 256 + (i % 9);
+    canvas.height = 256 + (i % 7);
+    ctx.fillStyle = i & 1 ? "#0f0" : "#f0f";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    const bitmap = canvas.transferToImageBitmap();
+    postMessage({bitmap, i}, [bitmap]);
+    await 0;
+  }
+  postMessage({done: true});
+};`;
+
+const worker = new Worker(URL.createObjectURL(new Blob([workerSource], {type: "text/javascript"})));
+const placeholder = document.getElementById("placeholder");
+const sink = document.getElementById("sink");
+const bitmapRenderer = sink.getContext("bitmaprenderer");
+const offscreen = placeholder.transferControlToOffscreen();
+worker.postMessage({canvas: offscreen}, [offscreen]);
+
+let count = 0;
+worker.onmessage = e => {
+  if (e.data.done) {
+    say("H2 done count=" + count);
+    return;
+  }
+  const bitmap = e.data.bitmap;
+  bitmapRenderer.transferFromImageBitmap(bitmap);
+  count++;
+  if (count % 5 === 0) {
+    placeholder.width = 64 + count;
+    placeholder.height = 64 + (count % 17);
+  }
+  if (count % 13 === 0) {
+    placeholder.remove();
+    document.body.appendChild(placeholder);
+  }
+  if (window.gc) gc();
+};
+worker.postMessage({start: true});
+say("H2 start");
+</script>

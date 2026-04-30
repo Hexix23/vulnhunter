@@ -1,0 +1,7 @@
+ASAN and release produced identical output.
+
+japanese consistent: OK 2020-05-01[u-ca=japanese]
+japanese contradictory year: THROW RangeError Temporal error: Inconsistent year.
+gregory contradictory year: THROW RangeError Temporal error: Inconsistent year.
+iso era no year: THROW TypeError Temporal error: Invalid PlainDate fields provided.
+gregory era no year: OK 2020-05-01[u-ca=gregory]

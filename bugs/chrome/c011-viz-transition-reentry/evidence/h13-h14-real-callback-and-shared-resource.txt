@@ -1,0 +1,17 @@
+Command:
+orb -m ubuntu -w /home/carlosgomez/chromium-engagement/src env ASAN_OPTIONS=detect_odr_violation=0 xvfb-run -a out/c001_asan/viz_unittests --gtest_filter='*SaveCompletionPostedCallbackLosesPendingAnimateManager:*SaveCompletionWithSharedElementLeavesCachedManagerAndPendingCopy*' --single-process-tests
+
+Result:
+exit code 0
+
+Key output:
+[ RUN      ] CompositorFrameSinkSupportTestBase.SaveCompletionPostedCallbackLosesPendingAnimateManager
+[       OK ] CompositorFrameSinkSupportTestBase.SaveCompletionPostedCallbackLosesPendingAnimateManager (127 ms)
+[ RUN      ] CompositorFrameSinkSupportTestBase.SaveCompletionWithSharedElementLeavesCachedManagerAndPendingCopy
+[254274:254274:ERROR:components/viz/service/transitions/surface_animation_manager.cc:276] No SurfaceAnimationManager for token : 9A7212AFD52ABA8B376EFFA987859CAA
+[       OK ] CompositorFrameSinkSupportTestBase.SaveCompletionWithSharedElementLeavesCachedManagerAndPendingCopy (24 ms)
+[  PASSED  ] 2 tests.
+
+Interpretation:
+- H13 confirms H7 using the real posted save-completion callback from SurfaceSavedFrame, not a direct manual call.
+- H14 adds a shared-element render pass. The save path creates a CopyOutputRequest and early-acks the save. The pending animate activates, but ReplaceSharedElementResources cannot find the local SurfaceAnimationManager and logs the missing token. The global manager remains cached and the source surface still has pending copy output work.

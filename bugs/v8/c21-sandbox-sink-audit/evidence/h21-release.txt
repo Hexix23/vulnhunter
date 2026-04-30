@@ -1,0 +1,23 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0xf5700000000,0x105700000000)
+big_handle=0x41a000
+small_handle=0x41a200
+before_get1_is_f0=true
+
+
+#
+# Safely terminating process
+# The following harmless error was encountered: Check failed: static_cast<std::make_unsigned_t<decltype(index)>>(index) < static_cast<std::make_unsigned_t<decltype(dispatch_table->length())>>(dispatch_table->length()).
+#
+#
+#
+#FailureMessage Object: 0x7ffffffc4450
+==== C stack trace ===============================
+
+    out/sandbox_release_linux/d8(+0x1c20ece) [0x555557174ece]
+    out/sandbox_release_linux/d8(+0x1c2038b) [0x55555717438b]
+    out/sandbox_release_linux/d8(+0x1c1357f) [0x55555716757f]
+    out/sandbox_release_linux/d8(+0x1080231) [0x5555565d4231]
+    out/sandbox_release_linux/d8(+0x1079a6c) [0x5555565cda6c]
+    out/sandbox_release_linux/d8(+0x1064606) [0x5555565b8606]
+    out/sandbox_release_linux/d8(+0x1a046d4) [0x555556f586d4]

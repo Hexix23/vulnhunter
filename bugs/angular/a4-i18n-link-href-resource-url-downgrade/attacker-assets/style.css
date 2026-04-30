@@ -1,0 +1,8 @@
+body::before {
+  content: "attacker stylesheet loaded";
+  display: block;
+  padding: 8px;
+  background: rgb(255, 0, 0);
+  color: white;
+}
+

@@ -1,0 +1,7 @@
+bugs/v8/c7-wasm-canonical-types/poc/h15-exactness-return-link.js:11: Error: exact/inexact return merge: wrong error: CompileError: WebAssembly.Module(): invalid heap type 'exact', enable with --experimental-wasm-custom-descriptors @+21
+    throw new Error(label + ": wrong error: " + e);
+    ^
+Error: exact/inexact return merge: wrong error: CompileError: WebAssembly.Module(): invalid heap type 'exact', enable with --experimental-wasm-custom-descriptors @+21
+    at mustLinkError (bugs/v8/c7-wasm-canonical-types/poc/h15-exactness-return-link.js:11:11)
+    at bugs/v8/c7-wasm-canonical-types/poc/h15-exactness-return-link.js:42:1
+

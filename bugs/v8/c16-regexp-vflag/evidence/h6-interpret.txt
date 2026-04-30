@@ -1,0 +1,11 @@
+negated direct string: THROW SyntaxError Invalid regular expression: /[^\q{ab}]/v: Negated character class may contain strings
+negated subtraction string first: THROW SyntaxError Invalid regular expression: /[^\q{ab}--a]/v: Negated character class may contain strings
+negated intersection no strings: OK ^[^\q{ab|a}&&a]$/v
+negated intersection no strings: "a" -> false
+negated intersection no strings: "b" -> true
+negated intersection no strings: "ab" -> false
+negated subtraction char first: OK ^[^a--\q{ab}]$/v
+negated subtraction char first: "a" -> false
+negated subtraction char first: "b" -> true
+negated subtraction char first: "ab" -> false
+H6 DONE

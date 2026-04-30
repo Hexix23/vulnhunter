@@ -1,0 +1,17 @@
+ASan (bash /Users/carlosgomez/v8-engagement/scratch/repro.sh poc/h1.js)
+
+single astral raw: true
+single astral escape: true
+astral intersection raw: true
+astral intersection escape: true
+astral subtraction raw: false
+astral subtraction escape: false
+
+Release (/Users/carlosgomez/v8-engagement/v8/v8/out/release/d8 ... poc/h1.js)
+
+single astral raw: true
+single astral escape: true
+astral intersection raw: true
+astral intersection escape: true
+astral subtraction raw: false
+astral subtraction escape: false

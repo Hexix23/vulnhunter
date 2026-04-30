@@ -1,0 +1,24 @@
+Command:
+
+orb -m ubuntu -w /home/carlosgomez/chromium-engagement/src env ASAN_OPTIONS=detect_odr_violation=0 xvfb-run -a out/c001_asan/viz_unittests --gtest_filter='*DuplicateCompletionIsIgnored:*CacheCollisionKeepsOldManager*' --single-process-tests
+
+Result:
+
+Note: Google Test filter = *DuplicateCompletionIsIgnored:*CacheCollisionKeepsOldManager*
+[==========] Running 2 tests from 1 test suite.
+[ RUN      ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedDuplicateCompletionIsIgnored
+[       OK ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedDuplicateCompletionIsIgnored (101 ms)
+[ RUN      ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedCacheCollisionKeepsOldManager
+[ERROR:components/viz/service/frame_sinks/frame_sink_manager_impl.cc:1325] SurfaceAnimationManager already exists for |transition_token| : (A48E9048E9176895241EBA46DCBE766C)
+[       OK ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedCacheCollisionKeepsOldManager (7 ms)
+[  PASSED  ] 2 tests.
+
+Interpretation:
+
+Duplicate save completion is idempotently ignored after the first completion
+moves the manager to `FrameSinkManagerImpl`.
+
+Cache collision keeps the old manager and drops the newly completed manager
+passed to `CacheSurfaceAnimationManager()`. This is observable logic behavior,
+but not yet VRP-grade: it requires same-token collision/reuse and produced no
+memory safety signal in ASan.

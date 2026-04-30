@@ -1,0 +1,7 @@
+V8 is running with experimental features enabled. Stability and security will suffer.
+bugs/v8/c7-wasm-canonical-types/poc/h9-minimal-raw.js:16: CompileError: WebAssembly.Module(): descriptor types need --experimental-wasm-custom-descriptors @+16
+const instance = new WebAssembly.Instance(new WebAssembly.Module(bytes));
+                                          ^
+CompileError: WebAssembly.Module(): descriptor types need --experimental-wasm-custom-descriptors @+16
+    at bugs/v8/c7-wasm-canonical-types/poc/h9-minimal-raw.js:16:43
+

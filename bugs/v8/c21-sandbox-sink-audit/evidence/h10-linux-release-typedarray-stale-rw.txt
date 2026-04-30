@@ -1,0 +1,23 @@
+Commands:
+
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 out/sandbox_release_linux/d8 --expose-memory-corruption-api --allow-natives-syntax --expose-gc [-flags] -e "var H10_ROUNDS=...; var H10_ALLOC=..." /Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c21-sandbox-sink-audit/poc/h10-typedarray-stale-rw.js
+
+Observed summary:
+
+- `H10_ROUNDS=0`, no allocation pressure:
+  - `old=0x1077429`
+  - `before=4:4369:17476`
+  - `weak=live:0x10a4bfd:4:4369:17476`
+  - `moved=true`
+  - then `SIGSEGV` in `WasmToJSObject(...)`
+- `H10_ROUNDS=1`, no allocation pressure:
+  - same pattern: WeakRef-live, moved, then `SIGSEGV`
+- `--stress-compaction`, `H10_ROUNDS=3`, allocation pressure:
+  - same pattern: WeakRef-live, moved, then `SIGSEGV`
+
+Interpretation:
+
+- TypedArray target remains logically live but relocates.
+- Raw pointer bytes in numeric global do not update because the slot is not a
+  traced pointer slot.
+- Dereferencing stale bytes crashes in `WasmToJSObject(...)`.

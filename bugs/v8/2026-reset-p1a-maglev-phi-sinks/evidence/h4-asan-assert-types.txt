@@ -1,0 +1,8 @@
+V8 is running with experimental features enabled. Stability and security will suffer.
+CheckMaglevType failed
+DebugPrint: Smi: 0x7 (7)
+
+Expected type: : DebugPrint: Smi: 0x40002 (262146)
+
+Actual type: : DebugPrint: Smi: 0x1 (1)
+

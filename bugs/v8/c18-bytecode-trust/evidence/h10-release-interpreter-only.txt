@@ -1,0 +1,8 @@
+baseline 10
+bytecode 35,0,0,212,11,249,116,249,3,1,2,185
+mutate-construct 6 2 -> 255
+install
+run
+20
+
+EXIT:0

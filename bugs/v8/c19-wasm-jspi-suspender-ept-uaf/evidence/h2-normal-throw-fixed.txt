@@ -1,0 +1,18 @@
+Command:
+orb -m ubuntu -w /home/carlosgomez/v8-linux/v8 out/sandbox_dcheck_linux/d8 --sandbox-testing --allow-natives-syntax --expose-gc /mnt/mac/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/bugs/v8/c19-wasm-jspi-suspender-ept-uaf/poc/h2-normal-throw-after-resume.js
+
+Exit:
+0
+
+Output:
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x390c00000000,0x3a0c00000000)
+[*] suspender handle: 0x41b600
+[*] resolving -> thrower
+[*] promising rejected: h2-boom
+[*] post-throw: handle still 0x41b600
+[*] manual second resume after throw unwind
+Caught harmless memory access violation (nullptr dereference). Exiting process...
+
+Interpretation:
+Normal JS exception crossing the JSPI stack also clears the suspender stack pointer. Manual second resume reaches null, not freed StackMemory.

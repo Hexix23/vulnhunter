@@ -1,0 +1,7 @@
+ASAN and release produced identical output.
+
+PlainDate dup-ca: OK 2020-01-01[u-ca=gregory]
+PlainDateTime dup-ca: OK 2020-01-01T12:34:56[u-ca=gregory]
+PlainMonthDay dup-ca: THROW RangeError Temporal error: YearMonth/MonthDay formats only allowed for ISO calendar.
+PlainYearMonth dup-ca: THROW RangeError Temporal error: YearMonth/MonthDay formats only allowed for ISO calendar.
+ZonedDateTime dup-ca: OK 2020-01-01T00:00:00+00:00[UTC][u-ca=gregory]

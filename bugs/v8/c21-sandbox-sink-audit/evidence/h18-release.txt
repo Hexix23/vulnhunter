@@ -1,0 +1,10 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x2d400000000,0x3d400000000)
+funcref_raw=0x124a
+externref_raw=0x160a
+before=60
+entry_is_null=true
+after_null=60
+weak_target_alive=true
+weak_instance_alive=true
+after_gc=60

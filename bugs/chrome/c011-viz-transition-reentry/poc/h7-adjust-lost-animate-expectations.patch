@@ -1,0 +1,32 @@
+diff --git a/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc b/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
+--- a/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
++++ b/components/viz/service/frame_sinks/compositor_frame_sink_support_unittest.cc
+@@ -3084,7 +3084,7 @@ TEST_F(CompositorFrameSinkSupportTestBase,
+ }
+ 
+ TEST_F(CompositorFrameSinkSupportTestBase,
+-       OnSaveTransitionDirectiveProcessedPendingAnimateManagerSurvivesCleanup) {
++       OnSaveTransitionDirectiveProcessedPendingAnimateLeavesManagerCached) {
+   blink::ViewTransitionToken token_x;
+ 
+   SubmitCompositorFrameWithResources({});
+@@ -3116,8 +3116,15 @@ TEST_F(CompositorFrameSinkSupportTestBase,
+ 
+   OnSaveTransitionDirectiveProcessed(support_.get(), save_directive);
+ 
+-  EXPECT_FALSE(HasAnimationManagerForToken(token_x));
+-  EXPECT_TRUE(SupportHasSurfaceAnimationManagerForToken(support_.get(),
+-                                                       token_x));
++  // Product route is reached: CacheSurfaceAnimationManager() notifies Surface,
++  // Surface activates its pending frame, and the Animate directive is
++  // processed synchronously. But the old local map key still exists with a
++  // moved-out manager, so kAnimateRenderer erases that key and returns before
++  // taking the freshly cached global manager. The transition is lost and the
++  // manager remains cached globally until an explicit Release.
++  EXPECT_FALSE(surface_b->HasPendingFrame());
++  EXPECT_TRUE(HasAnimationManagerForToken(token_x));
++  EXPECT_FALSE(SupportHasSurfaceAnimationManagerForToken(support_.get(),
++                                                        token_x));
+ }
+ 
+ TEST_P(AckOnSurfaceActivationWhenInteractiveTest,

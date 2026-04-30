@@ -1,0 +1,73 @@
+start
+index 0
+abort: CSA_DCHECK failed: Torque assert 'Is<A>(o)' failed [src/builtins/cast.tq:963] [../../src/objects/js-array.tq:158] [../../src/objects/js-array.tq:394] [../../src/builtins/array-map.tq:288]
+
+
+
+#
+# Fatal error in ../../src/objects/shared-function-info-inl.h, line 689
+# Debug check failed: HasFeedbackMetadata(kAcquireLoad).
+#
+#
+#
+#FailureMessage Object: 0x122301440
+==== C stack trace ===============================
+
+Stacktrace:
+    ptr0=0x7e98002abda1
+    ptr1=0x60f000002200
+    ptr2=0x0
+    ptr3=0x0
+    ptr4=0x0
+    ptr5=0x0
+    failure_message_object=0x1129c0020
+
+==== JS stack trace =========================================
+
+    0: ExitFrame [pc: 0x177b9c948]
+    1: map [0x7e9801019b4d](this=0x7e980102d005 <JSArray[3]>,0x7e9801080011 <JSFunction (sfi = 0x7e980102b115)>)
+    2: /* anonymous */ [0x7e980102b1f1] [bugs/v8/c18-bytecode-trust/poc/h30-scopeinfo-array-methods.js:22] [bytecode=0x7fe0010001a9 offset=237](this=0x7e9801011685 <JSGlobalProxy>)
+    3: InternalFrame [pc: 0x1779675dc]
+    4: EntryFrame [pc: 0x1779672bc]
+
+==== Details ================================================
+
+[0]: ExitFrame [pc: 0x177b9c948]
+[1]: map [0x7e9801019b4d](this=0x7e980102d005 <JSArray[3]>,0x7e9801080011 <JSFunction (sfi = 0x7e980102b115)>) {
+// optimized frame
+--------- s o u r c e   c o d e ---------
+<No Source>
+-----------------------------------------
+}
+[2]: /* anonymous */ [0x7e980102b1f1] [bugs/v8/c18-bytecode-trust/poc/h30-scopeinfo-array-methods.js:22] [bytecode=0x7fe0010001a9 offset=237](this=0x7e9801011685 <JSGlobalProxy>) {
+  // heap-allocated locals
+  var bc = 0x7e980102cf51 <ContextCell[const=0x7e980102cead <Object map = 0x7e980102b739>]>
+  var bytes = 0x7e980102cfa5 <ContextCell[const=0x7e980102cf69 <Uint8Array map = 0x7e980101a29d>]>
+  var r = 0x7e980102cfd9 <ContextCell[const=0x7e980102b2e1 <ScopeInfo FUNCTION_SCOPE>]>
+  var arr = 0x7e980102d029 <ContextCell[const=0x7e980102d005 <JSArray[3]>]>
+  // expression stack (top to bottom)
+  [11] : 0x7e980102d005 <JSArray[3]>
+  [10] : 0x7e9801080011 <JSFunction (sfi = 0x7e980102b115)>
+  [09] : 0x7e9800000011 <undefined>
+  [08] : 0x7e9800000011 <undefined>
+  [07] : 0x7e9801080011 <JSFunction (sfi = 0x7e980102b115)>
+  [06] : 0x7e980102d005 <JSArray[3]>
+  [05] : 0x7e9801019b4d <JSFunction map (sfi = 0x7e9800476b01)>
+  [04] : 0x7e980102af79 <String[7]: #map-len>
+  [03] : 0x7e9801024cd5 <JSFunction print (sfi = 0x7e9801024ca5)>
+  [02] : 1000
+  [01] : 4
+  [00] : 0x7e9800000011 <undefined>
+--------- s o u r c e   c o d e ---------
+// C18 H30: array methods over poisoned element.\x0avar C18_H30_GLOBAL = 13;\x0afunction f() {\x0a  return C18_H30_GLOBAL;\x0a}\x0a\x0afor (let i = 0; i < 1000; i++) f();\x0a\x0alet bc = %GetBytecode(f);\x0alet bytes = new Uint8Array(bc.bytecode);\x0afor (let i = 0; i < bytes.length; i++) {\x0a  if (bytes[i] === 0x23) bytes[i + 2] ...
+
+-----------------------------------------
+}
+
+[3]: InternalFrame [pc: 0x1779675dc]
+[4]: EntryFrame [pc: 0x1779672bc]
+=====================
+
+/bin/bash: line 1: 96582 Trace/BPT trap: 5       /opt/homebrew/bin/gtimeout 20 /Users/carlosgomez/v8-engagement/v8/v8/out/asan/d8 --allow-natives-syntax --expose-gc "$f"
+
+EXIT:133

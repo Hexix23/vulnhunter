@@ -1,0 +1,558 @@
+V8 is running with experimental features enabled. Stability and security will suffer.
+V8 is running with developer-only features enabled. Stability and security will suffer.
+[43093:0x11400f00000:0]        1 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 512MB / 512MB global: 0MB / 0MB / 1024MB / 1024MB
+[43093:0x11400f00000:0]        1 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]        1 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]        1 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]        1 ms: [IncrementalMarking] Job: Schedule
+[43093:0x114011d0000:1]        0 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 512MB / 512MB global: 0MB / 0MB / 1024MB / 1024MB
+[43093:0x114011d0000:1]        0 ms: [IncrementalMarking] Start marking
+[43093:0x114011d0000:1]        0 ms: [IncrementalMarking] Black allocation started
+[43093:0x114011d0000:1]        0 ms: [IncrementalMarking] Running
+[43093:0x114011d0000:1]        0 ms: [IncrementalMarking] Job: Schedule
+[43093:0x114011d0000:1]        1 ms: [IncrementalMarking] Job: Run
+[43093:0x114011d0000:1]        1 ms: [IncrementalMarking] Schedule: 64KB to mark, origin: task, elapsed: 1.0, marked: 11KB (mutator: 0KB, concurrent 11KB), expected marked: 0KB, estimated live: 120KB, schedule delta: +10KB
+[43093:0x114011d0000:1]        1 ms: [IncrementalMarking] Step: origin: task overall: 0.1ms V8: 39656KB (65536KB), 0.1ms (1.0ms), 581.8MB/s CppHeap: 0KB (65536KB), 0.0ms (1.0ms)
+[43093:0x114011d0000:1]        1 ms: [IncrementalMarking] Stopping: old generation size 0MB, waste 0MB, limit 512MB, overshoot 0MB
+[43093:0x114011d0000:1]        1 ms: [IncrementalMarking] Black allocation finished
+[43093:0x114011d0000]        2 ms: Incremental Mark-Compact 0.2 (1.2) -> 0.2 (1.2) MB, pooled: 0.0 MB, 0.21 / 0.00 ms (+ 0.1 ms in 1 steps since start of marking, biggest step 0.1 ms, walltime since start of marking 1 ms) (average mu = 0.808, current mu = 0.808) finalize incremental marking via task; GC in old space requested
+[43093:0x114011d0000:1]        2 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 9MB / 9MB global: 0MB / 0MB / 9MB / 9MB
+[43093:0x114011d0000:1]        2 ms: [IncrementalMarking] Start marking
+[43093:0x114011d0000:1]        2 ms: [IncrementalMarking] Black allocation started
+[43093:0x114011d0000:1]        2 ms: [IncrementalMarking] Running
+[43093:0x114011d0000:1]        2 ms: [IncrementalMarking] Job: Schedule
+[43093:0x11400f00000:0]        5 ms: [IncrementalMarking] Schedule: 64KB to mark, origin: V8, elapsed: 4.2, marked: 11KB (mutator: 0KB, concurrent 11KB), expected marked: 1KB, estimated live: 130KB, schedule delta: +10KB
+[43093:0x11400f00000:0]        5 ms: [IncrementalMarking] Step: origin: V8 overall: 0.1ms V8: 55044KB (65536KB), 0.0ms (5.0ms), 1071.3MB/s CppHeap: 0KB (65536KB), 0.0ms (5.0ms)
+[43093:0x11400f00000:0]        5 ms: [IncrementalMarking] Completion: Not delaying GC via stack guard, avg time to task: nanms, current time to task: 4.2ms allowed overshoot: 50.0ms
+[43093:0x11400f00000:0]        5 ms: [IncrementalMarking] Stopping: old generation size 0MB, waste 0MB, limit 512MB, overshoot 0MB
+[43093:0x11400f00000:0]        5 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]        5 ms: Incremental Mark-Compact 0.2 (2.0) -> 0.2 (2.0) MB, pooled: 0.0 MB, 0.42 / 0.00 ms (+ 0.1 ms in 1 steps since start of marking, biggest step 0.1 ms, walltime since start of marking 5 ms) (average mu = 0.907, current mu = 0.907) finalize incremental marking via stack guard; GC in old space requested
+[43093:0x11400f00000:0]        6 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 9MB / 9MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]        6 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]        6 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]        6 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]        6 ms: [IncrementalMarking] Stopping: old generation size 0MB, waste 0MB, limit 9MB, overshoot 0MB
+[43093:0x11400f00000:0]        6 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]        6 ms: Incremental Mark-Compact 0.7 (3.0) -> 0.6 (2.0) MB, pooled: 0.2 MB, 0.38 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.849, current mu = 0.373) testing; GC in old space requested
+[43093:0x11400f00000]        7 ms: Mark-Compact 0.7 (2.0) -> 0.2 (1.2) MB, pooled: 0.5 MB, 0.53 / 0.00 ms (average mu = 0.715, current mu = 0.009) testing; GC in old space requested
+[43093:0x11400f00000]        7 ms: Mark-Compact 0.2 (1.2) -> 0.2 (1.2) MB, pooled: 0.5 MB, 0.22 / 0.00 ms (average mu = 0.632, current mu = 0.022) testing; GC in old space requested
+[43093:0x11400f00000:0]        7 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 9MB / 9MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]        7 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]        7 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]        7 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]        8 ms: [IncrementalMarking] Stopping: old generation size 0MB, waste 0MB, limit 9MB, overshoot 0MB
+[43093:0x11400f00000:0]        8 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]        8 ms: Incremental Mark-Compact 0.9 (2.2) -> 0.8 (2.0) MB, pooled: 0.2 MB, 0.62 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.502, current mu = 0.380) testing; GC in old space requested
+[43093:0x11400f00000]        8 ms: Mark-Compact 0.8 (2.0) -> 0.3 (1.5) MB, pooled: 0.2 MB, 0.56 / 0.00 ms (average mu = 0.322, current mu = 0.009) testing; GC in old space requested
+[43093:0x11400f00000]       10 ms: Mark-Compact 0.3 (1.5) -> 0.3 (1.5) MB, pooled: 0.2 MB, 1.68 / 0.00 ms (average mu = 0.103, current mu = 0.003) testing; GC in old space requested
+[43093:0x11400f00000:0]       10 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 9MB / 9MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]       10 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]       10 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]       10 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]       11 ms: [IncrementalMarking] Stopping: old generation size 0MB, waste 0MB, limit 9MB, overshoot 0MB
+[43093:0x11400f00000:0]       11 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]       11 ms: Incremental Mark-Compact 0.4 (2.0) -> 0.4 (1.8) MB, pooled: 0.2 MB, 0.68 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.259, current mu = 0.421) testing; GC in old space requested
+[43093:0x11400f00000]       12 ms: Mark-Compact 0.4 (1.8) -> 0.3 (1.5) MB, pooled: 0.2 MB, 0.59 / 0.00 ms (average mu = 0.176, current mu = 0.010) testing; GC in old space requested
+[43093:0x11400f00000]       13 ms: Mark-Compact 0.3 (1.5) -> 0.3 (1.5) MB, pooled: 0.2 MB, 1.33 / 0.00 ms (average mu = 0.073, current mu = 0.004) testing; GC in old space requested
+[43093:0x11400f00000:0]       13 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 9MB / 9MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]       13 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]       13 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]       13 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]       14 ms: [IncrementalMarking] Schedule: 0KB to mark, origin: V8, elapsed: 0.3, marked: 246KB (mutator: 0KB, concurrent 246KB), expected marked: 0KB, estimated live: 1446KB, schedule delta: +245KB
+[43093:0x11400f00000:0]       14 ms: [IncrementalMarking] Step: origin: V8 overall: 0.0ms V8: 24KB (0KB), 0.0ms (5.0ms), 1071.3MB/s CppHeap: 0KB (0KB), 0.0ms (5.0ms)
+[43093:0x11400f00000:0]       14 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 9MB, overshoot 0MB
+[43093:0x11400f00000:0]       14 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]       14 ms: Incremental Mark-Compact 1.5 (3.0) -> 1.5 (2.8) MB, pooled: 0.2 MB, 0.54 / 0.00 ms (+ 0.0 ms in 1 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.307, current mu = 0.534) testing; GC in old space requested
+[43093:0x11400f00000]       15 ms: Mark-Compact 1.5 (2.8) -> 0.4 (1.5) MB, pooled: 0.2 MB, 0.62 / 0.00 ms (average mu = 0.202, current mu = 0.010) testing; GC in old space requested
+[43093:0x11400f00000]       16 ms: Mark-Compact 0.4 (1.5) -> 0.4 (1.5) MB, pooled: 0.2 MB, 0.67 / 0.00 ms (average mu = 0.118, current mu = 0.009) testing; GC in old space requested
+[43093:0x11400f00000:0]       16 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 9MB / 9MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]       16 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]       16 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]       16 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]       17 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 9MB, overshoot 0MB
+[43093:0x11400f00000:0]       17 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]       17 ms: Incremental Mark-Compact 1.4 (3.0) -> 1.4 (2.5) MB, pooled: 0.2 MB, 0.94 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.361, current mu = 0.468) testing; GC in old space requested
+[43093:0x11400f00000]       19 ms: Mark-Compact 1.4 (2.5) -> 0.5 (1.5) MB, pooled: 0.2 MB, 1.43 / 0.00 ms (average mu = 0.172, current mu = 0.005) testing; GC in old space requested
+[43093:0x11400f00000]       20 ms: Mark-Compact 0.5 (1.5) -> 0.5 (1.5) MB, pooled: 0.2 MB, 0.77 / 0.00 ms (average mu = 0.112, current mu = 0.008) testing; GC in old space requested
+[43093:0x11400f00000:0]       20 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 9MB / 9MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]       20 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]       20 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]       20 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]       20 ms: [IncrementalMarking] Schedule: 0KB to mark, origin: V8, elapsed: 0.2, marked: 201KB (mutator: 0KB, concurrent 201KB), expected marked: 0KB, estimated live: 1281KB, schedule delta: +200KB
+[43093:0x11400f00000:0]       20 ms: [IncrementalMarking] Step: origin: V8 overall: 0.0ms V8: 40KB (0KB), 0.0ms (5.0ms), 547.1MB/s CppHeap: 0KB (0KB), 0.0ms (5.0ms)
+[43093:0x11400f00000:0]       20 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 9MB, overshoot 0MB
+[43093:0x11400f00000:0]       20 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]       21 ms: Incremental Mark-Compact 1.4 (2.8) -> 1.3 (2.5) MB, pooled: 0.2 MB, 0.65 / 0.00 ms (+ 0.0 ms in 1 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.235, current mu = 0.363) testing; GC in old space requested
+[43093:0x11400f00000]       22 ms: Mark-Compact 1.3 (2.5) -> 0.5 (1.5) MB, pooled: 0.2 MB, 0.81 / 0.00 ms (average mu = 0.135, current mu = 0.006) testing; GC in old space requested
+[43093:0x11400f00000]       22 ms: Mark-Compact 0.5 (1.8) -> 0.5 (1.5) MB, pooled: 0.2 MB, 0.84 / 0.00 ms (average mu = 0.074, current mu = 0.007) testing; GC in old space requested
+[43093:0x11400f00000:0]       22 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 9MB / 9MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]       22 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]       22 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]       22 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]       23 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 9MB, overshoot 0MB
+[43093:0x11400f00000:0]       23 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]       24 ms: Incremental Mark-Compact 1.1 (2.2) -> 1.0 (2.0) MB, pooled: 0.2 MB, 0.96 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.228, current mu = 0.325) testing; GC in old space requested
+[43093:0x11400f00000]       25 ms: Mark-Compact 1.0 (2.0) -> 0.6 (1.5) MB, pooled: 0.2 MB, 0.97 / 0.00 ms (average mu = 0.126, current mu = 0.006) testing; GC in old space requested
+[43093:0x11400f00000]       26 ms: Mark-Compact 0.6 (1.5) -> 0.6 (1.5) MB, pooled: 0.2 MB, 1.31 / 0.00 ms (average mu = 0.062, current mu = 0.009) testing; GC in old space requested
+[43093:0x11400f00000:0]       26 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 9MB / 9MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]       26 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]       26 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]       26 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]       27 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 9MB, overshoot 0MB
+[43093:0x11400f00000:0]       27 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]       28 ms: Incremental Mark-Compact 1.6 (2.8) -> 1.4 (2.5) MB, pooled: 0.2 MB, 1.14 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.226, current mu = 0.340) testing; GC in old space requested
+[43093:0x11400f00000]       29 ms: Mark-Compact 1.4 (2.5) -> 0.6 (1.5) MB, pooled: 0.2 MB, 1.07 / 0.00 ms (average mu = 0.133, current mu = 0.007) testing; GC in old space requested
+[43093:0x11400f00000]       30 ms: Mark-Compact 0.7 (1.8) -> 0.6 (1.5) MB, pooled: 0.2 MB, 1.00 / 0.00 ms (average mu = 0.076, current mu = 0.005) testing; GC in old space requested
+[43093:0x11400f00000:0]       30 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 9MB / 9MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]       30 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]       30 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]       30 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]       30 ms: [IncrementalMarking] Schedule: 0KB to mark, origin: V8, elapsed: 0.2, marked: 198KB (mutator: 0KB, concurrent 198KB), expected marked: 0KB, estimated live: 1588KB, schedule delta: +197KB
+[43093:0x11400f00000:0]       30 ms: [IncrementalMarking] Step: origin: V8 overall: 0.0ms V8: 36KB (0KB), 0.0ms (5.0ms), 292.6MB/s CppHeap: 0KB (0KB), 0.0ms (5.0ms)
+[43093:0x11400f00000:0]       30 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 9MB, overshoot 0MB
+[43093:0x11400f00000:0]       30 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]       31 ms: Incremental Mark-Compact 1.6 (3.2) -> 1.4 (3.0) MB, pooled: 0.2 MB, 0.92 / 0.00 ms (+ 0.0 ms in 1 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.238, current mu = 0.366) testing; GC in old space requested
+[43093:0x11400f00000]       33 ms: Mark-Compact 1.4 (3.0) -> 0.7 (1.8) MB, pooled: 0.2 MB, 1.28 / 0.00 ms (average mu = 0.122, current mu = 0.005) testing; GC in old space requested
+[43093:0x11400f00000]       33 ms: Mark-Compact 0.8 (2.0) -> 0.7 (1.8) MB, pooled: 0.2 MB, 0.85 / 0.00 ms (average mu = 0.077, current mu = 0.010) testing; GC in old space requested
+[43093:0x11400f00000:0]       34 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 9MB / 9MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]       34 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]       34 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]       34 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]       34 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 9MB, overshoot 0MB
+[43093:0x11400f00000:0]       34 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]       35 ms: Incremental Mark-Compact 1.4 (2.8) -> 1.2 (2.8) MB, pooled: 0.2 MB, 1.04 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.157, current mu = 0.220) testing; GC in old space requested
+[43093:0x11400f00000]       37 ms: Mark-Compact 1.2 (2.8) -> 0.7 (2.0) MB, pooled: 0.5 MB, 2.16 / 0.00 ms (average mu = 0.058, current mu = 0.003) testing; GC in old space requested
+[43093:0x11400f00000]       38 ms: Mark-Compact 0.9 (2.2) -> 0.7 (2.0) MB, pooled: 0.5 MB, 1.20 / 0.00 ms (average mu = 0.036, current mu = 0.005) testing; GC in old space requested
+[43093:0x11400f00000:0]       38 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 9MB / 9MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]       38 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]       38 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]       38 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]       38 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 9MB, overshoot 0MB
+[43093:0x11400f00000:0]       39 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]       40 ms: Incremental Mark-Compact 1.7 (3.0) -> 1.5 (2.8) MB, pooled: 0.5 MB, 1.06 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.131, current mu = 0.231) testing; GC in old space requested
+[43093:0x11400f00000]       41 ms: Mark-Compact 1.5 (2.8) -> 0.8 (2.0) MB, pooled: 0.5 MB, 1.25 / 0.00 ms (average mu = 0.073, current mu = 0.008) testing; GC in old space requested
+[43093:0x11400f00000]       42 ms: Mark-Compact 0.8 (2.0) -> 0.8 (2.0) MB, pooled: 0.5 MB, 1.08 / 0.00 ms (average mu = 0.043, current mu = 0.006) testing; GC in old space requested
+[43093:0x11400f00000:0]       42 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 1MB / 0MB / 9MB / 8MB global: 5MB / 0MB / 12MB / 7MB
+[43093:0x11400f00000:0]       42 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]       42 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]       42 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]       42 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 9MB, overshoot 0MB
+[43093:0x11400f00000:0]       42 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]       43 ms: Incremental Mark-Compact 1.8 (3.2) -> 1.5 (2.8) MB, pooled: 0.5 MB, 0.86 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.153, current mu = 0.266) testing; GC in old space requested
+[43093:0x11400f00000]       44 ms: Mark-Compact 1.5 (2.8) -> 0.8 (2.0) MB, pooled: 0.5 MB, 0.95 / 0.00 ms (average mu = 0.087, current mu = 0.006) testing; GC in old space requested
+[43093:0x11400f00000]       46 ms: Mark-Compact 1.1 (2.2) -> 0.8 (2.0) MB, pooled: 0.5 MB, 1.61 / 0.00 ms (average mu = 0.037, current mu = 0.004) testing; GC in old space requested
+[43093:0x11400f00000:0]       46 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 1MB / 0MB / 9MB / 8MB global: 5MB / 0MB / 12MB / 7MB
+[43093:0x11400f00000:0]       46 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]       46 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]       46 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]       46 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 9MB, overshoot 0MB
+[43093:0x11400f00000:0]       46 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]       47 ms: Incremental Mark-Compact 2.0 (4.2) -> 1.7 (3.5) MB, pooled: 0.5 MB, 0.97 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.156, current mu = 0.275) testing; GC in old space requested
+[43093:0x11400f00000]       48 ms: Mark-Compact 1.7 (3.5) -> 0.9 (2.2) MB, pooled: 0.5 MB, 0.82 / 0.00 ms (average mu = 0.099, current mu = 0.008) testing; GC in old space requested
+[43093:0x11400f00000]       49 ms: Mark-Compact 1.1 (2.5) -> 0.9 (2.2) MB, pooled: 0.5 MB, 1.39 / 0.00 ms (average mu = 0.045, current mu = 0.004) testing; GC in old space requested
+[43093:0x11400f00000:0]       49 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 1MB / 0MB / 9MB / 8MB global: 5MB / 0MB / 12MB / 7MB
+[43093:0x11400f00000:0]       49 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]       49 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]       49 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]       49 ms: [IncrementalMarking] Schedule: 0KB to mark, origin: V8, elapsed: 0.1, marked: 203KB (mutator: 0KB, concurrent 203KB), expected marked: 0KB, estimated live: 1765KB, schedule delta: +202KB
+[43093:0x11400f00000:0]       49 ms: [IncrementalMarking] Step: origin: V8 overall: 0.0ms V8: 24KB (0KB), 0.0ms (5.0ms), 292.6MB/s CppHeap: 0KB (0KB), 0.0ms (5.0ms)
+[43093:0x11400f00000:0]       49 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 9MB, overshoot 0MB
+[43093:0x11400f00000:0]       49 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]       51 ms: Incremental Mark-Compact 1.8 (3.2) -> 1.4 (3.0) MB, pooled: 0.5 MB, 1.13 / 0.00 ms (+ 0.0 ms in 1 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.120, current mu = 0.185) testing; GC in old space requested
+[43093:0x11400f00000]       52 ms: Mark-Compact 1.4 (3.0) -> 0.9 (2.5) MB, pooled: 0.8 MB, 1.23 / 0.00 ms (average mu = 0.066, current mu = 0.009) testing; GC in old space requested
+[43093:0x11400f00000]       53 ms: Mark-Compact 1.3 (3.0) -> 0.9 (2.5) MB, pooled: 0.8 MB, 1.25 / 0.00 ms (average mu = 0.037, current mu = 0.007) testing; GC in old space requested
+[43093:0x11400f00000:0]       53 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 1MB / 0MB / 9MB / 8MB global: 5MB / 0MB / 12MB / 7MB
+[43093:0x11400f00000:0]       53 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]       53 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]       53 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]       53 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 9MB, overshoot 0MB
+[43093:0x11400f00000:0]       53 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]       54 ms: Incremental Mark-Compact 1.3 (3.2) -> 1.1 (2.5) MB, pooled: 1.0 MB, 1.06 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.094, current mu = 0.152) testing; GC in old space requested
+[43093:0x11400f00000]       56 ms: Mark-Compact 1.1 (2.5) -> 0.9 (2.2) MB, pooled: 1.0 MB, 1.26 / 0.00 ms (average mu = 0.050, current mu = 0.006) testing; GC in old space requested
+[43093:0x11400f00000]       57 ms: Mark-Compact 0.9 (2.2) -> 0.9 (2.2) MB, pooled: 1.0 MB, 1.05 / 0.00 ms (average mu = 0.030, current mu = 0.006) testing; GC in old space requested
+[43093:0x11400f00000]       58 ms: Mark-Compact 1.3 (2.8) -> 1.0 (2.5) MB, pooled: 0.8 MB, 1.43 / 0.00 ms (average mu = 0.032, current mu = 0.035) testing; GC in old space requested
+[43093:0x11400f00000]       59 ms: Mark-Compact 1.0 (2.5) -> 1.0 (2.2) MB, pooled: 1.0 MB, 1.30 / 0.00 ms (average mu = 0.019, current mu = 0.005) testing; GC in old space requested
+[43093:0x11400f00000:0]       60 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 1MB / 0MB / 9MB / 8MB global: 5MB / 0MB / 12MB / 7MB
+[43093:0x11400f00000:0]       60 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]       60 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]       60 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]       60 ms: [IncrementalMarking] Stopping: old generation size 2MB, waste 0MB, limit 9MB, overshoot 0MB
+[43093:0x11400f00000:0]       60 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]       60 ms: Incremental Mark-Compact 2.9 (4.8) -> 1.8 (3.5) MB, pooled: 1.2 MB, 0.36 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.295, current mu = 0.649) testing; GC in old space requested
+[43093:0x11400f00000]       61 ms: Mark-Compact 1.8 (3.5) -> 0.3 (1.5) MB, pooled: 1.5 MB, 0.40 / 0.00 ms (average mu = 0.223, current mu = 0.015) testing; GC in old space requested
+[43093:0x11400f00000]       61 ms: Mark-Compact 0.3 (1.5) -> 0.3 (1.5) MB, pooled: 1.5 MB, 0.30 / 0.00 ms (average mu = 0.166, current mu = 0.022) testing; GC in old space requested
+[43093:0x11400f00000:0]       61 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 9MB / 9MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]       61 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]       61 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]       61 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]       62 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 9MB, overshoot 0MB
+[43093:0x11400f00000:0]       62 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]       62 ms: Incremental Mark-Compact 1.6 (3.0) -> 1.5 (3.0) MB, pooled: 1.2 MB, 0.36 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.380, current mu = 0.531) testing; GC in old space requested
+[43093:0x11400f00000]       62 ms: Mark-Compact 1.5 (3.0) -> 0.3 (1.8) MB, pooled: 1.2 MB, 0.46 / 0.00 ms (average mu = 0.229, current mu = 0.015) testing; GC in old space requested
+[43093:0x11400f00000]       63 ms: Mark-Compact 0.3 (2.0) -> 0.3 (1.8) MB, pooled: 1.2 MB, 0.39 / 0.00 ms (average mu = 0.140, current mu = 0.013) testing; GC in old space requested
+[43093:0x11400f00000:0]       63 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 9MB / 9MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]       63 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]       63 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]       63 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]       63 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 9MB, overshoot 0MB
+[43093:0x11400f00000:0]       63 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]       64 ms: Incremental Mark-Compact 1.6 (3.2) -> 1.6 (3.0) MB, pooled: 1.2 MB, 0.36 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.356, current mu = 0.500) testing; GC in old space requested
+[43093:0x11400f00000]       64 ms: Mark-Compact 1.6 (3.0) -> 0.4 (1.8) MB, pooled: 1.2 MB, 0.50 / 0.00 ms (average mu = 0.200, current mu = 0.014) testing; GC in old space requested
+[43093:0x11400f00000]       64 ms: Mark-Compact 0.4 (1.8) -> 0.4 (1.8) MB, pooled: 1.2 MB, 0.44 / 0.00 ms (average mu = 0.117, current mu = 0.013) testing; GC in old space requested
+[43093:0x11400f00000:0]       64 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 10MB / 10MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]       64 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]       65 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]       65 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]       65 ms: [IncrementalMarking] Schedule: 0KB to mark, origin: V8, elapsed: 0.2, marked: 197KB (mutator: 0KB, concurrent 197KB), expected marked: 0KB, estimated live: 800KB, schedule delta: +197KB
+[43093:0x11400f00000:0]       65 ms: [IncrementalMarking] Step: origin: V8 overall: 0.0ms V8: 24KB (0KB), 0.0ms (5.0ms), 292.6MB/s CppHeap: 0KB (0KB), 0.0ms (5.0ms)
+[43093:0x11400f00000:0]       65 ms: [IncrementalMarking] Stopping: old generation size 0MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]       65 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]       65 ms: Incremental Mark-Compact 0.9 (2.5) -> 0.9 (2.2) MB, pooled: 1.2 MB, 0.51 / 0.00 ms (+ 0.0 ms in 1 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.223, current mu = 0.296) testing; GC in old space requested
+[43093:0x11400f00000]       66 ms: Mark-Compact 0.9 (2.2) -> 0.4 (1.8) MB, pooled: 1.2 MB, 0.60 / 0.00 ms (average mu = 0.117, current mu = 0.010) testing; GC in old space requested
+[43093:0x11400f00000]       66 ms: Mark-Compact 0.4 (2.0) -> 0.4 (1.8) MB, pooled: 1.2 MB, 0.67 / 0.00 ms (average mu = 0.060, current mu = 0.007) testing; GC in old space requested
+[43093:0x11400f00000:0]       67 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 10MB / 10MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]       67 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]       67 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]       67 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]       67 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]       67 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]       67 ms: Incremental Mark-Compact 1.1 (2.8) -> 1.1 (2.5) MB, pooled: 1.2 MB, 0.55 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.182, current mu = 0.283) testing; GC in old space requested
+[43093:0x11400f00000]       68 ms: Mark-Compact 1.2 (2.5) -> 0.5 (1.8) MB, pooled: 1.2 MB, 0.62 / 0.00 ms (average mu = 0.106, current mu = 0.022) testing; GC in old space requested
+[43093:0x11400f00000]       69 ms: Mark-Compact 0.5 (2.0) -> 0.5 (1.8) MB, pooled: 1.2 MB, 0.74 / 0.00 ms (average mu = 0.054, current mu = 0.007) testing; GC in old space requested
+[43093:0x11400f00000:0]       69 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 10MB / 10MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]       69 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]       69 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]       69 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]       69 ms: [IncrementalMarking] Schedule: 0KB to mark, origin: V8, elapsed: 0.2, marked: 203KB (mutator: 0KB, concurrent 203KB), expected marked: 0KB, estimated live: 1117KB, schedule delta: +203KB
+[43093:0x11400f00000:0]       69 ms: [IncrementalMarking] Step: origin: V8 overall: 0.0ms V8: 40KB (0KB), 0.0ms (5.0ms), 157.8MB/s CppHeap: 0KB (0KB), 0.0ms (5.0ms)
+[43093:0x11400f00000:0]       69 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]       69 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]       70 ms: Incremental Mark-Compact 1.3 (3.0) -> 1.3 (2.8) MB, pooled: 1.2 MB, 0.64 / 0.00 ms (+ 0.0 ms in 1 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.181, current mu = 0.282) testing; GC in old space requested
+[43093:0x11400f00000]       70 ms: Mark-Compact 1.3 (2.8) -> 0.5 (1.8) MB, pooled: 1.2 MB, 0.94 / 0.00 ms (average mu = 0.086, current mu = 0.005) testing; GC in old space requested
+[43093:0x11400f00000]       71 ms: Mark-Compact 0.5 (2.0) -> 0.5 (1.8) MB, pooled: 1.2 MB, 0.79 / 0.00 ms (average mu = 0.049, current mu = 0.008) testing; GC in old space requested
+[43093:0x11400f00000:0]       71 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 10MB / 10MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]       71 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]       71 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]       71 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]       72 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]       72 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]       72 ms: Incremental Mark-Compact 1.4 (3.5) -> 1.3 (2.8) MB, pooled: 1.2 MB, 0.69 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.169, current mu = 0.275) testing; GC in old space requested
+[43093:0x11400f00000]       73 ms: Mark-Compact 1.3 (2.8) -> 0.6 (1.8) MB, pooled: 1.2 MB, 1.14 / 0.00 ms (average mu = 0.077, current mu = 0.005) testing; GC in old space requested
+[43093:0x11400f00000]       74 ms: Mark-Compact 0.6 (1.8) -> 0.6 (1.8) MB, pooled: 1.2 MB, 0.79 / 0.00 ms (average mu = 0.047, current mu = 0.008) testing; GC in old space requested
+[43093:0x11400f00000:0]       74 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 10MB / 10MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]       74 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]       74 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]       74 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]       74 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]       74 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]       75 ms: Incremental Mark-Compact 1.5 (3.0) -> 1.5 (3.0) MB, pooled: 1.0 MB, 0.80 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.172, current mu = 0.275) testing; GC in old space requested
+[43093:0x11400f00000]       76 ms: Mark-Compact 1.5 (3.0) -> 0.6 (2.0) MB, pooled: 1.0 MB, 0.86 / 0.00 ms (average mu = 0.095, current mu = 0.006) testing; GC in old space requested
+[43093:0x11400f00000]       77 ms: Mark-Compact 0.7 (2.2) -> 0.6 (2.0) MB, pooled: 1.0 MB, 1.00 / 0.00 ms (average mu = 0.048, current mu = 0.005) testing; GC in old space requested
+[43093:0x11400f00000:0]       77 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 10MB / 10MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]       77 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]       77 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]       77 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]       77 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]       77 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]       78 ms: Incremental Mark-Compact 1.4 (3.0) -> 1.2 (2.8) MB, pooled: 1.0 MB, 0.90 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.154, current mu = 0.241) testing; GC in old space requested
+[43093:0x11400f00000]       79 ms: Mark-Compact 1.2 (2.8) -> 0.7 (2.0) MB, pooled: 1.0 MB, 0.97 / 0.00 ms (average mu = 0.085, current mu = 0.008) testing; GC in old space requested
+[43093:0x11400f00000]       80 ms: Mark-Compact 0.7 (2.0) -> 0.7 (2.0) MB, pooled: 1.0 MB, 0.92 / 0.00 ms (average mu = 0.049, current mu = 0.009) testing; GC in old space requested
+[43093:0x11400f00000:0]       80 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 10MB / 10MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]       80 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]       80 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]       80 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]       80 ms: [IncrementalMarking] Schedule: 64KB to mark, origin: V8, elapsed: 0.1, marked: 21KB (mutator: 0KB, concurrent 21KB), expected marked: 0KB, estimated live: 1089KB, schedule delta: +21KB
+[43093:0x11400f00000:0]       81 ms: [IncrementalMarking] Step: origin: V8 overall: 0.1ms V8: 65536KB (65536KB), 0.1ms (5.0ms), 98.0MB/s CppHeap: 0KB (65536KB), 0.0ms (5.0ms)
+[43093:0x11400f00000:0]       81 ms: [IncrementalMarking] Stopping: old generation size 2MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]       81 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]       82 ms: Incremental Mark-Compact 2.1 (3.8) -> 2.0 (3.5) MB, pooled: 1.0 MB, 0.94 / 0.00 ms (+ 0.1 ms in 1 steps since start of marking, biggest step 0.1 ms, walltime since start of marking 1 ms) (average mu = 0.182, current mu = 0.275) testing; GC in old space requested
+[43093:0x11400f00000]       83 ms: Mark-Compact 2.0 (3.5) -> 0.7 (2.0) MB, pooled: 1.0 MB, 1.04 / 0.00 ms (average mu = 0.102, current mu = 0.010) testing; GC in old space requested
+[43093:0x11400f00000]       84 ms: Mark-Compact 0.7 (2.0) -> 0.7 (2.0) MB, pooled: 1.0 MB, 1.14 / 0.00 ms (average mu = 0.053, current mu = 0.004) testing; GC in old space requested
+[43093:0x11400f00000]       85 ms: Mark-Compact 0.8 (2.2) -> 0.8 (2.0) MB, pooled: 1.0 MB, 1.14 / 0.00 ms (average mu = 0.051, current mu = 0.049) testing; GC in old space requested
+[43093:0x11400f00000]       86 ms: Mark-Compact 0.8 (2.0) -> 0.8 (2.0) MB, pooled: 1.0 MB, 1.14 / 0.00 ms (average mu = 0.028, current mu = 0.004) testing; GC in old space requested
+[43093:0x11400f00000:0]       86 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 10MB / 10MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]       86 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]       86 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]       86 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]       87 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]       87 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]       88 ms: Incremental Mark-Compact 1.6 (3.0) -> 1.4 (2.8) MB, pooled: 1.0 MB, 1.30 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 2 ms) (average mu = 0.129, current mu = 0.201) testing; GC in old space requested
+[43093:0x11400f00000]       89 ms: Mark-Compact 1.4 (2.8) -> 0.8 (2.0) MB, pooled: 1.0 MB, 1.17 / 0.00 ms (average mu = 0.074, current mu = 0.008) testing; GC in old space requested
+[43093:0x11400f00000]       91 ms: Mark-Compact 0.9 (2.2) -> 0.8 (2.0) MB, pooled: 1.0 MB, 1.72 / 0.00 ms (average mu = 0.034, current mu = 0.005) testing; GC in old space requested
+[43093:0x11400f00000:0]       91 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 10MB / 10MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]       91 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]       91 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]       91 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]       91 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]       91 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]       92 ms: Incremental Mark-Compact 1.7 (3.2) -> 1.6 (3.0) MB, pooled: 1.0 MB, 1.40 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 2 ms) (average mu = 0.103, current mu = 0.165) testing; GC in old space requested
+[43093:0x11400f00000]       93 ms: Mark-Compact 1.6 (3.0) -> 0.9 (2.0) MB, pooled: 1.0 MB, 1.07 / 0.00 ms (average mu = 0.065, current mu = 0.009) testing; GC in old space requested
+[43093:0x11400f00000]       95 ms: Mark-Compact 0.9 (2.0) -> 0.9 (2.0) MB, pooled: 1.0 MB, 1.22 / 0.00 ms (average mu = 0.056, current mu = 0.045) testing; GC in old space requested
+[43093:0x11400f00000:0]       95 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 1MB / 0MB / 10MB / 9MB global: 5MB / 0MB / 12MB / 7MB
+[43093:0x11400f00000:0]       95 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]       95 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]       95 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]       95 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]       95 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]       96 ms: Incremental Mark-Compact 1.4 (2.8) -> 1.2 (2.8) MB, pooled: 0.8 MB, 1.35 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.098, current mu = 0.134) testing; GC in old space requested
+[43093:0x11400f00000]       97 ms: Mark-Compact 1.2 (2.8) -> 0.9 (2.2) MB, pooled: 0.8 MB, 1.01 / 0.00 ms (average mu = 0.059, current mu = 0.005) testing; GC in old space requested
+[43093:0x11400f00000]       99 ms: Mark-Compact 0.9 (2.2) -> 0.9 (2.2) MB, pooled: 0.8 MB, 1.31 / 0.00 ms (average mu = 0.031, current mu = 0.005) testing; GC in old space requested
+[43093:0x11400f00000:0]       99 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 1MB / 0MB / 10MB / 9MB global: 5MB / 0MB / 12MB / 7MB
+[43093:0x11400f00000:0]       99 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]       99 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]       99 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]       99 ms: [IncrementalMarking] Schedule: 64KB to mark, origin: V8, elapsed: 0.1, marked: 0KB (mutator: 0KB, concurrent 0KB), expected marked: 0KB, estimated live: 1205KB, schedule delta: +0KB
+[43093:0x11400f00000:0]       99 ms: [IncrementalMarking] Step: origin: V8 overall: 0.0ms V8: 8848KB (65536KB), 0.0ms (5.0ms), 444.5MB/s CppHeap: 0KB (65536KB), 0.0ms (5.0ms)
+[43093:0x11400f00000:0]       99 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]       99 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]      100 ms: Incremental Mark-Compact 1.9 (3.5) -> 1.7 (3.2) MB, pooled: 0.8 MB, 1.15 / 0.00 ms (+ 0.0 ms in 1 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.130, current mu = 0.216) testing; GC in old space requested
+[43093:0x11400f00000]      101 ms: Mark-Compact 1.7 (3.2) -> 1.0 (2.2) MB, pooled: 0.8 MB, 1.15 / 0.00 ms (average mu = 0.074, current mu = 0.007) testing; GC in old space requested
+[43093:0x11400f00000]      103 ms: Mark-Compact 1.1 (2.5) -> 1.0 (2.2) MB, pooled: 0.8 MB, 1.39 / 0.00 ms (average mu = 0.038, current mu = 0.006) testing; GC in old space requested
+[43093:0x11400f00000:0]      103 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 1MB / 0MB / 10MB / 9MB global: 5MB / 0MB / 12MB / 7MB
+[43093:0x11400f00000:0]      103 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]      103 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]      103 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]      103 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]      103 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]      103 ms: Incremental Mark-Compact 1.8 (3.2) -> 0.9 (2.5) MB, pooled: 1.2 MB, 0.32 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 0 ms) (average mu = 0.154, current mu = 0.430) testing; GC in old space requested
+[43093:0x11400f00000]      104 ms: Mark-Compact 0.9 (2.5) -> 0.3 (1.8) MB, pooled: 1.2 MB, 0.39 / 0.00 ms (average mu = 0.133, current mu = 0.084) testing; GC in old space requested
+[43093:0x11400f00000]      104 ms: Mark-Compact 0.3 (2.0) -> 0.3 (1.8) MB, pooled: 1.2 MB, 0.40 / 0.00 ms (average mu = 0.088, current mu = 0.012) testing; GC in old space requested
+[43093:0x11400f00000:0]      104 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 10MB / 10MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]      104 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]      104 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]      104 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]      105 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]      105 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]      105 ms: Incremental Mark-Compact 1.9 (3.5) -> 1.8 (3.5) MB, pooled: 1.2 MB, 0.38 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.362, current mu = 0.543) testing; GC in old space requested
+[43093:0x11400f00000]      105 ms: Mark-Compact 1.8 (3.5) -> 0.3 (1.8) MB, pooled: 1.2 MB, 0.54 / 0.00 ms (average mu = 0.207, current mu = 0.011) testing; GC in old space requested
+[43093:0x11400f00000]      106 ms: Mark-Compact 0.3 (1.8) -> 0.3 (1.8) MB, pooled: 1.2 MB, 0.56 / 0.00 ms (average mu = 0.111, current mu = 0.007) testing; GC in old space requested
+[43093:0x11400f00000:0]      106 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 10MB / 10MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]      106 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]      106 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]      106 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]      106 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]      106 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]      107 ms: Incremental Mark-Compact 1.2 (3.0) -> 1.1 (2.8) MB, pooled: 1.2 MB, 0.53 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.242, current mu = 0.340) testing; GC in old space requested
+[43093:0x11400f00000]      107 ms: Mark-Compact 1.2 (2.8) -> 0.4 (1.8) MB, pooled: 1.2 MB, 0.54 / 0.00 ms (average mu = 0.142, current mu = 0.016) testing; GC in old space requested
+[43093:0x11400f00000]      108 ms: Mark-Compact 0.4 (2.0) -> 0.4 (1.8) MB, pooled: 1.2 MB, 0.49 / 0.00 ms (average mu = 0.084, current mu = 0.010) testing; GC in old space requested
+[43093:0x11400f00000:0]      108 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 10MB / 10MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]      108 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]      108 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]      108 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]      108 ms: [IncrementalMarking] Schedule: 0KB to mark, origin: V8, elapsed: 0.2, marked: 219KB (mutator: 0KB, concurrent 219KB), expected marked: 0KB, estimated live: 935KB, schedule delta: +219KB
+[43093:0x11400f00000:0]      108 ms: [IncrementalMarking] Step: origin: V8 overall: 0.0ms V8: 20KB (0KB), 0.0ms (5.0ms), 925.4MB/s CppHeap: 0KB (0KB), 0.0ms (5.0ms)
+[43093:0x11400f00000:0]      108 ms: [IncrementalMarking] Stopping: old generation size 0MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]      108 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]      109 ms: Incremental Mark-Compact 1.0 (2.8) -> 1.0 (2.5) MB, pooled: 1.2 MB, 0.63 / 0.00 ms (+ 0.0 ms in 1 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.178, current mu = 0.242) testing; GC in old space requested
+[43093:0x11400f00000]      110 ms: Mark-Compact 1.1 (2.5) -> 0.4 (1.8) MB, pooled: 1.2 MB, 0.87 / 0.00 ms (average mu = 0.097, current mu = 0.033) testing; GC in old space requested
+[43093:0x11400f00000]      110 ms: Mark-Compact 0.5 (2.0) -> 0.4 (1.8) MB, pooled: 1.2 MB, 0.90 / 0.00 ms (average mu = 0.049, current mu = 0.007) testing; GC in old space requested
+[43093:0x11400f00000:0]      111 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 10MB / 10MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]      111 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]      111 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]      111 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]      111 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]      111 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]      112 ms: Incremental Mark-Compact 1.3 (2.8) -> 1.2 (2.5) MB, pooled: 1.2 MB, 0.80 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.156, current mu = 0.242) testing; GC in old space requested
+[43093:0x11400f00000]      112 ms: Mark-Compact 1.2 (2.5) -> 0.5 (1.8) MB, pooled: 1.2 MB, 0.93 / 0.00 ms (average mu = 0.084, current mu = 0.012) testing; GC in old space requested
+[43093:0x11400f00000]      113 ms: Mark-Compact 0.5 (1.8) -> 0.5 (1.8) MB, pooled: 1.2 MB, 0.73 / 0.00 ms (average mu = 0.054, current mu = 0.016) testing; GC in old space requested
+[43093:0x11400f00000:0]      113 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 10MB / 10MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]      113 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]      113 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]      113 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]      114 ms: [IncrementalMarking] Schedule: 0KB to mark, origin: V8, elapsed: 0.2, marked: 208KB (mutator: 0KB, concurrent 208KB), expected marked: 0KB, estimated live: 1313KB, schedule delta: +207KB
+[43093:0x11400f00000:0]      114 ms: [IncrementalMarking] Step: origin: V8 overall: 0.0ms V8: 24KB (0KB), 0.0ms (5.0ms), 925.4MB/s CppHeap: 0KB (0KB), 0.0ms (5.0ms)
+[43093:0x11400f00000:0]      114 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]      114 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]      114 ms: Incremental Mark-Compact 1.4 (3.0) -> 1.4 (2.8) MB, pooled: 1.2 MB, 0.82 / 0.00 ms (+ 0.0 ms in 1 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.180, current mu = 0.273) testing; GC in old space requested
+[43093:0x11400f00000]      115 ms: Mark-Compact 1.4 (2.8) -> 0.5 (1.8) MB, pooled: 1.2 MB, 0.98 / 0.00 ms (average mu = 0.094, current mu = 0.007) testing; GC in old space requested
+[43093:0x11400f00000]      116 ms: Mark-Compact 0.5 (2.0) -> 0.5 (1.8) MB, pooled: 1.2 MB, 0.93 / 0.00 ms (average mu = 0.051, current mu = 0.006) testing; GC in old space requested
+[43093:0x11400f00000:0]      116 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 10MB / 10MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]      116 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]      116 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]      116 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]      117 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]      117 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]      118 ms: Incremental Mark-Compact 1.4 (2.8) -> 1.3 (2.8) MB, pooled: 1.0 MB, 1.03 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.134, current mu = 0.196) testing; GC in old space requested
+[43093:0x11400f00000]      119 ms: Mark-Compact 1.3 (2.8) -> 0.6 (2.0) MB, pooled: 1.0 MB, 0.94 / 0.00 ms (average mu = 0.076, current mu = 0.008) testing; GC in old space requested
+[43093:0x11400f00000]      119 ms: Mark-Compact 0.6 (2.0) -> 0.6 (2.0) MB, pooled: 1.0 MB, 0.92 / 0.00 ms (average mu = 0.044, current mu = 0.008) testing; GC in old space requested
+[43093:0x11400f00000:0]      119 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 10MB / 10MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]      119 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]      119 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]      120 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]      120 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]      120 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]      121 ms: Incremental Mark-Compact 1.2 (3.0) -> 1.2 (2.8) MB, pooled: 1.0 MB, 1.00 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.124, current mu = 0.188) testing; GC in old space requested
+[43093:0x11400f00000]      122 ms: Mark-Compact 1.2 (2.8) -> 0.6 (2.0) MB, pooled: 1.0 MB, 0.92 / 0.00 ms (average mu = 0.071, current mu = 0.008) testing; GC in old space requested
+[43093:0x11400f00000]      123 ms: Mark-Compact 0.6 (2.0) -> 0.6 (2.0) MB, pooled: 1.0 MB, 1.34 / 0.00 ms (average mu = 0.034, current mu = 0.006) testing; GC in old space requested
+[43093:0x11400f00000:0]      123 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 10MB / 10MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]      123 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]      123 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]      123 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]      123 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]      123 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]      124 ms: Incremental Mark-Compact 1.7 (3.2) -> 1.6 (3.0) MB, pooled: 1.0 MB, 1.07 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.144, current mu = 0.236) testing; GC in old space requested
+[43093:0x11400f00000]      125 ms: Mark-Compact 1.6 (3.0) -> 0.7 (2.0) MB, pooled: 1.0 MB, 1.06 / 0.00 ms (average mu = 0.081, current mu = 0.006) testing; GC in old space requested
+[43093:0x11400f00000]      127 ms: Mark-Compact 0.7 (2.2) -> 0.7 (2.0) MB, pooled: 1.0 MB, 1.18 / 0.00 ms (average mu = 0.043, current mu = 0.005) testing; GC in old space requested
+[43093:0x11400f00000:0]      127 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 10MB / 10MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]      127 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]      127 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]      127 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]      127 ms: [IncrementalMarking] Schedule: 0KB to mark, origin: V8, elapsed: 0.2, marked: 195KB (mutator: 0KB, concurrent 195KB), expected marked: 0KB, estimated live: 1642KB, schedule delta: +194KB
+[43093:0x11400f00000:0]      127 ms: [IncrementalMarking] Step: origin: V8 overall: 0.0ms V8: 24KB (0KB), 0.0ms (5.0ms), 925.4MB/s CppHeap: 0KB (0KB), 0.0ms (5.0ms)
+[43093:0x11400f00000:0]      127 ms: [IncrementalMarking] Stopping: old generation size 2MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]      127 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]      128 ms: Incremental Mark-Compact 2.2 (3.5) -> 2.0 (3.2) MB, pooled: 1.0 MB, 1.15 / 0.00 ms (+ 0.0 ms in 1 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 2 ms) (average mu = 0.188, current mu = 0.293) testing; GC in old space requested
+[43093:0x11400f00000]      129 ms: Mark-Compact 2.1 (3.2) -> 0.7 (2.0) MB, pooled: 1.0 MB, 1.23 / 0.00 ms (average mu = 0.104, current mu = 0.010) testing; GC in old space requested
+[43093:0x11400f00000]      131 ms: Mark-Compact 0.7 (2.2) -> 0.7 (2.0) MB, pooled: 1.0 MB, 1.19 / 0.00 ms (average mu = 0.057, current mu = 0.006) testing; GC in old space requested
+[43093:0x11400f00000:0]      131 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 10MB / 10MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]      131 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]      131 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]      131 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]      131 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]      131 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]      132 ms: Incremental Mark-Compact 1.4 (3.5) -> 1.3 (3.2) MB, pooled: 1.0 MB, 1.27 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 2 ms) (average mu = 0.117, current mu = 0.167) testing; GC in old space requested
+[43093:0x11400f00000]      133 ms: Mark-Compact 1.3 (3.2) -> 0.8 (2.0) MB, pooled: 1.0 MB, 0.97 / 0.00 ms (average mu = 0.073, current mu = 0.009) testing; GC in old space requested
+[43093:0x11400f00000]      134 ms: Mark-Compact 0.8 (2.0) -> 0.8 (2.0) MB, pooled: 1.0 MB, 1.24 / 0.00 ms (average mu = 0.038, current mu = 0.006) testing; GC in old space requested
+[43093:0x11400f00000:0]      134 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 10MB / 10MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]      134 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]      134 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]      134 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]      135 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]      135 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]      136 ms: Incremental Mark-Compact 1.5 (3.0) -> 1.4 (2.8) MB, pooled: 1.0 MB, 1.32 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 2 ms) (average mu = 0.107, current mu = 0.160) testing; GC in old space requested
+[43093:0x11400f00000]      137 ms: Mark-Compact 1.4 (2.8) -> 0.8 (2.0) MB, pooled: 1.0 MB, 1.47 / 0.00 ms (average mu = 0.054, current mu = 0.004) testing; GC in old space requested
+[43093:0x11400f00000]      139 ms: Mark-Compact 0.9 (2.2) -> 0.8 (2.0) MB, pooled: 1.0 MB, 1.28 / 0.00 ms (average mu = 0.032, current mu = 0.007) testing; GC in old space requested
+[43093:0x11400f00000:0]      139 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 1MB / 0MB / 10MB / 9MB global: 5MB / 0MB / 12MB / 7MB
+[43093:0x11400f00000:0]      139 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]      139 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]      139 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]      139 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]      139 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]      140 ms: Incremental Mark-Compact 1.7 (3.8) -> 1.5 (3.5) MB, pooled: 0.8 MB, 1.37 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 2 ms) (average mu = 0.116, current mu = 0.183) testing; GC in old space requested
+[43093:0x11400f00000]      142 ms: Mark-Compact 1.7 (3.5) -> 0.9 (2.2) MB, pooled: 0.8 MB, 1.13 / 0.00 ms (average mu = 0.083, current mu = 0.041) testing; GC in old space requested
+[43093:0x11400f00000]      143 ms: Mark-Compact 0.9 (2.2) -> 0.9 (2.2) MB, pooled: 0.8 MB, 1.19 / 0.00 ms (average mu = 0.047, current mu = 0.007) testing; GC in old space requested
+[43093:0x11400f00000:0]      143 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 1MB / 0MB / 10MB / 9MB global: 5MB / 0MB / 12MB / 7MB
+[43093:0x11400f00000:0]      143 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]      143 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]      143 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]      143 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]      143 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]      144 ms: Incremental Mark-Compact 1.7 (3.2) -> 1.5 (3.0) MB, pooled: 0.8 MB, 1.12 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.117, current mu = 0.182) testing; GC in old space requested
+[43093:0x11400f00000]      145 ms: Mark-Compact 1.6 (3.0) -> 0.9 (2.2) MB, pooled: 0.8 MB, 1.24 / 0.00 ms (average mu = 0.063, current mu = 0.006) testing; GC in old space requested
+[43093:0x11400f00000]      147 ms: Mark-Compact 1.0 (2.5) -> 0.9 (2.2) MB, pooled: 0.8 MB, 1.61 / 0.00 ms (average mu = 0.031, current mu = 0.006) testing; GC in old space requested
+[43093:0x11400f00000:0]      147 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 1MB / 0MB / 10MB / 9MB global: 5MB / 0MB / 12MB / 7MB
+[43093:0x11400f00000:0]      147 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]      147 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]      147 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]      147 ms: [IncrementalMarking] Schedule: 0KB to mark, origin: V8, elapsed: 0.1, marked: 219KB (mutator: 0KB, concurrent 219KB), expected marked: 0KB, estimated live: 1530KB, schedule delta: +219KB
+[43093:0x11400f00000:0]      147 ms: [IncrementalMarking] Step: origin: V8 overall: 0.0ms V8: 40KB (0KB), 0.0ms (5.0ms), 925.4MB/s CppHeap: 0KB (0KB), 0.0ms (5.0ms)
+[43093:0x11400f00000:0]      147 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]      147 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]      149 ms: Incremental Mark-Compact 1.8 (3.2) -> 1.6 (3.0) MB, pooled: 0.8 MB, 1.21 / 0.00 ms (+ 0.0 ms in 1 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.121, current mu = 0.207) testing; GC in old space requested
+[43093:0x11400f00000]      150 ms: Mark-Compact 1.6 (3.0) -> 1.0 (2.2) MB, pooled: 0.8 MB, 1.31 / 0.00 ms (average mu = 0.067, current mu = 0.007) testing; GC in old space requested
+[43093:0x11400f00000]      152 ms: Mark-Compact 1.3 (2.5) -> 1.0 (2.2) MB, pooled: 0.8 MB, 1.70 / 0.00 ms (average mu = 0.033, current mu = 0.005) testing; GC in old space requested
+[43093:0x11400f00000:0]      152 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 1MB / 0MB / 10MB / 9MB global: 5MB / 0MB / 13MB / 8MB
+[43093:0x11400f00000:0]      152 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]      152 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]      152 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]      152 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]      152 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]      152 ms: Incremental Mark-Compact 1.7 (3.2) -> 0.9 (2.5) MB, pooled: 1.2 MB, 0.47 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.164, current mu = 0.418) testing; GC in old space requested
+[43093:0x11400f00000]      153 ms: Mark-Compact 1.1 (2.5) -> 0.3 (1.8) MB, pooled: 1.2 MB, 0.57 / 0.00 ms (average mu = 0.140, current mu = 0.096) testing; GC in old space requested
+[43093:0x11400f00000]      153 ms: Mark-Compact 0.3 (1.8) -> 0.3 (1.8) MB, pooled: 1.2 MB, 0.41 / 0.00 ms (average mu = 0.101, current mu = 0.014) testing; GC in old space requested
+[43093:0x11400f00000:0]      153 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 10MB / 10MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]      153 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]      153 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]      154 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]      154 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]      154 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]      154 ms: Incremental Mark-Compact 1.6 (4.0) -> 1.6 (3.8) MB, pooled: 1.2 MB, 0.33 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.341, current mu = 0.555) testing; GC in old space requested
+[43093:0x11400f00000]      155 ms: Mark-Compact 1.6 (3.8) -> 0.3 (1.8) MB, pooled: 1.2 MB, 0.58 / 0.00 ms (average mu = 0.190, current mu = 0.010) testing; GC in old space requested
+[43093:0x11400f00000]      155 ms: Mark-Compact 0.3 (1.8) -> 0.3 (1.8) MB, pooled: 1.2 MB, 0.51 / 0.00 ms (average mu = 0.111, current mu = 0.012) testing; GC in old space requested
+[43093:0x11400f00000:0]      155 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 10MB / 10MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]      155 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]      155 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]      155 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]      156 ms: [IncrementalMarking] Stopping: old generation size 1MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]      156 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]      156 ms: Incremental Mark-Compact 1.3 (3.0) -> 1.3 (2.8) MB, pooled: 1.2 MB, 0.57 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.287, current mu = 0.396) testing; GC in old space requested
+[43093:0x11400f00000]      157 ms: Mark-Compact 1.3 (2.8) -> 0.4 (1.8) MB, pooled: 1.2 MB, 0.64 / 0.00 ms (average mu = 0.162, current mu = 0.014) testing; GC in old space requested
+[43093:0x11400f00000]      157 ms: Mark-Compact 0.4 (1.8) -> 0.4 (1.8) MB, pooled: 1.2 MB, 0.50 / 0.00 ms (average mu = 0.100, current mu = 0.014) testing; GC in old space requested
+[43093:0x11400f00000:0]      157 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 10MB / 10MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]      157 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]      157 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]      157 ms: [IncrementalMarking] Running
+[43093:0x114011d0000:1]      155 ms: [IncrementalMarking] Schedule: 0KB to mark, origin: V8, elapsed: 152.8, marked: 173KB (mutator: 0KB, concurrent 173KB), expected marked: 72KB, estimated live: 237KB, schedule delta: +101KB
+[43093:0x114011d0000:1]      155 ms: [IncrementalMarking] Step: origin: V8 overall: 0.0ms V8: 0KB (0KB), 0.0ms (5.0ms), 581.8MB/s CppHeap: 0KB (0KB), 0.0ms (5.0ms)
+[43093:0x114011d0000:1]      155 ms: [IncrementalMarking] Completion: Not delaying GC via stack guard, avg time to task: 1.0ms, current time to task: 152.8ms allowed overshoot: 50.0ms
+[43093:0x114011d0000:1]      155 ms: [IncrementalMarking] Stopping: old generation size 0MB, waste 0MB, limit 9MB, overshoot 0MB
+[43093:0x114011d0000:1]      155 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000:0]      158 ms: [IncrementalMarking] Schedule: 0KB to mark, origin: V8, elapsed: 0.3, marked: 165KB (mutator: 0KB, concurrent 165KB), expected marked: 0KB, estimated live: 963KB, schedule delta: +164KB
+[43093:0x11400f00000:0]      158 ms: [IncrementalMarking] Step: origin: V8 overall: 0.0ms V8: 20KB (0KB), 0.0ms (5.0ms), 925.4MB/s CppHeap: 0KB (0KB), 0.0ms (5.0ms)
+[43093:0x114011d0000]      155 ms: Incremental Mark-Compact 0.3 (2.2) -> 0.2 (1.8) MB, pooled: 0.2 MB, 0.40 / 0.00 ms (+ 0.0 ms in 1 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 153 ms) (average mu = 0.996, current mu = 0.997) finalize incremental marking via stack guard; GC in old space requested
+[43093:0x11400f00000:0]      158 ms: [IncrementalMarking] Stopping: old generation size 0MB, waste 0MB, limit 10MB, overshoot 0MB
+[43093:0x11400f00000:0]      158 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]      159 ms: Incremental Mark-Compact 1.0 (3.8) -> 1.0 (3.2) MB, pooled: 1.2 MB, 0.85 / 0.00 ms (+ 0.0 ms in 1 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.224, current mu = 0.288) testing; GC in old space requested
+[43093:0x11400f00000]      159 ms: Mark-Compact 1.0 (3.2) -> 0.5 (1.8) MB, pooled: 1.2 MB, 0.66 / 0.00 ms (average mu = 0.132, current mu = 0.009) testing; GC in old space requested
+[43093:0x11400f00000]      160 ms: Mark-Compact 0.5 (1.8) -> 0.5 (1.8) MB, pooled: 1.2 MB, 0.55 / 0.00 ms (average mu = 0.081, current mu = 0.009) testing; GC in old space requested
+[43093:0x11400f00000]      161 ms: Mark-Compact 0.5 (1.8) -> 0.5 (1.8) MB, pooled: 1.2 MB, 0.75 / 0.00 ms (average mu = 0.091, current mu = 0.098) testing; GC in old space requested
+[43093:0x11400f00000]      161 ms: Mark-Compact 0.5 (1.8) -> 0.5 (1.8) MB, pooled: 1.2 MB, 0.63 / 0.00 ms (average mu = 0.053, current mu = 0.009) testing; GC in old space requested
+[43093:0x11400f00000]      162 ms: Mark-Compact 0.6 (1.8) -> 0.6 (1.8) MB, pooled: 1.2 MB, 0.89 / 0.00 ms (average mu = 0.074, current mu = 0.088) testing; GC in old space requested
+[43093:0x11400f00000]      163 ms: Mark-Compact 0.6 (1.8) -> 0.6 (1.8) MB, pooled: 1.2 MB, 1.09 / 0.00 ms (average mu = 0.036, current mu = 0.008) testing; GC in old space requested
+[43093:0x11400f00000]      165 ms: Mark-Compact 0.6 (1.8) -> 0.6 (2.0) MB, pooled: 1.0 MB, 1.31 / 0.00 ms (average mu = 0.062, current mu = 0.080) testing; GC in old space requested
+[43093:0x11400f00000]      166 ms: Mark-Compact 0.6 (2.0) -> 0.6 (2.0) MB, pooled: 1.0 MB, 0.94 / 0.00 ms (average mu = 0.039, current mu = 0.009) testing; GC in old space requested
+[43093:0x11400f00000]      167 ms: Mark-Compact 0.7 (2.0) -> 0.7 (2.0) MB, pooled: 1.0 MB, 1.09 / 0.00 ms (average mu = 0.056, current mu = 0.072) testing; GC in old space requested
+[43093:0x11400f00000]      168 ms: Mark-Compact 0.7 (2.0) -> 0.7 (2.0) MB, pooled: 1.0 MB, 1.08 / 0.00 ms (average mu = 0.031, current mu = 0.006) testing; GC in old space requested
+[43093:0x11400f00000]      169 ms: Mark-Compact 0.7 (2.0) -> 0.7 (2.0) MB, pooled: 1.0 MB, 1.18 / 0.00 ms (average mu = 0.048, current mu = 0.063) testing; GC in old space requested
+[43093:0x11400f00000]      171 ms: Mark-Compact 0.7 (2.0) -> 0.7 (2.0) MB, pooled: 1.0 MB, 1.29 / 0.00 ms (average mu = 0.025, current mu = 0.005) testing; GC in old space requested
+[43093:0x11400f00000]      172 ms: Mark-Compact 0.8 (2.0) -> 0.8 (2.0) MB, pooled: 1.0 MB, 1.35 / 0.00 ms (average mu = 0.043, current mu = 0.059) testing; GC in old space requested
+[43093:0x11400f00000]      173 ms: Mark-Compact 0.8 (2.0) -> 0.8 (2.0) MB, pooled: 1.0 MB, 1.16 / 0.00 ms (average mu = 0.025, current mu = 0.004) testing; GC in old space requested
+[43093:0x11400f00000]      174 ms: Mark-Compact 0.8 (2.0) -> 0.8 (2.0) MB, pooled: 1.0 MB, 1.19 / 0.00 ms (average mu = 0.046, current mu = 0.066) testing; GC in old space requested
+[43093:0x11400f00000]      176 ms: Mark-Compact 0.8 (2.0) -> 0.8 (2.0) MB, pooled: 1.0 MB, 1.11 / 0.00 ms (average mu = 0.047, current mu = 0.049) testing; GC in old space requested
+[43093:0x11400f00000:0]      176 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 12MB / 12MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]      176 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]      176 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]      176 ms: [IncrementalMarking] Running
+[43093:0x11400f00000:0]      176 ms: [IncrementalMarking] Stopping: old generation size 0MB, waste 0MB, limit 12MB, overshoot 0MB
+[43093:0x11400f00000:0]      176 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]      177 ms: Incremental Mark-Compact 0.8 (2.0) -> 0.8 (2.0) MB, pooled: 1.0 MB, 1.28 / 0.00 ms (+ 0.0 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.106, current mu = 0.153) testing; GC in old space requested
+[43093:0x11400f00000]      179 ms: Mark-Compact 0.8 (2.0) -> 0.8 (2.0) MB, pooled: 1.0 MB, 1.65 / 0.00 ms (average mu = 0.049, current mu = 0.003) testing; GC in old space requested
+[43093:0x11400f00000]      180 ms: Mark-Compact 0.8 (2.0) -> 0.8 (2.0) MB, pooled: 1.0 MB, 1.28 / 0.00 ms (average mu = 0.028, current mu = 0.003) testing; GC in old space requested
+[43093:0x11400f00000]      181 ms: Mark-Compact 0.9 (2.0) -> 0.9 (2.2) MB, pooled: 0.8 MB, 1.37 / 0.00 ms (average mu = 0.028, current mu = 0.027) testing; GC in old space requested
+[43093:0x11400f00000]      183 ms: Mark-Compact 0.9 (2.2) -> 0.9 (2.2) MB, pooled: 0.8 MB, 1.62 / 0.00 ms (average mu = 0.015, current mu = 0.004) testing; GC in old space requested
+[43093:0x11400f00000]      184 ms: Mark-Compact 0.9 (2.2) -> 0.9 (2.2) MB, pooled: 0.8 MB, 1.32 / 0.00 ms (average mu = 0.026, current mu = 0.037) testing; GC in old space requested
+[43093:0x11400f00000]      186 ms: Mark-Compact 0.9 (2.2) -> 0.9 (2.2) MB, pooled: 0.8 MB, 1.19 / 0.00 ms (average mu = 0.016, current mu = 0.004) testing; GC in old space requested
+[43093:0x11400f00000]      187 ms: Mark-Compact 1.0 (2.2) -> 0.9 (2.2) MB, pooled: 0.8 MB, 1.36 / 0.00 ms (average mu = 0.022, current mu = 0.028) testing; GC in old space requested
+[43093:0x11400f00000]      189 ms: Mark-Compact 0.9 (2.2) -> 0.9 (2.2) MB, pooled: 0.8 MB, 1.63 / 0.00 ms (average mu = 0.012, current mu = 0.004) testing; GC in old space requested
+[43093:0x11400f00000]      189 ms: Mark-Compact 1.0 (2.2) -> 0.3 (1.5) MB, pooled: 1.5 MB, 0.52 / 0.00 ms (average mu = 0.028, current mu = 0.069) testing; GC in old space requested
+[43093:0x11400f00000]      190 ms: Mark-Compact 0.3 (1.5) -> 0.3 (1.5) MB, pooled: 1.5 MB, 0.26 / 0.00 ms (average mu = 0.026, current mu = 0.019) testing; GC in old space requested
+[43093:0x11400f00000]      190 ms: Mark-Compact 0.3 (1.5) -> 0.3 (1.8) MB, pooled: 1.2 MB, 0.47 / 0.00 ms (average mu = 0.047, current mu = 0.075) testing; GC in old space requested
+[43093:0x11400f00000]      190 ms: Mark-Compact 0.3 (1.8) -> 0.3 (1.8) MB, pooled: 1.2 MB, 0.36 / 0.00 ms (average mu = 0.033, current mu = 0.011) testing; GC in old space requested
+[43093:0x11400f00000]      191 ms: Mark-Compact 0.3 (1.8) -> 0.3 (1.8) MB, pooled: 1.2 MB, 0.53 / 0.00 ms (average mu = 0.048, current mu = 0.061) testing; GC in old space requested
+[43093:0x11400f00000]      191 ms: Mark-Compact 0.3 (1.8) -> 0.3 (1.8) MB, pooled: 1.2 MB, 0.45 / 0.00 ms (average mu = 0.032, current mu = 0.013) testing; GC in old space requested
+[43093:0x11400f00000:0]      191 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 12MB / 12MB global: 4MB / 0MB / 12MB / 8MB
+[43093:0x11400f00000:0]      191 ms: [IncrementalMarking] Start marking
+[43093:0x11400f00000:0]      191 ms: [IncrementalMarking] Black allocation started
+[43093:0x11400f00000:0]      191 ms: [IncrementalMarking] Running
+[43093:0x114011d0000:1]      188 ms: [IncrementalMarking] Start (global allocation limit): (size/waste/limit/slack) v8: 0MB / 0MB / 9MB / 9MB global: 0MB / 0MB / 9MB / 9MB
+[43093:0x114011d0000:1]      188 ms: [IncrementalMarking] Start marking
+[43093:0x114011d0000:1]      188 ms: [IncrementalMarking] Black allocation started
+[43093:0x114011d0000:1]      188 ms: [IncrementalMarking] Running
+[43093:0x114011d0000:1]      188 ms: [IncrementalMarking] Job: Run
+[43093:0x114011d0000:1]      189 ms: [IncrementalMarking] Schedule: 0KB to mark, origin: task, elapsed: 0.1, marked: 71KB (mutator: 0KB, concurrent 71KB), expected marked: 0KB, estimated live: 236KB, schedule delta: +71KB
+[43093:0x114011d0000:1]      189 ms: [IncrementalMarking] Step: origin: task overall: 0.0ms V8: 32KB (0KB), 0.0ms (1.0ms), 581.8MB/s CppHeap: 0KB (0KB), 0.0ms (1.0ms)
+[43093:0x114011d0000:1]      189 ms: [IncrementalMarking] Using regular task based on flags
+[43093:0x114011d0000:1]      189 ms: [IncrementalMarking] Job: Schedule
+OK
+[43093:0x11400f00000:0]      192 ms: [IncrementalMarking] Job: Run
+[43093:0x11400f00000:0]      192 ms: [IncrementalMarking] Schedule: 0KB to mark, origin: task, elapsed: 0.2, marked: 197KB (mutator: 0KB, concurrent 197KB), expected marked: 0KB, estimated live: 343KB, schedule delta: +197KB
+[43093:0x11400f00000:0]      192 ms: [IncrementalMarking] Step: origin: task overall: 0.0ms V8: 0KB (0KB), 0.0ms (1.0ms), 925.4MB/s CppHeap: 0KB (0KB), 0.0ms (1.0ms)
+[43093:0x11400f00000:0]      192 ms: [IncrementalMarking] Stopping: old generation size 0MB, waste 0MB, limit 12MB, overshoot 0MB
+[43093:0x11400f00000:0]      192 ms: [IncrementalMarking] Black allocation finished
+[43093:0x11400f00000]      192 ms: Incremental Mark-Compact 0.3 (2.0) -> 0.2 (1.8) MB, pooled: 1.2 MB, 0.24 / 0.00 ms (+ 0.0 ms in 1 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 0 ms) (average mu = 0.275, current mu = 0.510) finalize incremental marking via task; GC in old space requested
+[43093:0x114011d0000:1]      189 ms: [IncrementalMarking] Job: Run
+[43093:0x114011d0000:1]      189 ms: [IncrementalMarking] Schedule: 0KB to mark, origin: task, elapsed: 0.4, marked: 187KB (mutator: 0KB, concurrent 187KB), expected marked: 0KB, estimated live: 236KB, schedule delta: +187KB
+[43093:0x114011d0000:1]      189 ms: [IncrementalMarking] Step: origin: task overall: 0.0ms V8: 0KB (0KB), 0.0ms (1.0ms), 581.8MB/s CppHeap: 0KB (0KB), 0.0ms (1.0ms)
+[43093:0x114011d0000:1]      189 ms: [IncrementalMarking] Stopping: old generation size 0MB, waste 0MB, limit 9MB, overshoot 0MB
+[43093:0x114011d0000:1]      189 ms: [IncrementalMarking] Black allocation finished
+[43093:0x114011d0000]      189 ms: Incremental Mark-Compact 0.3 (2.0) -> 0.2 (1.5) MB, pooled: 0.2 MB, 0.20 / 0.00 ms (+ 0.0 ms in 2 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 1 ms) (average mu = 0.995, current mu = 0.994) finalize incremental marking via task; GC in old space requested

@@ -1,0 +1,11 @@
+Sandbox testing mode is enabled. Only sandbox violations will be reported, all other crashes will be ignored.
+Sandbox bounds: [0x156f00000000,0x166f00000000)
+baseline 11
+bytecode 51,3,0,0,212,13,1,209,106,249,3,4,246,2,185
+mutate-call 8 2 -> 255
+install
+run
+Safely terminating process due to CSA check failure
+The following harmless failure was encountered: IsOffsetInBounds(offset, LoadFeedbackVectorLength(feedback_vector), FeedbackVector::kHeaderSize) [../../src/codegen/code-stub-assembler.cc:4259] [../../src/builtins/ic.tq:13] [../../src/interpreter/interpreter-generator.cc:1632]
+
+EXIT:0

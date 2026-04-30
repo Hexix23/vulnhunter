@@ -1,0 +1,24 @@
+JSRegExp data object 0x309501000605 bytecode size: 219136
+JSRegExp object (data: 0x309501000605) needs tier-up compilation
+JSRegExp data object 0x309501000605 native code size: 64
+JSRegExp data object 0x309501000605 native code size: 64
+JSRegExp data object 0x309501000605 native code size: 64
+JSRegExp data object 0x309501000649 bytecode size: 1764
+JSRegExp data object 0x309501000649 native code size: 64
+JSRegExp data object 0x309501000649 native code size: 64
+JSRegExp object (data: 0x309501000649) needs tier-up compilation
+JSRegExp data object 0x309501000649 native code size: 64
+JSRegExp data object 0x30950100068d bytecode size: 219028
+JSRegExp object (data: 0x30950100068d) needs tier-up compilation
+JSRegExp data object 0x30950100068d native code size: 64
+JSRegExp data object 0x30950100068d native code size: 64
+JSRegExp data object 0x30950100068d native code size: 64
+JSRegExp data object 0x3095010006d1 bytecode size: 1028
+JSRegExp object (data: 0x3095010006d1) needs tier-up compilation
+JSRegExp data object 0x3095010006d1 native code size: 64
+JSRegExp data object 0x3095010006d1 native code size: 64
+JSRegExp data object 0x3095010006d1 native code size: 64
+JSRegExp data object 0x309501000715 bytecode size: 1152
+JSRegExp object (data: 0x309501000715) needs tier-up compilation
+JSRegExp data object 0x309501000715 native code size: 64
+H8 PASS

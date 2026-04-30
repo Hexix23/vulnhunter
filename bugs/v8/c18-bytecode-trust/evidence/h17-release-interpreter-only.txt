@@ -1,0 +1,12 @@
+baseline 13
+bytecode 35,0,0,185
+mutate-ldaglobal 0 0 -> 255
+install
+run
+after-call
+typeof number
+eq-undefined false
+7
+debugprint-ok
+
+EXIT:0

@@ -1,0 +1,77 @@
+Source audit target:
+
+third_party/blink/renderer/core/view_transition/view_transition.cc
+third_party/blink/renderer/core/view_transition/dom_view_transition.cc
+third_party/blink/renderer/core/view_transition/view_transition.idl
+third_party/blink/renderer/platform/runtime_enabled_features.json5
+third_party/blink/common/features.cc
+
+Relevant findings:
+
+1. Release is intentionally delayed while the transition is animating.
+
+view_transition.cc:740-765:
+
+  if (style_tracker_->HasActiveAnimations() ||
+      wait_until_pending_promise_count_ > 0) {
+    break;
+  }
+
+  ...
+  case State::kPendingDone:
+    ...
+    delegate_->AddPendingRequest(ViewTransitionRequest::CreateRelease(
+        transition_token_, MaybeCrossFrameSink(),
+        base::FeatureList::IsEnabled(
+            features::kDelayLayerTreeViewDeletionOnLocalSwap)));
+
+2. Active animations are directly part of the wait condition.
+
+view_transition.cc:1103-1106:
+
+  bool ViewTransition::HasActiveAnimations() const {
+    return (state_ == State::kAnimating) && style_tracker_ &&
+           style_tracker_->HasActiveAnimations();
+  }
+
+3. ViewTransition.waitUntil() is web-exposed and stable in this checkout.
+
+view_transition.idl:43-49:
+
+  Calling waitUntil delays transition termination until the supplied promise
+  settles; multiple calls wait for all promises.
+
+runtime_enabled_features.json5:6261-6282:
+
+  ViewTransitionAsyncFinished status: stable
+  ViewTransitionWaitUntil status: stable
+
+dom_view_transition.cc:116-124:
+
+  DOMViewTransition::waitUntil(...) increments wait_until_pending_promise_count_
+  and decrements it only when the promise settles.
+
+4. DelayLayerTreeViewDeletionOnLocalSwap is enabled by default.
+
+third_party/blink/common/features.cc:652-660:
+
+  BASE_FEATURE(kDelayLayerTreeViewDeletionOnLocalSwap,
+               base::FEATURE_ENABLED_BY_DEFAULT)
+
+Interpretation:
+
+H10-H12 showed Release clears the leaked/cached manager when the Release directive
+arrives. H20 narrows the reachability gap: Blink has normal product code paths
+that delay Release while there are active view-transition animations or pending
+waitUntil promises. That makes H15/H19 more interesting because the attacker
+question becomes whether a page can create enough concurrent cross-document
+transitions with large shared elements before Release arrives, not whether
+Release is always immediate.
+
+Remaining gap:
+
+This is source-level reachability evidence, not a browser-level HTML PoC yet.
+The next report-grade step is a browser/content shell test or manual Chrome
+repro that starts cross-document view transitions with large shared elements and
+delays transition completion via long animations or waitUntil promises, then
+observes Viz/GPU memory growth.

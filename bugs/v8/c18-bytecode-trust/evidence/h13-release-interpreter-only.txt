@@ -1,0 +1,59 @@
+baseline 13
+bytecode 35,0,0,185
+mutate-ldaglobal 0 0 -> 255
+install
+run
+Stacktrace:
+    ptr0=0xbcb00006179
+    ptr1=0x0
+    ptr2=0x0
+    ptr3=0x0
+    ptr4=0x0
+    ptr5=0x0
+    failure_message_object=0x16d6c8ae0
+
+==== JS stack trace =========================================
+
+    0: ApiCallbackExitFrame print(this=0x0bcb01004929 <JSGlobalProxy>,0x0bcb00006179 <ScopeInfo SCRIPT_SCOPE>)
+
+    1: /* anonymous */ [0xbcb0101e121] [bugs/v8/c18-bytecode-trust/poc/h13-global-load-feedback-slot-oob-warm.js:26] [bytecode=0x278e010000b1 offset=279](this=0x0bcb01004929 <JSGlobalProxy>)
+    2: InternalFrame [pc: 0x177dcb344]
+    3: EntryFrame [pc: 0x177dcb03c]
+
+==== Details ================================================
+
+[0]: ApiCallbackExitFrame print(this=0x0bcb01004929 <JSGlobalProxy>,0x0bcb00006179 <ScopeInfo SCRIPT_SCOPE>)
+
+[1]: /* anonymous */ [0xbcb0101e121] [bugs/v8/c18-bytecode-trust/poc/h13-global-load-feedback-slot-oob-warm.js:26] [bytecode=0x278e010000b1 offset=279](this=0x0bcb01004929 <JSGlobalProxy>) {
+  // heap-allocated locals
+  var bc = 0x0bcb0104b7f9 <ContextCell[const=0x0bcb0104b5d5 <Object map = 0xbcb0101e5c9>]>
+  var bytes = 0x0bcb0104b84d <ContextCell[const=0x0bcb0104b811 <Uint8Array map = 0xbcb0100d541>]>
+  // expression stack (top to bottom)
+  [15] : 7864320
+  [14] : 0x0bcb00000011 <undefined>
+  [13] : 0x0bcb01004989 <NativeContext[307]>
+  [12] : 0x0bcb01017f79 <JSFunction print (sfi = 0xbcb01017f49)>
+  [11] : 0x0bcb01004929 <JSGlobalProxy>
+  [10] : 0x0bcb00006179 <ScopeInfo SCRIPT_SCOPE>
+  [09] : 0x0bcb00000011 <undefined>
+  [08] : 255
+  [07] : 0x0bcb0101dfe1 <String[2]: #->>
+  [06] : 0
+  [05] : 0
+  [04] : 0x0bcb00006179 <ScopeInfo SCRIPT_SCOPE>
+  [03] : 0x0bcb01017f79 <JSFunction print (sfi = 0xbcb01017f49)>
+  [02] : 1000
+  [01] : 4
+  [00] : 0x0bcb00000011 <undefined>
+--------- s o u r c e   c o d e ---------
+// C18 H13: global load FeedbackSlot OOB after feedback vector warmup.\x0avar C18_GLOBAL_LOAD = 13;\x0afunction f() {\x0a  return C18_GLOBAL_LOAD;\x0a}\x0a\x0afor (let i = 0; i < 1000; i++) f();\x0aprint("baseline", f());\x0a\x0alet bc = %GetBytecode(f);\x0alet bytes = new Uint8Array(bc.bytecode);\x0aprint("bytecode", Array.from(by...
+
+-----------------------------------------
+}
+
+[2]: InternalFrame [pc: 0x177dcb344]
+[3]: EntryFrame [pc: 0x177dcb03c]
+=====================
+
+
+EXIT:133
