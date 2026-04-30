@@ -1,0 +1,31 @@
+{
+  "hostHeader": "victim.test@127.0.0.1:54808",
+  "victimPort": 54809,
+  "attackerPort": 54808,
+  "victimResponseStatusLine": "HTTP/1.1 200 OK",
+  "victimEvents": [
+    {
+      "expressProtocol": "http",
+      "expressOriginalUrl": "/entry",
+      "expressBaseUrl": "",
+      "expressHostHeader": "victim.test@127.0.0.1:54808",
+      "renderUrl": "http://victim.test@127.0.0.1:54808/entry",
+      "platformLocation": {
+        "href": "http://victim.test@127.0.0.1:54808/entry",
+        "protocol": "http:",
+        "hostname": "127.0.0.1",
+        "port": "54808",
+        "baseHref": ""
+      },
+      "rewrittenUrl": "http://victim.test@127.0.0.1:54808/legacy-marker",
+      "outboundStatus": 200
+    }
+  ],
+  "attackerHits": [
+    {
+      "method": "GET",
+      "url": "/legacy-marker",
+      "host": "127.0.0.1:54808"
+    }
+  ]
+}

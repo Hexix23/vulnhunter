@@ -1,0 +1,98 @@
+{
+  "code": null,
+  "requests": [
+    {
+      "url": "/probe.html",
+      "headers": {
+        "host": "127.0.0.1:63623",
+        "connection": "keep-alive",
+        "sec-ch-ua": "\"Google Chrome\";v=\"147\", \"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"147\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "upgrade-insecure-requests": "1",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/147.0.0.0 Safari/537.36",
+        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "sec-fetch-site": "none",
+        "sec-fetch-mode": "navigate",
+        "sec-fetch-user": "?1",
+        "sec-fetch-dest": "document",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "en-US,en;q=0.9"
+      }
+    },
+    {
+      "url": "/external.svg",
+      "headers": {
+        "host": "127.0.0.1:63623",
+        "connection": "keep-alive",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/147.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Google Chrome\";v=\"147\", \"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"147\"",
+        "sec-ch-ua-mobile": "?0",
+        "accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
+        "sec-fetch-site": "same-origin",
+        "sec-fetch-mode": "same-origin",
+        "sec-fetch-dest": "image",
+        "referer": "http://127.0.0.1:63623/probe.html",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "en-US,en;q=0.9"
+      }
+    },
+    {
+      "url": "/image.svg",
+      "headers": {
+        "host": "127.0.0.1:63623",
+        "connection": "keep-alive",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/147.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Google Chrome\";v=\"147\", \"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"147\"",
+        "sec-ch-ua-mobile": "?0",
+        "accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
+        "sec-fetch-site": "same-origin",
+        "sec-fetch-mode": "no-cors",
+        "sec-fetch-dest": "image",
+        "referer": "http://127.0.0.1:63623/probe.html",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "en-US,en;q=0.9"
+      }
+    },
+    {
+      "url": "/event?finalByHref=%23local&messages=",
+      "headers": {
+        "host": "127.0.0.1:63623",
+        "connection": "keep-alive",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/147.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Google Chrome\";v=\"147\", \"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"147\"",
+        "sec-ch-ua-mobile": "?0",
+        "accept": "*/*",
+        "sec-fetch-site": "same-origin",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-dest": "empty",
+        "referer": "http://127.0.0.1:63623/probe.html",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "en-US,en;q=0.9"
+      }
+    },
+    {
+      "url": "/favicon.ico",
+      "headers": {
+        "host": "127.0.0.1:63623",
+        "connection": "keep-alive",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/147.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Google Chrome\";v=\"147\", \"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"147\"",
+        "sec-ch-ua-mobile": "?0",
+        "accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
+        "sec-fetch-site": "same-origin",
+        "sec-fetch-mode": "no-cors",
+        "sec-fetch-dest": "image",
+        "referer": "http://127.0.0.1:63623/probe.html",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "en-US,en;q=0.9"
+      }
+    }
+  ],
+  "stdout": "<!DOCTYPE html>\n<html><head><meta charset=\"utf-8\">\n</head><body data-final-by-href=\"#local\" data-messages=\"\">\n<svg width=\"200\" height=\"200\">\n  <symbol id=\"local\"><circle cx=\"10\" cy=\"10\" r=\"10\"></circle></symbol>\n  <use id=\"use-xlink\" xlink:href=\"http://127.0.0.1:63623/external.svg#shape\"></use>\n  <use id=\"use-href\" href=\"http://127.0.0.1:63623/external.svg#shape\"></use>\n  <use id=\"use-js\" href=\"javascript:top.postMessage('use-js-executed','*')\"></use>\n  <image id=\"image-href\" href=\"http://127.0.0.1:63623/image.svg\"></image>\n  <image id=\"image-js\" href=\"javascript:top.postMessage('image-js-executed','*')\"></image>\n  <animateMotion id=\"motion\">\n    <mpath href=\"http://127.0.0.1:63623/mpath.svg#motion\"></mpath>\n  </animateMotion>\n  <use id=\"animate-by\" href=\"#local\">\n    <animate attributeName=\"href\" by=\"http://127.0.0.1:63623/external.svg#shape\" dur=\"1ms\" fill=\"freeze\" begin=\"0s\"></animate>\n  </use>\n</svg>\n<script>\n  const seen = [];\n  addEventListener('message', (event) => {\n    seen.push(String(event.data));\n    fetch('/event?message=' + encodeURIComponent(String(event.data))).catch(() => {});\n  });\n  setTimeout(() => {\n    const byHref = document.getElementById('animate-by').getAttribute('href');\n    fetch('/event?finalByHref=' + encodeURIComponent(byHref || '') + '&messages=' + encodeURIComponent(seen.join(','))).catch(() => {});\n    document.body.setAttribute('data-final-by-href', byHref || '');\n    document.body.setAttribute('data-messages', seen.join(','));\n  }, 1000);\n</script>\n</body></html>\n",
+  "stderr": "Trying to load the allocator multiple times. This is *not* supported.\n[96964:13628341:0429/164552.657868:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR\n[96964:13628341:0429/164552.661284:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR\n[96964:13628341:0429/164552.761797:ERROR:google_apis/gcm/engine/mcs_client.cc:700]   Error code: 401  Error message: Authentication Failed: wrong_secret\n[96964:13628341:0429/164552.761814:ERROR:google_apis/gcm/engine/mcs_client.cc:702] Failed to log in to GCM, resetting connection.\n\n[probe] chrome timeout; sending SIGKILL\n"
+}

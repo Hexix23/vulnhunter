@@ -1,0 +1,32 @@
+diff --git a/packages/core/test/render3/i18n/i18n_parse_spec.ts b/packages/core/test/render3/i18n/i18n_parse_spec.ts
+index 53fb556113..4cbfeaee95 100644
+--- a/packages/core/test/render3/i18n/i18n_parse_spec.ts
++++ b/packages/core/test/render3/i18n/i18n_parse_spec.ts
+@@ -341,6 +341,27 @@ describe('i18n_parse', () => {
+         expect(fixture.host.innerHTML).toEqual(`<div></div><!--ICU ${HEADER_OFFSET + 0}:0-->`);
+       });
+     });
++
++    it('A10 probe: preserves static srcset introduced by ICU translation', () => {
++      const tI18n = toT18n(`{
++        �0�, select,
++          A {<img srcset="https://attacker.test/pixel.png 1x">}
++          other {safe}
++      }`);
++
++      fixture.apply(() => {
++        applyCreateOpCodes(fixture.lView, tI18n.create, fixture.host, null);
++      });
++
++      fixture.apply(() => {
++        ɵɵi18nExp('A');
++        ɵɵi18nApply(0);
++        expect(fixture.host.innerHTML).toEqual(
++          `<img srcset="https://attacker.test/pixel.png 1x"><!--ICU ${HEADER_OFFSET + 0}:0-->`,
++        );
++      });
++    });
++
+   });
+ 
+   function toT18n(text: string) {

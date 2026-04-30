@@ -1,0 +1,51 @@
+diff --git a/packages/common/http/test/xsrf_spec.ts b/packages/common/http/test/xsrf_spec.ts
+index 4ed54bf706..4dda6004ee 100644
+--- a/packages/common/http/test/xsrf_spec.ts
++++ b/packages/common/http/test/xsrf_spec.ts
+@@ -119,6 +119,46 @@ describe('HttpXsrfInterceptor', () => {
+     req.flush({});
+   });
+ 
++  it('A12 probe: classifies browser-cross-origin unusual URLs as cross-origin', () => {
++    const crossOriginUrls = [
++      '//example.com/test',
++      '///example.com/test',
++      '////example.com/test',
++      '\\\\example.com\\test',
++      '/\\\\example.com/test',
++      'http:////example.com/test',
++      'http:/\\\\example.com/test',
++      'http:\\\\example.com\\test',
++      '  //example.com/test',
++      '\t//example.com/test',
++      '\n//example.com/test',
++      'http://sub.example.com@example.com/test',
++    ];
++
++    for (const url of crossOriginUrls) {
++      interceptor.intercept(new HttpRequest('POST', url, {}), backend).subscribe();
++      const req = backend.expectOne(url);
++      expect(req.request.headers.has('X-XSRF-TOKEN')).withContext(url).toBeFalse();
++      req.flush({});
++    }
++  });
++
++  it('A12 probe: keeps encoded authority-looking paths same-origin', () => {
++    const sameOriginUrls = [
++      '/%2f%2fexample.com/test',
++      '/%5c%5cexample.com/test',
++      '/safe/..//example.com/test',
++      '/test?next=//example.com/after',
++    ];
++
++    for (const url of sameOriginUrls) {
++      interceptor.intercept(new HttpRequest('POST', url, {}), backend).subscribe();
++      const req = backend.expectOne(url);
++      expect(req.request.headers.get('X-XSRF-TOKEN')).withContext(url).toEqual('test');
++      req.flush({});
++    }
++  });
++
+   it('does not overwrite existing header', () => {
+     interceptor
+       .intercept(

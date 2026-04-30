@@ -1,0 +1,7 @@
+{
+  "name": "attacker-manifest",
+  "short_name": "attacker",
+  "start_url": "/from-manifest",
+  "display": "standalone"
+}
+

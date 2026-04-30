@@ -1,0 +1,92 @@
+diff --git a/packages/core/test/render3/i18n/i18n_parse_spec.ts b/packages/core/test/render3/i18n/i18n_parse_spec.ts
+index 53fb556113..542d676544 100644
+--- a/packages/core/test/render3/i18n/i18n_parse_spec.ts
++++ b/packages/core/test/render3/i18n/i18n_parse_spec.ts
+@@ -341,6 +341,87 @@ describe('i18n_parse', () => {
+         expect(fixture.host.innerHTML).toEqual(`<div></div><!--ICU ${HEADER_OFFSET + 0}:0-->`);
+       });
+     });
++
++    it('A16 probe: ICU attribute normalization and residual fetch attributes matrix', () => {
++      const cases = [
++        {
++          name: 'uppercase-href',
++          html: '<a HREF="https://attacker.test/upper">upper</a>',
++        },
++        {
++          name: 'tab-before-equals-href',
++          html: '<a href\t="https://attacker.test/tab">tab</a>',
++        },
++        {
++          name: 'newline-before-equals-src',
++          html: '<img src\n="https://attacker.test/newline.png">',
++        },
++        {
++          name: 'null-in-attr-name',
++          html: '<a href\u0000="https://attacker.test/null">null</a>',
++        },
++        {
++          name: 'entity-in-attr-name',
++          html: '<a h&#114;ef="https://attacker.test/entity">entity</a>',
++        },
++        {
++          name: 'xlink-href-uppercase',
++          html: '<a XLINK:HREF="https://attacker.test/xlink">xlink</a>',
++        },
++        {
++          name: 'style-attribute',
++          html: '<div style="background-image:url(https://attacker.test/style.png)">style</div>',
++        },
++        {
++          name: 'iframe-srcdoc',
++          html: '<iframe srcdoc="<script>top.__A16=1</script>">fallback</iframe>',
++        },
++        {
++          name: 'svg-style-mutation-shape',
++          html: '<svg><p><style><img src="</style><img src=x onerror=alert(1)//"></style></p></svg>',
++        },
++        {
++          name: 'picture-source-srcset',
++          html: '<picture><source srcset="https://attacker.test/source-1x.png 1x"><img alt="x"></picture>',
++        },
++        {
++          name: 'img-srcset-javascript',
++          html: '<img srcset="/safe.png 1x, javascript:alert(1) 2x">',
++        },
++        {
++          name: 'video-source-srcset',
++          html: '<video><source srcset="https://attacker.test/video-1x.mp4 1x"></video>',
++        },
++      ];
++      const results: unknown[] = [];
++
++      for (const testCase of cases) {
++        try {
++          fixture = new ViewFixture({decls: 1, vars: 1});
++          const tI18n = toT18n(`{�0�, select, A {${testCase.html}} other {safe}}`);
++          fixture.apply(() => applyCreateOpCodes(fixture.lView, tI18n.create, fixture.host, null));
++          fixture.apply(() => {
++            ɵɵi18nExp('A');
++            ɵɵi18nApply(0);
++          });
++          results.push({
++            name: testCase.name,
++            input: testCase.html,
++            outcome: 'rendered',
++            html: fixture.host.innerHTML,
++          });
++        } catch (error) {
++          results.push({
++            name: testCase.name,
++            input: testCase.html,
++            outcome: 'throw',
++            error: String((error as Error).message || error).replace(/\s+/g, ' ').slice(0, 220),
++          });
++        }
++      }
++
++      throw new Error(JSON.stringify(results, null, 2));
++    });
+   });
+ 
+   function toT18n(text: string) {
