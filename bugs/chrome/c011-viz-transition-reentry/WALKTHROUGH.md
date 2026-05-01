@@ -194,6 +194,48 @@ Round 2 deep reachability:
   - Verdict: the retained state can carry large GPU/shared-image resources.
   - Evidence: `evidence/h19-large-shared-image-retention.txt`.
 
+- H21 browser waitUntil probe:
+  - Added `content_browsertests` coverage for same-origin cross-document view
+    transition with `pagereveal.waitUntil()` keeping Release delayed.
+  - Harness fixes made during review: the HTML now actually creates the
+    `#target` shared element, and second navigation uses same-origin COOP to
+    match Chromium's existing process-swap view-transition test shape.
+  - ASan content build failed in V8 `mksnapshot`, not in C011 code.
+  - Non-ASan content build was started but paused because the cold
+    `content_browsertests` target was too large for this iteration.
+  - Evidence: `evidence/h21-asan-build-mksnapshot-failure.txt`.
+
+- H22 support teardown after copy completion:
+  - Extended H18/H19 to call `support_.reset()` after copy completion.
+  - Both tests still assert one cached manager and one shared image after
+    support teardown.
+  - Large variant keeps the 4096x4096 / 67,108,864 byte assertion.
+  - Verdict: retained resource lifetime is in `FrameSinkManagerImpl` cached
+    manager, not only in source `CompositorFrameSinkSupport`.
+  - Evidence: `evidence/h22-shared-image-survives-support-teardown.txt`.
+
+- H23 repeated large copy-completed teardown:
+  - Strengthened H15 from small pending-copy growth into large completed-copy
+    retention.
+  - Four distinct tokens each use a 4096x4096 shared element.
+  - All pending copy requests are completed.
+  - Total retained estimate is asserted as 268,435,456 bytes.
+  - `support_.reset()` does not clear the four cached managers or four shared
+    images.
+  - Verdict: the primitive scales linearly and survives renderer/support
+    teardown after copy completion.
+  - Evidence: `evidence/h23-repeated-large-copy-completed-teardown.txt`.
+
+- H24 browser/content-shell build:
+  - Non-ASan `content_browsertests` was resumed for H21, then paused because
+    the cold target remained too large.
+  - `content_shell` was attempted as a smaller HTML PoC vehicle, but still had
+    37k targets and was paused after healthy progress.
+  - The H21 HTML harness is still staged and corrected in the VM.
+  - Verdict: browser-level validation is infra-blocked by build throughput, not
+    by a failed hypothesis.
+  - Evidence: `evidence/h24-browser-build-bottleneck.txt`.
+
 Blink/cc release path notes:
 
 - `third_party/blink/renderer/core/view_transition/view_transition.cc` sends

@@ -1,0 +1,40 @@
+WARN: SystemInfo_vulkan.cpp:197 (HasKhronosValidationLayer): Vulkan validation layers are missing
+Note: Google Test filter = CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedPendingAnimateLeavesManagerCached:CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedRepeatedLostAnimateGrowsCache:CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedLostAnimateSurvivesSupportTeardown:CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedAnimateThenReleaseClearsLostManager:CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedReleaseThenAnimateClearsLostManager:CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedLaterReleaseClearsLostManager:CompositorFrameSinkSupportTestBase.SameDocumentPostedCompletionKeepsManagerLocal:CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedMojoRemoteClientIsAsync:FrameSinkBundleImplTest.OnSaveTransitionDirectiveProcessedBundleClientIsAsync
+[==========] Running 9 tests from 2 test suites.
+[----------] Global test environment set-up.
+[----------] 8 tests from CompositorFrameSinkSupportTestBase
+[ RUN      ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedMojoRemoteClientIsAsync
+[       OK ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedMojoRemoteClientIsAsync (3 ms)
+[ RUN      ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedPendingAnimateLeavesManagerCached
+[       OK ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedPendingAnimateLeavesManagerCached (0 ms)
+[ RUN      ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedRepeatedLostAnimateGrowsCache
+[       OK ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedRepeatedLostAnimateGrowsCache (1 ms)
+[ RUN      ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedLostAnimateSurvivesSupportTeardown
+[       OK ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedLostAnimateSurvivesSupportTeardown (0 ms)
+[ RUN      ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedAnimateThenReleaseClearsLostManager
+[       OK ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedAnimateThenReleaseClearsLostManager (0 ms)
+[ RUN      ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedReleaseThenAnimateClearsLostManager
+[85534:85534:ERROR:components/viz/service/frame_sinks/frame_sink_manager_impl.cc:1342] SurfaceAnimationManager missing for |transition_token| : (A69D857D89864CF9426EAC5EDC33FA52)
+[       OK ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedReleaseThenAnimateClearsLostManager (0 ms)
+[ RUN      ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedLaterReleaseClearsLostManager
+[       OK ] CompositorFrameSinkSupportTestBase.OnSaveTransitionDirectiveProcessedLaterReleaseClearsLostManager (0 ms)
+[ RUN      ] CompositorFrameSinkSupportTestBase.SameDocumentPostedCompletionKeepsManagerLocal
+[       OK ] CompositorFrameSinkSupportTestBase.SameDocumentPostedCompletionKeepsManagerLocal (0 ms)
+[----------] 8 tests from CompositorFrameSinkSupportTestBase (13 ms total)
+
+[----------] 1 test from FrameSinkBundleImplTest
+[ RUN      ] FrameSinkBundleImplTest.OnSaveTransitionDirectiveProcessedBundleClientIsAsync
+[85534:85534:ERROR:components/viz/test/fake_skia_output_surface.cc:89] Not implemented reached in virtual void viz::FakeSkiaOutputSurface::SetNeedsSwapSizeNotifications(bool). 
+[85534:85534:ERROR:components/viz/test/fake_skia_output_surface.cc:89] Not implemented reached in virtual void viz::FakeSkiaOutputSurface::SetNeedsSwapSizeNotifications(bool). 
+[85534:85534:ERROR:components/viz/test/fake_skia_output_surface.cc:94] Not implemented reached in virtual void viz::FakeSkiaOutputSurface::SetUpdateVSyncParametersCallback(UpdateVSyncParametersCallback). 
+
+GMOCK WARNING:
+Uninteresting mock function call - returning directly.
+    Function call: OnBeginFramePausedChanged(false)
+NOTE: You can safely ignore the above warning unless this call should not happen.  Do not suppress it by adding an EXPECT_CALL() if you don't mean to enforce the call.  See https://github.com/google/googletest/blob/main/docs/gmock_cook_book.md#knowing-when-to-expect-useoncall for details.
+[       OK ] FrameSinkBundleImplTest.OnSaveTransitionDirectiveProcessedBundleClientIsAsync (3 ms)
+[----------] 1 test from FrameSinkBundleImplTest (3 ms total)
+
+[----------] Global test environment tear-down
+[==========] 9 tests from 2 test suites ran. (17 ms total)
+[  PASSED  ] 9 tests.

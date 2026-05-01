@@ -89,6 +89,11 @@ diff --git a/components/viz/service/frame_sinks/compositor_frame_sink_support_un
 +  EXPECT_EQ(1u, CachedAnimationManagerCount());
 +  EXPECT_EQ(1u, SharedImageCount());
 +
++  support_.reset();
++  EXPECT_TRUE(HasAnimationManagerForToken(token_x));
++  EXPECT_EQ(1u, CachedAnimationManagerCount());
++  EXPECT_EQ(1u, SharedImageCount());
++
 +  request.reset();
 +  shared_image.reset();
 +

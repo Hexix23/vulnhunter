@@ -22,7 +22,8 @@ diff --git a/content/browser/renderer_host/view_transition_browsertest.cc b/cont
 +  WaitForCopyableViewInWebContents(web_contents);
 +
 +  GURL second_url(embedded_test_server()->GetURL(
-+      "a.com", "/view_transitions/c011-large-vt-waituntil.html?hold"));
++      "a.com",
++      "/view_transitions/c011-large-vt-waituntil.html?hold&pipe=header(Cross-Origin-Opener-Policy,same-origin)"));
 +  TestNavigationManager navigation_manager(web_contents, second_url);
 +  ASSERT_TRUE(ExecJs(web_contents, JsReplace("location.href = $1", second_url)));
 +  ASSERT_TRUE(navigation_manager.WaitForNavigationFinished());

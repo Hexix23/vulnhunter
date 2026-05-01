@@ -1,0 +1,47 @@
+H23 repeated large shared images survive copy completion and support teardown
+===========================================================================
+
+Build:
+
+  ninja -C out/c001_asan -j4 viz_unittests
+
+Run:
+
+  ASAN_OPTIONS=detect_odr_violation=0 xvfb-run -a out/c001_asan/viz_unittests \
+    --gtest_filter='CompositorFrameSinkSupportTestBase.RepeatedSharedElementLostAnimateGrowsCacheAndPendingCopies' \
+    --single-process-tests
+
+Patch delta:
+
+  RepeatedSharedElementLostAnimateGrowsCacheAndPendingCopies was strengthened:
+
+  - each shared element is 4096x4096;
+  - four distinct transition tokens are used;
+  - each pending CopyOutputRequest is completed;
+  - total retained shared-image estimate is asserted:
+      4 * 4096 * 4096 * 4 = 268,435,456 bytes;
+  - after copy completion, `support_.reset()` is called;
+  - cached manager count and shared image count remain 4.
+
+Result:
+
+  [ RUN      ] CompositorFrameSinkSupportTestBase.RepeatedSharedElementLostAnimateGrowsCacheAndPendingCopies
+  [ERROR:components/viz/service/transitions/surface_animation_manager.cc:276]
+    No SurfaceAnimationManager for token : A86E5B75AB14488745EBA048E49200B1
+  [ERROR:components/viz/service/transitions/surface_animation_manager.cc:276]
+    No SurfaceAnimationManager for token : E8C94C1B73A9FB002794663851A391EF
+  [ERROR:components/viz/service/transitions/surface_animation_manager.cc:276]
+    No SurfaceAnimationManager for token : 03F7D54DABB719885C3A6B63FE5FA28D
+  [ERROR:components/viz/service/transitions/surface_animation_manager.cc:276]
+    No SurfaceAnimationManager for token : A1E44AE5A4641245C270734D70108594
+  [       OK ] CompositorFrameSinkSupportTestBase.RepeatedSharedElementLostAnimateGrowsCacheAndPendingCopies (156 ms)
+  [  PASSED  ] 1 test.
+
+Verdict:
+
+  CONFIRMED-PRODUCT-ROUTE / IMPACT-STRENGTHENED.
+
+  The retained resource primitive scales linearly across distinct transition
+  tokens. It survives copy completion and originating support teardown. Four
+  4096x4096 shared images remain reachable from global cached managers, with a
+  summed estimated size of 268,435,456 bytes, until explicit token cleanup.

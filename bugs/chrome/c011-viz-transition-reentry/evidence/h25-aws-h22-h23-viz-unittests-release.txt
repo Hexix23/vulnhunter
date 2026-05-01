@@ -1,0 +1,22 @@
+WARN: SystemInfo_vulkan.cpp:197 (HasKhronosValidationLayer): Vulkan validation layers are missing
+Note: Google Test filter = CompositorFrameSinkSupportTestBase.SharedElementLostAnimateRetainsManagerAfterCopyCompletion:CompositorFrameSinkSupportTestBase.SharedElementLostAnimateRetainsLargeSharedImageAfterCopyCompletion:CompositorFrameSinkSupportTestBase.RepeatedSharedElementLostAnimateGrowsCacheAndPendingCopies
+[==========] Running 3 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 3 tests from CompositorFrameSinkSupportTestBase
+[ RUN      ] CompositorFrameSinkSupportTestBase.RepeatedSharedElementLostAnimateGrowsCacheAndPendingCopies
+[69068:69068:ERROR:components/viz/service/transitions/surface_animation_manager.cc:276] No SurfaceAnimationManager for token : 468022A997DB1838C561D0E6FFE94E1E
+[69068:69068:ERROR:components/viz/service/transitions/surface_animation_manager.cc:276] No SurfaceAnimationManager for token : 52220648ADE29B9B3C528C5085C5903D
+[69068:69068:ERROR:components/viz/service/transitions/surface_animation_manager.cc:276] No SurfaceAnimationManager for token : 120813DB935E160A706F1501851D61A9
+[69068:69068:ERROR:components/viz/service/transitions/surface_animation_manager.cc:276] No SurfaceAnimationManager for token : 08B634EB79C2FE2E358BDF459519EC5E
+[       OK ] CompositorFrameSinkSupportTestBase.RepeatedSharedElementLostAnimateGrowsCacheAndPendingCopies (3 ms)
+[ RUN      ] CompositorFrameSinkSupportTestBase.SharedElementLostAnimateRetainsManagerAfterCopyCompletion
+[69068:69068:ERROR:components/viz/service/transitions/surface_animation_manager.cc:276] No SurfaceAnimationManager for token : 05618C7C3605132A7CCEC2806AF4EA6F
+[       OK ] CompositorFrameSinkSupportTestBase.SharedElementLostAnimateRetainsManagerAfterCopyCompletion (0 ms)
+[ RUN      ] CompositorFrameSinkSupportTestBase.SharedElementLostAnimateRetainsLargeSharedImageAfterCopyCompletion
+[69068:69068:ERROR:components/viz/service/transitions/surface_animation_manager.cc:276] No SurfaceAnimationManager for token : 239BB0A3346E93716639C11E9876DC2E
+[       OK ] CompositorFrameSinkSupportTestBase.SharedElementLostAnimateRetainsLargeSharedImageAfterCopyCompletion (0 ms)
+[----------] 3 tests from CompositorFrameSinkSupportTestBase (7 ms total)
+
+[----------] Global test environment tear-down
+[==========] 3 tests from 1 test suite ran. (7 ms total)
+[  PASSED  ] 3 tests.

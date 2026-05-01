@@ -91,6 +91,28 @@ Current variant status:
   `ViewTransition.waitUntil()` promises before Blink emits
   `ViewTransitionRequest::CreateRelease()`. Evidence:
   `evidence/h20-blink-release-delay-source-audit.txt`.
+- H21 browser-level waitUntil probe: patch prepared and harness corrected
+  (`#target` element added; second navigation uses COOP same-origin to force
+  process swap). ASan `content_browsertests` build failed earlier in V8
+  `mksnapshot`, and non-ASan `content_browsertests` cold build was paused after
+  proving too slow for this iteration. Evidence:
+  `evidence/h21-asan-build-mksnapshot-failure.txt`.
+- H22 support-teardown retention: confirmed stronger lifetime boundary. H18 and
+  H19 now also reset `CompositorFrameSinkSupport` after copy completion; both
+  still retain the global manager and shared image. The 4096x4096 / 67,108,864
+  byte shared image survives renderer/support teardown until explicit manager
+  clear. Evidence:
+  `evidence/h22-shared-image-survives-support-teardown.txt`.
+- H23 repeated large copy-completed teardown: confirmed linear resource impact
+  after strengthening H15. Four distinct tokens each retain a 4096x4096 shared
+  image after copy completion and after `CompositorFrameSinkSupport` teardown.
+  Summed retained estimate: 268,435,456 bytes. Evidence:
+  `evidence/h23-repeated-large-copy-completed-teardown.txt`.
+- H24 browser/content-shell build: blocked by throughput, not repro. Non-ASan
+  `content_browsertests` and `content_shell` builds were both healthy but too
+  slow in the VM for this iteration. The corrected H21 browser harness remains
+  staged; object progress remains in `out/c011_rel`. Evidence:
+  `evidence/h24-browser-build-bottleneck.txt`.
 
 Baseline:
 
@@ -105,6 +127,12 @@ VRP status:
 - Confirmed product variant: H7-H9, H13-H15, H18, and H19 lost-animate, global
   cache growth, retained shared-image resources after copy completion,
   quantified 64 MiB retained shared image, and survival past support teardown.
+- Strengthened lifetime: H22 shows the retained shared-image resource survives
+  support teardown after copy completion, not just while source support/surface
+  bookkeeping is alive.
+- Strengthened scale: H23 shows the primitive scales across distinct tokens and
+  keeps hundreds of MiB of shared-image state in global Viz managers without the
+  originating support.
 - Confirmed cleanup boundary: H10-H12 show Release clears the state.
 - Confirmed scope boundary: H16 shows same-document flow is not affected.
 - Refuted reachability: normal Mojo client and bundled client are async.

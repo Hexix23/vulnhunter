@@ -1,0 +1,49 @@
+H24 browser/content-shell build bottleneck
+=========================================
+
+Goal:
+
+  Build a browser-capable target to run the H21 HTML view-transition PoC and
+  observe web -> Blink -> cc -> Viz reach outside unit tests.
+
+Attempt 1:
+
+  ninja -C out/c011_rel -j20 content_browsertests
+
+Result:
+
+  Paused after ~1662/39408 remaining-target sequence. Build was healthy but
+  too slow for this iteration. Existing object progress remains in
+  out/c011_rel.
+
+Attempt 2:
+
+  ninja -C out/c011_rel -j20 content_shell
+
+Result:
+
+  Paused after ~3156/37146 remaining-target sequence. Build was healthy but
+  still too slow for this iteration. Existing object progress remains in
+  out/c011_rel.
+
+Context:
+
+  The earlier ASan `content_browsertests` build failed before link in V8
+  `mksnapshot` with an ASan/Rosetta SEGV, documented in
+  `h21-asan-build-mksnapshot-failure.txt`.
+
+Verdict:
+
+  H21 browser-level proof is blocked by build throughput, not by source or
+  repro failure. The corrected H21 harness remains staged in the VM:
+
+  - content/browser/renderer_host/view_transition_browsertest.cc
+  - content/test/data/view_transitions/c011-large-vt-waituntil.html
+
+  Recommended next infra step: resume `ninja -C out/c011_rel -j20
+  content_shell` or move the checkout to a larger Linux builder, then run the
+  HTML PoC and grep stderr for Viz:
+
+    No SurfaceAnimationManager for token
+
+  That log is the product-route signature already proven in Viz unit tests.

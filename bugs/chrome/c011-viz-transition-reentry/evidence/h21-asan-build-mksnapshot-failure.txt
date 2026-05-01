@@ -1,0 +1,40 @@
+H21 browser-level build attempt, ASan config
+===========================================
+
+Build:
+
+  ninja -C out/c001_asan content_browsertests
+
+Result:
+
+  FAILED: snapshot_blob.bin v8_context_snapshot.bin gen/v8/embedded.S gen/v8/src/builtins/builtins-effects.cc
+  python3 ../../v8/tools/run.py ./mksnapshot ...
+  AddressSanitizer:DEADLYSIGNAL
+  ERROR: AddressSanitizer: SEGV on unknown address 0x1fd75fff8000
+
+Relevant stack:
+
+  #0 __asan::internal_memset
+  #1 __asan_memset
+  #2 v8::internal::MemsetTagged
+  #3 v8::internal::heap::ZapBlock
+  #4 v8::internal::MemoryAllocator::AllocateUninitializedChunkAt
+  #5 v8::internal::MemoryAllocator::AllocatePage
+  #6 v8::internal::PagedSpaceBase::TryExpand
+  #7 v8::internal::PagedSpaceAllocatorPolicy::EnsureAllocation
+  #8 v8::internal::MainAllocator::AllocateRawSlowUnaligned
+  #9 v8::internal::AllocationResult::ToObjectChecked
+  #10 v8::internal::ReadOnlySpace::EnsureSpaceForAllocation
+  #11 v8::internal::ReadOnlyHeap::SetUp
+  #12 v8::internal::IsolateGroup::SetupReadOnlyHeap
+  #13 v8::internal::Isolate::Init
+  #14 v8::internal::SnapshotCreatorImpl::InitInternal
+  #15 v8::SnapshotCreator::SnapshotCreator
+  #16 main
+
+Manual retry with `ASAN_OPTIONS=protect_shadow_gap=0` failed the same way.
+
+Verdict:
+
+  Infra/build failure before `content_browsertests` links. Not evidence for or
+  against H21. Switch to non-ASan DCHECK browser build for web-reachable proof.

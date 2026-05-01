@@ -1,0 +1,50 @@
+H22 shared image survives CompositorFrameSinkSupport teardown
+============================================================
+
+Build:
+
+  ninja -C out/c001_asan viz_unittests
+
+Run:
+
+  ASAN_OPTIONS=detect_odr_violation=0 xvfb-run -a out/c001_asan/viz_unittests \
+    --gtest_filter='CompositorFrameSinkSupportTestBase.SharedElementLostAnimateRetainsManagerAfterCopyCompletion:CompositorFrameSinkSupportTestBase.SharedElementLostAnimateRetainsLargeSharedImageAfterCopyCompletion' \
+    --single-process-tests
+
+Patch delta:
+
+  Both copy-completion retention tests now assert, after copy completion:
+
+    support_.reset();
+    EXPECT_TRUE(HasAnimationManagerForToken(token_x));
+    EXPECT_EQ(1u, CachedAnimationManagerCount());
+    EXPECT_EQ(1u, SharedImageCount());
+
+  The large variant also keeps the previous assertion:
+
+    shared_image->size() == gfx::Size(4096, 4096)
+    shared_image->EstimatedSizeInBytes().InBytes() == 67,108,864
+
+Result:
+
+  [ RUN      ] CompositorFrameSinkSupportTestBase.SharedElementLostAnimateRetainsManagerAfterCopyCompletion
+  [ERROR:components/viz/service/transitions/surface_animation_manager.cc:276]
+    No SurfaceAnimationManager for token : F4034384EA21140D5BEFE3404526F28E
+  [       OK ] CompositorFrameSinkSupportTestBase.SharedElementLostAnimateRetainsManagerAfterCopyCompletion (157 ms)
+
+  [ RUN      ] CompositorFrameSinkSupportTestBase.SharedElementLostAnimateRetainsLargeSharedImageAfterCopyCompletion
+  [ERROR:components/viz/service/transitions/surface_animation_manager.cc:276]
+    No SurfaceAnimationManager for token : EE846E270591209C6EA85D556DD5B2D2
+  [       OK ] CompositorFrameSinkSupportTestBase.SharedElementLostAnimateRetainsLargeSharedImageAfterCopyCompletion (5 ms)
+
+  [  PASSED  ] 2 tests.
+
+Verdict:
+
+  CONFIRMED-PRODUCT-ROUTE / IMPACT-STRENGTHENED.
+
+  H18/H19 retention is not just pending CopyOutputRequest state and is not tied
+  to the lifetime of the originating CompositorFrameSinkSupport. After copy
+  completion and support teardown, FrameSinkManagerImpl still owns the cached
+  SurfaceAnimationManager and the retained shared image. Cleanup still requires
+  explicit ClearSurfaceAnimationManager(token).
