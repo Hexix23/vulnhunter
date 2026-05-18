@@ -96,6 +96,18 @@ Exit criterion: candidates are ordered, test shapes are concrete, reportability 
 
 Template: `NN-PRODUCT-post-fix-hunt-matrix.md`.
 
+### D.5 LLM leverage passes (operational)
+
+Before declaring the matrix ready for probing, run the LLM-heavy passes in `llm-leverage-passes.md`:
+
+- Pass 1 — patch-diff variant farm (highest yield; fix-lineage seed).
+- Pass 2 — parser / serializer differential.
+- Pass 3 — symmetry / dual hunt.
+
+Each pass takes a section of the matrix and 3-5x expands the candidate count without adding boundaries — it adds variants per boundary already on the map. Candidates emitted by these passes feed Phase F slicing.
+
+Exit criterion for D.5: at least one variant from each pass landed in the matrix as a new row, or you can justify in writing why a pass returned nothing.
+
 ## 6. Phase E - Entry-point expansion
 
 Input: the candidate list and the source tree.
@@ -105,10 +117,12 @@ Do:
 - The candidate list is always narrower than reality. Deliberately zoom out and enumerate every trust boundary in the project that accepts external input. Do not filter for plausibility yet.
 - Typical boundaries: HTTP request headers, HTTP request body, URL path/query, WebSocket frames, file uploads, inter-service RPCs, config files parsed at runtime, environment variables, CLI args, schematic/codegen inputs, dev-server middleware, build-time hooks.
 - For each boundary: what input enters, what validation currently exists, what sinks consume it, what bug classes are plausible.
+- Before complex chains, run a basic primitive sweep for each boundary: absolute-form URLs, protocol-relative URLs, backslashes, duplicate/comma-joined headers, `Forwarded`/`X-Forwarded-*`, explicit ports, default ports, IPv6/IDNA, encoded separators, redirects, retry/fallback paths, and lower-level public APIs that bypass wrapper validation.
+- For each primitive, compare the raw input, the normalized value that validation checks, and the representation consumed by the sink. A mismatch is a first-class candidate even if it looks "too simple."
 
 Output: an entry-point map with one section per boundary.
 
-Exit criterion: you can name 10-15 boundaries. If you can only name 3, you have not looked hard enough.
+Exit criterion: you can name 10-15 boundaries, and each boundary has either passed the basic primitive sweep or is explicitly marked N/A. If you can only name 3, or if the primitives were skipped because you were chasing a deeper chain, you have not looked hard enough.
 
 Template: `NN-PRODUCT-expanded-entry-points.md`. When this document is written, feed each new boundary back into Phase B (invariants) and Phase D (candidates).
 
@@ -117,6 +131,130 @@ Why this phase exists: every engagement I have seen that produced a reportable f
 ## 7. Phase F - Candidate probing
 
 Input: one candidate from the matrix.
+
+### F.0.4 Prior-art duplicate check (mandatory, broader than GHSA)
+
+Public GHSA recon is necessary but NOT sufficient to rule out
+duplicates. Real-world experience: candidates can be marked duplicate
+by triage even when no published GHSA matches. Causes:
+
+- A different reporter submitted the same primitive recently and
+  triage is still processing it. No GHSA issued yet.
+- The bug is in the vendor's internal security-issue queue but not
+  externally announced.
+- The class is acknowledged in a closed GitHub issue without security
+  label.
+- The fix was merged silently in a recent commit; no GHSA emission
+  yet because vendor batches advisories.
+
+Before submitting any candidate, check all of:
+
+1. **Published GHSAs** for the program — covered by Phase 2 recon.
+2. **HackerOne hacktivity feed** for the program — look for
+   recent disclosed reports with matching keywords.
+3. **GitHub issues** with `security` / `bug` / `xss` / `ssrf` /
+   `auth` / `cache` labels referencing the same file or function.
+4. **Closed PRs** with security-adjacent commit messages
+   (`fix(security)`, `harden`, `validate`, `sanitize`) touching the
+   target sink in last 6 months. Even if PR has no CVE link, the
+   maintainer may treat the issue as known.
+5. **Public blog / Twitter / conference talk** mentioning the sink
+   or the same primitive. Search the function name and file path.
+6. **Vendor security blog** beyond GHSA emissions (some vendors
+   publish hardening posts that mention the class).
+
+If any of these returns a hit that plausibly covers the candidate,
+the report is at high duplicate risk. Either:
+- Find a clear novelty angle (post-patch bypass, broader impact,
+  different reachability) and document it explicitly in the report
+- Park as known-class hardening request
+
+Anti-pattern: relying on GHSA-only check, missing internal queue
+items, getting duplicate verdict at submission and losing
+credibility plus burning the report-channel slot.
+
+### F.0.3 Documentation-disclosure gate (mandatory, ordered FIRST)
+
+Before any Phase F PoC build, check if the framework already documents
+the unsafe behavior and provides a mitigation knob. Read the official
+docs section for the affected sink/feature end-to-end, including the
+"Notes" and "Caveats" subsections that ship in many doc generators.
+
+Test: "Does the framework docs explicitly disclose this behavior AND
+provide a config knob to disable / restrict it?"
+
+If yes → vendor triage will mark "working as documented". Park as
+**hardening request** (suggest hardening the default config or
+removing the documented escape hatch). Do NOT submit as vulnerability.
+
+This is DISTINCT from F.0.2 (consumer-bug). A behavior can be:
+- Framework-native (passes F.0.2) AND
+- Documented as intentional (fails F.0.3)
+- → still not a vulnerability under vendor rules
+
+Example failure mode: candidate sink in code is technically unsafe;
+docs at the sink's reference page contain a paragraph like
+"Note that <unsafe-behavior> happens; use <config-flag> to mitigate."
+Vendor's stance: documented, configurable, not a vulnerability.
+
+To upgrade despite documentation, you must show ONE of:
+1. The documented mitigation does NOT actually mitigate the attack
+   (false documentation).
+2. The default config still exposes the attack and the documented
+   mitigation is non-default + non-discoverable (most users miss it).
+3. The exploit chain reaches a different impact than the docs warn
+   about (e.g. docs warn about "image content swap"; you prove
+   "session cookie leak via the same primitive").
+
+Always grep the docs for the sink's identifier (function name,
+config key, route prefix) and the corresponding mitigation flag
+BEFORE building PoC. The vendor's documentation is the vendor's
+defense in triage.
+
+### F.0.2 Native-vs-consumer gate (mandatory, ordered FIRST)
+
+Before any Phase F PoC build, answer this question:
+
+> "If the consumer app follows the documented canonical pattern from
+> the project's official docs, does the exploit still fire?"
+
+If the answer is NO — the documented pattern includes a guard that
+blocks the attacker (auth check, opt-in flag, sanitization wrapper,
+secret comparison, capability check) — and that guard is NOT itself
+bypassable at framework level, then the exploit is **consumer-bug**.
+
+Consumer bugs are NOT VRP-reportable as framework vulnerabilities.
+Park as hardening request / defense-in-depth note. Do not write a PoC,
+do not run Phase G, do not draft a report.
+
+To upgrade a candidate from consumer-bug to framework-native, you must
+show ONE of:
+
+1. **Framework-internal caller**: the vulnerable sink is reached by
+   framework code without passing through user handler code at all.
+   Grep callers of the function; if all callers are user-handler
+   exposure, the sink is consumer-gated.
+2. **Documented-gate bypass at framework level**: the guard the docs
+   require (e.g. `req.query.secret !== TOKEN`) can be bypassed via a
+   framework parser quirk (e.g. header injection that pollutes
+   `req.query`, parser differential between user code and framework).
+3. **Sibling sink without consumer gate**: another sink with the same
+   unsafe pattern that is NOT gated by user code (e.g. framework
+   middleware, automatic background task).
+
+Test: "Would the official `Hello World` / `Getting Started` example
+from the docs exhibit this exploit if pasted unmodified?" If no →
+consumer bug, park.
+
+Rationale: VRP programs (Vercel OSS, Google VRP, Angular Security) all
+explicitly reject "obviously vulnerable application code" reports. The
+test above is the same test the triage engineer applies. Apply it
+yourself before investing PoC time.
+
+Anti-pattern: PoC that omits a guard the official docs mandate, then
+claims "framework bug" because the unguarded path leaks. That is
+consumer code that happens to expose a framework defense-in-depth gap.
+File as hardening, not as vulnerability.
 
 ### F.0.1 Production deployment verification (mandatory)
 
@@ -167,6 +305,64 @@ Anti-patterns to avoid:
 - Rigging the PoC app. If the exploit only works when you write unusual code in the consumer, that is a consumer bug, not a target bug. Write the consumer in the most natural way first; then show that the natural way exhibits the problem.
 - Using hand-crafted bootstraps instead of the canonical project scaffold. Hand-crafted bootstraps produce false positives because they bypass integrity checks the canonical build applies.
 - Testing against the source tree when the bundle is what users run. The bundle can differ. Always test against what ships.
+
+### F.2 Adversarial slice farm (parallel)
+
+Phase F is parallelizable up to roughly 8 concurrent slices via `codex-rescue`. Per-slice budget: ≤100 LOC source, ≤3 KB project text in the prompt, one contract sentence, adversarial framing. See Pass 4 in `llm-leverage-passes.md` for the prompt template.
+
+Anti-patterns specific to slice farming:
+- Sharing a single prompt across slices "for efficiency" — context bleed produces convergent FPs.
+- Letting the slice exceed 100 LOC because "the function is long" — split it.
+- Running concurrency higher than 8 — rate limits saturate without yield improvement.
+
+### F.1.1 Technique-catalog probe matrix (mandatory)
+
+Runtime probes for a candidate MUST NOT be limited to inputs the
+source-level analysis suggested. Source review produces hypotheses; the
+hypotheses are biased toward what the researcher could see in code. The
+real input space is the vendor-neutral technique catalog for the bug
+class.
+
+For each Phase F candidate, build a probe matrix BEFORE declaring
+confirmed or refuted. Coverage requirements per bug class:
+
+- **SSRF**: PayloadsAllTheThings/Server%20Side%20Request%20Forgery —
+  authority confusion (userinfo, fragment-@, query-@), slash variants
+  (//, ///, \\, %2F%2F, %252F), IP encoding (decimal, octal, hex, IPv4
+  short, IPv6 mapped, IPv6 literal, 0.0.0.0, nip.io), absolute URI
+  request-target (http/https/gopher/file), CRLF injection, Host header
+  trust (Host, X-Forwarded-Host, X-Forwarded-For, X-Original-Host,
+  Forwarded RFC7239), DNS rebinding/multiple-A.
+- **XSS**: PayloadsAllTheThings/XSS%20Injection — polyglot payloads,
+  context (HTML/attribute/script/style/URL), CSP bypass, mutation,
+  framework-specific bypasses.
+- **Path traversal**: encoded variants (%2e%2e, %252e, /./, /;), null
+  byte, UTF-8 overlong, OS path separator (\\ vs /), zip-slip,
+  Windows alternate streams.
+- **Open redirect**: PayloadsAllTheThings/Open%20Redirect — same shape
+  as SSRF authority confusion plus protocol-relative, javascript:,
+  data:, CRLF in Location.
+- **Deserialization**: per-language gadget chains (ysoserial,
+  Marshalsec, phpggc), prototype pollution payloads, polyglot.
+- **HTTP request smuggling**: CL.TE, TE.CL, TE.TE, HTTP/2-to-HTTP/1
+  desync, chunked-encoding tricks.
+
+Slice discipline still applies (one candidate per session). The matrix
+itself is a SINGLE artifact added to the candidate slice doc. Breadth
+on INPUTS, not breadth on candidates.
+
+Anti-pattern: declaring "refuted" after 5-10 narrow probes derived
+from source-level intuition. Declaring confirmed/refuted requires the
+catalog matrix.
+
+### F.3 Blind dual verification
+
+Between Phase F and Phase G, every candidate gets two independent LLM sessions:
+
+- Session A — adversarial framing, "this slice IS vulnerable, prove it".
+- Session B — defensive framing, "argue why this slice is safe".
+
+Escalate to Phase G only when both verdicts agree on vulnerability class. Disagreement is recorded as data, not averaged.
 
 ## 8. Phase G - Independent adversarial verification
 
@@ -309,6 +505,8 @@ bugs/
 17. Pin runtime/interpreter binaries by absolute path in every agent shell command. Do not rely on `export PATH` for sub-shells; agents lose env between turns and silently fall back to whichever bare `node`, `python`, `ruby` resolves first. Use the project's declared engines/runtime version, not the system default.
 18. When local PoCs hit a framework's own input-validation defenses (default-deny allowlists, host validators, CSRF tokens), set the framework's documented opt-in mechanism explicitly (env var, config flag). Otherwise the framework falls back silently to a different code path and your probe measures the wrong sink.
 19. Identify the ceiling of your instrument before you compete with it. Where industrial-scale machinery already covers the surface (continuous fuzzing farms, billion-sample regression detectors, vendor static-analysis pipelines), do not write a hand-rolled equivalent — you are 3 orders of magnitude behind on day one. Instrumentalize what exists: run the public fuzzers, consume the patch streams, read the issue trackers. Spend cognitive effort where the existing machinery cannot: patch-diff variant hunting, spec differential, source audit of optimization / transformation passes, cross-component pattern transfer, semantic post-triage of corpora. Phase F probing for high-investment targets is a triage and reasoning loop, not a tooling-build loop.
+20. Write `HANDOFF.md` (≤30 lines, schema in `llm-leverage-passes.md` Technique 10) at three trigger points: after closing any Pass output doc, before any session pause, before expected context compaction. Long sessions compress; the compression keeps the thread but drops file:line specifics. A short on-disk note survives compaction because it lives outside the model's context window. If you cannot summarize state in 30 lines, slice discipline failed earlier — refactor the matrix into smaller artifacts, do not bloat the handoff. No mega-MDs.
+21. **Single Active Artifact rule**. To start any Pass, prompt, or agent call, read only `HANDOFF.md` plus the one artifact `HANDOFF.md` currently points to. Never load two prior Pass outputs into the same prompt; never attach multiple threat-model docs as context. If you need a fact from a prior artifact, copy the single paragraph in. Prior artifacts are reference, not working context. The Pass output schema (`Pass N+1 input` section) is the contract that carries forward; everything else stays on disk and out of the prompt. Stacking docs feels thorough but reduces yield because long-context LLMs degrade as the input grows.
 
 ## 14. Common failure modes
 

@@ -11,14 +11,37 @@ Do not start with agents, skills, orchestration, or a mega-prompt.
 Workflow:
 
 1. Build system context from prior CVEs and accepted bug classes.
-2. Compress that context into a small threat model.
-3. Feed that model to Codex for code research.
-4. Ask for invariants, fix-bypass candidates, and source-to-sink probes.
-5. Keep extending the threat model only with new bug classes, boundaries,
+2. Normalize each CVE through at least the vendor advisory and NVD/NIST:
+   extract platform, attacker precondition, CVSS vector, and stated outcome.
+3. Compress that context into a small threat model.
+4. Feed that model to Codex for code research.
+5. Ask for invariants, fix-bypass candidates, and source-to-sink probes.
+6. Keep extending the threat model only with new bug classes, boundaries,
    sinks, and confirmed primitives learned during the audit.
 
 Threat modeling is the compression layer. It improves signal without bloating
 the context window.
+
+## Rule - boring primitives first
+
+Do not jump straight to complex chains. For every new trust boundary, first run
+the basic primitive matrix:
+
+- absolute-form and origin-form URLs;
+- protocol-relative and backslash URL forms;
+- `Host`, duplicate `Host`, comma-joined headers, `Forwarded`, and
+  `X-Forwarded-*`;
+- explicit ports, default ports, IPv6 brackets, IPv4-mapped IPv6, and IDNA;
+- encoded separators, dot segments, mixed slash normalization;
+- redirects, retries, fallbacks, and lower-level public APIs that skip wrapper
+  validation;
+- parser/serializer pairs for cache keys, hydration state, manifests, request
+  bodies, and generated code.
+
+For each primitive, write which raw string enters, which normalized value is
+validated, and which value the sink consumes. If validation and sink do not use
+the same representation, that is a first-class candidate. Many reportable CVEs
+are simple authority or boundary mistakes, not deep exploit chains.
 
 ## Rule 0 - no fake scaffold
 
@@ -109,6 +132,9 @@ For every prior CVE:
 CVE:
 Bug class:
 Affected component:
+NVD/NIST outcome:
+NVD/NIST attacker precondition:
+Platform:
 Attacker input:
 Broken invariant:
 Security sink:

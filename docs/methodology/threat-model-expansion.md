@@ -101,6 +101,37 @@ Each "no/maybe" is a candidate.
 
 **Anti-anchoring rule**: if your candidate list does not include at least one entry from 5+ rows of this table, the inventory was incomplete. Go back.
 
+## Technique 3.5 — Basic primitive sweep
+
+Before inventing multi-step exploit chains, pressure-test each boundary with
+the simplest forms attackers use to confuse validators and downstream parsers.
+This sweep is mandatory for every boundary that has URL, header, path,
+manifest, cache-key, serializer, or generated-code semantics.
+
+Minimum primitive set:
+
+| Primitive family | Shapes to test |
+|---|---|
+| URL authority | absolute-form, origin-form, protocol-relative, backslash, mixed slash |
+| Header authority | `Host`, duplicate `Host`, comma joins, `Forwarded`, `X-Forwarded-*` |
+| Port / address | default port, explicit port, IPv6 brackets, IPv4-mapped IPv6, IDNA |
+| Path normalization | encoded separators, dot segments, percent-decoding order, case folding |
+| Redirect / retry | post-redirect validation, retry URL rebuild, fallback handler |
+| Lower-level API | public core API without wrapper validation, internal helper exported by package |
+| Serializer differential | cache key, hydration state, manifest, body, generated code |
+
+For each row, answer:
+
+- What exact raw value crosses the boundary?
+- What normalized representation is validated?
+- What representation does the sink consume?
+- Is the validator absent in a lower-level exported API even if a wrapper has it?
+- Does the current patched version still accept a sibling primitive?
+
+Stop condition: if the boundary has not passed this sweep, do not mark the
+surface "reviewed". This prevents missing basic CVE-class bugs while chasing
+rarer RCE or cache-poisoning chains.
+
 ## Technique 4 — Symmetry / dual checks
 
 Every input validator implies a dual on the output side (or vice versa). When a target has only the input-side validator, the output-side is unprotected — and consumers downstream of the missing dual are surface.
@@ -143,6 +174,53 @@ For each CWE class, ask: "given this target's architecture, where could this man
 
 For your target: skip CWEs that genuinely don't apply (e.g., 89 in a target with no DB layer). For the remaining CWEs, you should be able to name at least one code location per CWE that warrants probing. If you can't, you don't know the codebase yet — go back to technique 1.
 
+## Technique 6 — Parser / serializer differential
+
+For each concept the target normalizes more than once (URL, header, pathname, body framing, host, content-type), enumerate every implementation. The pairs are the surface.
+
+Pairs to feed an LLM with Prompt P2 from `llm-leverage-passes.md`:
+
+| Concept | Typical parser plurality |
+|---|---|
+| URL | router URL parser, fetch URL parser, image-pattern matcher, redirect destination builder |
+| Header | edge runtime header parser, node server parser, middleware injector |
+| Pathname | request normalizer, route matcher, file resolver, cache key |
+| HTTP body framing | reverse proxy reader, framework reader, cache layer reader |
+| Host | trust-proxy resolver, allowlist matcher, redirect host validator |
+
+Yield: HRS, SSRF, route-confusion, header trust, post-redirect bypass.
+
+## Technique 7 — Adversarial slice farm at scale
+
+Convert the candidate matrix into parallel slices, each ≤100 LOC plus a one-sentence contract. Dispatch via `codex-rescue` with adversarial framing (Prompt P4 in `llm-leverage-passes.md`), 8 concurrent maximum.
+
+Anti-pattern: running this technique before techniques 2 and 6. Slicing without leverage burns budget on enumeration.
+
+## Technique 8 — Blind dual-LLM verification
+
+Two independent sessions on every candidate before Phase G:
+
+- Session A: adversarial framing, "prove vulnerable".
+- Session B: defensive framing, "argue why safe".
+
+Disagreement is data, not noise. Both sessions confirming = strong signal. Both sessions denying = kill the candidate.
+
+False-positive kill rate in recent engagements: ~60%. Worth the extra session even when the first verdict feels strong.
+
+## Technique 9 — Cross-framework pattern transfer
+
+Every primitive confirmed in target T1 is a 30-minute probe against framework siblings. Document any sibling that exposes the same root cause; multi-project reports earn higher payout on programs that publish that bonus (Vercel OSS +50% as of 2026).
+
+Anchor pairings to use as defaults: Next.js ↔ Nuxt; SvelteKit ↔ Astro; SolidStart ↔ Remix; Django ↔ Flask; Express ↔ Fastify; Rails ↔ Sinatra.
+
+## Technique 10 — Compact-survival handoff doc
+
+Before context compaction or session pause, write `HANDOFF.md` (≤30 lines) at the worktree root. Required fields, schema, and anti-patterns: see `llm-leverage-passes.md` Technique 10.
+
+Rationale: long sessions compress automatically; the compression keeps the conversation thread but drops file:line specifics that a fresh session needs to re-enter productively. A short on-disk note survives compaction because it lives outside the model's context window.
+
+If you cannot summarize the session in 30 lines, the slice discipline failed earlier — refactor the matrix into smaller artifacts, not a longer handoff.
+
 ## Diversity gate (anti-anchoring)
 
 Apply this AFTER you have your candidate list. Reject the list if any of:
@@ -151,8 +229,28 @@ Apply this AFTER you have your candidate list. Reject the list if any of:
 - All P1 candidates touch the same file.
 - All P1 candidates use the same input channel (e.g., all from one HTTP header).
 - No candidate from a non-runtime boundary (build, IPC, plugin, config).
+- Fewer than 5 of techniques 1-9 actually applied to produce the list.
+- Zero convergence signal: no root primitive appears across ≥2 different
+  techniques' priority outputs. Convergence is the difference between
+  random enumeration and structural finding. If nothing converges, the
+  techniques were applied in parallel but not in dialogue — re-run with
+  cross-reference between outputs.
 
 If you fail the gate, force-add candidates from the underrepresented dimensions. The friction of "I don't have a good candidate for this CWE/boundary" is the signal that you need to read more code.
+
+## Single Active Artifact rule (anti-bloat)
+
+While running this expansion, never load two prior threat-model docs into
+the same prompt or agent context. Each technique consumes one input:
+either the current state from `HANDOFF.md`, or a single prior doc paragraph
+copied in for a specific fact. The output of each technique is its own
+short doc with a "Pass N+1 input" section that hands forward only the
+priority candidates, not the whole reasoning trace.
+
+Stacking docs feels thorough. It produces lower yield because the model
+spends attention budget re-reading prior context instead of reasoning
+about the current concept. The discipline is brutal: one artifact in,
+one artifact out, the rest stays on disk.
 
 ## When to stop expanding
 

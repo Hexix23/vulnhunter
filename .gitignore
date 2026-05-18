@@ -1,23 +1,78 @@
 # OS
 .DS_Store
+**/.DS_Store
+
+# Local agent/editor state
+.claude/settings.local.json
+.codex-tmp/
+.checkpoints/
+.pids/
+.worktrees/
 
 # Logs and temp files
 logs/
 *.log
-.pids/
-.checkpoints/
+*.pid
+*.tmp
+tmp/
+tmp_*/
+tmp-*/
+temp/
+
+# Node / frontend build artifacts
+node_modules/
+**/node_modules/
+**/node_modules.*/
+**/.angular/
+**/dist/
+**/coverage/
+**/.next/
+**/.nuxt/
+**/.vite/
+**/.cache/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime evidence that should not be uploaded accidentally
+**/evidence/*.log
+**/evidence/*.pid
+**/evidence/server.log
+**/evidence/victim.log
+**/evidence/http.log
+**/evidence/xvfb.log
+**/evidence/*-raw.*
+**/evidence/raw-*
+**/evidence/*session*.har
+**/evidence/*.trace
+**/evidence/*.zip
+**/evidence/*.tar
+**/evidence/*.tar.gz
+
+# Submission bundles are local copies; canonical reports live in bugs/**/report/
+reportable-vrp-content/
+reportable-hackerone-content/
+reportable/
+bugs/**/reportable-vrp-content/
+bugs/**/reportable-vrp-current/
 
 # Compiled binaries (keep source, ignore large binaries)
 *.bin
 *.o
 *.a
-*.tmp
 *.dSYM/
 build/
 build-*/
 build_*/
 builds/
 CMakeFiles/
+*.so
+*.dylib
+*.dll
+*.exe
+*.wasm
+
+# PoC build outputs
 bugs/**/poc/poc_*
 bugs/**/poc/radiourl_oob*
 
@@ -34,6 +89,10 @@ bugs/**/poc/radiourl_oob*
 !bugs/**/poc/*.py
 !bugs/**/poc/*.sh
 !bugs/**/poc/*.txt
+!bugs/**/poc/package.json
+!bugs/**/poc/angular.json
+!bugs/**/poc/tsconfig*.json
+!bugs/**/poc/src/**
 
 # Findings (generated)
 findings/
@@ -47,4 +106,15 @@ targets/
 # Local review scratch space
 tmp_review/
 tmp_tools/
+pocs/
+drivers.zip
+/1
+/package.json
+/package-lock.json
+
+# Secrets
+.env
+.env.*
+*.key
+*.pem
 intelx.pem
